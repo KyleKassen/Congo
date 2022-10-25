@@ -14,6 +14,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_picture = db.Column(db.String, default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
 
+    product = db.relationship('Product', back_populates='seller')
+
     @property
     def password(self):
         return self.hashed_password
