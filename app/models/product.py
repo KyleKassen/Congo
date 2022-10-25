@@ -16,6 +16,7 @@ class Product(db.Model):
     prime = db.Column(db.Boolean, nullable=False)
 
     seller = db.relationship('User', back_populates='product')
+    review = db.relationship('Review', back_populates='product')
 
 
 
