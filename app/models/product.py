@@ -28,7 +28,8 @@ class Product(db.Model):
     seller = db.relationship('User', back_populates='product')
     review = db.relationship('Review', back_populates='product')
     product_image = db.relationship('ProductImage', back_populates='product')
-    cart_item = db.relationship('cartItem', back_populates='product')
+    cart_item = db.relationship('CartItem', back_populates='product')
+    question = db.relationship('Question', back_populates='product')
 
     categories = db.relationship(
         'Category',
