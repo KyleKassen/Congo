@@ -72,11 +72,11 @@ class PaymentMethod(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    card_number = db.Column(db.Integer, nullable=False)
+    card_number = db.Column(db.String(25), nullable=False)
     card_holder = db.Column(db.String, nullable=False)
     card_exp = db.Column(db.Integer, nullable=False)
     security_code = db.Column(db.Integer, nullable=False)
-    default_card = db.Column(db.Boolean, default=True)
+    default_card = db.Column(db.Boolean, default=False)
 
     user = db.relationship('User', back_populates='payment_method')
 
