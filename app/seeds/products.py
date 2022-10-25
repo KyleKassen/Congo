@@ -1,4 +1,4 @@
-from app.models import db, Product, Category, ProductImage
+from app.models import db, Product, Category, ProductImage, Question, Answer
 
 def seed_products():
     fire_stick = Product(
@@ -22,9 +22,25 @@ def seed_products():
         url='https://m.media-amazon.com/images/I/411y5UdVmvL._AC_SL1000_.jpg'
     )
 
+    q1 = Question(
+        product_id=1,
+        user_id=4,
+        question='Is this product any good',
+    )
+
+    a1 = Answer(
+        question_id=1,
+        user_id=3,
+        answer='Yes, this product is good'
+    )
+
+
     fire_stick.categories.append(one)
     db.session.add(fire_stick)
     db.session.add_all([onepm, twopm])
+    db.session.commit()
+    db.session.add(q1)
+    db.session.add(a1)
     db.session.commit()
 
 

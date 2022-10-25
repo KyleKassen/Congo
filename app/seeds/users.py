@@ -1,4 +1,4 @@
-from app.models import db, User
+from app.models import db, User, PaymentMethod, ShippingAddress
 
 
 # Adds a demo user, you can add other users here if you want
@@ -16,6 +16,24 @@ def seed_users():
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(kyle)
+
+    pm1 = PaymentMethod(
+        user_id = 4,
+        card_number = '0000111122223333',
+        card_holder = 'Kyle Kassen',
+        card_exp = 1212,
+        security_code = 123,
+        default_card = True
+    )
+
+    sa1 = ShippingAddress(
+        user_id = 4,
+        address = '123 barracks way',
+        city = 'College Station',
+        state = 'TX',
+        zipcode = 77845
+    )
+    db.session.add_all([pm1,sa1])
 
     db.session.commit()
 
