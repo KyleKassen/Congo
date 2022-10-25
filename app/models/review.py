@@ -16,6 +16,7 @@ class Review(db.Model):
 
     user = db.relationship('User', back_populates='review')
     product = db.relationship('Product', back_populates='review')
+    review_image = db.relationship('ReviewImage', back_populates='review')
 
 
 
@@ -30,4 +31,22 @@ class Review(db.Model):
             'numberHelpful': self.number_helpful,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
+        }
+
+class ReviewImage(db.Model):
+    __tablename__ = 'reviewImages'
+
+    id = db.Column(db.Integer, primary_key=True)
+    review_id = db.Column(db.Integer, db.ForeignKey('reviews.id'))
+    url = db.Column(db.String, nullable=False)
+
+    review = db.relationship('Review', back_populates='review_image')
+
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'reviewId': self.review_id,
+            'url': self.url,
         }
