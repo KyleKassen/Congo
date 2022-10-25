@@ -1,7 +1,7 @@
 from .db import db
 
 class ShippingAddress(db.Model):
-    __tablename__ = 'reviews'
+    __tablename__ = 'shippingAddresses'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -21,4 +21,5 @@ class ShippingAddress(db.Model):
             'address': self.address,
             'city': self.city,
             'state': self.state,
+            'zipcode': self.zipcode,
         }
