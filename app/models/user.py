@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     review = db.relationship('Review', back_populates='user')
     address = db.relationship('ShippingAddress', back_populates='user')
     payment_method = db.relationship('PaymentMethod', back_populates='user')
+    cart_item = db.relationship('CartItem', back_populates='buyer')
 
     @property
     def password(self):
@@ -89,4 +90,3 @@ class PaymentMethod(db.Model):
             'securityCode': self.security_code,
             'defaultCard': self.default_card
         }
-
