@@ -15,6 +15,8 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.String, default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
 
     product = db.relationship('Product', back_populates='seller')
+    review = db.relationship('Review', back_populates='user')
+    address = db.relationship('ShippingAddress', back_populates='user')
 
     @property
     def password(self):
