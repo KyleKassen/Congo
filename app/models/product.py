@@ -70,7 +70,7 @@ class ProductImage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
-    url = db.Column(db.Integer, nullable=False)
+    url = db.Column(db.String, nullable=False)
     preview = db.Column(db.Boolean, default=False)
 
     product = db.relationship('Product', back_populates='product_image')
