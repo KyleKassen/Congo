@@ -4,10 +4,12 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
+import Header from './components/Header/header';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import { loadAllProducts, loadOneProduct } from './store/product';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +18,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(loadAllProducts())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -26,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <Header />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />

@@ -18,7 +18,7 @@ export const loadOne = (product) => {
 
 export const loadOneProduct = (id) => async (dispatch) => {
   console.log("Loading One Product Thunk");
-  const response = await fetch(`/api/products/${id}/`);
+  const response = await fetch(`/api/products/${id}`);
 
   const product = await response.json();
   if (response.ok) {
@@ -41,7 +41,7 @@ export const addOne = (product) => {
 
 export const addOneProduct = (product) => async (dispatch) => {
   console.log("Adding One Product Thunk");
-  const response = await fetch(`/api/reviews/`, {
+  const response = await fetch(`/api/reviews`, {
     method: "POST",
     header: {
       "Content-Type": "application/json",
@@ -125,7 +125,7 @@ export const loadAll = (products) => {
 
 export const loadAllProducts = () => async (dispatch) => {
   console.log("Loading all Product Thunk");
-  const response = await fetch(`/api/products/`);
+  const response = await fetch(`/api/products`);
 
   const products = await response.json();
 
