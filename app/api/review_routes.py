@@ -3,26 +3,40 @@ from flask_login import login_required, current_user
 from app.models import Product, ProductImage, Review, ReviewImage, User, db
 from sqlalchemy import func
 from sqlalchemy.orm import joinedload, subqueryload
-from ..forms.product_form import ProductForm
+from ..forms.review_form import ReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
+
 @review_routes.route('/<int:id>')
-def get_products(id):
+@login_required
+def update_review(id):
     """
     Update a review
     """
 
-    products = Product.query.options(joinedload(Product.product_image)).all()
-    #products = Product.query.join(ProductImage).all()
+    update_review = Review.query.get(id)
+    user = current_user.to_dict()
+    owner_id = user['id']
 
-    result = {'products': []}
-    for product in products:
-        curr_product = product.to_dict()
-        curr_product['images'] = [image.to_dict()
-                                  for image in product.product_image]
+    if (owner_id != form.data['user_id']):
+        return {
+            "statusCode": 400,
+            "message": "Not the correct user"
+        }
 
-        result['products'].append(curr_product)
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    # return {'products': [image.to_dict() for product in products for image in product.product_image]}
-    return result
+    if form.validate_on_submit():
+        update_review.title = form.data['title'],
+        update_review.review = form.data['review'],
+        update_review.date = form.data['date'],
+        update_review.rating = form.data['rating'],
+        update_review.number_helpful = form.data['number_helpful'],
+
+        db.session.commit()
+
+        return update_review.to_dict()
+
+    return {'errors': 'form was not validated'}
