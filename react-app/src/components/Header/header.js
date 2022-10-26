@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import amazonheader from "../../media/images/amazonheader.png";
 import locationPin from "../../media/icons/locationPin.png";
+import flag from "../../media/icons/flag.png";
 import "./header.css";
 
 function Header() {
@@ -30,7 +31,6 @@ function Header() {
       <div className="header-search-bar-outer-container">
         <form onSubmit={onSubmit} className="text">
           <div className="header-search-bar-container">
-            {/* <div className="header-search-bar-category-container"> */}
               <select
                 className="header-search-bar-category-dropdown"
                 type="text"
@@ -43,8 +43,6 @@ function Header() {
                   <option value={category}>{category}</option>
                 ))}
               </select>
-            {/* </div> */}
-            {/* <div className="header-search-bar-search-container"> */}
               <input
                 className="header-search-input-field"
                 type="text"
@@ -58,11 +56,13 @@ function Header() {
               >
                 Search
               </button>
-            {/* </div> */}
           </div>
         </form>
       </div>
-      <div className="header-language">language</div>
+      <div className="header-language">
+        <img src={flag}/>
+        EN
+        </div>
       <div className="header-user-auth">
         <p className="header-user-auth-small">Hello, sign in</p>
         <p className="header-user-auth-large">Account & Lists</p>
