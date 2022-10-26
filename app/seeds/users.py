@@ -31,7 +31,8 @@ def seed_users():
         address = '123 barracks way',
         city = 'College Station',
         state = 'TX',
-        zipcode = 77845
+        zipcode = 77845,
+        default_address = True
     )
     db.session.add_all([pm1,sa1])
 
