@@ -31,7 +31,6 @@ def update_review(id):
     if form.validate_on_submit():
         update_review.title = form.data['title'],
         update_review.review = form.data['review'],
-        update_review.date = form.data['date'],
         update_review.rating = form.data['rating'],
         update_review.number_helpful = form.data['number_helpful'],
 

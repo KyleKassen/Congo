@@ -4,6 +4,7 @@ from app.models import Product, ProductImage, Review, ReviewImage, User, db
 from sqlalchemy import func
 from sqlalchemy.orm import joinedload, subqueryload
 from ..forms.product_form import ProductForm
+from ..forms.review_form import ReviewForm
 
 product_routes = Blueprint('products', __name__)
 
@@ -172,3 +173,38 @@ def get_reviews(id):
     result['reviews'] = result_reviews
 
     return result
+
+
+@product_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
+def create_review(id):
+    """
+    Create a Review
+    """
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    if (id == user_id):
+        return {
+            "statusCode": 400,
+            "message": "Current User owns the product"
+        }
+
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        review = Review(
+            user_id,
+            product_id=id,
+            title=form.data['title'],
+            review=form.data['review'],
+            rating=form.data['quantity'],
+        )
+
+        db.session.add(review)
+        db.session.commit()
+
+        return review.to_dict()
+
+    return {'errors': 'an error occured'}

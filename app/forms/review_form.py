@@ -7,7 +7,7 @@ class ReviewForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     review = StringField('Review', validators=[DataRequired()])
     rating = IntegerField('Rating', validators=[DataRequired()])
-    date = StringField('Date', validators=[DataRequired()])
+    date = StringField('Date')
     number_helpful = IntegerField('Number of Upvotes', validators=[DataRequired()])
 
     submit = SubmitField('Submit')
