@@ -139,7 +139,16 @@ def delete_product(id):
     """
     Delete a Product
     """
+
+    user = current_user.to_dict()
+    user_id = user['id']
     product = Product.query.get(id)
+
+    if (user_id != product['seller_id']):
+        return {
+            "statusCode": 400,
+            "message": "Not the correct user"
+        }
 
     db.session.delete(product)
     db.session.commit()

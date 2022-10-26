@@ -17,9 +17,9 @@ def update_review(id):
 
     update_review = Review.query.get(id)
     user = current_user.to_dict()
-    owner_id = user['id']
+    user_id = user['id']
 
-    if (owner_id != form.data['user_id']):
+    if (user_id != update_review['user_id']):
         return {
             "statusCode": 400,
             "message": "Not the correct user"
@@ -39,3 +39,28 @@ def update_review(id):
         return update_review.to_dict()
 
     return {'errors': 'form was not validated'}
+
+@review_routes('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_review(id):
+    """
+    Delete a review
+    """
+    review = Review.query.get(id)
+
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    if (user_id != review['user_id']):
+        return {
+            "statusCode": 400,
+            "message": "Not the correct user"
+        }
+
+    db.session.delete(review)
+    db.session.commit()
+
+    return {
+        "statusCode": 200,
+        "message": "successfully deleted"
+    }
