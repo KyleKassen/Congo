@@ -51,10 +51,10 @@ class ShippingAddress(db.Model):
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
     zipcode = db.Column(db.Integer, nullable=False)
+    default_address = db.Column(db.Boolean, default=False)
 
     user = db.relationship('User', back_populates='address')
-
-
+    
 
     def to_dict(self):
         return {

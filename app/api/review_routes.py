@@ -40,7 +40,7 @@ def update_review(id):
 
     return {'errors': 'form was not validated'}
 
-@review_routes('/<int:id>', methods=['DELETE'])
+@review_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_review(id):
     """
