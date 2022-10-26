@@ -26,10 +26,10 @@ class Product(db.Model):
     prime = db.Column(db.Boolean, nullable=False)
 
     seller = db.relationship('User', back_populates='product')
-    review = db.relationship('Review', back_populates='product')
-    product_image = db.relationship('ProductImage', back_populates='product')
-    cart_item = db.relationship('CartItem', back_populates='product')
-    question = db.relationship('Question', back_populates='product')
+    review = db.relationship('Review', back_populates='product', cascade="all, delete")
+    product_image = db.relationship('ProductImage', back_populates='product', cascade="all, delete")
+    cart_item = db.relationship('CartItem', back_populates='product', cascade="all, delete")
+    question = db.relationship('Question', back_populates='product', cascade="all, delete")
 
     categories = db.relationship(
         'Category',

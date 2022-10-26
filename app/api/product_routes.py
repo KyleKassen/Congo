@@ -90,9 +90,17 @@ def create_product():
     return {'errors': 'an error occured'}
 
 @product_routes.route('/<int:id>', methods=['DELETE'])
-@login_required
-def delete_product():
+# @login_required
+def delete_product(id):
     """
     Delete a Product
     """
-    
+    product = Product.query.get(id)
+
+    db.session.delete(product)
+    db.session.commit()
+
+    return {
+        "statusCode": 200,
+        "message": "successfully deleted"
+    }
