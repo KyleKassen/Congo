@@ -11,8 +11,8 @@ class Review(db.Model):
     review = db.Column(db.String(5000), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     number_helpful = db.Column(db.Integer, nullable=False, default=0)
-    date = db.Column(db.String, default=datetime.now)
-    updated_date = db.Column(db.String, default=datetime.now, onupdate=datetime.now)
+    date = db.Column(db.String, default=datetime.now, onupdate=datetime.now)
+    # updated_date = db.Column(db.String, default=datetime.now, onupdate=datetime.now)
 
     user = db.relationship('User', back_populates='review')
     product = db.relationship('Product', back_populates='review')
@@ -30,7 +30,7 @@ class Review(db.Model):
             'rating': self.rating,
             'numberHelpful': self.number_helpful,
             'date': self.date,
-            'updatedDate': self.updated_date,
+            # 'updatedDate': self.updated_date,
         }
 
 class ReviewImage(db.Model):
