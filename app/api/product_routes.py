@@ -3,9 +3,10 @@ from flask_login import login_required, current_user
 from app.models import Product, ProductImage, Review, ReviewImage, User, db
 from sqlalchemy import func
 from sqlalchemy.orm import joinedload, subqueryload
-from ..forms.add_product_form import AddProductForm
+from ..forms.product_form import ProductForm
 
 product_routes = Blueprint('products', __name__)
+
 
 @product_routes.route('/')
 def get_products():
@@ -19,12 +20,14 @@ def get_products():
     result = {'products': []}
     for product in products:
         curr_product = product.to_dict()
-        curr_product['images'] = [image.to_dict() for image in product.product_image]
+        curr_product['images'] = [image.to_dict()
+                                  for image in product.product_image]
 
         result['products'].append(curr_product)
 
     # return {'products': [image.to_dict() for product in products for image in product.product_image]}
     return result
+
 
 @product_routes.route('/<int:id>')
 def get_product(id):
@@ -36,7 +39,8 @@ def get_product(id):
     images = ProductImage.query.filter_by(product_id=id).all()
     user = User.query.filter_by(id=product.seller_id).first()
 
-    rating = Review.query.with_entities(func.avg(Review.rating)).filter_by(product_id=id).first()
+    rating = Review.query.with_entities(
+        func.avg(Review.rating)).filter_by(product_id=id).first()
     review_count = Review.query.count()
     rating = float(round(rating[0], 1))
 
@@ -57,6 +61,7 @@ def get_product(id):
 
     return result
 
+
 @product_routes.route('/', methods=['POST'])
 @login_required
 def create_product():
@@ -66,7 +71,7 @@ def create_product():
     user = current_user.to_dict()
     seller_id = user['id']
 
-    form = AddProductForm()
+    form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
@@ -89,8 +94,46 @@ def create_product():
 
     return {'errors': 'an error occured'}
 
+
+@product_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_product():
+    """
+    Update a Product
+    """
+    user = current_user.to_dict()
+    owner_id = user['id']
+
+    if (owner_id != form.data['seller_id']):
+        return {
+            "statusCode": 400,
+            "message": "Not the correct user"
+        }
+
+    form = ProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    updated_product = Product.query.get(id)
+
+    if form.validate_on_submit():
+        updated_product.title = form.data['title'],
+        updated_product.description = form.data['description'],
+        updated_product.sold_by = form.data['sold_by'],
+        updated_product.fulfilled_by = form.data['fulfilled_by'],
+        updated_product.quantity = form.data['quantity'],
+        updated_product.price = form.data['price'],
+        updated_product.sale_price = form.data['sale_price'],
+        updated_product.shipping_price = form.data['shipping_price'],
+        updated_product.prime = form.data['prime']
+
+        db.session.commit()
+
+        return updated_product.to_dict()
+
+    return {'errors': 'an error occured'}
+
+
 @product_routes.route('/<int:id>', methods=['DELETE'])
-# @login_required
+@login_required
 def delete_product(id):
     """
     Delete a Product

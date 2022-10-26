@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FloatField, BooleanField
 from wtforms.validators import DataRequired
 
-class AddProductForm(FlaskForm):
+class ProductForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     sold_by = StringField('Sold By', validators=[DataRequired()])
