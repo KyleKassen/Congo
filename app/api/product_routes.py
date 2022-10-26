@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import Product, ProductImage, Review, ReviewImage
+from app.models import Product, ProductImage, Review, ReviewImage, User
+from sqlalchemy import func
 from sqlalchemy.orm import joinedload, subqueryload
 
 product_routes = Blueprint('products', __name__)
@@ -25,17 +26,22 @@ def get_products():
 @product_routes.route('/<int:id>')
 def get_product(id):
     product = Product.query.get(id)
+    images = ProductImage.query.filter_by(product_id=id).all()
+    user = User.query.filter_by(id=product.seller_id).first()
 
-    images = ProductImage.query.filter_by(product_id=id)
+    # reviews = Review.query.filter_by(product_id=id).options(joinedload(Review.review_image)).all()
 
-    reviews = Review.query.options(joinedload(Review.review_image))
+    # result_reviews = []
+    # for review in reviews:
+    #     current = review.to_dict()
+    #     current['images'] = [image.to_dict() for image in review.review_image]
+    #     result_reviews.append(current)
+    # result['reviews'] = result_reviews
+
+
 
     result = product.to_dict()
-    result['images'] = images.to_dict()
-    review['reviews'] = reviews.to_dict()
+    result['images'] = [image.to_dict() for image in images]
+    result['seller'] = user.to_dict()
 
-    for image in product.product_image:
-        print(image)
-    for review in product.review:
-        print(review)
-    return product[0].to_dict()
+    return result
