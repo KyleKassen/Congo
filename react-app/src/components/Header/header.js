@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import NavBar from "../NavBar";
-import amazonheader from "../../media/images/amazonheader.png";
+import congo from "../../media/images/CONGO.png";
 import locationPin from "../../media/icons/locationPin.png";
 import flag from "../../media/icons/flag.png";
 import "./header.css";
@@ -14,7 +14,7 @@ function Header() {
   const [submitted, isSubmitted] = useState(false);
   const history = useHistory();
 
-  const categories = ["All" ,"Amazon", "Appliances", "Clothing"];
+  const categories = ["All", "Amazon", "Appliances", "Clothing"];
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -24,13 +24,16 @@ function Header() {
 
   return (
     <div className="header-outer-container">
-      <div className="header-logo">
-        <img src={amazonheader} />
+      <div className="header-left-container">
+        <div className="header-logo">
+          <img src={congo} />
+        </div>
+        <div className="header-set-location">Set Location</div>
       </div>
-      <div className="header-set-location">Set Location</div>
-      <div className="header-search-bar-outer-container">
-        <form onSubmit={onSubmit} className="text">
-          <div className="header-search-bar-container">
+      <div className="header-middle-container">
+        <div className="header-search-bar-outer-container">
+          <form onSubmit={onSubmit} className="text">
+            <div className="header-search-bar-container">
               <select
                 className="header-search-bar-category-dropdown"
                 type="text"
@@ -56,19 +59,22 @@ function Header() {
               >
                 Search
               </button>
-          </div>
-        </form>
-      </div>
-      <div className="header-language">
-        <img src={flag}/>
-        EN
+            </div>
+          </form>
         </div>
-      <div className="header-user-auth">
-        <p className="header-user-auth-small">Hello, sign in</p>
-        <p className="header-user-auth-large">Account & Lists</p>
       </div>
-      <div className="header-returns">returns</div>
-      <div className="header-cart">cart button</div>
+      <div className="header-right-container">
+        <div className="header-language">
+          <img src={flag} />
+          EN
+        </div>
+        <div className="header-user-auth">
+          <p className="header-user-auth-small">Hello, sign in</p>
+          <p className="header-user-auth-large">Account & Lists</p>
+        </div>
+        <div className="header-returns">returns</div>
+        <div className="header-cart">cart button</div>
+      </div>
     </div>
   );
 }

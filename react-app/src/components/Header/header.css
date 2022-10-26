@@ -7,18 +7,36 @@
     align-items: center;
 }
 
+.header-left-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo {
+    margin-left: 15px;
+    margin-right: 1px;
+    border: 1px solid transparent;
+}
 .header-logo img {
     object-fit: contain;
     width: 99px;
     height: 49px;
+    padding: 1px 8px 0px 6px;
+}
+
+.header-logo:hover, .header-set-location:hover {
+    border: 1px solid white;
+    border-radius: 2px;
+    cursor: pointer;
 }
 
 .header-set-location {
     width: 135px;
     height: 50px;
     padding: 0px 9px;
-    background-color: grey;
     margin: 5px 2px 5px 0px;
+    border: 1px solid transparent;
 }
 
 .header-search-bar {
