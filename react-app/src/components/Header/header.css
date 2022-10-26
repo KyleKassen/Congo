@@ -1,0 +1,12 @@
+.header-outer-container {
+    display: flex;
+    /* background-color: rgb(19,25,33); */
+    height: 60px;
+}
+
+.header-logo img {
+    object-fit: contain;
+    width: 99px;
+    height: 49px;
+    
+}
