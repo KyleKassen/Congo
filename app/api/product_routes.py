@@ -97,7 +97,7 @@ def create_product():
 
 @product_routes.route('/<int:id>', methods=['PUT'])
 @login_required
-def update_product():
+def update_product(id):
     """
     Update a Product
     """
@@ -129,7 +129,7 @@ def update_product():
 
         return updated_product.to_dict()
 
-    return {'errors': 'an error occured'}
+    return {'errors': 'form was not validated'}
 
 
 @product_routes.route('/<int:id>', methods=['DELETE'])
@@ -147,3 +147,28 @@ def delete_product(id):
         "statusCode": 200,
         "message": "successfully deleted"
     }
+
+
+"""
+Review product routes
+"""
+
+
+@product_routes.route('/<int:id>/reviews')
+def get_reviews(id):
+    """
+    Get All Reviews for Product
+    """
+
+    reviews = Review.query.filter_by(product_id=id).options(
+        joinedload(Review.review_image)).all()
+
+    result = {}
+    result_reviews = []
+    for review in reviews:
+        current = review.to_dict()
+        current['images'] = [image.to_dict() for image in review.review_image]
+        result_reviews.append(current)
+    result['reviews'] = result_reviews
+
+    return result
