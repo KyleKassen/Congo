@@ -91,11 +91,11 @@ export const updateOneProduct = (product, id) => async (dispatch) => {
 // DELETE PRODUCT
 //##########################
 
-export const deleteOne = () => {
+export const deleteOne = (id) => {
   console.log("Deleting One Product");
   return {
     type: DELETE,
-    payload: product,
+    payload: id,
   };
 };
 
@@ -106,7 +106,7 @@ export const deleteOneProduct = (id) => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(deleteOne());
+    dispatch(deleteOne(id));
   }
   return await response.json();
 };
@@ -127,7 +127,7 @@ export const loadAllProducts = () => async (dispatch) => {
   console.log("Loading all Product Thunk");
   const response = await fetch(`/api/products/`);
 
-  products = await response.json();
+  const products = await response.json();
 
   if (response.ok) {
     dispatch(loadAll(products));
@@ -161,10 +161,13 @@ export const productReducer = (state = initialState, action) => {
       delete newState.allProducts[action.payload];
       return newState;
     case LOAD_ALL:
-        newState.allProducts = {...action.payload}
+        newState.allProducts = {}
+        action.payload.products.forEach(product => newState.allProducts[product.id] = product)
         return newState
 
     default:
       return state;
   }
 };
+
+export default productReducer;
