@@ -11,20 +11,14 @@ import flag from "../../media/icons/flag.png";
 import "./header.css";
 
 function Header() {
-  // const location = useSelector(state => state.)
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
+  const [department, setDepartment] = useState("");
   const [submitted, isSubmitted] = useState(false);
   const [focusClass, setFocusClass] = useState("");
   const history = useHistory();
 
-  // useEffect(() => {
-
-  //   searchFocus = focus ? "header-middle-container-border" : ""
-  //   console.log('\n\n\n\n\n\n', searchFocus)
-  // }, [focus])
-
-  const categories = ["All", "Amazon", "Appliances", "Clothing"];
+  const departments = ["All", "Amazon", "Appliances", "Clothing"];
+  const mainNav = ['Best Sellers', 'Amazon Basics', 'Customer Service', "Today's Deals", "Prime", "New Releases", "Music", "Books", "Pharmacy", "Registry", "Amazon Home", "Fashion", "Kindle Books", "Gift Cards"];
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -53,13 +47,13 @@ function Header() {
               <select
                 className="header-search-bar-category-dropdown"
                 type="text"
-                name="category"
+                name="department"
                 placeholder="All"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
               >
-                {categories.map((category) => (
-                  <option value={category}>{category}</option>
+                {departments.map((department) => (
+                  <option value={department}>{department}</option>
                 ))}
               </select>
               <input
