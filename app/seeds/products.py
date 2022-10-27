@@ -1,6 +1,9 @@
 from app.models import db, Product, Category, ProductImage, Question, Answer
 
+categories = ['Alex Skills', 'Amazon Devices', 'Amazon Explore', 'Amazon Pharmacy', 'Amazon Warehouse', 'Appliances', 'Apps & Games', 'Arts, Crafts & Sewing', 'Audible Books & Originals', 'Automotive Parts & Accessories', 'Baby', 'Beauty & Personal Care', 'Books', 'CDs & Vinyl', 'Cell Phones & Accessories', 'Clothing, Shoes & Jewely', 'Collectibles & Fine Art', 'Computes', 'Credit and Payment Cards', 'Digital Educational Resources', 'Digital Music', 'Electronics', 'Garden & Outdoor', 'Gift Cards', 'Grocery & Gourmet Food', 'Handmade', 'Health, Household & Babe Care', 'Home & Business Services', 'Home & Kitchen', 'Industrial & Scientific', 'Just for Prime', 'Kindle Store', 'Luggage & Travel Gear', 'Luxury Store', 'Magazine Subscriptions', 'Movies & TV', 'Musical Instruments', 'Office Products', 'Online Learning', 'Pet Supplies', 'Premium Beauty', 'Prime Video', 'Smart Home', 'Software', 'Sports & Outdoors', 'Subscription Boxes', 'Tools & Home Improvement', 'Toys & Games', 'Under $10', 'Video Games']
+
 def seed_products():
+    # Add all categories
     fire_stick = Product(
         seller_id = 1,
         title = 'Fire TV Stick 4K, brilliant 4K streaming quality, TV and smart home controls, free and live TV',
@@ -11,7 +14,16 @@ def seed_products():
         price = 49.99,
         prime = True
     )
-    one = Category(name = 'Amazon')
+
+    for cat in categories:
+        curr_cat = Category(name=cat)
+        # curr_cat.products.append(fire_stick)
+        db.session.add(Category(name=cat))
+        fire_stick.categories.append(curr_cat)
+    db.session.add(fire_stick)
+    db.session.commit()
+
+
     onepm = ProductImage(
         product_id=1,
         url='https://m.media-amazon.com/images/I/61rQC6AM-6L._AC_SL1000_.jpg',
@@ -35,8 +47,8 @@ def seed_products():
     )
 
 
-    fire_stick.categories.append(one)
-    db.session.add(fire_stick)
+    # fire_stick.categories.append
+    # db.session.add(fire_stick)
     db.session.add_all([onepm, twopm])
     db.session.commit()
     db.session.add(q1)
@@ -46,4 +58,5 @@ def seed_products():
 
 def undo_products():
     db.session.execute('TRUNCATE products RESTART IDENTITY CASCADE')
+    db.session.execute('TRUNCATE categories RESTART IDENTITY CASCADE')
     db.session.commit()
