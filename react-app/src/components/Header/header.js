@@ -14,7 +14,15 @@ function Header() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [submitted, isSubmitted] = useState(false);
+  const [focusClass, setFocusClass] = useState("");
   const history = useHistory();
+
+  // useEffect(() => {
+
+  //   searchFocus = focus ? "header-middle-container-border" : ""
+  //   console.log('\n\n\n\n\n\n', searchFocus)
+  // }, [focus])
+
 
   const categories = ["All", "Amazon", "Appliances", "Clothing"];
 
@@ -38,7 +46,7 @@ function Header() {
           </div>
         </div>
       </div>
-      <div className="header-middle-container">
+      <div className={`header-middle-container ${focusClass}`}>
         <div className="header-search-bar-outer-container">
           <form onSubmit={onSubmit} className="text">
             <div className="header-search-bar-container">
@@ -59,6 +67,8 @@ function Header() {
                 type="text"
                 name="search"
                 onChange={(e) => setSearch(e.target.value)}
+                onBlur={()=> setFocusClass("")}
+                onFocus={()=> setFocusClass("header-middle-container-border")}
               />
               <button
                 className="header-search-button"
