@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import home1 from "../../media/images/home1.jpg";
 import home2 from "../../media/images/home2.jpg";
 import home3 from "../../media/images/home3.jpg";
-import "./homepage.css";
+import "./carousel.css";
 
 function Homepage() {
   const [imageIndex, setImageIndex] = useState(1);
