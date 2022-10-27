@@ -42,7 +42,10 @@
     height: 100%;
 }
 
-.header-logo:hover, .header-set-location:hover {
+.header-hover-border {
+    border: 1px solid transparent;
+}
+.header-hover-border:hover {
     border: 1px solid white;
     border-radius: 2px;
     cursor: pointer;
@@ -138,6 +141,11 @@
 }
 
 
+.header-right-container {
+    display: flex;
+    width: 850px;
+}
+
 .header-user-auth-large {
     font-weight: bold;
 }
@@ -146,6 +154,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 73px;
+    height: 50px;
 }
 
 .header-language img {

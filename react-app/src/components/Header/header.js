@@ -35,10 +35,10 @@ function Header() {
   return (
     <div className="header-outer-container">
       <div className="header-left-container">
-        <div className="header-logo">
+        <div className="header-logo header-hover-border">
           <img src={congo} />
         </div>
-        <div className="header-set-location">
+        <div className="header-set-location header-hover-border">
           <img src={whitepin} />
           <div>
             <p className="header-top-text">Deliver to</p>
@@ -82,13 +82,13 @@ function Header() {
         </div>
       </div>
       <div className="header-right-container">
-        <div className="header-language">
+        <div className="header-language header-hover-border">
           <img src={flag} />
           EN
         </div>
         <div className="header-user-auth">
-          <p className="header-user-auth-small">Hello, sign in</p>
-          <p className="header-user-auth-large">Account & Lists</p>
+          <p className="header-top-text">Hello, sign in</p>
+          <p className="header-bottom-text">Account & Lists</p>
         </div>
         <div className="header-returns">returns</div>
         <div className="header-cart">cart button</div>
