@@ -40,21 +40,11 @@ function Homepage() {
               &#10095;
             </a>
             <div className="home-carousel-image-container">
-              {/* {imageClass === 1 && (
-                <img className={`home-carousel-image-show`} src={home1} />
-              )}
-              {imageClass === 2 && (
-                <img className={`home-carousel-image-show`} src={home2} />
-              )}
-              {imageClass === 3 && (
-                <img className={`home-carousel-image-show`} src={home3} />
-              )} */}
                 <img className={`home-carousel-image${image1}`} src={home1} />
                 <img className={`home-carousel-image${image2}`} src={home2} />
                 <img className={`home-carousel-image${image3}`} src={home3} />
             </div>
           </div>
-          <h1>HomePage</h1>
         </div>
       </div>
     </>
