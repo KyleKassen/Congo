@@ -18,7 +18,7 @@ def seed_products():
     for cat in categories:
         curr_cat = Category(name=cat)
         # curr_cat.products.append(fire_stick)
-        db.session.add(Category(name=cat))
+        # db.session.add(Category(name=cat))
         fire_stick.categories.append(curr_cat)
     db.session.add(fire_stick)
     db.session.commit()
