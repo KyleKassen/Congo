@@ -1,0 +1,35 @@
+.home-outer-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.home-outer-container {
+    max-width: 1500px;
+    position: relative;
+}
+
+.home-outer-container img{
+    width: 100%;
+    object-fit: contain;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+}
+
+.home-carousel-container a {
+    /* width: 100%; */
+    font-size: 70px;
+    position: absolute;
+    z-index: 1;
+    width: 80px;
+    height: 250px;
+    text-align: center;
+    line-height: 250px;
+}
+
+.home-carousel-previous {
+
+}
+
+.home-carousel-next {
+    right: 0px;
+}

@@ -45,7 +45,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>Home Page</h1>
+          <Homepage />
         </Route>
       </Switch>
     </BrowserRouter>
