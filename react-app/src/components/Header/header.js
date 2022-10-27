@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import congo from "../../media/images/CONGO.png";
 import locationPin from "../../media/icons/locationPin.png";
+import darkpin from "../../media/images/darkpin.png";
+import whitepin from "../../media/images/whitepin.png";
 import flag from "../../media/icons/flag.png";
 import "./header.css";
 
@@ -28,7 +30,13 @@ function Header() {
         <div className="header-logo">
           <img src={congo} />
         </div>
-        <div className="header-set-location">Set Location</div>
+        <div className="header-set-location">
+          <img src={whitepin} />
+          <div>
+            <p className="header-top-text">Deliver to</p>
+            <p className="header-bottom-text">Select your address</p>
+          </div>
+        </div>
       </div>
       <div className="header-middle-container">
         <div className="header-search-bar-outer-container">
