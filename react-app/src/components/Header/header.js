@@ -34,6 +34,21 @@ function Header() {
     "Fashion",
     "Kindle Books",
     "Gift Cards",
+    "Toys & Games",
+    "Sell",
+    "Coupons",
+    "Automotive",
+    "Amazon Explore",
+    "Computers",
+    "Home Improvement",
+    "Beauty & Personal Care",
+    "Video Games",
+    "Pet Supplies",
+    "Health & Household",
+    "Luxury Stores",
+    "Smart Home",
+    "Handmade",
+    "Audible"
   ];
 
   async function onSubmit(e) {
