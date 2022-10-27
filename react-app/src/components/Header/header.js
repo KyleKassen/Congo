@@ -6,6 +6,7 @@ import congo from "../../media/images/CONGO.png";
 import locationPin from "../../media/icons/locationPin.png";
 import darkpin from "../../media/images/darkpin.png";
 import whitepin from "../../media/images/whitepin.png";
+import cart from "../../media/images/cart.png";
 import flag from "../../media/icons/flag.png";
 import "./header.css";
 
@@ -22,7 +23,6 @@ function Header() {
   //   searchFocus = focus ? "header-middle-container-border" : ""
   //   console.log('\n\n\n\n\n\n', searchFocus)
   // }, [focus])
-
 
   const categories = ["All", "Amazon", "Appliances", "Clothing"];
 
@@ -67,8 +67,8 @@ function Header() {
                 type="text"
                 name="search"
                 onChange={(e) => setSearch(e.target.value)}
-                onBlur={()=> setFocusClass("")}
-                onFocus={()=> setFocusClass("header-middle-container-border")}
+                onBlur={() => setFocusClass("")}
+                onFocus={() => setFocusClass("header-middle-container-border")}
               />
               <button
                 className="header-search-button"
@@ -86,12 +86,21 @@ function Header() {
           <img src={flag} />
           EN
         </div>
-        <div className="header-user-auth">
+        <div className="header-user-auth header-hover-border">
           <p className="header-top-text">Hello, sign in</p>
           <p className="header-bottom-text">Account & Lists</p>
         </div>
-        <div className="header-returns">returns</div>
-        <div className="header-cart">cart button</div>
+        <div className="header-returns header-hover-border">
+          <p className="header-top-text">Returns</p>
+          <p className="header-bottom-text">& Orders</p>
+        </div>
+        <div className="header-cart header-hover-border">
+          <div className="header-cart-counter-container">
+            <span>0</span>
+          </div>
+          <img src={cart} />
+          <p className="header-bottom-text">Cart</p>
+        </div>
       </div>
     </div>
   );
