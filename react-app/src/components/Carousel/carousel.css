@@ -1,22 +1,22 @@
-.home-outer-wrapper {
+.carousel-outer-wrapper {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.home-outer-container {
+.carousel-outer-container {
     max-width: 1500px;
     position: relative;
 }
 
-.home-outer-container img{
+.carousel-outer-container img{
     width: 100%;
     object-fit: contain;
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
 
 }
 
-.home-carousel-container a {
+.carousel-carousel-container a {
     /* width: 100%; */
     font-size: 70px;
     position: absolute;
@@ -28,23 +28,23 @@
     user-select: none;
 }
 
-a.home-carousel-previous:focus, a.home-carousel-next:focus{
+a.carousel-carousel-previous:focus, a.carousel-carousel-next:focus{
     box-shadow: inset 0px 0px 0px 2px rgb(255,255,255), inset 0px 0px 0px 4px rgb(0, 130, 150);
     border-radius: 5px;
 }
 
-.home-carousel-previous:hover, .home-carousel-next:hover {
+.carousel-carousel-previous:hover, .carousel-carousel-next:hover {
     cursor: pointer;
 }
 
-.home-carousel-image-container img {
+.carousel-carousel-image-container img {
     display: none;
 }
 
-.home-carousel-next {
+.carousel-carousel-next {
     right: 0px;
 }
 
-.home-carousel-image1, .home-carousel-image2, .home-carousel-image3 {
+.carousel-carousel-image1, .carousel-carousel-image2, .carousel-carousel-image3 {
     display: inline !important;
 }

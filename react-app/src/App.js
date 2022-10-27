@@ -8,7 +8,7 @@ import Header from './components/Header/header';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import Homepage from './components/Carousel';
+import Homepage from './components/Homepage';
 import { authenticate } from './store/session';
 import { loadAllProducts, loadOneProduct } from './store/product';
 

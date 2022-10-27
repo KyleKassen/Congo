@@ -5,7 +5,7 @@ import home2 from "../../media/images/home2.jpg";
 import home3 from "../../media/images/home3.jpg";
 import "./carousel.css";
 
-function Homepage() {
+function Carousel() {
   const [imageIndex, setImageIndex] = useState(1);
   const [image1, setImage1] = useState("1");
   const [image2, setImage2] = useState("");
@@ -26,23 +26,23 @@ function Homepage() {
   };
   return (
     <>
-      <div className="home-outer-wrapper">
-        <div className="home-outer-container">
-          <div className="home-carousel-container">
+      <div className="carousel-outer-wrapper">
+        <div className="carousel-outer-container">
+          <div className="carousel-carousel-container">
             <a
-              className="home-carousel-previous"
+              className="carousel-carousel-previous"
               tabindex="0"
               onClick={() => changeSlide(-1)}
             >
               &#10094;
             </a>
-            <a className="home-carousel-next" tabindex="0" onClick={() => changeSlide(1)}>
+            <a className="carousel-carousel-next" tabindex="0" onClick={() => changeSlide(1)}>
               &#10095;
             </a>
-            <div className="home-carousel-image-container">
-                <img className={`home-carousel-image${image1}`} src={home1} />
-                <img className={`home-carousel-image${image2}`} src={home2} />
-                <img className={`home-carousel-image${image3}`} src={home3} />
+            <div className="carousel-carousel-image-container">
+                <img className={`carousel-carousel-image${image1}`} src={home1} />
+                <img className={`carousel-carousel-image${image2}`} src={home2} />
+                <img className={`carousel-carousel-image${image3}`} src={home3} />
             </div>
           </div>
         </div>
@@ -51,4 +51,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Carousel;
