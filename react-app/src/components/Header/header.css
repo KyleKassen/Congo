@@ -175,11 +175,11 @@
 }
 
 .header-user-auth {
-    width: 99px;
+    width: 103px;
 }
 
 .header-returns {
-    width: 56px;
+    width: 60px;
 }
 
 .header-cart {
@@ -220,6 +220,7 @@
     background-color: rgb(35,47,62);
     height: 39px;
     padding-left: 15px;
+    /* min-width: 3764px; */
 }
 
 .header-mainnav-all {
@@ -255,9 +256,133 @@
 .header-mainnav-item {
     color: white;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     /* text-align: center; */
-    padding: 5px 12px;
+    padding: 5px 9px;
     margin-top: 5px;
     margin-bottom: 6px;
+}
+
+@media screen and (min-width: 1700px) {
+    .header-mainnav-item {
+        padding: 5px 11.5px;
+    }
+}
+
+@media screen and (max-width: 3030px) {
+    .header-mainnav-aud {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2955px) {
+    .header-mainnav-han {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2860px) {
+    .header-mainnav-sma {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2767px) {
+    .header-mainnav-lux {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2659px) {
+    .header-mainnav-hea {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2503px) {
+    .header-mainnav-pet {
+        display:none
+    }
+}
+@media screen and (max-width: 2400px) {
+    .header-mainnav-vid {
+        display:none
+    }
+}
+@media screen and (max-width: 2291px) {
+    .header-mainnav-bea {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2118px) {
+    .header-mainnav-hom {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2066px) {
+    .header-mainnav-com {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1871px) {
+    .header-mainnav-exp {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1744px) {
+    .header-mainnav-aut {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1565px) {
+    .header-mainnav-cou {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1445px) {
+    .header-mainnav-toy {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1380px) {
+    .header-mainnav-sel {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1334px) {
+    .header-mainnav-gif {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1251px) {
+    .header-mainnav-kin {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1149px) {
+    .header-mainnav-fas {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1081px) {
+    .header-mainnav-ho2 {
+        display:none
+    }
+}
+
+@media screen and (max-width: 966px) {
+    .header-mainnav-reg {
+        display:none
+    }
 }

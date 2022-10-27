@@ -139,8 +139,12 @@ function Header() {
           <p>All</p>
         </div>
         {mainNav.map((navItem) => {
+          let navItem2 = navItem.slice(0,3).toLowerCase()
+          if(navItem === "Amazon Basics") navItem2 = "bas"
+          else if(navItem === "Amazon Explore") navItem2 = "exp"
+          else if(navItem === "Amazon Home") navItem2= "ho2"
           return (
-            <div className="header-mainnav-item-container">
+            <div className={`header-mainnav-item-container header-mainnav-${navItem2}`}>
               <p className="header-mainnav-item header-hover-border">
                 {navItem}
               </p>
