@@ -26,10 +26,23 @@
     line-height: 250px;
 }
 
-.home-carousel-previous {
+a.home-carousel-previous:focus, a.home-carousel-next:focus{
+    box-shadow: inset 0px 0px 0px 2px rgb(255,255,255), inset 0px 0px 0px 4px rgb(0, 130, 150);
+    border-radius: 5px;
+}
 
+.home-carousel-previous:hover, .home-carousel-next:hover {
+    cursor: pointer;
+}
+
+.home-carousel-image-container img {
+    display: none;
 }
 
 .home-carousel-next {
     right: 0px;
+}
+
+.home-carousel-image1, .home-carousel-image2, .home-carousel-image3 {
+    display: inline !important;
 }
