@@ -9,6 +9,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Homepage from './components/Homepage';
+import Product from './components/Product';
 import { authenticate } from './store/session';
 import { loadAllProducts, loadOneProduct } from './store/product';
 
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/product/:productId' exact={true}>
+          <Product />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
