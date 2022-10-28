@@ -15,6 +15,14 @@ def seed_products():
         prime = True
     )
 
+    p2 = Product(
+        seller_id=1,
+        title = 'TCL 55" Class 4-Series 4K UHD HDR Smart Roku TV - 55S435, 2021 Model',
+        description ='The 4-Series Roku TV delivers stunning 4K picture quality with four times the resolution of Full HD for enhanced clarity and detail, as well as endless entertainment with thousands of streaming channels. High dynamic range (HDR) technology delivers bright and accurate colors for a lifelike viewing experience. In addition, your favorite HD shows, movies, and sporting events are upscaled to near Ultra HD resolution with 4K Upscaling. The simple, personalized home screen allows seamless access to thousands of streaming channels, plus your cable box, Blu-ray player, gaming console, and other devices without flipping through inputs or complicated menus. The super-simple remote—with about half the number of buttons on a traditional TV remote—puts you in control of your favorite entertainment.',
+        fulfilled_by = 'Amazon.com',
+        sold_by = 'Amazon.com',
+    )
+
     for cat in categories:
         curr_cat = Category(name=cat)
         # curr_cat.products.append(fire_stick)
