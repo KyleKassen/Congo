@@ -114,7 +114,7 @@ function Header() {
             <img src={flag} />
             EN
           </div>
-          <div className="header-user-auth header-hover-border">
+          <div className="header-user-auth header-hover-border" onClick={() => history.push('/login')}>
             <p className="header-top-text">Hello, sign in</p>
             <p className="header-bottom-text">Account & Lists</p>
           </div>
