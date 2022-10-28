@@ -23,14 +23,16 @@ function Review({setShowModal, reviewId}) {
     console.log(rating)
 
     const updateReview = {
-        title,
-        review,
-        rating,
+        title:title,
+        review:review,
+        rating:rating,
     }
 
     try {
-        const response = await dispatch(updateOneReview(updateReview, reviewId))
-    } catch {
+        const response = await dispatch(updateOneReview(updateReview, userId))
+        console.log(response)
+    } catch (res) {
+        console.log(res)
         console.log("ERROR IN REVIEW FORM RESPONSE")
     }
 

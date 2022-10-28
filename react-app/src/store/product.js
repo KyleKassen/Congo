@@ -43,7 +43,7 @@ export const addOneProduct = (product) => async (dispatch) => {
   console.log("Adding One Product Thunk");
   const response = await fetch(`/api/reviews`, {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(product),
@@ -73,7 +73,7 @@ export const updateOneProduct = (product, id) => async (dispatch) => {
   console.log("Updating One Product Thunk");
   const response = await fetch(`/api/reviews/${id}`, {
     method: "PUT",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(product),
@@ -155,7 +155,7 @@ export const productReducer = (state = initialState, action) => {
       newState.singleProduct = action.payload;
       return newState;
     case UPDATE:
-      newState.singleProduct = action.paylaod;
+      newState.singleProduct = action.payload;
       return newState;
     case DELETE:
       delete newState.allProducts[action.payload];

@@ -43,7 +43,7 @@ export const addOneReview = (review) => async (dispatch) => {
   console.log("Adding One review Thunk");
   const response = await fetch(`/api/reviews`, {
     method: "POST",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(review),
@@ -70,21 +70,21 @@ export const updateOne = (review) => {
 };
 
 export const updateOneReview = (review, id) => async (dispatch) => {
-  console.log("Updating One review Thunk");
+  console.log("Updating One review Thunk", review, id);
   const response = await fetch(`/api/reviews/${id}`, {
     method: "PUT",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(review),
   });
 
-  const review = await response.json();
+  const newReview = await response.json();
 
   if (response.ok) {
-    dispatch(updateOne(review));
+    dispatch(updateOne(newReview));
   }
-  return review;
+  return newReview;
 };
 
 //##########################
@@ -153,9 +153,9 @@ export const reviewReducer = (state = initialState, action) => {
     // case ADD:
     //   newState.singlereview = action.payload;
     //   return newState;
-    // case UPDATE:
-    //   newState.singlereview = action.paylaod;
-    //   return newState;
+    case UPDATE:
+      newState.productReviews[action.payload.id] = action.payload;
+      return newState;
     // case DELETE:
     //   delete newState.allreviews[action.payload];
     //   return newState;
