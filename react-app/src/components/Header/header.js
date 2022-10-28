@@ -18,6 +18,8 @@ function Header() {
   const [focusClass, setFocusClass] = useState("");
   const history = useHistory();
 
+  const session = useSelector(state => state.session)
+
   const departments = ["All", "Amazon", "Appliances", "Clothing"];
   const mainNav = [
     "Best Sellers",
@@ -115,7 +117,8 @@ function Header() {
             EN
           </div>
           <div className="header-user-auth header-hover-border" onClick={() => history.push('/login')}>
-            <p className="header-top-text">Hello, sign in</p>
+            {!session.user && <p className="header-top-text">Hello, sign in</p>}
+            {session.user && <p className="header-top-text">Hello, {session.user.firstName}</p>}
             <p className="header-bottom-text">Account & Lists</p>
           </div>
           <div className="header-returns header-hover-border">
