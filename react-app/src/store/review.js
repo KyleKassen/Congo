@@ -16,7 +16,7 @@ export const loadOne = (review) => {
   };
 };
 
-export const loadOnereview = (id) => async (dispatch) => {
+export const loadOneReview = (id) => async (dispatch) => {
   console.log("Loading One review Thunk");
   const response = await fetch(`/api/reviews/${id}`);
 
@@ -39,7 +39,7 @@ export const addOne = (review) => {
   };
 };
 
-export const addOnereview = (review) => async (dispatch) => {
+export const addOneReview = (review) => async (dispatch) => {
   console.log("Adding One review Thunk");
   const response = await fetch(`/api/reviews`, {
     method: "POST",
@@ -69,7 +69,7 @@ export const updateOne = (review) => {
   };
 };
 
-export const updateOnereview = (review, id) => async (dispatch) => {
+export const updateOneReview = (review, id) => async (dispatch) => {
   console.log("Updating One review Thunk");
   const response = await fetch(`/api/reviews/${id}`, {
     method: "PUT",
@@ -99,7 +99,7 @@ export const deleteOne = (id) => {
   };
 };
 
-export const deleteOnereview = (id) => async (dispatch) => {
+export const deleteOneReview = (id) => async (dispatch) => {
   console.log("Deleting One review Thunk");
   const response = await fetch(`/api/reviews/${id}`, {
     method: "DELETE",
@@ -112,7 +112,7 @@ export const deleteOnereview = (id) => async (dispatch) => {
 };
 
 //##########################
-// LOAD ALL reviewS
+// LOAD ALL reviews for a Product
 //##########################
 
 export const loadAll = (reviews) => {
@@ -123,9 +123,9 @@ export const loadAll = (reviews) => {
   };
 };
 
-export const loadAllreviews = () => async (dispatch) => {
+export const loadAllReviews = (productId) => async (dispatch) => {
   console.log("Loading all review Thunk");
-  const response = await fetch(`/api/reviews`);
+  const response = await fetch(`/api/products/${productId}/reviews`);
 
   const reviews = await response.json();
 
@@ -139,30 +139,29 @@ export const loadAllreviews = () => async (dispatch) => {
 //##########################
 // Reducer
 //##########################
-const initialState = { allreviews: {}, singlereview: {} };
+const initialState = { productReviews: {} };
 
 export const reviewReducer = (state = initialState, action) => {
   let newState = {
     ...state,
-    allreviews: { ...state.allreviews },
-    singlereview: { ...state.singlereview },
+    productReviews: { ...state.productReviews }
   };
   switch (action.type) {
-    case LOAD:
-      newState.singlereview = action.payload;
-      return newState;
-    case ADD:
-      newState.singlereview = action.payload;
-      return newState;
-    case UPDATE:
-      newState.singlereview = action.paylaod;
-      return newState;
-    case DELETE:
-      delete newState.allreviews[action.payload];
-      return newState;
+    // case LOAD:
+    //   newState.singlereview = action.payload;
+    //   return newState;
+    // case ADD:
+    //   newState.singlereview = action.payload;
+    //   return newState;
+    // case UPDATE:
+    //   newState.singlereview = action.paylaod;
+    //   return newState;
+    // case DELETE:
+    //   delete newState.allreviews[action.payload];
+    //   return newState;
     case LOAD_ALL:
-        newState.allreviews = {}
-        action.payload.reviews.forEach(review => newState.allreviews[review.id] = review)
+        newState.productReviews = {}
+        action.payload.reviews.forEach(review => newState.productReviews[review.id] = review)
         return newState
 
     default:
