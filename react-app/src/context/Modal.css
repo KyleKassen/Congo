@@ -1,8 +1,8 @@
 #modal {
     position: fixed;
     top: 0;
-    right: 20vw;
-    left: 20vw;
+    right: 0;
+    left: 0;
     bottom: 0;
     display: flex;
     justify-content: center;
@@ -21,9 +21,5 @@
 #modal-content {
     position: absolute;
     background-color: white;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 920px;
-    min-width: 700px;
-    padding: 20px;
+    border-radius: 10px;
 }

@@ -1,19 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { updateOneReview } from "../../store/review";
 
-function Review({setShowModal}) {
+function Review({setShowModal, reviewId}) {
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
   const [errors, setErrors] = useState([])
 
+  const dispatch = useDispatch();
+
   const userId = useSelector((state) => state.session.user.id);
+
+  useEffect(() => {
+
+  }, [title, review, rating])
 
   const handleSubmit = async(e) => {
     e.preventDefault()
     console.log(title)
     console.log(review)
     console.log(rating)
+
+    const updateReview = {
+        title,
+        review,
+        rating,
+    }
+
+    try {
+        const response = await dispatch(updateOneReview(updateReview, reviewId))
+    } catch {
+        console.log("ERROR IN REVIEW FORM RESPONSE")
+    }
+
     setShowModal(false)
   }
 

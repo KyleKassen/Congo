@@ -66,7 +66,7 @@ function Product() {
 
               {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <Review setShowModal={setShowModal}/>
+                    <Review setShowModal={setShowModal} reviewId={review.id}/>
                 </Modal>
               )}
             </>
