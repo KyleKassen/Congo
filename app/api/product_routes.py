@@ -42,7 +42,7 @@ def get_product(id):
 
     rating = Review.query.with_entities(
         func.avg(Review.rating)).filter_by(product_id=id).first()
-    review_count = Review.query.count()
+    review_count = Review.query.filter_by(product_id=id).count()
     rating = float(round(rating[0], 1))
 
     # reviews = Review.query.filter_by(product_id=id).options(joinedload(Review.review_image)).all()

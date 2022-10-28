@@ -19,7 +19,7 @@ function Homepage() {
   // console.log(products)
 
   return (
-    <>
+    <div className="homepage-wrapper">
       <Carousel />
       <div className="home-outer-wrapper">
         <div className="home-outer-container">
@@ -47,7 +47,7 @@ function Homepage() {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
