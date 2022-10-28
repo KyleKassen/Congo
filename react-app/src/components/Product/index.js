@@ -3,11 +3,13 @@ import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
+import { Modal } from "../../context/Modal";
 
 import "./product.css";
 
 function Product() {
   const [loaded, setLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -59,7 +61,13 @@ function Product() {
               <h2>{review.title}</h2>
               <p>{review.review}</p>
               <button onClick={() => deleteReview(review.id)}>delete</button>
-              <button onClick={() => updateReview(review.id)}>update</button>
+              <button onClick={() => setShowModal(true)}>update</button>
+
+              {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    
+                </Modal>
+              )}
             </>
           );
         })}
