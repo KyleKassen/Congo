@@ -8,3 +8,15 @@
     max-width: 1500px;
     position: relative;
 }
+
+
+.home-grid-4item-img {
+    width: 147px;
+    height: 115px;
+}
+
+.home-grid-4item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
