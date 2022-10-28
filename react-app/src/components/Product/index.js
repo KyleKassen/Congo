@@ -7,12 +7,12 @@ import { loadAllReviews } from "../../store/review";
 import "./product.css";
 
 function Product() {
-    const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.singleProduct);
-  const reviews = useSelector((state) => state.reviews.productReviews);
+  const reviews = useSelector((state) => Object.values(state.reviews.productReviews));
 
   useEffect(() => {
     (async () => {
@@ -24,6 +24,16 @@ function Product() {
 
   if (!loaded) {
     return null;
+  }
+
+  let updateReview = async (id) => {
+    console.log(`update review ${id}`)
+    return null
+  }
+
+  let deleteReview = async (id) => {
+    console.log(`delete review ${id}`)
+    return null
   }
 
   return (
@@ -43,8 +53,15 @@ function Product() {
       <p>{product.title}</p>
 
       <div className="product-reviews-container">
-        {reviews.map(review => {
-            
+        {reviews.map((review) => {
+          return (
+            <>
+              <h2>{review.title}</h2>
+              <p>{review.review}</p>
+              <button onClick={() => deleteReview(review.id)}>delete</button>
+              <button onClick={() => updateReview(review.id)}>update</button>
+            </>
+          );
         })}
       </div>
     </>
