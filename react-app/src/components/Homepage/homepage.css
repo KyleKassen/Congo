@@ -9,14 +9,18 @@
     position: relative;
 }
 
+.home-outer-container {
+    display: flex;
 
-.home-grid-4item-img {
-    width: 147px;
-    height: 115px;
 }
 
-.home-grid-4item-img img {
+.home-product-image-container {
+    width: 320px;
+    height: 230px;
+}
+
+.home-product-image-container img {
+    object-fit: contain;
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
