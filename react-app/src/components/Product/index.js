@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
@@ -14,6 +14,7 @@ function Product() {
   const { productId } = useParams();
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const product = useSelector((state) => state.products.singleProduct);
   const reviews = useSelector((state) => Object.values(state.reviews.productReviews));
 
@@ -40,7 +41,7 @@ function Product() {
   }
 
   let createReview = async () => {
-
+    history.push(`/product/${productId}/create`)
   }
 
   return (
@@ -63,9 +64,9 @@ function Product() {
         <div className="prudct-reviews-button-container">
             <button onClick={()=> createReview()}>Create a Review</button>
         </div>
-        {reviews.map((review) => {
+        {reviews.map((review, ind) => {
           return (
-            <>
+            <div key={ind}>
               <h2>{review.title}</h2>
               <p>{review.review}</p>
               <button onClick={() => deleteReview(review.id)}>delete</button>
@@ -76,7 +77,7 @@ function Product() {
                     <EditReview setShowModal={setShowModal} reviewId={review.id}/>
                 </Modal>
               )}
-            </>
+            </div>
           );
         })}
       </div>

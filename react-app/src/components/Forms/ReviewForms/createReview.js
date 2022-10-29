@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {useParams} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateOneReview } from "../../../store/review";
+import { createOneReview } from "../../../store/review";
 
-function EditReview({setShowModal, reviewId}) {
+function CreateReview() {
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
 
   const {productId} = useParams()
-
 
   const dispatch = useDispatch();
 
@@ -26,7 +25,7 @@ function EditReview({setShowModal, reviewId}) {
     console.log(review)
     console.log(rating)
 
-    const updateReview = {
+    const newReview = {
         product_id:productId,
         title:title,
         review:review,
@@ -34,14 +33,13 @@ function EditReview({setShowModal, reviewId}) {
     }
 
     try {
-        const response = await dispatch(updateOneReview(updateReview, reviewId))
+        const response = await dispatch(createOneReview(newReview))
         console.log(response)
     } catch (res) {
         console.log(res)
         console.log("ERROR IN REVIEW FORM RESPONSE")
     }
 
-    setShowModal(false)
   }
 
   return (
@@ -98,4 +96,4 @@ function EditReview({setShowModal, reviewId}) {
   );
 }
 
-export default EditReview;
+export default CreateReview;
