@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createOneReview } from "../../../store/review";
 
@@ -13,6 +13,7 @@ function CreateReview() {
   console.log(`productId is ${productId}`)
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const userId = useSelector((state) => state.session.user.id);
 
@@ -40,6 +41,7 @@ function CreateReview() {
         console.log(res)
         console.log("ERROR IN REVIEW FORM RESPONSE")
     }
+    history.push(`/product/${productId}`)
 
   }
 

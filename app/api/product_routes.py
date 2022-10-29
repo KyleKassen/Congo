@@ -200,11 +200,11 @@ def create_review(id):
 
     product_seller_id = Product.query.get(id).seller_id
 
-    if (product_seller_id == user_id):
-        return {
-            "statusCode": 400,
-            "message": "Current User owns the product"
-        }
+    # if (product_seller_id == user_id):
+    #     return {
+    #         "statusCode": 400,
+    #         "message": "Current User owns the product"
+    #     }
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']

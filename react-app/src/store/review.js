@@ -1,4 +1,4 @@
-const LOAD = "review/load";
+// const LOAD = "review/load";
 const CREATE = "review/create";
 const UPDATE = "review/update";
 const DELETE = "review/delete";
@@ -8,24 +8,24 @@ const LOAD_ALL = "review/loadAll";
 // LOAD ONE review
 //##########################
 
-export const loadOne = (review) => {
-  console.log("Loading One review");
-  return {
-    type: LOAD,
-    payload: review,
-  };
-};
+// export const loadOne = (review) => {
+//   console.log("Loading One review");
+//   return {
+//     type: LOAD,
+//     payload: review,
+//   };
+// };
 
-export const loadOneReview = (id) => async (dispatch) => {
-  console.log("Loading One review Thunk");
-  const response = await fetch(`/api/reviews/${id}`);
+// export const loadOneReview = (id) => async (dispatch) => {
+//   console.log("Loading One review Thunk");
+//   const response = await fetch(`/api/reviews/${id}`);
 
-  const review = await response.json();
-  if (response.ok) {
-    dispatch(loadOne(review));
-  }
-  return review;
-};
+//   const review = await response.json();
+//   if (response.ok) {
+//     dispatch(loadOne(review));
+//   }
+//   return review;
+// };
 
 //##########################
 // create review
@@ -150,15 +150,16 @@ export const reviewReducer = (state = initialState, action) => {
     // case LOAD:
     //   newState.singlereview = action.payload;
     //   return newState;
-    // case CREATE:
-    //   newState.singlereview = action.payload;
-    //   return newState;
-    case UPDATE:
+    case CREATE:
       newState.productReviews[action.payload.id] = action.payload;
       return newState;
-    // case DELETE:
-    //   delete newState.allreviews[action.payload];
-    //   return newState;
+    case UPDATE:
+      const reviewId = action.payload.id
+      newState.productReviews[reviewId] = {...action.payload, images:[...state.productReviews[reviewId].images]};
+      return newState;
+    case DELETE:
+      delete newState.productReviews[action.payload];
+      return newState;
     case LOAD_ALL:
         newState.productReviews = {}
         action.payload.reviews.forEach(review => newState.productReviews[review.id] = review)

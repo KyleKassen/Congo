@@ -158,7 +158,7 @@ export const productReducer = (state = initialState, action) => {
       newState.singleProduct = action.payload;
       return newState;
     case DELETE:
-      delete newState.allProducts[action.payload];
+      delete newState.allProducts[action.payload.id];
       return newState;
     case LOAD_ALL:
         newState.allProducts = {}
