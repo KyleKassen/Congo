@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
-import Review from "../Forms/review";
+import EditReview from "../Forms/ReviewForms/editReview";
 import { Modal } from "../../context/Modal";
 
 import "./product.css";
@@ -40,7 +40,7 @@ function Product() {
   }
 
   let createReview = async () => {
-    
+
   }
 
   return (
@@ -73,7 +73,7 @@ function Product() {
 
               {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <Review setShowModal={setShowModal} reviewId={review.id}/>
+                    <EditReview setShowModal={setShowModal} reviewId={review.id}/>
                 </Modal>
               )}
             </>

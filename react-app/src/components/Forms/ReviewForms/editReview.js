@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateOneReview } from "../../store/review";
+import { updateOneReview } from "../../../store/review";
 
-function Review({setShowModal, reviewId}) {
+function EditReview({setShowModal, reviewId}) {
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
@@ -93,4 +93,4 @@ function Review({setShowModal, reviewId}) {
   );
 }
 
-export default Review;
+export default EditReview;

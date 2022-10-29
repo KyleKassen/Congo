@@ -1,5 +1,5 @@
 const LOAD = "review/load";
-const ADD = "review/add";
+const CREATE = "review/create";
 const UPDATE = "review/update";
 const DELETE = "review/delete";
 const LOAD_ALL = "review/loadAll";
@@ -28,19 +28,19 @@ export const loadOneReview = (id) => async (dispatch) => {
 };
 
 //##########################
-// ADD review
+// create review
 //##########################
 
-export const addOne = (review) => {
-  console.log("Adding One review");
+export const createOne = (review) => {
+  console.log("createing One review");
   return {
-    type: ADD,
+    type: CREATE,
     payload: review,
   };
 };
 
-export const addOneReview = (review) => async (dispatch) => {
-  console.log("Adding One review Thunk");
+export const createOneReview = (review) => async (dispatch) => {
+  console.log("createing One review Thunk");
   const response = await fetch(`/api/reviews`, {
     method: "POST",
     headers: {
@@ -52,7 +52,7 @@ export const addOneReview = (review) => async (dispatch) => {
   const review = await response.json();
 
   if (response.ok) {
-    dispatch(addOne(review));
+    dispatch(createOne(review));
   }
   return review;
 };
@@ -150,7 +150,7 @@ export const reviewReducer = (state = initialState, action) => {
     // case LOAD:
     //   newState.singlereview = action.payload;
     //   return newState;
-    // case ADD:
+    // case CREATE:
     //   newState.singlereview = action.payload;
     //   return newState;
     case UPDATE:
