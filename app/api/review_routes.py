@@ -51,7 +51,7 @@ def delete_review(id):
     user = current_user.to_dict()
     user_id = user['id']
 
-    if (user_id != review['user_id']):
+    if (user_id != review.user_id):
         return {
             "statusCode": 400,
             "message": "Not the correct user"

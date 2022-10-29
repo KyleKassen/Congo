@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
 import EditReview from "../Forms/ReviewForms/editReview";
+import Review from "../Review/index";
 
 import "./product.css";
 
 function Product() {
   const [loaded, setLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -27,16 +27,6 @@ function Product() {
 
   if (!loaded) {
     return null;
-  }
-
-  let updateReview = async (id) => {
-    console.log(`update review ${id}`)
-    return null
-  }
-
-  let deleteReview = async (id) => {
-    console.log(`delete review ${id}`)
-    return null
   }
 
   let createReview = async () => {
@@ -67,12 +57,7 @@ function Product() {
             console.log(review.id)
           return (
             <div key={ind}>
-              <h2>{review.title}</h2>
-              <p>{review.review}</p>
-              <button onClick={() => deleteReview(review.id)}>delete</button>
-              <button onClick={() => setShowModal(true)}>update</button>
-
-              <EditReview showModal={showModal} setShowModal={setShowModal} reviewId={review.id}/>
+              <Review review={review} />
             </div>
           );
         })}
