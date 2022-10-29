@@ -75,7 +75,7 @@ def create_address():
 
 @user_routes.route('/addresses/<int:id>', methods=['PUT'])
 @login_required
-def update_review(id):
+def update_address(id):
     """
     Update a address
     """
@@ -105,3 +105,29 @@ def update_review(id):
         return update_address.to_dict()
 
     return {'errors': 'form was not validated'}, 400
+
+
+@user_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_address(id):
+    """
+    Delete a address
+    """
+    address = ShippingAddress.query.get(id)
+
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    if (user_id != address.user_id):
+        return {
+            "statusCode": 400,
+            "message": "Not the correct user"
+        }
+
+    db.session.delete(address)
+    db.session.commit()
+
+    return {
+        "statusCode": 200,
+        "message": "successfully deleted"
+    }

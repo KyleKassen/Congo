@@ -100,7 +100,7 @@ export const deleteOne = (id) => {
 
   export const deleteOneAddress = (id) => async (dispatch) => {
     console.log("Deleting One address Thunk");
-    const response = await fetch(`/api/addresses/${id}`, {
+    const response = await fetch(`/api/users/addresses/${id}`, {
       method: "DELETE",
     });
 
