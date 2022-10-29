@@ -107,7 +107,7 @@ def update_address(id):
     return {'errors': 'form was not validated'}, 400
 
 
-@user_routes.route('/<int:id>', methods=['DELETE'])
+@user_routes.route('/addresses/<int:id>', methods=['DELETE'])
 @login_required
 def delete_address(id):
     """
