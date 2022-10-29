@@ -41,3 +41,33 @@ def get_addresses(id):
     return {
         'addresses': [address.to_dict() for address in addresses]
     }
+
+
+@user_routes.route('/api/users/addresses', methods=['POST'])
+@login_required
+def create_address(id):
+    """
+    Create a Address
+    """
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    form = AddressForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
+
+    if form.validate_on_submit():
+        review = Address(
+            user_id=user_id,
+            address=form.data['address'],
+            city=form.data['city'],
+            state=form.data['state'],
+            zipcode=form.data['zipcode']
+        )
+
+        db.session.add(review)
+        db.session.commit()
+
+        return review.to_dict()
+
+    return {'errors': 'an error occured'}

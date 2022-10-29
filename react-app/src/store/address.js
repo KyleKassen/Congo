@@ -17,7 +17,7 @@ export const createOne = (address) => {
 
   export const createOneaddress = (addressData) => async (dispatch) => {
     console.log("createing One address Thunk");
-    const response = await fetch(`/api/users/addresss`, {
+    const response = await fetch(`/api/users/addresses`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
