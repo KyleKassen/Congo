@@ -3,7 +3,7 @@ import {useParams, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {updateOneAddress} from "../../../store/address";
 
-function EditAddress({addressId}) {
+function EditAddress({setShowModal, addressId}) {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -26,7 +26,7 @@ function EditAddress({addressId}) {
         address,
         city,
         state,
-        zipCode,
+        zipcode:zipCode,
     }
 
     try {
@@ -36,7 +36,7 @@ function EditAddress({addressId}) {
         console.log(res)
         console.log("ERROR IN address FORM RESPONSE")
     }
-
+    setShowModal(false)
   }
 
   return (

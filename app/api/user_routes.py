@@ -19,7 +19,6 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-
 """
 Shipping Address Routes
 """
@@ -44,9 +43,9 @@ def get_addresses(id):
     }
 
 
-@user_routes.route('/api/users/addresses', methods=['POST'])
+@user_routes.route('/addresses', methods=['POST'])
 @login_required
-def create_address(id):
+def create_address():
     """
     Create a Address
     """
@@ -55,7 +54,7 @@ def create_address(id):
 
     form = AddressForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
+    print("\n\n\n\nform data",form.data)
 
     if form.validate_on_submit():
         address = ShippingAddress(

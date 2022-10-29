@@ -29,6 +29,7 @@ function Checkout() {
 
   return (
     <>
+        <button onClick={() => setShowAddressModal(true)}>Add Address</button>
       {showAddressModal && (
         <Modal onClose={() => setShowAddressModal(false)}>
           <CreateAddress setShowAddressModal={setShowAddressModal} />

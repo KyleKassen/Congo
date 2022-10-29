@@ -3,11 +3,11 @@ import {useParams, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createOneAddress } from "../../../store/address";
 
-function CreateAddress() {
+function CreateAddress({setShowAddressModal}) {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  const [zipcode, setZipcode] = useState("");
   const [errors, setErrors] = useState([]);
 
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function CreateAddress() {
 
   useEffect(() => {
 
-  }, [address, city, state, zipCode])
+  }, [address, city, state, zipcode])
 
   const handleSubmit = async(e) => {
     e.preventDefault()
@@ -26,7 +26,7 @@ function CreateAddress() {
         address,
         city,
         state,
-        zipCode,
+        zipcode,
     }
 
     try {
@@ -36,6 +36,8 @@ function CreateAddress() {
         console.log(res)
         console.log("ERROR IN address FORM RESPONSE")
     }
+
+    setShowAddressModal(false)
 
   }
 
@@ -86,8 +88,8 @@ function CreateAddress() {
             className="form-field"
             placeholder="ZipCode"
             type="number"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
+            value={zipcode}
+            onChange={(e) => setZipcode(e.target.value)}
             required
           />
         </div>
