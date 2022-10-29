@@ -15,7 +15,7 @@ export const createOne = (address) => {
     };
   };
 
-  export const createOneaddress = (addressData) => async (dispatch) => {
+export const createOneAddress = (addressData) => async (dispatch) => {
     console.log("createing One address Thunk");
     const response = await fetch(`/api/users/addresses`, {
       method: "POST",
@@ -45,7 +45,7 @@ export const updateOne = (address) => {
     };
   };
 
-  export const updateOneaddress = (address, id) => async (dispatch) => {
+  export const updateOneAddress = (address, id) => async (dispatch) => {
     console.log("Updating One address Thunk", address, id);
     const response = await fetch(`/api/users/addresses/${id}`, {
       method: "PUT",

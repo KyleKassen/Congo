@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import Editaddress from "../Forms/addressForms/editaddress";
+import EditAddress from "../Forms/Address/editAddress";
 import { deleteOneAddress } from "../../store/address";
 import { Modal } from "../../context/Modal";
 

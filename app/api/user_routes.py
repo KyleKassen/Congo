@@ -58,7 +58,7 @@ def create_address(id):
     print(form.data)
 
     if form.validate_on_submit():
-        review = ShippingAddress(
+        address = ShippingAddress(
             user_id=user_id,
             address=form.data['address'],
             city=form.data['city'],
@@ -66,9 +66,43 @@ def create_address(id):
             zipcode=form.data['zipcode']
         )
 
-        db.session.add(review)
+        db.session.add(address)
         db.session.commit()
 
-        return review.to_dict()
+        return address.to_dict()
 
     return {'errors': 'an error occured'}
+
+
+@user_routes.route('/addresses/<int:id>', methods=['PUT'])
+@login_required
+def update_review(id):
+    """
+    Update a address
+    """
+
+    update_address = ShippingAddress.query.get(id)
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    if (user_id != update_address.user_id):
+        return {
+            "statusCode": 400,
+            "message": "Not the correct user"
+        }
+
+    form = AddressForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
+
+    if form.validate_on_submit():
+        update_address.address = form.data['address'],
+        update_address.city = form.data['city'],
+        update_address.state = form.data['state']
+        update_address.zipcode = form.data['zipcode']
+
+        db.session.commit()
+
+        return update_address.to_dict()
+
+    return {'errors': 'form was not validated'}, 400

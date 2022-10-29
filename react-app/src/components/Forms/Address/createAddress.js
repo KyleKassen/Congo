@@ -74,7 +74,7 @@ function CreateAddress() {
             id="form-field-state"
             className="form-field"
             placeholder="State"
-            type="number"
+            type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
             required

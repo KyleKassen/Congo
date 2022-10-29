@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {useParams, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateOneAddress } from "../../../store/address";
+import {updateOneAddress} from "../../../store/address";
 
 function EditAddress({addressId}) {
   const [address, setAddress] = useState("");
@@ -30,7 +30,7 @@ function EditAddress({addressId}) {
     }
 
     try {
-        const response = await dispatch(editOneAddress(updateAddress, addressId))
+        const response = await dispatch(updateOneAddress(updateAddress, addressId))
         console.log(response)
     } catch (res) {
         console.log(res)
@@ -74,7 +74,7 @@ function EditAddress({addressId}) {
             id="form-field-state"
             className="form-field"
             placeholder="State"
-            type="number"
+            type="text"
             value={state}
             onChange={(e) => setState(e.target.value)}
             required
