@@ -11,6 +11,7 @@ import User from "./components/User";
 import Homepage from "./components/Homepage";
 import Product from "./components/Product";
 import CreateReview from "./components/Forms/ReviewForms/createReview";
+import Checkout from "./components/Checkout";
 import { authenticate } from "./store/session";
 import { loadAllProducts, loadOneProduct } from "./store/product";
 
@@ -49,6 +50,10 @@ function App() {
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
+        </ProtectedRoute>
+        <ProtectedRoute path="/checkout" exact={true}>
+          <Header />
+          <Checkout />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
