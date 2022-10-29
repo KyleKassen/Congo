@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, ShippingAddress
+from app.models import User, ShippingAddress, db
+from ..forms.address_form import AddressForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -57,7 +58,7 @@ def create_address(id):
     print(form.data)
 
     if form.validate_on_submit():
-        review = Address(
+        review = ShippingAddress(
             user_id=user_id,
             address=form.data['address'],
             city=form.data['city'],
