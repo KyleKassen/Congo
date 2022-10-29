@@ -19,11 +19,11 @@ def update_review(id):
     user = current_user.to_dict()
     user_id = user['id']
 
-    # if (user_id != update_review['user_id']):
-    #     return {
-    #         "statusCode": 400,
-    #         "message": "Not the correct user"
-    #     }
+    if (user_id != update_review.user_id):
+        return {
+            "statusCode": 400,
+            "message": "Not the correct user"
+        }
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']

@@ -10,6 +10,7 @@ function CreateReview() {
   const [errors, setErrors] = useState([]);
 
   const {productId} = useParams()
+  console.log(`productId is ${productId}`)
 
   const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ function CreateReview() {
     }
 
     try {
-        const response = await dispatch(createOneReview(newReview))
+        const response = await dispatch(createOneReview(newReview, productId))
         console.log(response)
     } catch (res) {
         console.log(res)

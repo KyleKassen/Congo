@@ -206,14 +206,15 @@ def create_review(id):
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
 
     if form.validate_on_submit():
         review = Review(
-            user_id,
+            user_id=user_id,
             product_id=id,
             title=form.data['title'],
             review=form.data['review'],
-            rating=form.data['quantity'],
+            rating=form.data['rating']
         )
 
         db.session.add(review)

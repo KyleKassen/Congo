@@ -39,14 +39,14 @@ export const createOne = (review) => {
   };
 };
 
-export const createOneReview = (review) => async (dispatch) => {
+export const createOneReview = (reviewData, productId) => async (dispatch) => {
   console.log("createing One review Thunk");
-  const response = await fetch(`/api/reviews`, {
+  const response = await fetch(`/api/products/${productId}/reviews`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(review),
+    body: JSON.stringify(reviewData),
   });
 
   const review = await response.json();
