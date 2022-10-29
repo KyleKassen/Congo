@@ -29,7 +29,7 @@ function Review({setShowModal, reviewId}) {
     }
 
     try {
-        const response = await dispatch(updateOneReview(updateReview, userId))
+        const response = await dispatch(updateOneReview(updateReview, reviewId))
         console.log(response)
     } catch (res) {
         console.log(res)

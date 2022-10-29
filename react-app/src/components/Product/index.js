@@ -39,6 +39,10 @@ function Product() {
     return null
   }
 
+  let createReview = async () => {
+    
+  }
+
   return (
     <>
       <h1>Product Page</h1>
@@ -56,6 +60,9 @@ function Product() {
       <p>{product.title}</p>
 
       <div className="product-reviews-container">
+        <div className="prudct-reviews-button-container">
+            <button onClick={()=> createReview()}>Create a Review</button>
+        </div>
         {reviews.map((review) => {
           return (
             <>
