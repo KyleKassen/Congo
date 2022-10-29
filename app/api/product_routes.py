@@ -198,7 +198,9 @@ def create_review(id):
     user = current_user.to_dict()
     user_id = user['id']
 
-    if (id == user_id):
+    product_seller_id = Product.query.get(id).seller_id
+
+    if (product_seller_id == user_id):
         return {
             "statusCode": 400,
             "message": "Current User owns the product"

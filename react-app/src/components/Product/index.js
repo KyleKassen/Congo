@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
 import EditReview from "../Forms/ReviewForms/editReview";
-import { Modal } from "../../context/Modal";
 
 import "./product.css";
 
@@ -65,6 +64,7 @@ function Product() {
             <button onClick={()=> createReview()}>Create a Review</button>
         </div>
         {reviews.map((review, ind) => {
+            console.log(review.id)
           return (
             <div key={ind}>
               <h2>{review.title}</h2>
@@ -72,11 +72,7 @@ function Product() {
               <button onClick={() => deleteReview(review.id)}>delete</button>
               <button onClick={() => setShowModal(true)}>update</button>
 
-              {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <EditReview setShowModal={setShowModal} reviewId={review.id}/>
-                </Modal>
-              )}
+              <EditReview showModal={showModal} setShowModal={setShowModal} reviewId={review.id}/>
             </div>
           );
         })}
