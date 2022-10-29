@@ -1,4 +1,5 @@
 const LOAD_ALL = "address/loadAll"
+const DELETE = "review/delete";
 
 //##########################
 // LOAD ALL user Addresses
@@ -24,6 +25,30 @@ export const loadAllAddresses = (userId) => async (dispatch) => {
 }
 
 //##########################
+// DELETE address
+//##########################
+
+export const deleteOne = (id) => {
+    console.log("Deleting One address");
+    return {
+      type: DELETE,
+      payload: id,
+    };
+  };
+
+  export const deleteOneAddress = (id) => async (dispatch) => {
+    console.log("Deleting One address Thunk");
+    const response = await fetch(`/api/addresses/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      dispatch(deleteOne(id));
+    }
+    return await response.json();
+  };
+
+//##########################
 // Reducer
 //##########################
 const initialState = { addresses: {}, default: {}}
@@ -38,6 +63,9 @@ export const addressReducer = (state = initialState, action) => {
         case LOAD_ALL:
             newState.addresses = {}
             action.payload.addresses.forEach(address => newState.addresses[address.id] = address)
+            return newState;
+        case DELETE:
+            delete newState.addresses[action.payload];
             return newState;
         default:
             return state;

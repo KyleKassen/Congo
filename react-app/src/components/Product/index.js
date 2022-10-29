@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, useParams, useHistory } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  useParams,
+  useHistory,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
@@ -15,7 +21,9 @@ function Product() {
   const dispatch = useDispatch();
   const history = useHistory();
   const product = useSelector((state) => state.products.singleProduct);
-  const reviews = useSelector((state) => Object.values(state.reviews.productReviews));
+  const reviews = useSelector((state) =>
+    Object.values(state.reviews.productReviews)
+  );
 
   useEffect(() => {
     (async () => {
@@ -30,8 +38,8 @@ function Product() {
   }
 
   let createReview = async () => {
-    history.push(`/product/${productId}/create`)
-  }
+    history.push(`/product/${productId}/create`);
+  };
 
   return (
     <>
@@ -51,10 +59,10 @@ function Product() {
 
       <div className="product-reviews-container">
         <div className="prudct-reviews-button-container">
-            <button onClick={()=> createReview()}>Create a Review</button>
+          <button onClick={() => createReview()}>Create a Review</button>
         </div>
         {reviews.map((review, ind) => {
-            console.log(review.id)
+          console.log(review.id);
           return (
             <div key={ind}>
               <Review review={review} />
