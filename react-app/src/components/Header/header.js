@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
+import {logout} from '../../store/session';
 import congo from "../../media/images/CONGO.png";
 import locationPin from "../../media/icons/locationPin.png";
 import darkpin from "../../media/images/darkpin.png";
@@ -16,9 +17,10 @@ function Header() {
   const [department, setDepartment] = useState("");
   const [submitted, isSubmitted] = useState(false);
   const [focusClass, setFocusClass] = useState("");
+  const dispatch = useDispatch()
   const history = useHistory();
 
-  const session = useSelector(state => state.session)
+  const session = useSelector((state) => state.session);
 
   const departments = ["All", "Amazon", "Appliances", "Clothing"];
   const mainNav = [
@@ -50,13 +52,17 @@ function Header() {
     "Luxury Stores",
     "Smart Home",
     "Handmade",
-    "Audible"
+    "Audible",
   ];
 
   async function onSubmit(e) {
     e.preventDefault();
 
     history.push(`businesses/search?input=${search}`);
+  }
+
+  const logoutFunc = async () => {
+    await dispatch(logout())
   }
 
   return (
@@ -116,11 +122,24 @@ function Header() {
             <img src={flag} />
             EN
           </div>
-          <div className="header-user-auth header-hover-border" onClick={() => history.push('/login')}>
-            {!session.user && <p className="header-top-text">Hello, sign in</p>}
-            {session.user && <p className="header-top-text">Hello, {session.user.firstName}</p>}
-            <p className="header-bottom-text">Account & Lists</p>
-          </div>
+          {!session.user && (
+            <div
+              className="header-user-auth header-hover-border"
+              onClick={() => history.push("/login")}
+            >
+              <p className="header-top-text">Hello, sign in</p>
+              <p className="header-bottom-text">Account & Lists</p>
+            </div>
+          )}
+          {session.user && (
+            <div
+              className="header-user-auth header-hover-border"
+              onClick={() => logoutFunc()}
+            >
+              <p className="header-top-text">Hello, {session.user.firstName}</p>
+              <p className="header-bottom-text">Account & Lists</p>
+            </div>
+          )}
           <div className="header-returns header-hover-border">
             <p className="header-top-text">Returns</p>
             <p className="header-bottom-text">& Orders</p>
@@ -142,12 +161,14 @@ function Header() {
           <p>All</p>
         </div>
         {mainNav.map((navItem) => {
-          let navItem2 = navItem.slice(0,3).toLowerCase()
-          if(navItem === "Amazon Basics") navItem2 = "bas"
-          else if(navItem === "Amazon Explore") navItem2 = "exp"
-          else if(navItem === "Amazon Home") navItem2= "ho2"
+          let navItem2 = navItem.slice(0, 3).toLowerCase();
+          if (navItem === "Amazon Basics") navItem2 = "bas";
+          else if (navItem === "Amazon Explore") navItem2 = "exp";
+          else if (navItem === "Amazon Home") navItem2 = "ho2";
           return (
-            <div className={`header-mainnav-item-container header-mainnav-${navItem2}`}>
+            <div
+              className={`header-mainnav-item-container header-mainnav-${navItem2}`}
+            >
               <p className="header-mainnav-item header-hover-border">
                 {navItem}
               </p>
