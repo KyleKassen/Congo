@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, ShippingAddress, PaymentMethod, db
 from ..forms.address_form import AddressForm
+from ..forms.payment_form import PaymentForm
 
 user_routes = Blueprint('users', __name__)
 
