@@ -232,7 +232,11 @@
 
 }
 
-.header-dropdown-hover-text:hover {
+.header-dropdown-text {
+    padding-bottom: 7px;
+}
+
+.header-dropdown-text:hover {
     text-decoration: underline;
     color: #e47911;
 }
@@ -240,12 +244,14 @@
 .header-account-dropdown-your-account {
     width: 189px;
     padding-left: 20px;
-    padding-bottom: 10px;
     border-left: 1px solid #eee;
 }
 
 .header-account-dropdown-seller {
     width: 210px;
+}
+
+.header-account-dropdown-title {
     padding-bottom: 10px;
 }
 

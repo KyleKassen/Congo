@@ -149,3 +149,9 @@
 body {
     font-family: 'amazon ember', arial, sans-serif;
 }
+
+.yellow-gradient-button {
+    background-color: linear-gradient(to bottom,#f8e3ad,#EEBA37);
+    border: 1px solid;
+    border-color: #c89411 #b0820f #99710d;
+}

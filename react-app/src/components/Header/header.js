@@ -18,7 +18,6 @@ function Header() {
   const [department, setDepartment] = useState("");
   const [submitted, isSubmitted] = useState(false);
   const [focusClass, setFocusClass] = useState("");
-  const [showAccountModal, setShowAcccountModal] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -124,7 +123,7 @@ function Header() {
             <img src={flag} />
             EN
           </div>
-          {!session.user && (
+          {/* {!session.user && (
             <div
               className="header-user-auth header-hover-border"
               onClick={() => history.push("/login")}
@@ -132,16 +131,16 @@ function Header() {
               <p className="header-top-text">Hello, sign in</p>
               <p className="header-bottom-text">Account & Lists</p>
             </div>
-          )}
-          {session.user && (
+          )} */}
             <div
               className="header-user-auth header-hover-border"
-              onClick={() =>
-                // logoutFunc()
-                setShowAcccountModal(true)
-              }
-            >
+              >
+              {session.user && (
               <p className="header-top-text">Hello, {session.user.firstName}</p>
+              )}
+              {!session.user && (
+                <p className="header-top-text">Hello, sign in</p>
+              )}
               <div className="header-bottom-acclists-img-container">
                 <p className="header-bottom-text">Account & Lists</p>
                 <img src={downarrow} />
@@ -150,13 +149,25 @@ function Header() {
                 <div className="header-account-dropdown-arrow">
                   <div className="header-account-dropdown-inner-arrow"></div>
                 </div>
+                {!session.user && (
+                <div className="header-account-dropdown-signin-container">
+                  <a>
+                    <span className="header-account-dropdown-signin yellow-gradient-button">Sign in</span>
+                  </a>
+                </div>
+                )}
                 <div className="header-account-dropdown-seller">
-                  <p>Become a Seller</p>
-                  <a className="header-dropdown-hover-text">Add a Product</a>
+                  <p className="header-account-dropdown-title">Become a Seller</p>
+                  <a className="header-dropdown-text">Add a Product</a>
                 </div>
                 <div className="header-account-dropdown-your-account">
-                  <p>Your Account</p>
-                  <a className="header-dropdown-hover-text">
+                  <p className="header-account-dropdown-title">Your Account</p>
+                  <a className="header-dropdown-text" onClick={(e) => {
+                    e.preventDefault()
+                    console.log('HELLLLLOOOOO')
+                    logout()
+                    return true
+                  }}>
                     Sign Out
                   </a>
                 </div>
@@ -166,7 +177,6 @@ function Header() {
                 <div className="header-account-dropdown-buffer-left"></div>
               </div>
             </div>
-          )}
           <div className="header-returns header-hover-border">
             <p className="header-top-text">Returns</p>
             <p className="header-bottom-text">& Orders</p>
