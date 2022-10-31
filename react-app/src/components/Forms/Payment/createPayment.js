@@ -17,7 +17,7 @@ function CreatePayment({setShowPaymentModal}) {
 
   useEffect(() => {
 
-  }, [cardNumber, cardHolder, cardExp, zipCode])
+  }, [cardNumber, cardHolder, cardExp, securityCode])
 
   const handleSubmit = async(e) => {
     e.preventDefault()

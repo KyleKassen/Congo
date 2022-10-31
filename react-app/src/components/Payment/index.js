@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import EditPayment from "../Forms/Payment/editPayment";
-import { deleteOnePayment } from "../../store/payments";
+import { deleteOnePayment } from "../../store/payment";
 import { Modal } from "../../context/Modal";
 
 function Payment({ payment }) {
@@ -21,7 +21,7 @@ function Payment({ payment }) {
       <p>{payment.cardHolder}</p>
       <p>{payment.cardExp}</p>
       <p>{payment.securityCode}</p>
-      <button onClick={() => deleteAddress(payment.id)}>delete</button>
+      <button onClick={() => deletePayment(payment.id)}>delete</button>
       <button onClick={() => setShowModal(true)}>update</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

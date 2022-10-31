@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllAddresses } from "../../store/address";
+import { loadAllPayments} from "../../store/payment";
 import { Modal } from "../../context/Modal";
 import CreateAddress from "../Forms/Address/createAddress";
+import CreatePayment from "../Forms/Payment/createPayment";
 import Address from "../Address";
 import Payment from "../Payment";
 
