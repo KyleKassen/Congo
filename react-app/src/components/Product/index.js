@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  useParams,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch, useParams, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
