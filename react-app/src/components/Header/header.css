@@ -190,6 +190,29 @@
     margin-left: 7px;
 }
 
+.header-account-dropdown-arrow {
+    position:absolute;
+    top:-9px;
+    right: 94px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #ccc;
+    z-index:-1;
+}
+
+.header-account-dropdown-inner-arrow {
+    position:absolute;
+    top:1px;
+    right: -9px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid white;
+}
+
 .header-user-auth:hover .header-account-dropdown-container{
     display: flex;
     padding: 14px 14px 7px 14px;
@@ -200,10 +223,18 @@
     position: absolute;
     background-color: white;
     color: black;
-    z-index: 1;
-    top: 50px;
-    right: 50px;
+    z-index: 999;
+    top: 48px;
+    right: -80px;
     cursor:default;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+
+}
+
+.header-dropdown-hover-text:hover {
+    text-decoration: underline;
+    color: #e47911;
 }
 
 .header-account-dropdown-your-account {
@@ -223,12 +254,46 @@
     font-size: 16px;
     font-weight: 700;
 }
-.header-account-dropdown-container span {
+.header-account-dropdown-container a {
     color: #444;
     font-size: 13px;
     font-weight: 400;
     cursor: pointer;
     width: 189px;
+    display: block;
+    width: 90%;
+}
+
+.header-account-dropdown-buffer-top {
+    position: absolute;
+    width: calc(2px + 100%);
+    height: 10px;
+    right: 1px;
+    top: -10px;
+}
+
+.header-account-dropdown-buffer-right {
+    position: absolute;
+    width: 10px;
+    height: calc(2px + 100%);
+    top: -1px;
+    right: -10px;
+}
+
+.header-account-dropdown-buffer-bottom {
+    position: absolute;
+    width: calc(2px + 100%);
+    height: 10px;
+    right: 1px;
+    bottom: -10px;
+}
+
+.header-account-dropdown-buffer-left {
+    position: absolute;
+    width: 10px;
+    height: calc(2px + 100%);
+    left: -10px;
+    top: -1px;
 }
 
 .header-returns {

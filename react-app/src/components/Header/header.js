@@ -147,16 +147,23 @@ function Header() {
                 <img src={downarrow} />
               </div>
               <div className="header-account-dropdown-container">
+                <div className="header-account-dropdown-arrow">
+                  <div className="header-account-dropdown-inner-arrow"></div>
+                </div>
                 <div className="header-account-dropdown-seller">
                   <p>Become a Seller</p>
-                  <a>Add a Product</a>
+                  <a className="header-dropdown-hover-text">Add a Product</a>
                 </div>
                 <div className="header-account-dropdown-your-account">
                   <p>Your Account</p>
-                  <a>
-                    <span>Sign Out</span>
+                  <a className="header-dropdown-hover-text">
+                    Sign Out
                   </a>
                 </div>
+                <div className="header-account-dropdown-buffer-top"></div>
+                <div className="header-account-dropdown-buffer-right"></div>
+                <div className="header-account-dropdown-buffer-bottom"></div>
+                <div className="header-account-dropdown-buffer-left"></div>
               </div>
             </div>
           )}
