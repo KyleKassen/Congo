@@ -42,7 +42,7 @@ def get_product(id):
 
     rating = Review.query.with_entities(
         func.avg(Review.rating)).filter_by(product_id=id).first()
-    review_count = Review.query.count()
+    review_count = Review.query.filter_by(product_id=id).count()
     rating = float(round(rating[0], 1))
 
     # reviews = Review.query.filter_by(product_id=id).options(joinedload(Review.review_image)).all()
@@ -159,6 +159,11 @@ def delete_product(id):
     }
 
 
+
+
+
+
+
 """
 Review product routes
 """
@@ -193,7 +198,9 @@ def create_review(id):
     user = current_user.to_dict()
     user_id = user['id']
 
-    if (id == user_id):
+    product_seller_id = Product.query.get(id).seller_id
+
+    if (product_seller_id == user_id):
         return {
             "statusCode": 400,
             "message": "Current User owns the product"
@@ -201,14 +208,15 @@ def create_review(id):
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
 
     if form.validate_on_submit():
         review = Review(
-            user_id,
+            user_id=user_id,
             product_id=id,
             title=form.data['title'],
             review=form.data['review'],
-            rating=form.data['quantity'],
+            rating=form.data['rating']
         )
 
         db.session.add(review)

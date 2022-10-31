@@ -1,0 +1,34 @@
+.homepage-wrapper {
+    background-color: rgb(234,237,237);
+}
+
+.home-outer-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.home-outer-container {
+    max-width: 1500px;
+    width: 1500px;
+    /* position: relative; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-flex-item {
+    width: 350px;
+    height: 385px;
+    background-color: white;
+}
+
+.home-product-img-container {
+    width: 320px;
+    height: 230px;
+}
+
+.home-product-img-container img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}

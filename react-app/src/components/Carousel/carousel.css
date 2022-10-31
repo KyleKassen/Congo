@@ -1,0 +1,50 @@
+.carousel-outer-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.carousel-outer-container {
+    max-width: 1500px;
+    position: relative;
+}
+
+.carousel-outer-container img{
+    width: 100%;
+    object-fit: contain;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+
+}
+
+.carousel-carousel-container a {
+    /* width: 100%; */
+    font-size: 70px;
+    position: absolute;
+    z-index: 1;
+    width: 80px;
+    height: 250px;
+    text-align: center;
+    line-height: 250px;
+    user-select: none;
+}
+
+a.carousel-carousel-previous:focus, a.carousel-carousel-next:focus{
+    box-shadow: inset 0px 0px 0px 2px rgb(255,255,255), inset 0px 0px 0px 4px rgb(0, 130, 150);
+    border-radius: 5px;
+}
+
+.carousel-carousel-previous:hover, .carousel-carousel-next:hover {
+    cursor: pointer;
+}
+
+.carousel-carousel-image-container img {
+    display: none;
+}
+
+.carousel-carousel-next {
+    right: 0px;
+}
+
+.carousel-carousel-image1, .carousel-carousel-image2, .carousel-carousel-image3 {
+    display: inline !important;
+}

@@ -1,4 +1,145 @@
 /* TODO Add site wide styles */
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazon-ember-medium-webfont.woff2') format('woff2'),
+         url('./fonts/amazon-ember-medium-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazon-ember-mediumitalic-webfont.woff2') format('woff2'),
+         url('./fonts/amazon-ember-mediumitalic-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_bd-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_bd-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_bdit-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_bdit-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_he-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_he-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_heit-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_heit-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_lt-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_lt-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_ltit-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_ltit-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_rg-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_rg-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_rgit-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_rgit-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_th-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_th-webfont.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'amazon ember';
+    src: url('./fonts/amazonember_thit-webfont.woff2') format('woff2'),
+         url('./fonts/amazonember_thit-webfont.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,5 +147,5 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'amazon ember', arial, sans-serif;
 }
