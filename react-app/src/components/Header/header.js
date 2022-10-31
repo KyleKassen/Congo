@@ -6,6 +6,7 @@ import { logout } from "../../store/session";
 import congo from "../../media/images/CONGO.png";
 import locationPin from "../../media/icons/locationPin.png";
 import darkpin from "../../media/images/darkpin.png";
+import downarrow from "../../media/images/downarrow.png";
 import whitepin from "../../media/images/whitepin.png";
 import hamburger from "../../media/images/hamburger.png";
 import cart from "../../media/images/cart.png";
@@ -141,7 +142,10 @@ function Header() {
               }
             >
               <p className="header-top-text">Hello, {session.user.firstName}</p>
-              <p className="header-bottom-text">Account & Lists</p>
+              <div className="header-bottom-acclists-img-container">
+                <p className="header-bottom-text">Account & Lists</p>
+                <img src={downarrow} />
+              </div>
               <div className="header-account-dropdown-container">
                 <div className="header-account-dropdown-seller">
                   <p>Become a Seller</p>
@@ -149,7 +153,9 @@ function Header() {
                 </div>
                 <div className="header-account-dropdown-your-account">
                   <p>Your Account</p>
-                  <a><span>Sign Out</span></a>
+                  <a>
+                    <span>Sign Out</span>
+                  </a>
                 </div>
               </div>
             </div>
