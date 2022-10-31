@@ -125,7 +125,7 @@ export const loadAll = (products) => {
 
 export const loadAllProducts = () => async (dispatch) => {
   console.log("Loading all Product Thunk");
-  const response = await fetch(`/api/products`);
+  const response = await fetch(`/api/products/`);
 
   const products = await response.json();
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
-import {logout} from '../../store/session';
+import { logout } from "../../store/session";
 import congo from "../../media/images/CONGO.png";
 import locationPin from "../../media/icons/locationPin.png";
 import darkpin from "../../media/images/darkpin.png";
@@ -17,7 +17,8 @@ function Header() {
   const [department, setDepartment] = useState("");
   const [submitted, isSubmitted] = useState(false);
   const [focusClass, setFocusClass] = useState("");
-  const dispatch = useDispatch()
+  const [showAccountModal, setShowAcccountModal] = useState(false);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const session = useSelector((state) => state.session);
@@ -62,8 +63,8 @@ function Header() {
   }
 
   const logoutFunc = async () => {
-    await dispatch(logout())
-  }
+    await dispatch(logout());
+  };
 
   return (
     <div>
@@ -134,10 +135,23 @@ function Header() {
           {session.user && (
             <div
               className="header-user-auth header-hover-border"
-              onClick={() => logoutFunc()}
+              onClick={() =>
+                // logoutFunc()
+                setShowAcccountModal(true)
+              }
             >
               <p className="header-top-text">Hello, {session.user.firstName}</p>
               <p className="header-bottom-text">Account & Lists</p>
+              <div className="header-account-dropdown-container">
+                <div className="header-account-dropdown-seller">
+                  <p>Become a Seller</p>
+                  <a>Add a Product</a>
+                </div>
+                <div className="header-account-dropdown-your-account">
+                  <p>Your Account</p>
+                  <a><span>Sign Out</span></a>
+                </div>
+              </div>
             </div>
           )}
           <div className="header-returns header-hover-border">

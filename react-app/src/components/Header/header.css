@@ -176,6 +176,48 @@
 
 .header-user-auth {
     width: 103px;
+    position: relative;
+}
+
+.header-user-auth:hover .header-account-dropdown-container{
+    display: flex;
+    padding: 14px 14px 7px 14px;
+}
+
+.header-account-dropdown-container {
+    display: none;
+    position: absolute;
+    background-color: white;
+    color: black;
+    z-index: 1;
+    top: 50px;
+    right: 50px;
+    cursor:default;
+}
+
+.header-account-dropdown-your-account {
+    width: 189px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    border-left: 1px solid #eee;
+}
+
+.header-account-dropdown-seller {
+    width: 210px;
+    padding-bottom: 10px;
+}
+
+.header-account-dropdown-container p {
+    color: #0F1111;
+    font-size: 16px;
+    font-weight: 700;
+}
+.header-account-dropdown-container span {
+    color: #444;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    width: 189px;
 }
 
 .header-returns {
