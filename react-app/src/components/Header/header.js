@@ -162,12 +162,7 @@ function Header() {
                 </div>
                 <div className="header-account-dropdown-your-account">
                   <p className="header-account-dropdown-title">Your Account</p>
-                  <a className="header-dropdown-text" onClick={(e) => {
-                    e.preventDefault()
-                    console.log('HELLLLLOOOOO')
-                    logout()
-                    return true
-                  }}>
+                  <a className="header-dropdown-text" onClick={() => logoutFunc()}>
                     Sign Out
                   </a>
                 </div>
