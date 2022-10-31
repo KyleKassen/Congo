@@ -214,8 +214,13 @@
 }
 
 .header-user-auth:hover .header-account-dropdown-container{
-    display: flex;
+    display:flex;
+    flex-direction: column;
     padding: 14px 14px 7px 14px;
+}
+
+.header-account-dropdown-bottom {
+    display: flex;
 }
 
 .header-account-dropdown-container {
@@ -223,14 +228,52 @@
     position: absolute;
     background-color: white;
     color: black;
-    z-index: 999;
+    z-index: 2;
     top: 48px;
     right: -80px;
     cursor:default;
     border: 1px solid #bbb;
     border-radius: 3px;
-
 }
+.header-account-dropdown-signin-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 16px;
+}
+
+.header-dropdown-new-customer {
+    color: #333;
+    margin: 7px 0px 9px 0px;
+    font-size: 11px;
+}
+
+.stat-here-signup {
+    color: #05a;
+}
+
+.header-account-dropdown-signin {
+    display:flex;
+    justify-content: center;
+    line-height: 30px;
+    font-size: 13px;
+    width: 197px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+.header-account-new-customer {
+    color: #333;
+    margin: 7px 0px 9px 0px;
+    font-size: 11px;
+}
+
+.start-here-signup {
+    color: #05a;
+}
+
 
 .header-dropdown-text {
     padding-bottom: 7px;
@@ -255,7 +298,7 @@
     padding-bottom: 10px;
 }
 
-.header-account-dropdown-container p {
+.header-account-dropdown-title {
     color: #0F1111;
     font-size: 16px;
     font-weight: 700;

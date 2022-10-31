@@ -151,11 +151,14 @@ function Header() {
                 </div>
                 {!session.user && (
                 <div className="header-account-dropdown-signin-container">
-                  <a>
+                  {/* <a className="header-account-dropdown-signin">
                     <span className="header-account-dropdown-signin yellow-gradient-button">Sign in</span>
-                  </a>
+                  </a> */}
+                  <div className="header-account-dropdown-signin yellow-gradient-button" onClick={() => history.push("/login")}>Sign in</div>
+                  <p className="header-account-new-customer">New customer? <span className="start-here-signup header-dropdown-text">Start here.</span></p>
                 </div>
                 )}
+                <div className="header-account-dropdown-bottom">
                 <div className="header-account-dropdown-seller">
                   <p className="header-account-dropdown-title">Become a Seller</p>
                   <a className="header-dropdown-text">Add a Product</a>
@@ -170,6 +173,7 @@ function Header() {
                 <div className="header-account-dropdown-buffer-right"></div>
                 <div className="header-account-dropdown-buffer-bottom"></div>
                 <div className="header-account-dropdown-buffer-left"></div>
+                </div>
               </div>
             </div>
           <div className="header-returns header-hover-border">
