@@ -193,7 +193,7 @@
 .header-account-dropdown-arrow {
     position:absolute;
     top:-9px;
-    right: 94px;
+    right: 93px;
     width: 0;
     height: 0;
     border-left: 9px solid transparent;
@@ -262,6 +262,12 @@
     width: 197px;
     height: 30px;
     border-radius: 3px;
+}
+
+.header-account-signin-demo-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .header-account-new-customer {

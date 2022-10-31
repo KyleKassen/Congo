@@ -3,6 +3,7 @@ import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { logout } from "../../store/session";
+import {login} from "../../store/session";
 import congo from "../../media/images/CONGO.png";
 import locationPin from "../../media/icons/locationPin.png";
 import darkpin from "../../media/images/darkpin.png";
@@ -65,6 +66,10 @@ function Header() {
   const logoutFunc = async () => {
     await dispatch(logout());
   };
+
+  const logInDemo = async () => {
+    await dispatch(login('demo@aa.io', 'password'));
+  }
 
   return (
     <div>
@@ -154,7 +159,10 @@ function Header() {
                   {/* <a className="header-account-dropdown-signin">
                     <span className="header-account-dropdown-signin yellow-gradient-button">Sign in</span>
                   </a> */}
+                  <div className="header-account-signin-demo-container">
                   <div className="header-account-dropdown-signin yellow-gradient-button" onClick={() => history.push("/login")}>Sign in</div>
+                  <div className="header-account-dropdown-signin yellow-gradient-button" onClick={() => logInDemo()}>Demo User</div>
+                  </div>
                   <p className="header-account-new-customer">New customer? <span className="start-here-signup header-dropdown-text">Start here.</span></p>
                 </div>
                 )}
