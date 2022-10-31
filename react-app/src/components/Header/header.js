@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import { logout } from "../../store/session";
 import {login} from "../../store/session";
 import congo from "../../media/images/CONGO.png";
+import congo2 from "../../media/images/CONGOblack.png";
 import locationPin from "../../media/icons/locationPin.png";
 import darkpin from "../../media/images/darkpin.png";
 import downarrow from "../../media/images/downarrow.png";
@@ -76,7 +77,7 @@ function Header() {
       <div className="header-outer-container">
         <div className="header-left-container">
           <div className="header-logo header-hover-border">
-            <img src={congo} />
+            <img src={congo2} />
           </div>
           <div className="header-set-location header-hover-border">
             <img src={whitepin} />
