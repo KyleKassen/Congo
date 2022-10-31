@@ -24,7 +24,7 @@ function Checkout() {
   useEffect(() => {
     (async () => {
       await dispatch(loadAllAddresses(userId));
-      await dispatch(loadAllPayments(userId))
+      await dispatch(loadAllPayments(userId));
       setLoaded(true);
     })();
   }, [dispatch]);
