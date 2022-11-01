@@ -109,8 +109,38 @@
 }
 
 .signup-form-bottom-text {
-    font-size: 12px;
+    font-size: 12px !important;
     line-height: 1.5;
     width: 100%;
     margin-top: 26px;
+    margin-bottom: 26px;
+}
+
+.form-bottom-divider {
+    height: 44px;
+    margin-bottom: -18px;
+    background: -webkit-linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+    background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+    z-index: 0;
+    zoom: 1;
+}
+
+.form-bottom-divider::after {
+    display: block;
+    width: 100%;
+    height: 44px;
+    background-color: transparent;
+    background: -webkit-linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
+    background: linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
+    z-index: 1;
+    content: "";
+}
+
+.signup-bottom-signin {
+    color: #0066c0
+}
+
+.signup-bottom-signin:hover {
+    color: #c45500;
+    cursor: pointer;
 }

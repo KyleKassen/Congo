@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import congowhite from "../../media/images/CONGOwhite.png";
 import "./signup.css";
@@ -12,6 +12,8 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -147,6 +149,8 @@ const SignUpForm = () => {
               Notice.
             </p>
           </div>
+            <div className="form-bottom-divider"></div>
+            <p>Already have an account? <span className="signup-bottom-signin" onClick={() => history.push("/login")}>Sign in</span></p>
         </div>
       </div>
     </div>
