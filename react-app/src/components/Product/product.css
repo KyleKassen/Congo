@@ -62,6 +62,26 @@
 }
 
 .product-middle-wrapper {
-    margin-left: 46.5%;
-    margin-right: 270px;
+    width: 35%;
+}
+
+.product-right-wrapper {
+    width: 244px;
+    margin-left: 20px;
+}
+
+.product-buy-box {
+    width: 100%;
+    border-radius: 8px;
+    padding: 14px 18px;
+    border: 1px #D5D9D9 solid;
+}
+
+.buy-box-price {
+    position: relative;
+    top:-0.75em;
+}
+
+.buy-box-big-price {
+    font-size: 26px;
 }

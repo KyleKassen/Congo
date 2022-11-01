@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, useParams, useHistory} from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  useParams,
+  useHistory,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
@@ -10,7 +16,7 @@ import "./product.css";
 
 function Product() {
   const [loaded, setLoaded] = useState(false);
-  const [activeImg, setActiveImg] = useState(0)
+  const [activeImg, setActiveImg] = useState(0);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -42,29 +48,62 @@ function Product() {
         <div className="product-img-list">
           {product.images.map((img, idx) => {
             return (
-              <div key={idx} className={`img-list-img-container ${activeImg === idx && 'img-list-active'}`} onMouseOver={() => setActiveImg(idx)}>
+              <div
+                key={idx}
+                className={`img-list-img-container ${
+                  activeImg === idx && "img-list-active"
+                }`}
+                onMouseOver={() => setActiveImg(idx)}
+              >
                 <img src={img.url} />
               </div>
-            )
+            );
           })}
         </div>
         <div className="product-active-img-wrapper">
-        {product.images.map((img, idx) => {
+          {product.images.map((img, idx) => {
             return (
-              <div key={idx} className={`product-active-img-container ${activeImg === idx && 'main-img-active'}`}>
+              <div
+                key={idx}
+                className={`product-active-img-container ${
+                  activeImg === idx && "main-img-active"
+                }`}
+              >
                 <img src={img.url} />
               </div>
-            )
+            );
           })}
         </div>
       </div>
-      <div className="product-middle-wrapper"></div>
-      <div className="product-right-wrapper"></div>
-
-
-
-
-
+      <div className="product-middle-wrapper">
+        <div className="product-title">
+          <h1>{product.title}</h1>
+        </div>
+      </div>
+      <div className="product-right-wrapper">
+        <div className="product-buy-box">
+          <div className="buy-box-price">
+            <span class="buy-box-price-symbol">$</span>
+            <span class="buy-box-price-whole">{Math.floor(product.price)}</span>
+            <span class="buy-box-price-decimal">
+              {
+                (
+                  Math.round(
+                    100 * (product.price - Math.floor(product.price))
+                  ) / 100
+                )
+                  .toString()
+                  .split(".")[1]
+              }
+            </span>
+          </div>
+          <div className="buy-box-delivery-time"></div>
+          <div className="buy-box-delivery-location"></div>
+          <div className="buy-box-quantity"></div>
+          <div className="buy-box-secure"></div>
+          <div className="buy-box-return-policy"></div>
+        </div>
+      </div>
 
       {/* <h1>Product Page</h1>
       <p>{product.description}</p>
