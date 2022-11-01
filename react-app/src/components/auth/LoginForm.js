@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import congowhite from "../../media/images/CONGOwhite.png";
+import amazonicons from "../../media/images/amazonicons.png";
 import "./login.css";
 
 const LoginForm = () => {
   const [showField, setShowField] = useState(false);
+  const [showError, setShowError] = useState(false);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,9 +19,18 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
+      console.log(data)
       setErrors(data);
     }
+    if (data.length > 1) {
+      setShowError(true);
+    }
   };
+
+  // const onContinue = async (e) => {
+  //   e.preventDefault();
+
+  // }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -39,6 +50,11 @@ const LoginForm = () => {
         <img src={congowhite} />
       </div>
       <div className="login-width-provider">
+        {showError && (
+          <div className="login-error">
+            <i className="login-error-icon"></i>
+          </div>
+        )}
         <div className="login-form-container">
           <h1 className="login-sign-in">Sign in</h1>
           <form onSubmit={onLogin}>
@@ -47,16 +63,18 @@ const LoginForm = () => {
                 <div key={ind}>{error}</div>
               ))}
             </div>
-            <div className="login-field">
-              <label htmlFor="email">Email</label>
-              <input
-                name="email"
-                type="text"
-                // placeholder="Email"
-                value={email}
-                onChange={updateEmail}
-              />
-            </div>
+            {/* {!showField && ( */}
+              <div className="login-field">
+                <label htmlFor="email">Email</label>
+                <input
+                  name="email"
+                  type="text"
+                  // placeholder="Email"
+                  value={email}
+                  onChange={updateEmail}
+                />
+              </div>
+
             {showField && (
               <div className="login-field">
                 <label htmlFor="password">Password</label>
@@ -67,7 +85,12 @@ const LoginForm = () => {
                   value={password}
                   onChange={updatePassword}
                 />
-                <button type="submit">Login</button>
+                <button
+                  className="login-form-button yellow-gradient-button"
+                  type="submit"
+                >
+                  Sign in
+                </button>
               </div>
             )}
             <div>
@@ -89,7 +112,9 @@ const LoginForm = () => {
         <div className="login-divider">
           <h5>New to Amazon?</h5>
         </div>
-        <button className="login-signup-button">Create your Amazon account</button>
+        <button className="login-signup-button">
+          Create your Amazon account
+        </button>
       </div>
     </div>
   );
