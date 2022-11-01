@@ -60,3 +60,8 @@
 .main-img-active {
     display: block;
 }
+
+.product-middle-wrapper {
+    margin-left: 46.5%;
+    margin-right: 270px;
+}
