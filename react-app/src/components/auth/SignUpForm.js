@@ -7,6 +7,7 @@ import "./signup.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [errormsgs, setErrorMsgs] = useState({});
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,12 +17,28 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+
+    let currentErrors = {}
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data);
       }
+      for(let err of data) {
+        console.log(err)
+        if (err.startsWith('email')) {
+          currentErrors['email'] = 'Email address already exists in our system'
+        }
+      }
     }
+
+    if (!username) currentErrors['name'] = 'Enter your name';
+    if (!email) currentErrors['email'] = 'Enter your email';
+    if (password.length < 6) currentErrors['password'] = 'Minimum 6 characters required';
+    if (password !== repeatPassword) currentErrors['password2'] = 'Passwords must match'
+
+    setErrorMsgs(currentErrors);
   };
 
   const updateUsername = (e) => {
@@ -53,11 +70,11 @@ const SignUpForm = () => {
         <div className="signup-form-container">
           <h1 className="signup-create-account">Create Account</h1>
           <form onSubmit={onSignUp}>
-            <div>
+            {/* <div>
               {errors.map((error, ind) => (
                 <div key={ind}>{error}</div>
               ))}
-            </div>
+            </div> */}
             <div className="signup-field">
               <label>Your name</label>
               <input
@@ -67,9 +84,11 @@ const SignUpForm = () => {
                 placeholder="First and last name"
                 value={username}
               ></input>
+              {errormsgs.name && (
               <div className="form-error-container">
-                <p className="form-error-text"><i className="form-error-icon"></i> Enter your name</p>
+                <p className="form-error-text"><i className="form-error-icon"></i> {errormsgs.name}</p>
               </div>
+              )}
             </div>
             <div className="signup-field">
               <label>Email</label>
@@ -80,9 +99,11 @@ const SignUpForm = () => {
                 value={email}
               ></input>
             </div>
-            <div className="form-error-container">
-                <p className="form-error-text"><i className="form-error-icon"></i> Enter your name</p>
+            {errormsgs.email && (
+              <div className="form-error-container">
+                <p className="form-error-text"><i className="form-error-icon"></i> {errormsgs.email}</p>
               </div>
+              )}
             <div className="signup-field">
               <label>Password</label>
               <input
@@ -93,9 +114,11 @@ const SignUpForm = () => {
                 value={password}
               ></input>
             </div>
-            <div className="form-error-container">
-                <p className="form-error-text"><i className="form-error-icon"></i> Enter your name</p>
+            {errormsgs.password && (
+              <div className="form-error-container">
+                <p className="form-error-text"><i className="form-error-icon"></i> {errormsgs.password}</p>
               </div>
+              )}
             <div className="signup-field">
               <label>Re-enter Password</label>
               <input
@@ -106,9 +129,11 @@ const SignUpForm = () => {
                 required={true}
               ></input>
             </div>
-            <div className="form-error-container">
-                <p className="form-error-text"><i className="form-error-icon"></i> Enter your name</p>
+            {errormsgs.password2 && (
+              <div className="form-error-container">
+                <p className="form-error-text"><i className="form-error-icon"></i> {errormsgs.password2}</p>
               </div>
+              )}
             <button className="login-form-button yellow-gradient-button" type="submit">Sign Up</button>
           </form>
           <div className="signup-form-bottom-text">
