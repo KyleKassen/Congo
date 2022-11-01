@@ -26,11 +26,12 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data);
-      }
-      for(let err of data) {
-        console.log(err)
-        if (err.startsWith('email')) {
-          currentErrors['email'] = 'Email address already exists in our system'
+        
+        for(let err of data) {
+          console.log(err)
+          if (err.startsWith('email')) {
+            currentErrors['email'] = 'Email address already exists in our system'
+          }
         }
       }
     }

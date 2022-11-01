@@ -20,10 +20,20 @@ function Header() {
   const [department, setDepartment] = useState("");
   const [submitted, isSubmitted] = useState(false);
   const [focusClass, setFocusClass] = useState("");
+  const [name, setName] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
 
   const session = useSelector((state) => state.session);
+
+  if (session?.username) {
+    let currentName = ""
+    currentName = session.username.split(" ")
+    if (currentName.length > 12) {
+      currentName = currentName.slice(10) + "..."
+    }
+    setName(currentName)
+  }
 
   const departments = ["All", "Amazon", "Appliances", "Clothing"];
   const mainNav = [
@@ -142,7 +152,7 @@ function Header() {
               className="header-user-auth header-hover-border"
               >
               {session.user && (
-              <p className="header-top-text">Hello, {session.user.firstName}</p>
+              <p className="header-top-text">Hello, {name}</p>
               )}
               {!session.user && (
                 <p className="header-top-text">Hello, sign in</p>
@@ -164,7 +174,7 @@ function Header() {
                   <div className="header-account-dropdown-signin yellow-gradient-button" onClick={() => history.push("/login")}>Sign in</div>
                   <div className="header-account-dropdown-signin yellow-gradient-button" onClick={() => logInDemo()}>Demo User</div>
                   </div>
-                  <p className="header-account-new-customer">New customer? <span className="start-here-signup header-dropdown-text">Start here.</span></p>
+                  <p className="header-account-new-customer">New customer? <span className="start-here-signup header-dropdown-text" onClick={() => history.push('/sign-up')}>Start here.</span></p>
                 </div>
                 )}
                 <div className="header-account-dropdown-bottom">
