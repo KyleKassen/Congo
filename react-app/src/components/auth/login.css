@@ -27,7 +27,6 @@
     border: 1px #c40000 solid;
     box-shadow: 0 0 0 4px #fcf4f4 inset;
     border-radius: 4px;
-    height: 90px;
     position: relative;
     margin-bottom: 14px;
 }
@@ -106,6 +105,18 @@
     line-height: 1.2;
     margin-bottom: 10px;
     padding-bottom: 4px;
+}
+
+.login-entered-email-container {
+    margin-bottom: 14px;
+}
+
+.login-entered-email-container span{
+    color: #0066c0;
+}
+
+.login-entered-email-container span:hover {
+    cursor: pointer;
 }
 
 .login-form-button {

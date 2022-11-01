@@ -8,7 +8,8 @@ import "./login.css";
 
 const LoginForm = () => {
   const [showField, setShowField] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const [showEmailError, setShowEmailError] = useState(false);
+  const [showPassError, setShowPassError] = useState(false);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,20 +20,25 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      console.log(data);
       setErrors(data);
     }
-    if (data.length > 1) {
-      setShowError(true);
+    if (data?.length > 1) {
+      setShowEmailError(true);
     } else {
-      setShowError(false);
+      setShowEmailError(false);
+      setShowField(true);
+    }
+
+    if (email && password && data?.length == 1) {
+      setShowPassError(true);
     }
   };
 
-  // const onContinue = async (e) => {
-  //   e.preventDefault();
-
-  // }
+  const onChange = () => {
+    setShowEmailError(false);
+    setShowField(false);
+    setErrors([]);
+  };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -52,42 +58,62 @@ const LoginForm = () => {
         <img src={congowhite} />
       </div>
       <div className="login-width-provider">
-        {showError && (
+        {(showEmailError || showPassError) && (
           <div className="login-error-wrapper">
-            <div className="login-error-container">
-              <h4>There was a problem</h4>
-              <p>We cannot find an account with that email address</p>
-              <i className="login-error-icon"></i>
-            </div>
+            {!showPassError && (
+              <>
+                <div className="login-error-container">
+                  <h4>There was a problem</h4>
+                  <p>We cannot find an account with that email address</p>
+                  <i className="login-error-icon"></i>
+                </div>
+              </>
+            )}
+            {showPassError && (
+              <>
+                <div className="login-error-container">
+                  <h4>There was a problem</h4>
+                  <p>Your password is incorrect</p>
+                  <i className="login-error-icon"></i>
+                </div>
+              </>
+            )}
           </div>
         )}
         <div className="login-form-container">
           <h1 className="login-sign-in">Sign in</h1>
           <form onSubmit={onLogin}>
-            <div>
+            {/* <div>
               {errors.map((error, ind) => (
                 <div key={ind}>{error}</div>
               ))}
-            </div>
-            {/* {!showField && ( */}
-            <div className="login-field">
-              <label htmlFor="email">Email</label>
-              <input
-                name="email"
-                type="text"
-                // placeholder="Email"
-                value={email}
-                onChange={updateEmail}
-              />
-            </div>
-
-            {showField && (
+            </div> */}
+            {!showField && (
+              <div className="login-field">
+                <label htmlFor="email">Email</label>
+                <input
+                  name="email"
+                  type="text"
+                  // placeholder="Email"
+                  value={email}
+                  onChange={updateEmail}
+                />
+              </div>
+            )}
+            {showField && !showEmailError && (
+              <div className="login-entered-email-container">
+                <p>
+                  {email} <span onClick={onChange}>Change</span>
+                </p>
+              </div>
+            )}
+            {showField && !showEmailError && (
               <div className="login-field">
                 <label htmlFor="password">Password</label>
                 <input
                   name="password"
                   type="password"
-                  placeholder="Password"
+                  // placeholder="Password"
                   value={password}
                   onChange={updatePassword}
                 />
@@ -99,14 +125,16 @@ const LoginForm = () => {
                 </button>
               </div>
             )}
-            <div>
-              <button
-                className="login-form-button yellow-gradient-button"
-                onClick={() => setShowField(true)}
-              >
-                Continue
-              </button>
-            </div>
+            {(!showField || showEmailError) && (
+              <div>
+                <button
+                  className="login-form-button yellow-gradient-button"
+                  onClick={onLogin}
+                >
+                  Continue
+                </button>
+              </div>
+            )}
           </form>
           <div className="login-form-bottom-text">
             <p>
