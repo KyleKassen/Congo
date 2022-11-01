@@ -9,8 +9,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews } from "../../store/review";
+import {loadAllAddresses} from "../../store/address";
 import EditReview from "../Forms/ReviewForms/editReview";
 import Review from "../Review/index";
+
+import locationpin from "../../media/images/buyboxlocation.png"
 
 import "./product.css";
 
@@ -25,11 +28,16 @@ function Product() {
   const reviews = useSelector((state) =>
     Object.values(state.reviews.productReviews)
   );
+  const addresses = useSelector((state) => Object.values(state.addresses?.addresses));
+  const userId = useSelector((state) => state.session.user?.id)
 
   useEffect(() => {
     (async () => {
       await dispatch(loadOneProduct(productId));
       await dispatch(loadAllReviews(productId));
+      if (userId) {{
+        await dispatch(loadAllAddresses(userId))
+      }}
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -108,9 +116,9 @@ function Product() {
       <div className="product-right-wrapper">
         <div className="product-buy-box">
           <div className="buy-box-price">
-            <span class="buy-box-price-symbol">$</span>
-            <span class="buy-box-price-whole">{Math.floor(product.price)}</span>
-            <span class="buy-box-price-decimal">
+            <span className="buy-box-price-symbol">$</span>
+            <span className="buy-box-price-whole">{Math.floor(product.price)}</span>
+            <span className="buy-box-price-decimal">
               {
                 (
                   Math.round(
@@ -123,10 +131,14 @@ function Product() {
             </span>
           </div>
           <div className="buy-box-delivery-time">
-            <span>FREE delivery</span>
-            <span></span>
+            <span>FREE delivery </span>
+            <span className="buy-box-date">{monthThree} {dayThree} - {(monthThree !== monthFive) && monthFive} {dayFive}</span>
+            <span>.</span>
           </div>
-          <div className="buy-box-delivery-location"></div>
+          <div className="buy-box-delivery-location">
+            <img src={locationpin} />
+            {addresses && addresses[0].address}
+          </div>
           <div className="buy-box-quantity"></div>
           <div className="buy-box-secure"></div>
           <div className="buy-box-return-policy"></div>
