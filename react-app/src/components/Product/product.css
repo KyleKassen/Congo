@@ -6,6 +6,11 @@
     color : #0F1111;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+}
+
+.product-left-wrapper {
+    display: flex;
 }
 
 .product-img-list {
@@ -35,6 +40,17 @@
 
 .product-active-img-wrapper {
     height: 613px;
+}
+
+.product-active-img-container img {
+    height: 585px;
+    width: 585px;
+}
+
+.product-active-img-wrapper img {
+    object-fit: contain;
+    margin-left: 3px;
+
 }
 
 .product-active-img-container {
