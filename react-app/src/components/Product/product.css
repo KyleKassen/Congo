@@ -78,10 +78,14 @@
 }
 
 .buy-box-price {
-    position: relative;
-    top:-0.75em;
+    margin-bottom: 12px;
 }
 
-.buy-box-big-price {
+.buy-box-price-symbol, .buy-box-price-decimal {
+    position: relative;
+    top:-0.60em;
+}
+
+.buy-box-price-whole {
     font-size: 26px;
 }

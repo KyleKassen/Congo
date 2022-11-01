@@ -38,6 +38,31 @@ function Product() {
     return null;
   }
 
+  let objTodayThree = new Date();
+  let objTodayFive = new Date();
+  objTodayThree.setDate(objTodayThree.getDate() + 3);
+  objTodayFive.setDate(objTodayFive.getDate() + 5);
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const monthThree = months[objTodayThree.getMonth()]
+  const dayThree = objTodayThree.getDate()
+  const monthFive = months[objTodayFive.getMonth()]
+  const dayFive = objTodayFive.getDate()
+
+
   let createReview = async () => {
     history.push(`/product/${productId}/create`);
   };
@@ -97,7 +122,10 @@ function Product() {
               }
             </span>
           </div>
-          <div className="buy-box-delivery-time"></div>
+          <div className="buy-box-delivery-time">
+            <span>FREE delivery</span>
+            <span></span>
+          </div>
           <div className="buy-box-delivery-location"></div>
           <div className="buy-box-quantity"></div>
           <div className="buy-box-secure"></div>
