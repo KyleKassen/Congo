@@ -26,14 +26,17 @@ function Header() {
 
   const session = useSelector((state) => state.session);
 
-  if (session?.username) {
-    let currentName = ""
-    currentName = session.username.split(" ")
-    if (currentName.length > 12) {
-      currentName = currentName.slice(10) + "..."
+  useEffect(() => {
+    if (session?.user?.username) {
+      let currentName = ""
+      currentName = session.user.username.split(" ")
+      currentName = currentName[0]
+      if (currentName.length > 12) {
+        currentName = currentName.slice(10) + "..."
+      }
+      setName(currentName.charAt(0).toUpperCase() + currentName.slice(1))
     }
-    setName(currentName)
-  }
+  }, [session])
 
   const departments = ["All", "Amazon", "Appliances", "Clothing"];
   const mainNav = [
