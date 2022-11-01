@@ -19,11 +19,13 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      console.log(data)
+      console.log(data);
       setErrors(data);
     }
     if (data.length > 1) {
       setShowError(true);
+    } else {
+      setShowError(false);
     }
   };
 
@@ -51,8 +53,12 @@ const LoginForm = () => {
       </div>
       <div className="login-width-provider">
         {showError && (
-          <div className="login-error">
-            <i className="login-error-icon"></i>
+          <div className="login-error-wrapper">
+            <div className="login-error-container">
+              <h4>There was a problem</h4>
+              <p>We cannot find an account with that email address</p>
+              <i className="login-error-icon"></i>
+            </div>
           </div>
         )}
         <div className="login-form-container">
@@ -64,16 +70,16 @@ const LoginForm = () => {
               ))}
             </div>
             {/* {!showField && ( */}
-              <div className="login-field">
-                <label htmlFor="email">Email</label>
-                <input
-                  name="email"
-                  type="text"
-                  // placeholder="Email"
-                  value={email}
-                  onChange={updateEmail}
-                />
-              </div>
+            <div className="login-field">
+              <label htmlFor="email">Email</label>
+              <input
+                name="email"
+                type="text"
+                // placeholder="Email"
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
 
             {showField && (
               <div className="login-field">

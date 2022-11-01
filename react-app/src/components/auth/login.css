@@ -23,6 +23,47 @@
     width: 350px;
 }
 
+.login-error-wrapper {
+    border: 1px #c40000 solid;
+    box-shadow: 0 0 0 4px #fcf4f4 inset;
+    border-radius: 4px;
+    height: 90px;
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.login-error-container {
+    padding: 14px 18px 14px 63px;
+}
+
+.login-error-container h4{
+    color: #c40000;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.255;
+    padding-bottom: 4px;
+}
+
+.login-error-container p {
+    color: #111;
+    font-size: 13px;
+    line-height: 19px;
+}
+
+.login-error-icon {
+    background-image: url("../../media/images/amazonicons.png");
+    background-position: -248px -35px;
+    background-size: 400px 750px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: top;
+    width: 30px;
+    height: 27px;
+    position: absolute;
+    left: 18px;
+    top: 11px;
+}
+
 .login-form-container {
     padding: 20px 26px;
     font-size: 13px;
