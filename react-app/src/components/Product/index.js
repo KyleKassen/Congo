@@ -51,7 +51,7 @@ function Product() {
         <div className="product-active-img-wrapper">
         {product.images.map((img, idx) => {
             return (
-              <div key={idx} className={`img-list-img-container ${activeImg === idx && 'img-list-active'}`} onMouseOver={() => setActiveImg(idx)}>
+              <div key={idx} className={`product-active-img-container ${activeImg === idx && 'main-img-active'}`}>
                 <img src={img.url} />
               </div>
             )

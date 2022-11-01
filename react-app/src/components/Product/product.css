@@ -36,3 +36,11 @@
 .product-active-img-wrapper {
     height: 613px;
 }
+
+.product-active-img-container {
+    display: none;
+}
+
+.main-img-active {
+    display: block;
+}
