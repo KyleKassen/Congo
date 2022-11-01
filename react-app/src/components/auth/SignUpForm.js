@@ -67,6 +67,9 @@ const SignUpForm = () => {
                 placeholder="First and last name"
                 value={username}
               ></input>
+              <div className="form-error-container">
+                <p className="form-error-text"><i className="form-error-icon"></i> Enter your name</p>
+              </div>
             </div>
             <div className="signup-field">
               <label>Email</label>
@@ -77,6 +80,9 @@ const SignUpForm = () => {
                 value={email}
               ></input>
             </div>
+            <div className="form-error-container">
+                <p className="form-error-text"><i className="form-error-icon"></i> Enter your name</p>
+              </div>
             <div className="signup-field">
               <label>Password</label>
               <input
@@ -87,6 +93,9 @@ const SignUpForm = () => {
                 value={password}
               ></input>
             </div>
+            <div className="form-error-container">
+                <p className="form-error-text"><i className="form-error-icon"></i> Enter your name</p>
+              </div>
             <div className="signup-field">
               <label>Re-enter Password</label>
               <input
@@ -97,8 +106,17 @@ const SignUpForm = () => {
                 required={true}
               ></input>
             </div>
-            <button type="submit">Sign Up</button>
+            <div className="form-error-container">
+                <p className="form-error-text"><i className="form-error-icon"></i> Enter your name</p>
+              </div>
+            <button className="login-form-button yellow-gradient-button" type="submit">Sign Up</button>
           </form>
+          <div className="signup-form-bottom-text">
+            <p>
+              By continuing, you agree to Congo's Conditions of Use and Privacy
+              Notice.
+            </p>
+          </div>
         </div>
       </div>
     </div>

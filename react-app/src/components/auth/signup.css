@@ -7,6 +7,34 @@
     padding: 14px 18px;
 }
 
+.form-error-container {
+    position: relative;
+    margin-top: -7px;
+    margin-bottom: 7px;
+    padding-left: 3px;
+}
+
+.form-error-icon {
+    background-image: url("../../media/images/amazonicons.png");
+    background-position: -141px -130px;
+    background-size: 400px 750px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: top;
+    height: 13px;
+    width: 12px;
+    /* position: absolute;
+    left: 2px;
+    top: 2px; */
+}
+
+.form-error-text {
+    font-size: 12px;
+    line-height: 15px;
+    color: #c40000;
+
+}
+
 .signup-img-container {
     height: 37px;
     width: 123px;
@@ -65,4 +93,11 @@
     line-height: 1.2;
     margin-bottom: 10px;
     padding-bottom: 4px;
+}
+
+.signup-form-bottom-text {
+    font-size: 12px;
+    line-height: 1.5;
+    width: 100%;
+    margin-top: 26px;
 }
