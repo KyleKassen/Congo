@@ -114,6 +114,11 @@ const SignUpForm = () => {
                 value={password}
               ></input>
             </div>
+            {!Object.values(errormsgs).length && (
+              <div className="form-error-container">
+                <p className="form-non-error-text"><i className="form-non-error-icon"></i> Passwords must be at least 6 characters.</p>
+              </div>
+              )}
             {errormsgs.password && (
               <div className="form-error-container">
                 <p className="form-error-text"><i className="form-error-icon"></i> {errormsgs.password}</p>

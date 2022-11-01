@@ -23,16 +23,29 @@
     vertical-align: top;
     height: 13px;
     width: 12px;
-    /* position: absolute;
-    left: 2px;
-    top: 2px; */
+}
+
+.form-non-error-icon {
+    background-image: url("../../media/images/amazonicons.png");
+    background-position: -166px -130px;
+    background-size: 400px 750px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: top;
+    height: 13px;
+    width: 12px;
 }
 
 .form-error-text {
     font-size: 12px;
     line-height: 15px;
     color: #c40000;
+}
 
+.form-non-error-text {
+    font-size: 12px;
+    line-height: 15px;
+    color: #2b2b2b;
 }
 
 .signup-img-container {
