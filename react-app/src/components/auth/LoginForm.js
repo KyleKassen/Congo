@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import congowhite from "../../media/images/CONGOwhite.png";
 import amazonicons from "../../media/images/amazonicons.png";
@@ -13,6 +13,8 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -146,7 +148,7 @@ const LoginForm = () => {
         <div className="login-divider">
           <h5>New to Amazon?</h5>
         </div>
-        <button className="login-signup-button">
+        <button className="login-signup-button" onClick={() => history.push('/sign-up')}>
           Create your Amazon account
         </button>
       </div>

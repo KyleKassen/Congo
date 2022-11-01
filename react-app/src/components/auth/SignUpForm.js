@@ -43,6 +43,7 @@ const SignUpForm = () => {
   }
 
   return (
+    <div className="signup-wrapper">
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
@@ -50,11 +51,12 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label>User Name</label>
+        <label>Your name</label>
         <input
           type='text'
           name='username'
           onChange={updateUsername}
+          placeholder="First and last name"
           value={username}
         ></input>
       </div>
@@ -73,11 +75,12 @@ const SignUpForm = () => {
           type='password'
           name='password'
           onChange={updatePassword}
+          placeholder="At least 6 characters"
           value={password}
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        <label>Re-enter Password</label>
         <input
           type='password'
           name='repeat_password'
@@ -88,6 +91,8 @@ const SignUpForm = () => {
       </div>
       <button type='submit'>Sign Up</button>
     </form>
+
+    </div>
   );
 };
 
