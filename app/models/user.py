@@ -7,8 +7,6 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(40), nullable=False)
-    lastname = db.Column(db.String(40), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -35,8 +33,6 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'firstName': self.firstname,
-            'lastName': self.lastname,
             'username': self.username,
             'email': self.email,
             'picture': self.profile_picture
@@ -54,7 +50,7 @@ class ShippingAddress(db.Model):
     default_address = db.Column(db.Boolean, default=False)
 
     user = db.relationship('User', back_populates='address')
-    
+
 
     def to_dict(self):
         return {
