@@ -456,6 +456,29 @@ function Product() {
           )}
           <div className="reviews-content-container">
             <h3>From the United States</h3>
+            {reviews && (
+              <>
+              {reviews.map((review, idx) => {
+                if(idx > 10) return null;
+                return (
+                  <div className="review-single-content-container">
+                    <div className="review-single-user-info-container">
+
+                    </div>
+                    <div className="review-single-rating-title-contaienr">
+
+                    </div>
+                    <p className="review-single-date"></p>
+                    <p className="review-single-verified"></p>
+                    <p className="review-single-review"></p>
+                    <div className="review-single-helpful-abuse-container">
+                      
+                    </div>
+                  </div>
+                )
+              })}
+              </>
+            )}
           </div>
         </div>
       </div>
