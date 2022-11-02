@@ -442,7 +442,7 @@ function Product() {
           <div className="review-create-section">
             <h3>Review this product</h3>
             <p>Share your thoughts with other customers</p>
-            <button>Write a customer review</button>
+            <button onClick={() => createReview()}>Write a customer review</button>
           </div>
           <div>
             <hr className="review-left-divider" />

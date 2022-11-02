@@ -527,6 +527,16 @@
     background-color: #F7FAFA;
 }
 
+.review-create-section button:active {
+    background-color: #EDFDFF;
+    box-shadow: none;
+}
+
+.review-create-section button:focus {
+    background-color: #EDFDFF;
+    border-color: #008296;
+}
+
 
 .review-right-container {
     width: 680px;
