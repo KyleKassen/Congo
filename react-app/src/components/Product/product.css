@@ -440,6 +440,24 @@
 .product-review-total-ratings {
     color: #565959;
     font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.review-table-stars td{
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.review-table-star-text {
+    font-size: 14px;
+    color: #007185;
+    padding-right: 10px;
+}
+
+.review-table-percent-text {
+    padding-left: 10px;
+    font-size: 14px;
+    color: #007185;
 }
 
 .review-table-bar {
@@ -452,6 +470,7 @@
 
 .review-table-bar-filled {
     border-radius: 4px;
+    height: 100%;
     box-shadow: inset -2px 0 0 -1px #f5961d, inset 0 0 0 1px #de7921;
     background-color: #FFA41C;
 }

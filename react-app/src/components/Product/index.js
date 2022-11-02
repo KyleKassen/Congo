@@ -73,43 +73,25 @@ function Product() {
   let two = 0;
   let one = 0;
   for (let review of reviews) {
+    console.log('review.rating is', review.rating)
     switch (review.rating) {
       case 5:
         five += 1
+        break;
       case 4:
         four += 1
+        break;
       case 3:
         three += 1
+        break;
       case 2:
         two += 1
+        break;
       case 1:
         one += 1
+        break;
     }
   }
-
-  useEffect(() => {
-    //   setFiveStarCount(0);
-    //   setFourStarCount(0);
-    //   setThreeStarCount(0);
-    //   setTwoStarCount(0);
-    //   setOneStarCount(0);
-
-    // for (let review of reviews) {
-    //   switch (review.rating) {
-    //     case 5:
-    //       setFiveStarCount(fiveStarCount + 1)
-    //     case 4:
-    //       setFourStarCount(fourStarCount + 1)
-    //     case 3:
-    //       setThreeStarCount(threeStarCount + 1)
-    //     case 2:
-    //       setTwoStarCount(twoStarCount + 1)
-    //     case 1:
-    //       setOneStarCount(oneStarCount + 1)
-    //   }
-    // }
-
-  }, [reviews])
 
   if (!loaded) {
     return null;
@@ -361,17 +343,61 @@ function Product() {
             <p>{product.rating} out of 5</p>
           </div>
           <span className="product-review-total-ratings">{product.reviewCount} global ratings</span>
-          <tbody>
+          <tbody className="review-table-stars">
             <tr className="review-table-5star">
-              <td className="review-table-5star-text">
+              <td className="review-table-star-text review-table-5star-text">
                 <span>5 star</span>
               </td>
               <td className="review-table-5star-bar">
                 <div className="review-table-bar 5star-bar">
-                  <div className="review-table-bar-filled 5star-bar-filled"></div>
+                  <div className="review-table-bar-filled 5star-bar-filled" style={{width: `${Math.floor((five / reviews.length)*100)}%`}}></div>
                 </div>
               </td>
-              <td className="review-table-5star-percent">{Math.floor((five / reviews.length)*100)}%</td>
+              <td className="review-table-percent-text review-table-5star-percent">{Math.floor((five / reviews.length)*100)}%</td>
+            </tr>
+            <tr className="review-table-4star">
+              <td className="review-table-star-text review-table-4star-text">
+                <span>4 star</span>
+              </td>
+              <td className="review-table-4star-bar">
+                <div className="review-table-bar 4star-bar">
+                  <div className="review-table-bar-filled 4star-bar-filled" style={{width: `${Math.floor((four / reviews.length)*100)}%`}}></div>
+                </div>
+              </td>
+              <td className="review-table-percent-text review-table-4star-percent">{Math.floor((four / reviews.length)*100)}%</td>
+            </tr>
+            <tr className="review-table-3star">
+              <td className="review-table-star-text review-table-3star-text">
+                <span>3 star</span>
+              </td>
+              <td className="review-table-3star-bar">
+                <div className="review-table-bar 3star-bar">
+                  <div className="review-table-bar-filled 3star-bar-filled" style={{width: `${Math.floor((three / reviews.length)*100)}%`}}></div>
+                </div>
+              </td>
+              <td className="review-table-percent-text review-table-3star-percent">{Math.floor((three / reviews.length)*100)}%</td>
+            </tr>
+            <tr className="review-table-2star">
+              <td className="review-table-star-text review-table-2star-text">
+                <span>2 star</span>
+              </td>
+              <td className="review-table-2star-bar">
+                <div className="review-table-bar 2star-bar">
+                  <div className="review-table-bar-filled 2star-bar-filled" style={{width: `${Math.floor((two / reviews.length)*100)}%`}}></div>
+                </div>
+              </td>
+              <td className="review-table-percent-text review-table-2star-percent">{Math.floor((two / reviews.length)*100)}%</td>
+            </tr>
+            <tr className="review-table-1star">
+              <td className="review-table-star-text review-table-1star-text">
+                <span>1 star</span>
+              </td>
+              <td className="review-table-1star-bar">
+                <div className="review-table-bar 1star-bar">
+                  <div className="review-table-bar-filled 1star-bar-filled" style={{width: `${Math.floor((one / reviews.length)*100)}%`}}></div>
+                </div>
+              </td>
+              <td className="review-table-percent-text review-table-1star-percent">{Math.floor((one / reviews.length)*100)}%</td>
             </tr>
           </tbody>
         </div>
