@@ -145,3 +145,14 @@
     border: 1px solid #F2C200;
     cursor: pointer;
 }
+
+.buy-box-buynow {
+    background: #FFA41C;
+    border: 1px solid #FF8F00;
+}
+
+.buy-box-buynow:hover {
+    background: #FA8900;
+    border: 1px solid #E3931E;
+    cursor: pointer;
+}
