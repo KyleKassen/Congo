@@ -295,6 +295,7 @@ function Product() {
             <div className="product-review-rating">{getStars("big")}</div>
             <p>{product.rating} out of 5</p>
           </div>
+          <span className="product-review-total-ratings">{product.reviewCount} global ratings</span>
         </div>
         <div className="review-right-container"></div>
       </div>

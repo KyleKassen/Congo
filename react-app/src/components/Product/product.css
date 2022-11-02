@@ -341,6 +341,10 @@
     justify-content: flex-start;
 }
 
+.product-review-left-container {
+    width: 300px;
+}
+
 .product-description h2 {
     color: #C60;
     font-size: 18px;
@@ -423,10 +427,17 @@
     justify-content: flex-start;
 }
 
+.product-review-star-text p {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-top: 1px;
+}
+
 .product-review-rating i {
     background-position: -196px -414px;
 }
 
-.product-review-left-container {
-    width: 300px;
+.product-review-total-ratings {
+    color: #565959;
+    font-size: 14px;
 }
