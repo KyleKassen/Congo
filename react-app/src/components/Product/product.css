@@ -72,7 +72,7 @@
 }
 
 .product-right-wrapper {
-    width: 244px;
+    width: 206px;
     margin-left: 20px;
 }
 
@@ -149,10 +149,28 @@
 .buy-box-buynow {
     background: #FFA41C;
     border: 1px solid #FF8F00;
+    margin-bottom: 12px;
 }
 
 .buy-box-buynow:hover {
     background: #FA8900;
     border: 1px solid #E3931E;
     cursor: pointer;
+}
+
+.buy-box-secure {
+    padding-bottom: 8px;
+}
+
+.buy-box-secure img {
+    width: 12px;
+    height: 15px;
+    margin-right: 6px;
+    margin-top: 4px;
+    margin-bottom: -1px;
+}
+
+.buy-box-secure span {
+    font-size: 14px;
+    color: #007185;
 }

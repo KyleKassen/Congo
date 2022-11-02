@@ -13,7 +13,8 @@ import {loadAllAddresses} from "../../store/address";
 import EditReview from "../Forms/ReviewForms/editReview";
 import Review from "../Review/index";
 
-import locationpin from "../../media/images/buyboxlocation.png"
+import locationpin from "../../media/images/buyboxlocation.png";
+import lock from "../../media/images/greyLock.png";
 
 import "./product.css";
 
@@ -150,7 +151,10 @@ function Product() {
           </div>
           <div className="buy-box-addtocart buy-box-button">Add to Cart</div>
           <div className="buy-box-buynow buy-box-button">Buy Now</div>
-          <div className="buy-box-secure"></div>
+          <div className="buy-box-secure">
+            <img src={lock} />
+            <span>Secure Transaction</span>
+          </div>
           <div className="buy-box-return-policy"></div>
         </div>
       </div>
