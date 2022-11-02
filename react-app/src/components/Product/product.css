@@ -1,7 +1,8 @@
 .product-page-outer-wrapper {
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 18px;
     box-sizing: border-box;
 }
@@ -323,4 +324,19 @@
 .buy-box-return-policy span {
     font-size: 14px;
     color: #007185;
+}
+
+.product-divider {
+    border-top: 1px solid #CCC!important;
+}
+
+.product-description {
+    min-width: 1000px;
+    max-width: 1500px;
+}
+
+.product-description h2 {
+    color: #C60!important;
+    font-size: 16px!important;
+    padding-bottom: 4px;
 }

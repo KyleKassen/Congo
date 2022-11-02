@@ -119,18 +119,39 @@ function Product() {
           </div>
           <div className="product-rating-container">
             <div className="product-star-rating">
-              {product.rating > 4.6 && <i className="stars-img product-5-stars"></i>}
-              {product.rating <= 4.6 && product.rating > 4 && <i className="stars-img product-45-stars"></i>}
-              {product.rating <= 4 && product.rating > 3.6 && <i className="stars-img product-4-stars"></i>}
-              {product.rating <= 3.6 && product.rating > 3 && <i className="stars-img product-35-stars"></i>}
-              {product.rating <= 3 && product.rating > 2.6 && <i className="stars-img product-3-stars"></i>}
-              {product.rating <= 2.6 && product.rating > 2 && <i className="stars-img product-25-stars"></i>}
-              {product.rating <= 2 && product.rating > 1.6 && <i className="stars-img product-2-stars"></i>}
-              {product.rating <= 1.6 && product.rating > 1 && <i className="stars-img product-15-stars"></i>}
-              {product.rating <= 1 && product.rating > 0.6 && <i className="stars-img product-1-stars"></i>}
-              {product.rating <= 0.6 && <i className="stars-img product-05-stars"></i>}
-              {product.rating == null && <i className="stars-img product-0-stars"></i>}
-
+              {product.rating > 4.6 && (
+                <i className="stars-img product-5-stars"></i>
+              )}
+              {product.rating <= 4.6 && product.rating > 4 && (
+                <i className="stars-img product-45-stars"></i>
+              )}
+              {product.rating <= 4 && product.rating > 3.6 && (
+                <i className="stars-img product-4-stars"></i>
+              )}
+              {product.rating <= 3.6 && product.rating > 3 && (
+                <i className="stars-img product-35-stars"></i>
+              )}
+              {product.rating <= 3 && product.rating > 2.6 && (
+                <i className="stars-img product-3-stars"></i>
+              )}
+              {product.rating <= 2.6 && product.rating > 2 && (
+                <i className="stars-img product-25-stars"></i>
+              )}
+              {product.rating <= 2 && product.rating > 1.6 && (
+                <i className="stars-img product-2-stars"></i>
+              )}
+              {product.rating <= 1.6 && product.rating > 1 && (
+                <i className="stars-img product-15-stars"></i>
+              )}
+              {product.rating <= 1 && product.rating > 0.6 && (
+                <i className="stars-img product-1-stars"></i>
+              )}
+              {product.rating <= 0.6 && (
+                <i className="stars-img product-05-stars"></i>
+              )}
+              {product.rating == null && (
+                <i className="stars-img product-0-stars"></i>
+              )}
             </div>
             <div className="product-rating-count">
               <span>{product.reviewCount} ratings</span>
@@ -138,25 +159,32 @@ function Product() {
           </div>
           <hr />
           <div className="product-middle-price">
-              <span className="buy-box-price-symbol">$</span>
-              <span className="buy-box-price-whole">
-                {Math.floor(product.price)}
-              </span>
-              <span className="buy-box-price-decimal">
-                {
-                  (
-                    Math.round(
-                      100 * (product.price - Math.floor(product.price))
-                    ) / 100
-                  )
-                    .toString()
-                    .split(".")[1]
-                }
-              </span>
+            <span className="buy-box-price-symbol">$</span>
+            <span className="buy-box-price-whole">
+              {Math.floor(product.price)}
+            </span>
+            <span className="buy-box-price-decimal">
+              {
+                (
+                  Math.round(
+                    100 * (product.price - Math.floor(product.price))
+                  ) / 100
+                )
+                  .toString()
+                  .split(".")[1]
+              }
+            </span>
           </div>
           <div className="product-middle-prime">{product.prime && <i></i>}</div>
-          <div className="product-middle-free-returns"><span>Free Returns</span></div>
-          <div className="product-middle-msg"><p>May be available at a lower price from other sellers, potentially without free Prime shipping.</p></div>
+          <div className="product-middle-free-returns">
+            <span>Free Returns</span>
+          </div>
+          <div className="product-middle-msg">
+            <p>
+              May be available at a lower price from other sellers, potentially
+              without free Prime shipping.
+            </p>
+          </div>
         </div>
         <div className="product-right-wrapper">
           <div className="product-buy-box">
@@ -250,6 +278,11 @@ function Product() {
           );
         })}
       </div> */}
+      </div>
+      <div className="product-description">
+        <hr className="product-divider" />
+        <h2>Product Description</h2>
+        <p>{product.description}</p>
       </div>
     </div>
   );
