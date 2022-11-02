@@ -21,7 +21,7 @@ import "./product.css";
 function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
-  const [reviewImgs, setReviewImgs] = useState([]);
+  // const [reviewImgs, setReviewImgs] = useState([]);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -53,6 +53,7 @@ function Product() {
   let three = 0;
   let two = 0;
   let one = 0;
+  let reviewImgs = []
   for (let review of reviews) {
     console.log("review.rating is", review.rating);
     switch (review.rating) {
@@ -75,9 +76,10 @@ function Product() {
 
     if (review.images) {
       for (let image of review.images) {
-        setReviewImgs([...reviewImgs, image])
+        reviewImgs = [...reviewImgs, image];
       }
     }
+
   }
 
   if (!loaded) {
@@ -320,7 +322,7 @@ function Product() {
         <hr className="product-divider" />
         <h2>Product Description</h2>
         <p>{product.description}</p>
-      <hr className="product-divider" />
+        <hr className="product-divider" />
       </div>
       <div className="product-review-container">
         <div className="product-review-left-container">
@@ -432,14 +434,29 @@ function Product() {
           <div className="review-create-section">
             <h3>Review this product</h3>
             <p>Share your thoughts with other customers</p>
-              <button>Write a customer review</button>
+            <button>Write a customer review</button>
           </div>
           <div>
             <hr className="review-left-divider" />
           </div>
         </div>
         <div className="review-right-container">
-          <h3 className="review-images-heading">Review Images</h3>
+          {reviewImgs.length && (
+            <>
+              <h3 className="review-images-heading">Review Images</h3>
+              <div className="review-images-container">
+                {reviewImgs.map((image, idx) => {
+                  if(idx > 3) return null;
+                  return (
+                      <img key={idx} src={image.url} />
+                  );
+                })}
+              </div>
+            </>
+          )}
+          <div className="reviews-content-container">
+            <h3>From the United States</h3>
+          </div>
         </div>
       </div>
     </div>
