@@ -333,6 +333,7 @@ function Product() {
         <hr className="product-divider" />
         <h2>Product Description</h2>
         <p>{product.description}</p>
+      <hr className="product-divider" />
       </div>
       <div className="product-review-container">
         <div className="product-review-left-container">
@@ -439,18 +440,20 @@ function Product() {
             </tbody>
           </div>
           <div>
-            <hr className="review-left-divider"/>
+            <hr className="review-left-divider" />
           </div>
           <div className="review-create-section">
             <h3>Review this product</h3>
             <p>Share your thoughts with other customers</p>
-            <button>Write a customer review</button>
+              <button>Write a customer review</button>
           </div>
           <div>
-            <hr className="review-left-divider"/>
+            <hr className="review-left-divider" />
           </div>
         </div>
-        <div className="review-right-container"></div>
+        <div className="review-right-container">
+          <h3>Review Images</h3>
+        </div>
       </div>
     </div>
   );
