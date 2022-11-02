@@ -144,8 +144,23 @@
     margin: 0;
     padding: 0;
     border: 0;
+    font-family: 'amazon ember', arial, sans-serif;
 }
 
 body {
     font-family: 'amazon ember', arial, sans-serif;
+}
+
+.yellow-gradient-button {
+    background: linear-gradient(to bottom,#f8e3ad,#EEBA37);
+    -webkit-background: linear-gradient(top,#f8e3ad,#EEBA37);
+    border: 1px solid;
+    border-color: #c89411 #b0820f #99710d;
+    z-index: 9;
+}
+
+.yellow-gradient-button:hover {
+    background: linear-gradient(to bottom,#f6da95,#ecb21f);
+    -webkit-background: linear-gradient(top,#f6da95,#ecb21f);
+    cursor: pointer;
 }

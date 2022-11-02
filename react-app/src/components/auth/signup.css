@@ -1,0 +1,146 @@
+.signup-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    padding: 14px 18px;
+}
+
+.form-error-container {
+    position: relative;
+    margin-top: -7px;
+    margin-bottom: 7px;
+    padding-left: 3px;
+}
+
+.form-error-icon {
+    background-image: url("../../media/images/amazonicons.png");
+    background-position: -141px -130px;
+    background-size: 400px 750px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: top;
+    height: 13px;
+    width: 12px;
+}
+
+.form-non-error-icon {
+    background-image: url("../../media/images/amazonicons.png");
+    background-position: -166px -130px;
+    background-size: 400px 750px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: top;
+    height: 13px;
+    width: 12px;
+}
+
+.form-error-text {
+    font-size: 12px;
+    line-height: 15px;
+    color: #c40000;
+}
+
+.form-non-error-text {
+    font-size: 12px;
+    line-height: 15px;
+    color: #2b2b2b;
+}
+
+.signup-img-container {
+    height: 37px;
+    width: 123px;
+    margin-bottom: 18px;
+}
+
+.signup-img-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.signup-width-provider {
+    width: 350px;
+}
+
+.signup-form-container {
+    padding: 20px 26px;
+    font-size: 13px;
+    line-height: 19px;
+    color: #111;
+    border: 1px #ddd solid;
+    border-radius: 4px;
+    width: calc(100% - 54px);
+    margin-bottom: 22px;
+}
+
+.signup-form-container input {
+    width: calc(100% - 16px);
+    height: 23px;
+    padding: 3px 7px;
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+}
+
+.signup-form-container label {
+    padding-left: 2px;
+    padding-bottom: 2px;
+    color: #111;
+}
+
+.signup-field input{
+    margin-bottom: 14px;
+}
+
+.signup-field input:focus {
+    outline: none;
+    border-color: #e77600;
+    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+}
+
+.signup-create-account {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+}
+
+.signup-form-bottom-text {
+    font-size: 12px !important;
+    line-height: 1.5;
+    width: 100%;
+    margin-top: 26px;
+    margin-bottom: 26px;
+}
+
+.form-bottom-divider {
+    height: 44px;
+    margin-bottom: -18px;
+    background: -webkit-linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+    background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+    z-index: 0;
+    zoom: 1;
+}
+
+.form-bottom-divider::after {
+    display: block;
+    width: 100%;
+    height: 44px;
+    background-color: transparent;
+    background: -webkit-linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
+    background: linear-gradient(to right,#fff,rgba(255,255,255,0),#fff);
+    z-index: 1;
+    content: "";
+}
+
+.signup-bottom-signin {
+    color: #0066c0
+}
+
+.signup-bottom-signin:hover {
+    color: #c45500;
+    cursor: pointer;
+}

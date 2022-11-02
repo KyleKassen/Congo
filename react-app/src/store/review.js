@@ -81,7 +81,7 @@ export const updateOneReview = (review, id) => async (dispatch) => {
 
   const newReview = await response.json();
 
-  if (response.ok) {
+  if (newReview.statusCode !== 400) {
     dispatch(updateOne(newReview));
   }
   return newReview;
@@ -154,6 +154,7 @@ export const reviewReducer = (state = initialState, action) => {
       newState.productReviews[action.payload.id] = action.payload;
       return newState;
     case UPDATE:
+      console.log("\n\n\n",action.payload)
       const reviewId = action.payload.id
       newState.productReviews[reviewId] = {...action.payload, images:[...state.productReviews[reviewId].images]};
       return newState;
