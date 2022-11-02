@@ -46,13 +46,14 @@
     border-radius: 1px;
 }
 
-.product-active-img-wrapper {
-    height: 613px;
+.product-left-wrapper {
+    width: 60%;
+    margin-right: 20px;
 }
 
 .product-active-img-container img {
-    height: 585px;
-    width: 585px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-active-img-wrapper img {
@@ -70,11 +71,17 @@
 }
 
 .product-middle-wrapper {
-    width: 35%;
+    width: 50%;
+}
+
+.product-title h1 {
+    font-size: 24px;
+    font-weight: 400;
 }
 
 .product-right-wrapper {
     width: 244px;
+    margin-left: 20px;
 }
 
 .product-buy-box {
