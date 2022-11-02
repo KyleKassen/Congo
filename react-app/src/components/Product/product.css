@@ -172,16 +172,30 @@
 }
 
 .product-middle-wrapper hr {
-    background-color: transparent;
-    border-bottom-width: 0;
-    border-left-width: 0;
-    border-right-width: 0;
     border-top: 1px solid #e7e7e7;
-    display: block;
     height: 1px;
     line-height: 19px;
     margin-bottom: 14px;
-    margin-top: 0;
+}
+
+.product-middle-prime i {
+    background-image: url("../../media/images/primeicons.png");
+    -webkit-background-size: 512px 256px;
+    background-size: 512px 256px;
+    width: 53px;
+    height: 15px;
+    background-position: -185px -182px;
+    vertical-align: baseline;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.product-middle-free-returns {
+    margin-bottom: 8px;
+}
+
+.product-middle-free-returns span {
+    color: #007185;
 }
 
 .product-right-wrapper {

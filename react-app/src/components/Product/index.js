@@ -154,6 +154,9 @@ function Product() {
                 }
               </span>
           </div>
+          <div className="product-middle-prime">{product.prime && <i></i>}</div>
+          <div className="product-middle-free-returns"><span>Free Returns</span></div>
+          <div className="product-middle-msg"><p>May be available at a lower price from other sellers, potentially without free Prime shipping.</p></div>
         </div>
         <div className="product-right-wrapper">
           <div className="product-buy-box">
