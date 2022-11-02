@@ -186,6 +186,21 @@
     color: #007185;
 }
 
+.buy-box-ship-sold {
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.buy-box-grey-text {
+    color: #565959;
+    width: 70px;
+}
+
+.buy-box-ship-from, .buy-box-sold-by {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .buy-box-return-policy span {
     font-size: 14px;
     color: #007185;

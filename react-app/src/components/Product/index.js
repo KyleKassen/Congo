@@ -117,6 +117,11 @@ function Product() {
           <div className="product-title">
             <h1>{product.title}</h1>
           </div>
+          <div className="product-rating-container">
+            <div className="product-star-rating">
+              
+            </div>
+          </div>
         </div>
         <div className="product-right-wrapper">
           <div className="product-buy-box">
@@ -167,12 +172,12 @@ function Product() {
             </div>
             <div className="buy-box-ship-sold">
               <div className="buy-box-ship-from">
-                <p>Ships From</p>
-                <p>Amazon.com</p>
+                <p className="buy-box-grey-text">Ships From</p>
+                <p className="ship-sold-location">Amazon.com</p>
               </div>
               <div className="buy-box-sold-by">
-                <p>Ships From</p>
-                <p>Amazon.com</p>
+                <p className="buy-box-grey-text">Sold By</p>
+                <p className="ship-sold-location">Amazon.com</p>
               </div>
             </div>
             <div className="buy-box-return-policy">
