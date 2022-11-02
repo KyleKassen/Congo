@@ -119,7 +119,18 @@ function Product() {
           </div>
           <div className="product-rating-container">
             <div className="product-star-rating">
-              
+              {product.rating > 4.6 && <i className="stars-img product-5-stars"></i>}
+              {product.rating <= 4.6 && product.rating > 4 && <i className="stars-img product-45-stars"></i>}
+              {product.rating <= 4 && product.rating > 3.6 && <i className="stars-img product-4-stars"></i>}
+              {product.rating <= 3.6 && product.rating > 3 && <i className="stars-img product-35-stars"></i>}
+              {product.rating <= 3 && product.rating > 2.6 && <i className="stars-img product-3-stars"></i>}
+              {product.rating <= 2.6 && product.rating > 2 && <i className="stars-img product-25-stars"></i>}
+              {product.rating <= 2 && product.rating > 1.6 && <i className="stars-img product-2-stars"></i>}
+              {product.rating <= 1.6 && product.rating > 1 && <i className="stars-img product-15-stars"></i>}
+              {product.rating <= 1 && product.rating > 0.6 && <i className="stars-img product-1-stars"></i>}
+              {product.rating <= 0.6 && <i className="stars-img product-05-stars"></i>}
+              {product.rating == null && <i className="stars-img product-0-stars"></i>}
+
             </div>
           </div>
         </div>

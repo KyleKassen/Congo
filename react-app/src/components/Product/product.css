@@ -74,6 +74,87 @@
     width: 50%;
 }
 
+.product-star-rating {
+
+}
+
+.stars-img {
+    background-image: url("../../media/images/starRating.png");
+    -webkit-background-size: 512px 512px;
+    background-size: 512px 512px;
+    /* height: 18px;
+    width: 80px; */
+    position: relative;
+    display: inline-block;
+    vertical-align: text-top;
+    background-repeat: no-repeat;
+}
+.product-5-stars {
+    background-position: -2px -2px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-45-stars {
+    background-position: -2px -42px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-4-stars {
+    background-position: -2px -22px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-35-stars {
+    background-position: -2px -82px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-3-stars {
+    background-position: -2px -62px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-2-stars {
+    background-position: -2px -102px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-25-stars {
+    background-position: -2px -122px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-1-stars {
+    background-position: -2px -142px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-15-stars {
+    background-position: -2px -162px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-0-stars {
+    background-position: -2px -182px;
+    height: 18px;
+    width: 80px;
+}
+
+.product-05-stars {
+    background-position: -2px -202px;
+    height: 18px;
+    width: 80px;
+}
+
 .product-title h1 {
     font-size: 24px;
     font-weight: 400;
