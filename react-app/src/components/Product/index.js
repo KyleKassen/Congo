@@ -79,39 +79,39 @@ function Product() {
     history.push(`/product/${productId}/create`);
   };
 
-  const getStars = () => {
+  const getStars = (addon) => {
     return (
       <>
         {product.rating > 4.6 && <i className="stars-img product-5-stars"></i>}
         {product.rating <= 4.6 && product.rating > 4 && (
-          <i className="stars-img product-45-stars"></i>
+          <i className={`stars-img product-45-stars${addon}`}></i>
         )}
         {product.rating <= 4 && product.rating > 3.6 && (
-          <i className="stars-img product-4-stars"></i>
+          <i className={`stars-img product-4-stars${addon}`}></i>
         )}
         {product.rating <= 3.6 && product.rating > 3 && (
-          <i className="stars-img product-35-stars"></i>
+          <i className={`stars-img product-35-stars${addon}`}></i>
         )}
         {product.rating <= 3 && product.rating > 2.6 && (
-          <i className="stars-img product-3-stars"></i>
+          <i className={`stars-img product-3-stars${addon}`}></i>
         )}
         {product.rating <= 2.6 && product.rating > 2 && (
-          <i className="stars-img product-25-stars"></i>
+          <i className={`stars-img product-25-stars${addon}`}></i>
         )}
         {product.rating <= 2 && product.rating > 1.6 && (
-          <i className="stars-img product-2-stars"></i>
+          <i className={`stars-img product-2-stars${addon}`}></i>
         )}
         {product.rating <= 1.6 && product.rating > 1 && (
-          <i className="stars-img product-15-stars"></i>
+          <i className={`stars-img product-15-stars${addon}`}></i>
         )}
         {product.rating <= 1 && product.rating > 0.6 && (
-          <i className="stars-img product-1-stars"></i>
+          <i className={`stars-img product-1-stars${addon}`}></i>
         )}
         {product.rating <= 0.6 && (
-          <i className="stars-img product-05-stars"></i>
+          <i className={`stars-img product-05-stars${addon}`}></i>
         )}
         {product.rating == null && (
-          <i className="stars-img product-0-stars"></i>
+          <i className={`stars-img product-0-stars${addon}`}></i>
         )}
       </>
     );
@@ -156,7 +156,7 @@ function Product() {
             <h1>{product.title}</h1>
           </div>
           <div className="product-rating-container">
-            <div className="product-star-rating">{getStars()}</div>
+            <div className="product-star-rating">{getStars("")}</div>
             <div className="product-rating-count">
               <span>{product.reviewCount} ratings</span>
             </div>
@@ -291,6 +291,10 @@ function Product() {
       <div className="product-review-container">
         <div className="product-review-left-container">
           <h2>Customer reviews</h2>
+          <div className="product-review-rating">
+            {getStars("big")}
+            <span>{product.rating} out of 5</span>
+          </div>
         </div>
         <div className="review-right-container"></div>
       </div>
