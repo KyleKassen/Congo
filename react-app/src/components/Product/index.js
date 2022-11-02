@@ -148,8 +148,8 @@ function Product() {
           <div className="buy-box-quantity">
 
           </div>
-          <div className="buy-box-addtocart">Add to Cart</div>
-          <div className="buy-box-buynow"></div>
+          <div className="buy-box-addtocart buy-box-button">Add to Cart</div>
+          <div className="buy-box-buynow buy-box-button"></div>
           <div className="buy-box-secure"></div>
           <div className="buy-box-return-policy"></div>
         </div>

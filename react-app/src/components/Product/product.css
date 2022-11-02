@@ -124,3 +124,24 @@
     color: #007600;
     font-size: 18px;
 }
+
+.buy-box-button {
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    border-radius: 20px;
+    width: 204px;
+    height: 29px;
+    text-align: center;
+    line-height: 29px;
+    margin-bottom: 8px;
+}
+
+.buy-box-addtocart {
+    background: #FFD814;
+    border: 1px solid #FCD200;
+}
+
+.buy-box-addtocart:hover {
+    background: #F7CA00;
+    border: 1px solid #F2C200;
+    cursor: pointer;
+}
