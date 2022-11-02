@@ -440,7 +440,10 @@
 .product-review-total-ratings {
     color: #565959;
     font-size: 14px;
-    margin-bottom: 9px;
+}
+
+.review-table-container{
+    margin-top: 9px;
 }
 
 .review-table-stars td{
@@ -451,13 +454,14 @@
 .review-table-star-text {
     font-size: 14px;
     color: #007185;
-    padding-right: 10px;
+    padding-right: 12px;
 }
 
 .review-table-percent-text {
-    padding-left: 10px;
+    padding-left: 12px;
     font-size: 14px;
     color: #007185;
+    text-align: right;
 }
 
 .review-table-bar {
@@ -473,4 +477,17 @@
     height: 100%;
     box-shadow: inset -2px 0 0 -1px #f5961d, inset 0 0 0 1px #de7921;
     background-color: #FFA41C;
+}
+
+.review-left-divider {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    background-color: transparent;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top: 1px solid #e7e7e7;
+    display: block;
+    height: 1px;
+    line-height: 19px;
 }
