@@ -21,11 +21,7 @@ import "./product.css";
 function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
-  // const [fiveStarCount, setFiveStarCount] = useState(0)
-  // const [fourStarCount, setFourStarCount] = useState(0)
-  // const [threeStarCount, setThreeStarCount] = useState(0)
-  // const [twoStarCount, setTwoStarCount] = useState(0)
-  // const [oneStarCount, setOneStarCount] = useState(0)
+  const [reviewImgs, setReviewImgs] = useState([]);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -49,21 +45,6 @@ function Product() {
         }
       }
       setLoaded(true);
-
-      // for (let review of reviews) {
-      //   switch (review.rating) {
-      //     case 5:
-      //       setFiveStarCount(fiveStarCount + 1)
-      //     case 4:
-      //       setFourStarCount(fourStarCount + 1)
-      //     case 3:
-      //       setThreeStarCount(threeStarCount + 1)
-      //     case 2:
-      //       setTwoStarCount(twoStarCount + 1)
-      //     case 1:
-      //       setOneStarCount(oneStarCount + 1)
-      //   }
-      // }
     })();
   }, [dispatch]);
 
@@ -90,6 +71,12 @@ function Product() {
       case 1:
         one += 1;
         break;
+    }
+
+    if (review.images) {
+      for (let image of review.images) {
+        setReviewImgs([...reviewImgs, image])
+      }
     }
   }
 
@@ -452,7 +439,7 @@ function Product() {
           </div>
         </div>
         <div className="review-right-container">
-          <h3>Review Images</h3>
+          <h3 className="review-images-heading">Review Images</h3>
         </div>
       </div>
     </div>

@@ -337,8 +337,11 @@
 }
 
 .product-review-container {
+    min-width: 1000px;
+    max-width: 1500px;
     display: flex;
     justify-content: flex-start;
+    width: 100%;
 }
 
 .product-review-left-container {
@@ -527,4 +530,10 @@
 
 .review-right-container {
     width: 680px;
+    margin-left: 150px;
+}
+
+.review-images-heading {
+    font-size: 18px;
+    line-height: 24px;
 }
