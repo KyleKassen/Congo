@@ -21,6 +21,11 @@ import "./product.css";
 function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
+  const [fiveStarCount, setFiveStarCount] = useState(0)
+  const [fourStarCount, setFourStarCount] = useState(0)
+  const [threeStarCount, setThreeStarCount] = useState(0)
+  const [twoStarCount, setTwoStarCount] = useState(0)
+  const [oneStarCount, setOneStarCount] = useState(0)
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -44,8 +49,67 @@ function Product() {
         }
       }
       setLoaded(true);
+
+      for (let review of reviews) {
+        switch (review.rating) {
+          case 5:
+            setFiveStarCount(fiveStarCount + 1)
+          case 4:
+            setFourStarCount(fourStarCount + 1)
+          case 3:
+            setThreeStarCount(threeStarCount + 1)
+          case 2:
+            setTwoStarCount(twoStarCount + 1)
+          case 1:
+            setOneStarCount(oneStarCount + 1)
+        }
+      }
     })();
   }, [dispatch]);
+
+  let five;
+  let four;
+  let three;
+  let two;
+  let one;
+  for (let review of reviews) {
+    switch (review.rating) {
+      case 5:
+
+      case 4:
+
+      case 3:
+
+      case 2:
+
+      case 1:
+
+    }
+  }
+
+  useEffect(() => {
+    //   setFiveStarCount(0);
+    //   setFourStarCount(0);
+    //   setThreeStarCount(0);
+    //   setTwoStarCount(0);
+    //   setOneStarCount(0);
+
+    // for (let review of reviews) {
+    //   switch (review.rating) {
+    //     case 5:
+    //       setFiveStarCount(fiveStarCount + 1)
+    //     case 4:
+    //       setFourStarCount(fourStarCount + 1)
+    //     case 3:
+    //       setThreeStarCount(threeStarCount + 1)
+    //     case 2:
+    //       setTwoStarCount(twoStarCount + 1)
+    //     case 1:
+    //       setOneStarCount(oneStarCount + 1)
+    //   }
+    // }
+
+  }, [reviews])
 
   if (!loaded) {
     return null;
@@ -55,6 +119,7 @@ function Product() {
   let objTodayFive = new Date();
   objTodayThree.setDate(objTodayThree.getDate() + 3);
   objTodayFive.setDate(objTodayFive.getDate() + 5);
+
 
   const months = [
     "January",
@@ -296,6 +361,19 @@ function Product() {
             <p>{product.rating} out of 5</p>
           </div>
           <span className="product-review-total-ratings">{product.reviewCount} global ratings</span>
+          <tbody>
+            <tr className="review-table-5star">
+              <td className="review-table-5star-text">
+                <span>5 star</span>
+              </td>
+              <td className="review-table-5star-bar">
+                <div className="review-table-bar 5star-bar">
+                  <div className="review-table-bar-filled 5star-bar-filled">{fiveStarCount && (fiveStarCount / reviews.length)*100}</div>
+                </div>
+              </td>
+              <td className="review-table-5star-percent"></td>
+            </tr>
+          </tbody>
         </div>
         <div className="review-right-container"></div>
       </div>
