@@ -558,3 +558,28 @@
     margin-top: 24px;
     margin-bottom: 16px;
 }
+
+.review-single-user-info-container {
+    height: 34px;
+    width: 100%;
+    display: flex;
+}
+
+.review-single-user-info-container img {
+    border-radius: 34px;
+    border: 2px solid #FFF;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    margin-right: 9px;
+}
+
+.review-single-user-info-container p {
+    font-size: 13px;
+    height: 34px;
+    line-height: 34px;
+}
+
+.review-single-rating-title-container i {
+    
+}

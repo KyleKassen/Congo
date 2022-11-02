@@ -53,7 +53,7 @@ function Product() {
   let three = 0;
   let two = 0;
   let one = 0;
-  let reviewImgs = []
+  let reviewImgs = [];
   for (let review of reviews) {
     console.log("review.rating is", review.rating);
     switch (review.rating) {
@@ -79,7 +79,6 @@ function Product() {
         reviewImgs = [...reviewImgs, image];
       }
     }
-
   }
 
   if (!loaded) {
@@ -114,38 +113,38 @@ function Product() {
     history.push(`/product/${productId}/create`);
   };
 
-  const getStars = (addon) => {
+  const getStars = (rating, addon) => {
     return (
       <>
-        {product.rating > 4.6 && <i className="stars-img product-5-stars"></i>}
-        {product.rating <= 4.6 && product.rating > 4 && (
+        {rating > 4.6 && <i className="stars-img product-5-stars"></i>}
+        {rating <= 4.6 && rating > 4 && (
           <i className={`stars-img product-45-stars${addon}`}></i>
         )}
-        {product.rating <= 4 && product.rating > 3.6 && (
+        {rating <= 4 && rating > 3.6 && (
           <i className={`stars-img product-4-stars${addon}`}></i>
         )}
-        {product.rating <= 3.6 && product.rating > 3 && (
+        {rating <= 3.6 && rating > 3 && (
           <i className={`stars-img product-35-stars${addon}`}></i>
         )}
-        {product.rating <= 3 && product.rating > 2.6 && (
+        {rating <= 3 && rating > 2.6 && (
           <i className={`stars-img product-3-stars${addon}`}></i>
         )}
-        {product.rating <= 2.6 && product.rating > 2 && (
+        {rating <= 2.6 && rating > 2 && (
           <i className={`stars-img product-25-stars${addon}`}></i>
         )}
-        {product.rating <= 2 && product.rating > 1.6 && (
+        {rating <= 2 && rating > 1.6 && (
           <i className={`stars-img product-2-stars${addon}`}></i>
         )}
-        {product.rating <= 1.6 && product.rating > 1 && (
+        {rating <= 1.6 && rating > 1 && (
           <i className={`stars-img product-15-stars${addon}`}></i>
         )}
-        {product.rating <= 1 && product.rating > 0.6 && (
+        {rating <= 1 && rating > 0.6 && (
           <i className={`stars-img product-1-stars${addon}`}></i>
         )}
-        {product.rating <= 0.6 && (
+        {rating <= 0.6 && (
           <i className={`stars-img product-05-stars${addon}`}></i>
         )}
-        {product.rating == null && (
+        {rating == null && (
           <i className={`stars-img product-0-stars${addon}`}></i>
         )}
       </>
@@ -191,7 +190,9 @@ function Product() {
             <h1>{product.title}</h1>
           </div>
           <div className="product-rating-container">
-            <div className="product-star-rating">{getStars("")}</div>
+            <div className="product-star-rating">
+              {getStars(product.rating, "")}
+            </div>
             <div className="product-rating-count">
               <span>{product.reviewCount} ratings</span>
             </div>
@@ -328,7 +329,9 @@ function Product() {
         <div className="product-review-left-container">
           <h2>Customer reviews</h2>
           <div className="product-review-star-text">
-            <div className="product-review-rating">{getStars("big")}</div>
+            <div className="product-review-rating">
+              {getStars(product.rating, "big")}
+            </div>
             <p>{product.rating} out of 5</p>
           </div>
           <span className="product-review-total-ratings">
@@ -446,10 +449,8 @@ function Product() {
               <h3 className="review-images-heading">Review Images</h3>
               <div className="review-images-container">
                 {reviewImgs.map((image, idx) => {
-                  if(idx > 3) return null;
-                  return (
-                      <img key={idx} src={image.url} />
-                  );
+                  if (idx > 3) return null;
+                  return <img key={idx} src={image.url} />;
                 })}
               </div>
             </>
@@ -458,25 +459,27 @@ function Product() {
             <h3>From the United States</h3>
             {reviews && (
               <>
-              {reviews.map((review, idx) => {
-                if(idx > 10) return null;
-                return (
-                  <div className="review-single-content-container">
-                    <div className="review-single-user-info-container">
-
+                {reviews.map((review, idx) => {
+                  if (idx > 10) return null;
+                  return (
+                    <div className="review-single-content-container">
+                      <div className="review-single-user-info-container">
+                        <img src={review.user.picture} />
+                        <p>{review.user.username}</p>
+                      </div>
+                      <div className="review-single-rating-title-container">
+                        <div className="product-star-rating">
+                          {getStars(review.rating, "")}
+                        </div>
+                        <p></p>
+                      </div>
+                      <p className="review-single-date"></p>
+                      <p className="review-single-verified"></p>
+                      <p className="review-single-review"></p>
+                      <div className="review-single-helpful-abuse-container"></div>
                     </div>
-                    <div className="review-single-rating-title-contaienr">
-
-                    </div>
-                    <p className="review-single-date"></p>
-                    <p className="review-single-verified"></p>
-                    <p className="review-single-review"></p>
-                    <div className="review-single-helpful-abuse-container">
-                      
-                    </div>
-                  </div>
-                )
-              })}
+                  );
+                })}
               </>
             )}
           </div>
