@@ -1,3 +1,9 @@
+.product-page-outer-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .product-page-wrapper {
     min-width: 1000px;
     max-width: 1500px;
@@ -90,6 +96,31 @@
     font-size: 26px;
 }
 
+.buy-box-delivery-time {
+    padding-bottom: 12px;
+}
+
 .buy-box-date {
     font-weight: bold;
+}
+
+.buy-box-delivery-location {
+    padding-bottom: 12px;
+}
+
+.buy-box-delivery-location span {
+    font-size: 12px;
+    color: #007185;
+}
+
+.buy-box-delivery-location img {
+    height: 14px;
+    float: left;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+
+.buy-box-stock {
+    color: #007600;
+    font-size: 18px;
 }

@@ -76,6 +76,8 @@ function Product() {
   };
 
   return (
+    <div className="product-page-outer-wrapper">
+
     <div className="product-page-wrapper">
       <div className="product-left-wrapper">
         <div className="product-img-list">
@@ -137,9 +139,17 @@ function Product() {
           </div>
           <div className="buy-box-delivery-location">
             <img src={locationpin} />
-            {addresses && addresses[0].address}
+            {userId && <span>Deliver to {addresses && addresses[0]?.city} {addresses && addresses[0]?.zipcode}</span>}
+            {!userId && <span>Sign in to see delivery location</span>}
           </div>
-          <div className="buy-box-quantity"></div>
+          <div className="buy-box-stock">
+            <p>In Stock.</p>
+          </div>
+          <div className="buy-box-quantity">
+
+          </div>
+          <div className="buy-box-addtocart">Add to Cart</div>
+          <div className="buy-box-buynow"></div>
           <div className="buy-box-secure"></div>
           <div className="buy-box-return-policy"></div>
         </div>
@@ -172,6 +182,7 @@ function Product() {
           );
         })}
       </div> */}
+    </div>
     </div>
   );
 }
