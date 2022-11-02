@@ -347,11 +347,6 @@
     padding-bottom: 4px;
 }
 
-.product-review-rating {
-    width: 95px;
-    height: 22px;
-}
-
 .product-5-starsbig {
     background-position: -99px -366px;
     height: 100%;
@@ -416,6 +411,16 @@
     background-position: -99px -414px;
     height: 100%;
     width: 100%;
+}
+
+.product-review-rating {
+    width: 95px;
+    height: 22px;
+}
+
+.product-review-star-text {
+    display: flex;
+    justify-content: flex-start;
 }
 
 .product-review-rating i {

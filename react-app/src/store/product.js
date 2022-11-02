@@ -41,7 +41,7 @@ export const addOne = (product) => {
 
 export const addOneProduct = (product) => async (dispatch) => {
   console.log("Adding One Product Thunk");
-  const response = await fetch(`/api/reviews`, {
+  const response = await fetch(`/api/reviews/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

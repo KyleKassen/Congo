@@ -291,9 +291,9 @@ function Product() {
       <div className="product-review-container">
         <div className="product-review-left-container">
           <h2>Customer reviews</h2>
-          <div className="product-review-rating">
-            {getStars("big")}
-            <span>{product.rating} out of 5</span>
+          <div className="product-review-star-text">
+            <div className="product-review-rating">{getStars("big")}</div>
+            <p>{product.rating} out of 5</p>
           </div>
         </div>
         <div className="review-right-container"></div>
