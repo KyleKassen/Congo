@@ -563,6 +563,7 @@
     height: 34px;
     width: 100%;
     display: flex;
+    margin-bottom: 4px;
 }
 
 .review-single-user-info-container img {
@@ -580,6 +581,17 @@
     line-height: 34px;
 }
 
-.review-single-rating-title-container i {
-    
+.review-single-rating-title-container {
+    display: flex;
+}
+
+.review-single-rating-title-container p {
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.review-single-date {
+    font-size: 14px;
+    color: #565959;
 }

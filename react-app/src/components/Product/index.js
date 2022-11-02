@@ -85,6 +85,7 @@ function Product() {
     return null;
   }
 
+  let objToday = new Date();
   let objTodayThree = new Date();
   let objTodayFive = new Date();
   objTodayThree.setDate(objTodayThree.getDate() + 3);
@@ -104,6 +105,10 @@ function Product() {
     "November",
     "December",
   ];
+
+  const todayDay = objToday.getDate();
+  const todayMonth = months[objToday.getMonth()];
+  const todayYear = objToday.getFullYear()
   const monthThree = months[objTodayThree.getMonth()];
   const dayThree = objTodayThree.getDate();
   const monthFive = months[objTodayFive.getMonth()];
@@ -471,10 +476,10 @@ function Product() {
                         <div className="product-star-rating">
                           {getStars(review.rating, "")}
                         </div>
-                        <p></p>
+                        <p>{review.title}</p>
                       </div>
-                      <p className="review-single-date"></p>
-                      <p className="review-single-verified"></p>
+                      <p className="review-single-date">Reviewed in the United States on {todayMonth} {todayDay}, {todayYear}</p>
+                      <p className="review-single-verified">Verified Purchase</p>
                       <p className="review-single-review"></p>
                       <div className="review-single-helpful-abuse-container"></div>
                     </div>
