@@ -155,7 +155,9 @@ function Product() {
             <img src={lock} />
             <span>Secure Transaction</span>
           </div>
-          <div className="buy-box-return-policy"></div>
+          <div className="buy-box-return-policy">
+            <p>Return Policy:<span> Returnable until Jan 31, 2023</span></p>
+          </div>
         </div>
       </div>
 

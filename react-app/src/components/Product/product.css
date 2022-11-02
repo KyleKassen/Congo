@@ -2,6 +2,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 18px;
+    box-sizing: border-box;
 }
 
 .product-page-wrapper {
@@ -72,8 +74,7 @@
 }
 
 .product-right-wrapper {
-    width: 206px;
-    margin-left: 20px;
+    width: 244px;
 }
 
 .product-buy-box {
@@ -81,6 +82,7 @@
     border-radius: 8px;
     padding: 14px 18px;
     border: 1px #D5D9D9 solid;
+    box-sizing: border-box;
 }
 
 .buy-box-price {
@@ -123,6 +125,8 @@
 .buy-box-stock {
     color: #007600;
     font-size: 18px;
+    padding-top: 4px;
+    margin-bottom: 12px;
 }
 
 .buy-box-button {
@@ -171,6 +175,11 @@
 }
 
 .buy-box-secure span {
+    font-size: 14px;
+    color: #007185;
+}
+
+.buy-box-return-policy span {
     font-size: 14px;
     color: #007185;
 }
