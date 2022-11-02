@@ -76,15 +76,14 @@
 }
 
 .product-star-rating {
-
+    width: 80px;
+    height: 18px;
 }
 
 .stars-img {
     background-image: url("../../media/images/starRating.png");
     -webkit-background-size: 512px 512px;
     background-size: 512px 512px;
-    /* height: 18px;
-    width: 80px; */
     position: relative;
     display: inline-block;
     vertical-align: text-top;
@@ -92,68 +91,68 @@
 }
 .product-5-stars {
     background-position: -2px -2px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-45-stars {
     background-position: -2px -42px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-4-stars {
     background-position: -2px -22px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-35-stars {
     background-position: -2px -82px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-3-stars {
     background-position: -2px -62px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-2-stars {
     background-position: -2px -102px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-25-stars {
     background-position: -2px -122px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-1-stars {
     background-position: -2px -142px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-15-stars {
     background-position: -2px -162px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-0-stars {
     background-position: -2px -182px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-05-stars {
     background-position: -2px -202px;
-    height: 18px;
-    width: 80px;
+    height: 100%;
+    width: 100%;
 }
 
 .product-title h1 {
@@ -244,7 +243,7 @@
 
 .buy-box-delivery-location img {
     height: 14px;
-    float: left;
+    /* float: left; */
     margin-right: 5px;
     margin-top: 4px;
 }
@@ -327,7 +326,9 @@
 }
 
 .product-divider {
-    border-top: 1px solid #CCC!important;
+    border-top: 1px solid #CCC;
+    margin-bottom: 16px;
+    margin-top: 16px;
 }
 
 .product-description {
@@ -336,7 +337,7 @@
 }
 
 .product-description h2 {
-    color: #C60!important;
-    font-size: 16px!important;
+    color: #C60;
+    font-size: 18px;
     padding-bottom: 4px;
 }
