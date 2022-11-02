@@ -176,13 +176,14 @@ def get_reviews(id):
     """
 
     reviews = Review.query.filter_by(product_id=id).options(
-        joinedload(Review.review_image)).all()
+        joinedload(Review.review_image)).options(joinedload(Review.user)).all()
 
     result = {}
     result_reviews = []
     for review in reviews:
         current = review.to_dict()
         current['images'] = [image.to_dict() for image in review.review_image]
+        current['user'] = review.user.to_dict()
         result_reviews.append(current)
     result['reviews'] = result_reviews
 
