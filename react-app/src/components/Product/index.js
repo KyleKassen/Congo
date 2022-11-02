@@ -21,11 +21,11 @@ import "./product.css";
 function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
-  const [fiveStarCount, setFiveStarCount] = useState(0)
-  const [fourStarCount, setFourStarCount] = useState(0)
-  const [threeStarCount, setThreeStarCount] = useState(0)
-  const [twoStarCount, setTwoStarCount] = useState(0)
-  const [oneStarCount, setOneStarCount] = useState(0)
+  // const [fiveStarCount, setFiveStarCount] = useState(0)
+  // const [fourStarCount, setFourStarCount] = useState(0)
+  // const [threeStarCount, setThreeStarCount] = useState(0)
+  // const [twoStarCount, setTwoStarCount] = useState(0)
+  // const [oneStarCount, setOneStarCount] = useState(0)
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -50,40 +50,40 @@ function Product() {
       }
       setLoaded(true);
 
-      for (let review of reviews) {
-        switch (review.rating) {
-          case 5:
-            setFiveStarCount(fiveStarCount + 1)
-          case 4:
-            setFourStarCount(fourStarCount + 1)
-          case 3:
-            setThreeStarCount(threeStarCount + 1)
-          case 2:
-            setTwoStarCount(twoStarCount + 1)
-          case 1:
-            setOneStarCount(oneStarCount + 1)
-        }
-      }
+      // for (let review of reviews) {
+      //   switch (review.rating) {
+      //     case 5:
+      //       setFiveStarCount(fiveStarCount + 1)
+      //     case 4:
+      //       setFourStarCount(fourStarCount + 1)
+      //     case 3:
+      //       setThreeStarCount(threeStarCount + 1)
+      //     case 2:
+      //       setTwoStarCount(twoStarCount + 1)
+      //     case 1:
+      //       setOneStarCount(oneStarCount + 1)
+      //   }
+      // }
     })();
   }, [dispatch]);
 
-  let five;
-  let four;
-  let three;
-  let two;
-  let one;
+  let five = 0;
+  let four = 0;
+  let three =0;
+  let two = 0;
+  let one = 0;
   for (let review of reviews) {
     switch (review.rating) {
       case 5:
-
+        five += 1
       case 4:
-
+        four += 1
       case 3:
-
+        three += 1
       case 2:
-
+        two += 1
       case 1:
-
+        one += 1
     }
   }
 
@@ -368,10 +368,10 @@ function Product() {
               </td>
               <td className="review-table-5star-bar">
                 <div className="review-table-bar 5star-bar">
-                  <div className="review-table-bar-filled 5star-bar-filled">{fiveStarCount && (fiveStarCount / reviews.length)*100}</div>
+                  <div className="review-table-bar-filled 5star-bar-filled"></div>
                 </div>
               </td>
-              <td className="review-table-5star-percent"></td>
+              <td className="review-table-5star-percent">{Math.floor((five / reviews.length)*100)}%</td>
             </tr>
           </tbody>
         </div>
