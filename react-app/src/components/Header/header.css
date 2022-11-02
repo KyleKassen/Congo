@@ -5,6 +5,7 @@
     height: 60px;
     color: white;
     align-items: center;
+    min-width: 1000px;
 }
 
 .header-bottom-text {
@@ -393,7 +394,8 @@
     background-color: rgb(35,47,62);
     height: 39px;
     padding-left: 15px;
-    /* min-width: 3764px; */
+    /* box-sizing: border-box; */
+    min-width: 985px;
 }
 
 .header-mainnav-all {
