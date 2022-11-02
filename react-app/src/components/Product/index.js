@@ -132,6 +132,27 @@ function Product() {
               {product.rating == null && <i className="stars-img product-0-stars"></i>}
 
             </div>
+            <div className="product-rating-count">
+              <span>{product.reviewCount} ratings</span>
+            </div>
+          </div>
+          <hr />
+          <div className="product-middle-price">
+              <span className="buy-box-price-symbol">$</span>
+              <span className="buy-box-price-whole">
+                {Math.floor(product.price)}
+              </span>
+              <span className="buy-box-price-decimal">
+                {
+                  (
+                    Math.round(
+                      100 * (product.price - Math.floor(product.price))
+                    ) / 100
+                  )
+                    .toString()
+                    .split(".")[1]
+                }
+              </span>
           </div>
         </div>
         <div className="product-right-wrapper">
