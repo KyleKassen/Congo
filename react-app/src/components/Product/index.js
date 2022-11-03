@@ -23,8 +23,6 @@ import "./product.css";
 function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
-  const [reviewDropDown, setReviewDropDown] = useState(true)
-  // const [reviewImgs, setReviewImgs] = useState([]);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -160,19 +158,20 @@ function Product() {
   };
 
   const editReview = async (currReview) => {
-    return null
-  }
+    return null;
+  };
 
   const deleteReview = async (currReview) => {
-    await dispatch(deleteOneReview(currReview.id))
-  }
+    await dispatch(deleteOneReview(currReview.id));
+  };
 
-  const reviewMenuFunc = (idx) => {
-    const currDropdown = document.getElementsByClassName(`dropdown-${idx}`)[0]
-    if (reviewDropDown) currDropdown.setAttribute("style", "display:inline !important;")
-    else currDropdown.setAttribute("style", "display: none !important;")
-    setReviewDropDown(!reviewDropDown)
-  }
+  // const reviewMenuFunc = (idx) => {
+  //   const currDropdown = document.getElementsByClassName(`dropdown-${idx}`)[0];
+  //   if (reviewDropDown)
+  //     currDropdown.setAttribute("style", "display:inline !important;");
+  //   else currDropdown.setAttribute("style", "display: none !important;");
+  //   setReviewDropDown(!reviewDropDown);
+  // };
 
   return (
     <div className="product-page-outer-wrapper">
@@ -313,34 +312,6 @@ function Product() {
             </div>
           </div>
         </div>
-
-        {/* <h1>Product Page</h1>
-      <p>{product.description}</p>
-      <p>{product.fulfilledBy}</p>
-      <p>{product.images[0].url}</p>
-      <p>{product.price}</p>
-      <p>{product.quantity}</p>
-      <p>{product.rating}</p>
-      <p>{product.reviewCount}</p>
-      <p>{product.salePrice}</p>
-      <p>{product.seller.firstName}</p>
-      <p>{product.sellerId}</p>
-      <p>{product.shippingPrice}</p>
-      <p>{product.title}</p>
-
-      <div className="product-reviews-container">
-        <div className="prudct-reviews-button-container">
-          <button onClick={() => createReview()}>Create a Review</button>
-        </div>
-        {reviews.map((review, ind) => {
-          console.log(review.id);
-          return (
-            <div key={ind}>
-              <Review review={review} />
-            </div>
-          );
-        })}
-      </div> */}
       </div>
       <div className="product-description">
         <hr className="product-divider" />
@@ -494,15 +465,23 @@ function Product() {
                           <p>{review.user.username}</p>
                         </div>
                         <div className="review-edit-delete-dropdown">
-                          {review.userId === userId && <img src={threesq} onMouseEnter={() => reviewMenuFunc(idx)} onMouseLeave={() => reviewMenuFunc(idx)}/>}
-                            <ul className={`dropdown-${idx}`}>
-                              <li onClick={() => editReview(review)}>Edit Review</li>
-                              <li onClick={() => deleteReview(review)}>Delete Review</li>
-                            </ul>
+                          {review.userId === userId && (
+                            <img
+                              src={threesq}
+                            />
+                          )}
+                          <ul>
+                            <li onClick={() => editReview(review)}>
+                              Edit Review
+                            </li>
+                            <li onClick={() => deleteReview(review)}>
+                              Delete Review
+                            </li>
                             <div className="review-dropdown-top-buffer"></div>
                             <div className="review-dropdown-right-buffer"></div>
                             <div className="review-dropdown-bottom-buffer"></div>
                             <div className="review-dropdown-left-buffer"></div>
+                          </ul>
                         </div>
                       </div>
                       <div className="review-single-rating-title-container">

@@ -615,6 +615,14 @@
     transform: rotate(90deg)
 }
 
+.review-edit-delete-img-0:hover .dropdown-0 {
+    display: inline;
+}
+
+.review-edit-delete-dropdown:hover ul {
+    display: inline;
+}
+
 .review-edit-delete-dropdown ul {
     position: absolute;
     display: none;
@@ -651,6 +659,13 @@
     border-color: #D5D9D9;
     background-color: #EDFDFF;
     border-color: #007185!important;
+}
+
+.review-dropdown-top-buffer {
+    position:absolute;
+    top: -18px;
+    width: 100%;
+    height: 20px;
 }
 
 .review-single-rating-title-container {
