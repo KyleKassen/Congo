@@ -50,15 +50,19 @@ function CreateReview() {
   };
 
   const handleStarClick = (starNumber) => {
-
-    let starOne = document.getElementsByClassName("create-review-star1")[0].firstChild;
-    let starTwo = document.getElementsByClassName("create-review-star2")[0].firstChild;
-    let starThree = document.getElementsByClassName("create-review-star3")[0].firstChild;
-    let starFour = document.getElementsByClassName("create-review-star4")[0].firstChild;
-    let starFive = document.getElementsByClassName("create-review-star5")[0].firstChild;
+    let starOne = document.getElementsByClassName("create-review-star1")[0]
+      .firstChild;
+    let starTwo = document.getElementsByClassName("create-review-star2")[0]
+      .firstChild;
+    let starThree = document.getElementsByClassName("create-review-star3")[0]
+      .firstChild;
+    let starFour = document.getElementsByClassName("create-review-star4")[0]
+      .firstChild;
+    let starFive = document.getElementsByClassName("create-review-star5")[0]
+      .firstChild;
 
     if (starNumber === 0) {
-      starOne.src = unselectstar
+      starOne.src = unselectstar;
       starTwo.src = unselectstar;
       starThree.src = unselectstar;
       starFour.src = unselectstar;
@@ -75,7 +79,7 @@ function CreateReview() {
       starFive.src = unselectstar;
       setRating(1);
       return;
-    };
+    }
     starTwo.src = selectstar;
     if (starNumber === 2) {
       starThree.src = unselectstar;
@@ -83,24 +87,23 @@ function CreateReview() {
       starFive.src = unselectstar;
       setRating(2);
       return;
-    };
+    }
     starThree.src = selectstar;
     if (starNumber === 3) {
       starFour.src = unselectstar;
       starFive.src = unselectstar;
       setRating(3);
       return;
-    };
+    }
     starFour.src = selectstar;
     if (starNumber === 4) {
       starFive.src = unselectstar;
       setRating(4);
       return;
-    };
+    }
     starFive.src = selectstar;
     setRating(5);
-
-  }
+  };
 
   return (
     <div className="create-review-wrapper">
@@ -117,34 +120,51 @@ function CreateReview() {
             {rating > 0 && <p onClick={() => handleStarClick(0)}>Clear</p>}
           </div>
           <div className="create-review-rating-stars-container">
-            <button className="create-review-star1" onClick={() => handleStarClick(1)}>
+            <button
+              className="create-review-star1"
+              onClick={() => handleStarClick(1)}
+            >
               <img id="star1" src={unselectstar} />
             </button>
-            <button className="create-review-star2" onClick={() => handleStarClick(2)}>
+            <button
+              className="create-review-star2"
+              onClick={() => handleStarClick(2)}
+            >
               <img id="star2" src={unselectstar} />
             </button>
-            <button className="create-review-star3" onClick={() => handleStarClick(3)}>
+            <button
+              className="create-review-star3"
+              onClick={() => handleStarClick(3)}
+            >
               <img id="starDos" src={unselectstar} />
             </button>
-            <button className="create-review-star4" onClick={() => handleStarClick(4)}>
+            <button
+              className="create-review-star4"
+              onClick={() => handleStarClick(4)}
+            >
               <img src={unselectstar} />
             </button>
-            <button className="create-review-star5" onClick={() => handleStarClick(5)}>
+            <button
+              className="create-review-star5"
+              onClick={() => handleStarClick(5)}
+            >
               <img src={unselectstar} />
             </button>
           </div>
         </div>
+        <hr />
         <form onSubmit={handleSubmit}>
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div>
+          <div className="create-review-title-container">
+            <h3>Add a headline</h3>
             <input
               id="form-field-title"
               className="form-field"
-              placeholder="Review Title"
+              placeholder="What's most important to know?"
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
