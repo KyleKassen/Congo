@@ -171,30 +171,32 @@ function CreateReview() {
               required
             />
           </div>
-          <div>
-            <input
+          <hr />
+          <div className="create-review-body-container">
+          <h3>Add a written review</h3>
+            <textarea
               id="form-field-body"
               className="form-field"
-              placeholder="Review Body"
-              type="text"
+              placeholder="What did you like or dislike? What did you use this product for?"
+              type="textarea"
               value={review}
               onChange={(e) => setReview(e.target.value)}
               required
-            />
+            ></textarea>
           </div>
           <div>
             <input
               id="form-field-rating"
               className="form-field"
               placeholder="Review Rating"
-              type="number"
+              type="hidden"
               value={rating}
               onChange={(e) => setRating(e.target.value)}
               required
             />
           </div>
           <button
-            id="update-review-button"
+            id="create-review-button"
             className="button button-submit"
             type="submit"
             disabled={errors.length}
