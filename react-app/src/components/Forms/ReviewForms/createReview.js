@@ -36,9 +36,6 @@ function CreateReview() {
     console.log(review);
     console.log(rating);
 
-    const formData = new FormData();
-    formData.append("image", image);
-
     const newReview = {
       product_id: productId,
       title: title,
@@ -46,7 +43,7 @@ function CreateReview() {
       rating: rating,
     };
 
-    // let response = null
+
     try {
       const response = await dispatch(createOneReview(newReview, productId));
       console.log(response);
@@ -54,7 +51,10 @@ function CreateReview() {
         console.log("review posted correctly", response.id);
         const res = await fetch(`/api/reviews/${response.id}/images`, {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({"urls": imageUrls})
         });
         if (res.ok) {
           await res.json();
