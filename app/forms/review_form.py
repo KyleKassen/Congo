@@ -11,4 +11,4 @@ class ReviewForm(FlaskForm):
     # date = StringField('Date')
     # number_helpful = IntegerField('Number of Upvotes', validators=[DataRequired()])
 
-    submit = SubmitField('Submit')
+    # submit = SubmitField('Submit')

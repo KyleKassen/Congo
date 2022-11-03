@@ -8,19 +8,22 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
-import { loadAllReviews } from "../../store/review";
+import { loadAllReviews, deleteOneReview } from "../../store/review";
 import { loadAllAddresses } from "../../store/address";
 import EditReview from "../Forms/ReviewForms/editReview";
 import Review from "../Review/index";
 
 import locationpin from "../../media/images/buyboxlocation.png";
 import lock from "../../media/images/greyLock.png";
+// import threesquares from "../../media/images/threesquares.png";
+import threesq from "../../media/images/threesq.svg";
 
 import "./product.css";
 
 function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
+  const [showEditReviewModal, setShowEditReviewModal] = useState(false);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -47,10 +50,44 @@ function Product() {
     })();
   }, [dispatch]);
 
+  let five = 0;
+  let four = 0;
+  let three = 0;
+  let two = 0;
+  let one = 0;
+  let reviewImgs = [];
+  console.log("refresh happened");
+  for (let review of reviews) {
+    switch (review.rating) {
+      case 5:
+        five += 1;
+        break;
+      case 4:
+        four += 1;
+        break;
+      case 3:
+        three += 1;
+        break;
+      case 2:
+        two += 1;
+        break;
+      case 1:
+        one += 1;
+        break;
+    }
+
+    if (review.images) {
+      for (let image of review.images) {
+        reviewImgs = [...reviewImgs, image];
+      }
+    }
+  }
+
   if (!loaded) {
     return null;
   }
 
+  let objToday = new Date();
   let objTodayThree = new Date();
   let objTodayFive = new Date();
   objTodayThree.setDate(objTodayThree.getDate() + 3);
@@ -70,6 +107,10 @@ function Product() {
     "November",
     "December",
   ];
+
+  const todayDay = objToday.getDate();
+  const todayMonth = months[objToday.getMonth()];
+  const todayYear = objToday.getFullYear();
   const monthThree = months[objTodayThree.getMonth()];
   const dayThree = objTodayThree.getDate();
   const monthFive = months[objTodayFive.getMonth()];
@@ -79,42 +120,50 @@ function Product() {
     history.push(`/product/${productId}/create`);
   };
 
-  const getStars = (addon) => {
+  const getStars = (rating, addon) => {
     return (
       <>
-        {product.rating > 4.6 && <i className="stars-img product-5-stars"></i>}
-        {product.rating <= 4.6 && product.rating > 4 && (
+        {rating > 4.6 && <i className="stars-img product-5-stars"></i>}
+        {rating <= 4.6 && rating > 4 && (
           <i className={`stars-img product-45-stars${addon}`}></i>
         )}
-        {product.rating <= 4 && product.rating > 3.6 && (
+        {rating <= 4 && rating > 3.6 && (
           <i className={`stars-img product-4-stars${addon}`}></i>
         )}
-        {product.rating <= 3.6 && product.rating > 3 && (
+        {rating <= 3.6 && rating > 3 && (
           <i className={`stars-img product-35-stars${addon}`}></i>
         )}
-        {product.rating <= 3 && product.rating > 2.6 && (
+        {rating <= 3 && rating > 2.6 && (
           <i className={`stars-img product-3-stars${addon}`}></i>
         )}
-        {product.rating <= 2.6 && product.rating > 2 && (
+        {rating <= 2.6 && rating > 2 && (
           <i className={`stars-img product-25-stars${addon}`}></i>
         )}
-        {product.rating <= 2 && product.rating > 1.6 && (
+        {rating <= 2 && rating > 1.6 && (
           <i className={`stars-img product-2-stars${addon}`}></i>
         )}
-        {product.rating <= 1.6 && product.rating > 1 && (
+        {rating <= 1.6 && rating > 1 && (
           <i className={`stars-img product-15-stars${addon}`}></i>
         )}
-        {product.rating <= 1 && product.rating > 0.6 && (
+        {rating <= 1 && rating > 0.6 && (
           <i className={`stars-img product-1-stars${addon}`}></i>
         )}
-        {product.rating <= 0.6 && (
+        {rating <= 0.6 && (
           <i className={`stars-img product-05-stars${addon}`}></i>
         )}
-        {product.rating == null && (
+        {rating == null && (
           <i className={`stars-img product-0-stars${addon}`}></i>
         )}
       </>
     );
+  };
+
+  const editReview = async (currReview) => {
+    return null;
+  };
+
+  const deleteReview = async (currReview) => {
+    await dispatch(deleteOneReview(currReview.id));
   };
 
   return (
@@ -156,7 +205,9 @@ function Product() {
             <h1>{product.title}</h1>
           </div>
           <div className="product-rating-container">
-            <div className="product-star-rating">{getStars("")}</div>
+            <div className="product-star-rating">
+              {getStars(product.rating, "")}
+            </div>
             <div className="product-rating-count">
               <span>{product.reviewCount} ratings</span>
             </div>
@@ -254,49 +305,218 @@ function Product() {
             </div>
           </div>
         </div>
-
-        {/* <h1>Product Page</h1>
-      <p>{product.description}</p>
-      <p>{product.fulfilledBy}</p>
-      <p>{product.images[0].url}</p>
-      <p>{product.price}</p>
-      <p>{product.quantity}</p>
-      <p>{product.rating}</p>
-      <p>{product.reviewCount}</p>
-      <p>{product.salePrice}</p>
-      <p>{product.seller.firstName}</p>
-      <p>{product.sellerId}</p>
-      <p>{product.shippingPrice}</p>
-      <p>{product.title}</p>
-
-      <div className="product-reviews-container">
-        <div className="prudct-reviews-button-container">
-          <button onClick={() => createReview()}>Create a Review</button>
-        </div>
-        {reviews.map((review, ind) => {
-          console.log(review.id);
-          return (
-            <div key={ind}>
-              <Review review={review} />
-            </div>
-          );
-        })}
-      </div> */}
       </div>
       <div className="product-description">
         <hr className="product-divider" />
         <h2>Product Description</h2>
         <p>{product.description}</p>
+        <hr className="product-divider" />
       </div>
       <div className="product-review-container">
         <div className="product-review-left-container">
           <h2>Customer reviews</h2>
           <div className="product-review-star-text">
-            <div className="product-review-rating">{getStars("big")}</div>
+            <div className="product-review-rating">
+              {getStars(product.rating, "big")}
+            </div>
             <p>{product.rating} out of 5</p>
           </div>
+          <span className="product-review-total-ratings">
+            {product.reviewCount} global ratings
+          </span>
+          <div className="review-table-container">
+            <tbody className="review-table-stars">
+              <tr className="review-table-5star">
+                <td className="review-table-star-text review-table-5star-text">
+                  <span>5 star</span>
+                </td>
+                <td className="review-table-5star-bar">
+                  <div className="review-table-bar 5star-bar">
+                    <div
+                      className="review-table-bar-filled 5star-bar-filled"
+                      style={{
+                        width: `${Math.floor((five / reviews.length) * 100)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </td>
+                <td className="review-table-percent-text review-table-5star-percent">
+                  {Math.floor((five / reviews.length) * 100)}%
+                </td>
+              </tr>
+              <tr className="review-table-4star">
+                <td className="review-table-star-text review-table-4star-text">
+                  <span>4 star</span>
+                </td>
+                <td className="review-table-4star-bar">
+                  <div className="review-table-bar 4star-bar">
+                    <div
+                      className="review-table-bar-filled 4star-bar-filled"
+                      style={{
+                        width: `${Math.floor((four / reviews.length) * 100)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </td>
+                <td className="review-table-percent-text review-table-4star-percent">
+                  {Math.floor((four / reviews.length) * 100)}%
+                </td>
+              </tr>
+              <tr className="review-table-3star">
+                <td className="review-table-star-text review-table-3star-text">
+                  <span>3 star</span>
+                </td>
+                <td className="review-table-3star-bar">
+                  <div className="review-table-bar 3star-bar">
+                    <div
+                      className="review-table-bar-filled 3star-bar-filled"
+                      style={{
+                        width: `${Math.floor((three / reviews.length) * 100)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </td>
+                <td className="review-table-percent-text review-table-3star-percent">
+                  {Math.floor((three / reviews.length) * 100)}%
+                </td>
+              </tr>
+              <tr className="review-table-2star">
+                <td className="review-table-star-text review-table-2star-text">
+                  <span>2 star</span>
+                </td>
+                <td className="review-table-2star-bar">
+                  <div className="review-table-bar 2star-bar">
+                    <div
+                      className="review-table-bar-filled 2star-bar-filled"
+                      style={{
+                        width: `${Math.floor((two / reviews.length) * 100)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </td>
+                <td className="review-table-percent-text review-table-2star-percent">
+                  {Math.floor((two / reviews.length) * 100)}%
+                </td>
+              </tr>
+              <tr className="review-table-1star">
+                <td className="review-table-star-text review-table-1star-text">
+                  <span>1 star</span>
+                </td>
+                <td className="review-table-1star-bar">
+                  <div className="review-table-bar 1star-bar">
+                    <div
+                      className="review-table-bar-filled 1star-bar-filled"
+                      style={{
+                        width: `${Math.floor((one / reviews.length) * 100)}%`,
+                      }}
+                    ></div>
+                  </div>
+                </td>
+                <td className="review-table-percent-text review-table-1star-percent">
+                  {Math.floor((one / reviews.length) * 100)}%
+                </td>
+              </tr>
+            </tbody>
+          </div>
+          <div>
+            <hr className="review-left-divider" />
+          </div>
+          <div className="review-create-section">
+            <h3>Review this product</h3>
+            <p>Share your thoughts with other customers</p>
+            <button onClick={() => createReview()}>
+              Write a customer review
+            </button>
+          </div>
+          <div>
+            <hr className="review-left-divider" />
+          </div>
         </div>
-        <div className="review-right-container"></div>
+        <div className="review-right-container">
+          {reviewImgs.length && (
+            <>
+              <h3 className="review-images-heading">Review Images</h3>
+              <div className="review-images-container">
+                {reviewImgs.map((image, idx) => {
+                  if (idx > 3) return null;
+                  return <img key={idx} src={image.url} />;
+                })}
+              </div>
+            </>
+          )}
+          <div className="reviews-content-container">
+            <h3>From the United States</h3>
+            {reviews && (
+              <>
+                {reviews.map((review, idx) => {
+                  if (idx > 10) return null;
+                  return (
+                    <div key={idx} className="review-single-content-container">
+                      <div className="review-user-edit-delete-container">
+                        <div className="review-single-user-info-container">
+                          <img src={review.user.picture} />
+                          <p>{review.user.username}</p>
+                        </div>
+                        <div className="review-edit-delete-dropdown">
+                          {review.userId === userId && (
+                            <img
+                              src={threesq}
+                            />
+                          )}
+                          <ul>
+                            <li onClick={() => editReview(review)}>
+                              Edit Review
+                            </li>
+                            <li onClick={() => deleteReview(review)}>
+                              Delete Review
+                            </li>
+                            <div className="review-dropdown-top-buffer"></div>
+                            <div className="review-dropdown-right-buffer"></div>
+                            <div className="review-dropdown-bottom-buffer"></div>
+                            <div className="review-dropdown-left-buffer"></div>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="review-single-rating-title-container">
+                        <div className="product-star-rating">
+                          {getStars(review.rating, "")}
+                        </div>
+                        <p>{review.title}</p>
+                      </div>
+                      <p className="review-single-date">
+                        Reviewed in the United States on {todayMonth} {todayDay}
+                        , {todayYear}
+                      </p>
+                      <p className="review-single-verified">
+                        Verified Purchase
+                      </p>
+                      <p className="review-single-review">{review.review}</p>
+                      {review.images && (
+                        <div className="review-single-all-images-container">
+                          {review.images.map((image, idx) => {
+                            return (
+                              <div
+                                key={idx}
+                                className="review-single-image-container"
+                              >
+                                <img src={image.url} />
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                      <div className="review-single-helpful-abuse-container">
+                        <button>Helpful</button>
+                        <i></i>
+                        <p>Report abuse</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

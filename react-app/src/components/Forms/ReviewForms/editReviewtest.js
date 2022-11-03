@@ -7,7 +7,7 @@ import unselectstar from "../../../media/images/unselectstar.svg";
 import plus from "../../../media/images/plusicon.svg";
 import "./createreview.css";
 
-function CreateReview() {
+function EditReview() {
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
@@ -330,4 +330,4 @@ function CreateReview() {
   );
 }
 
-export default CreateReview;
+export default EditReview;
