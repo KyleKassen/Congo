@@ -4,7 +4,7 @@ from app.models import Product, ProductImage, Review, ReviewImage, User, db
 from sqlalchemy import func
 from sqlalchemy.orm import joinedload, subqueryload
 from ..forms.review_form import ReviewForm
-from app.s3_functions import upload_file_to_s3, allowed_file, get_unique_filename
+from app.s3_functions import upload_file_to_s3, allowed_file, get_unique_filename, delete_file_from_s3
 from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.utils import secure_filename
 
@@ -68,14 +68,53 @@ def delete_review(id):
         "message": "successfully deleted"
     }
 
-@review_routes.route('/<int:id>/images', methods=['POST'])
+# @review_routes.route('/<int:id>/images', methods=['POST'])
+# @login_required
+# def add_review_img(id):
+#     """
+#     Add Images to Review
+#     """
+#     user = current_user.to_dict()
+#     user_id = user['id']
+
+#     if "image" not in request.files:
+#         return {"errors": "image required"}, 400
+
+#     image = request.files["image"]
+
+#     if not allowed_file(image.filename):
+#         return {"errors": "file type not permitted"}, 400
+
+
+#     image.filename = get_unique_filename(image.filename)
+#     print("\n\n\n\n", image.filename)
+
+
+#     upload = upload_file_to_s3(image)
+#     print("\n\n\n\n", upload)
+#     print("\n\n\n\n", upload["url"])
+
+#     if "url" not in upload:
+#         # if the dictionary doesn't have a url key
+#         # it means that there was an error when we tried to upload
+#         # so we send back that error message
+#         return upload, 400
+
+#     url = upload["url"]
+#     # flask_login allows us to get the current user from the request
+#     new_image = ReviewImage(review_id=id, url=url)
+#     db.session.add(new_image)
+#     db.session.commit()
+#     return {"url": url}
+
+@review_routes.route('/images', methods=['POST'])
 @login_required
-def add_review_img(id):
+def add_img_to_s3():
     """
-    Add Images to Review
+    Add Images to S3 bucket
     """
-    user = current_user.to_dict()
-    user_id = user['id']
+    # user = current_user.to_dict()
+    # user_id = user['id']
 
     if "image" not in request.files:
         return {"errors": "image required"}, 400
@@ -88,6 +127,7 @@ def add_review_img(id):
 
     image.filename = get_unique_filename(image.filename)
     print("\n\n\n\n", image.filename)
+    # print("\n\n\n\n", image.Key)
 
 
     upload = upload_file_to_s3(image)
@@ -102,7 +142,24 @@ def add_review_img(id):
 
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_image = ReviewImage(review_id=id, url=url)
-    db.session.add(new_image)
-    db.session.commit()
+    # new_image = ReviewImage(review_id=id, url=url)
+    # db.session.add(new_image)
+    # db.session.commit()
     return {"url": url}
+
+
+@review_routes.route('/images', methods=['DELETE'])
+@login_required
+def delete_review_img():
+    """
+    Delete a review image
+    """
+    urlObj = request.json
+    print("\n\n\nrequest.json", urlObj)
+
+    delete = delete_file_from_s3(urlObj['url'])
+
+    print(f'delete response from s3 helper function {delete}')
+
+    if not delete:
+        return {"response": "Delete was successful"}

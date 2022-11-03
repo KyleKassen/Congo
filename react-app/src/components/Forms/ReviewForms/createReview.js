@@ -51,7 +51,7 @@ function CreateReview() {
       const response = await dispatch(createOneReview(newReview, productId));
       console.log(response);
       if (response.id) {
-        console.log('review posted correctly', response.id)
+        console.log("review posted correctly", response.id);
         const res = await fetch(`/api/reviews/${response.id}/images`, {
           method: "POST",
           body: formData,
@@ -74,6 +74,28 @@ function CreateReview() {
 
     // history.push(`/product/${productId}`);
   };
+
+  useEffect(async () => {
+    console.log("This is inside image useeffect", image);
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    if (image) {
+      const res = await fetch(`/api/reviews/images`, {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        const urlObj = await res.json();
+        console.log("urlObj from adding to s3 is:", urlObj);
+        const url = urlObj.url;
+        setImageUrls([...imageUrls, url]);
+      }
+
+      setImage(null);
+    }
+  }, [image]);
 
   const handleStarClick = (starNumber) => {
     let starOne = document.getElementsByClassName("create-review-star1")[0]
@@ -137,9 +159,29 @@ function CreateReview() {
   };
 
   const addImgClicked = () => {
-    document.getElementsByClassName('create-review-img-upload-container')[0]?.firstChild.click();
+    document.getElementById("create-review-img-upload-input").click();
+  };
+
+  const deleteImage = async (imageIndex) => {
+
+    const url = imageUrls[imageIndex];
+
+    const deleteRes = await fetch("/api/reviews/images", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url: url }),
+    });
+    const imagesArray = [...imageUrls]
+    imagesArray.splice(imageIndex, 1)
+    setImageUrls(imagesArray);
+
+    console.log(await deleteRes.json());
+
   }
 
+  console.log("current image url array is ", imageUrls)
 
   return (
     <div className="create-review-wrapper">
@@ -211,9 +253,31 @@ function CreateReview() {
           <div className="create-review-img-upload-container">
             <h3>Add a photo or video</h3>
             <p>Shoppers find images more helpful than text alone.</p>
-            <input type="file" accept="image/*" onChange={updateImage} />
-            <div className="create-review-img-upload-button" onClick={() => addImgClicked()}>
-              <img src={plus} />
+            <input
+              id="create-review-img-upload-input"
+              type="file"
+              accept="image/*"
+              onChange={updateImage}
+            />
+            <div className="create-review-images-section-container">
+              {imageUrls.length > 0 && (
+                imageUrls.map((url, idx) => {
+                  return (
+                  <div key={idx} className="create-review-uploaded-image-container">
+                    <div className="create-review-uploaded-image-delete-button" onClick={() => deleteImage(idx)}>
+                      <i></i>
+                    </div>
+                    <img src={url} />
+                  </div>
+                  )
+                })
+              )}
+              <div
+                className="create-review-img-upload-button"
+                onClick={() => addImgClicked()}
+              >
+                <img src={plus} />
+              </div>
             </div>
           </div>
           <hr />
