@@ -57,6 +57,16 @@ function CreateReview() {
     let starFour = document.getElementsByClassName("create-review-star4")[0].firstChild;
     let starFive = document.getElementsByClassName("create-review-star5")[0].firstChild;
 
+    if (starNumber === 0) {
+      starOne.src = unselectstar
+      starTwo.src = unselectstar;
+      starThree.src = unselectstar;
+      starFour.src = unselectstar;
+      starFive.src = unselectstar;
+      setRating(0);
+      return;
+    }
+
     starOne.src = selectstar;
     if (starNumber === 1) {
       starTwo.src = unselectstar;
@@ -104,7 +114,7 @@ function CreateReview() {
         <div className="create-review-rating-container">
           <div className="create-review-rating-header-container">
             <h3>Overall rating</h3>
-            {rating > 0 && <p>Clear</p>}
+            {rating > 0 && <p onClick={() => handleStarClick(0)}>Clear</p>}
           </div>
           <div className="create-review-rating-stars-container">
             <button className="create-review-star1" onClick={() => handleStarClick(1)}>

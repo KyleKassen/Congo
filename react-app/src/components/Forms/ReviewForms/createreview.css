@@ -41,6 +41,21 @@
     width: 100%;
 }
 
+.create-review-rating-header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-review-rating-header-container p {
+    color: #007185;
+    font-size: 14px;
+}
+
+.create-review-rating-header-container p:hover {
+    cursor: pointer;
+}
+
 .create-review-container h3 {
     font-size: 18px;
     font-weight: 700;
