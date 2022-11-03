@@ -102,6 +102,14 @@
     background-color: #F7FEFF;
 }
 
+.create-review-img-upload-container input {
+    display: none;
+}
+
+.create-review-img-upload-button {
+    
+}
+
 .create-review-body-container textarea {
     width: calc(100% - 14px);
     height: calc(130px - 14px);

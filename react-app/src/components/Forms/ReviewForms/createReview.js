@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createOneReview } from "../../../store/review";
 import selectstar from "../../../media/images/selectstar.svg";
 import unselectstar from "../../../media/images/unselectstar.svg";
+import plus from "../../../media/images/plusicon.svg";
 import "./createreview.css";
 
 function CreateReview() {
@@ -134,13 +135,17 @@ function CreateReview() {
     setImage(file);
   };
 
+  document.getElementsByClassName('create-review-img-upload-button')[0].onclick = () => {
+    document.getElementsByClassName('create-review-img-upload-container')[0].firstChild.click();
+  }
+
   return (
     <div className="create-review-wrapper">
       <div className="create-review-container">
         <h2>Create Review</h2>
         <div className="create-review-product-info-container">
           {product?.images[0] && <img src={product.images[0].url} />}
-          <p>{product?.title}</p>
+          <p>{productTitle}</p>
         </div>
         <hr />
         <div className="create-review-rating-container">
@@ -203,7 +208,11 @@ function CreateReview() {
           <hr />
           <div className="create-review-img-upload-container">
             <input type="file" accept="image/*" onChange={updateImage} />
+            <div className="create-review-img-upload-button">
+              <img src={plus} />
+            </div>
           </div>
+          <hr />
           <div className="create-review-body-container">
             <h3>Add a written review</h3>
             <textarea
