@@ -183,15 +183,15 @@ function CreateReview() {
 
   console.log("current image url array is ", imageUrls)
 
-  window.onbeforeunload = (event) => {
-    const e = event || window.event;
-    // Cancel the event
-    e.preventDefault();
-    if (e) {
-      e.returnValue = ''; // Legacy method for cross browser support
-    }
-    return ''; // Legacy method for cross browser support
-  };
+  // window.onbeforeunload = (event) => {
+  //   const e = event || window.event;
+  //   // Cancel the event
+  //   e.preventDefault();
+  //   if (e) {
+  //     e.returnValue = ''; // Legacy method for cross browser support
+  //   }
+  //   return ''; // Legacy method for cross browser support
+  // };
 
   return (
     <div className="create-review-wrapper">

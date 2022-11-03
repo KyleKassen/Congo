@@ -156,7 +156,7 @@ export const reviewReducer = (state = initialState, action) => {
     case UPDATE:
       console.log("\n\n\n",action.payload)
       const reviewId = action.payload.id
-      newState.productReviews[reviewId] = {...action.payload, images:[...state.productReviews[reviewId].images]};
+      newState.productReviews[reviewId] = {...action.payload, images:[...state.productReviews[reviewId].images], user: {...state.productReviews[reviewId].user}};
       return newState;
     case DELETE:
       delete newState.productReviews[action.payload];

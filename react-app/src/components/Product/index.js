@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
 import { loadAllReviews, deleteOneReview } from "../../store/review";
 import { loadAllAddresses } from "../../store/address";
+import { Modal } from "../../context/Modal";
 import EditReview from "../Forms/ReviewForms/editReview";
 import Review from "../Review/index";
 
@@ -24,6 +25,7 @@ function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
   const [showEditReviewModal, setShowEditReviewModal] = useState(false);
+  const [editReviewId, setEditReviewId] = useState(0);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -458,13 +460,12 @@ function Product() {
                           <p>{review.user.username}</p>
                         </div>
                         <div className="review-edit-delete-dropdown">
-                          {review.userId === userId && (
-                            <img
-                              src={threesq}
-                            />
-                          )}
+                          {review.userId === userId && <img src={threesq} />}
                           <ul>
-                            <li onClick={() => editReview(review)}>
+                            <li onClick={() => {
+                              setShowEditReviewModal(true)
+                              setEditReviewId(review.id)
+                              }}>
                               Edit Review
                             </li>
                             <li onClick={() => deleteReview(review)}>
@@ -491,7 +492,7 @@ function Product() {
                         Verified Purchase
                       </p>
                       <p className="review-single-review">{review.review}</p>
-                      {review.images && (
+                      {review.images.length > 1 && (
                         <div className="review-single-all-images-container">
                           {review.images.map((image, idx) => {
                             return (
@@ -518,6 +519,11 @@ function Product() {
           </div>
         </div>
       </div>
+      {showEditReviewModal && (
+        <Modal onClose={() => setShowEditReviewModal(false)}>
+          <EditReview setShowEditReviewModal={setShowEditReviewModal} editReviewId={editReviewId}/>
+        </Modal>
+      )}
     </div>
   );
 }
