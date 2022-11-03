@@ -40,3 +40,21 @@
     margin: 16px 0px;
     width: 100%;
 }
+
+.create-review-container h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.create-review-rating-stars-container button {
+    background-color: white;
+}
+
+.create-review-rating-stars-container button:hover {
+    cursor: pointer;
+}
+
+.create-review-rating-stars-container img {
+    width: 35px;
+    height: 32.2px;
+}
