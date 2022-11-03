@@ -105,9 +105,30 @@
 .create-review-img-upload-container input {
     display: none;
 }
+.create-review-img-upload-container p {
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #595959;
+    margin-top: 4px;
+}
 
 .create-review-img-upload-button {
-    
+    width: 86px;
+    height: 86px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #aab7b8;
+    border-radius: 8px;
+}
+
+.create-review-img-upload-button:hover {
+    cursor: pointer;
+}
+
+.create-review-img-upload-button img {
+    width: 25px;
+    height: 25px;
 }
 
 .create-review-body-container textarea {

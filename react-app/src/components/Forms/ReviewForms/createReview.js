@@ -12,6 +12,7 @@ function CreateReview() {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [image, setImage] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
   const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
@@ -135,9 +136,10 @@ function CreateReview() {
     setImage(file);
   };
 
-  document.getElementsByClassName('create-review-img-upload-button')[0].onclick = () => {
-    document.getElementsByClassName('create-review-img-upload-container')[0].firstChild.click();
+  const addImgClicked = () => {
+    document.getElementsByClassName('create-review-img-upload-container')[0]?.firstChild.click();
   }
+
 
   return (
     <div className="create-review-wrapper">
@@ -207,8 +209,10 @@ function CreateReview() {
           </div>
           <hr />
           <div className="create-review-img-upload-container">
+            <h3>Add a photo or video</h3>
+            <p>Shoppers find images more helpful than text alone.</p>
             <input type="file" accept="image/*" onChange={updateImage} />
-            <div className="create-review-img-upload-button">
+            <div className="create-review-img-upload-button" onClick={() => addImgClicked()}>
               <img src={plus} />
             </div>
           </div>
