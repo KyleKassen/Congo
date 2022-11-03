@@ -195,6 +195,7 @@ function CreateReview() {
               required
             />
           </div>
+          <hr />
           <button
             id="create-review-button"
             className="button button-submit"
