@@ -615,10 +615,6 @@
     transform: rotate(90deg)
 }
 
-.review-edit-delete-img-0:hover .dropdown-0 {
-    display: inline;
-}
-
 .review-edit-delete-dropdown:hover ul {
     display: inline;
 }
@@ -663,9 +659,33 @@
 
 .review-dropdown-top-buffer {
     position:absolute;
-    top: -18px;
+    top: -10px;
     width: 100%;
-    height: 20px;
+    height: 10px;
+}
+
+.review-dropdown-right-buffer {
+    position:absolute;
+    right: -10px;
+    width: 10px;
+    height: 100%;
+    top: 0px;
+}
+
+.review-dropdown-bottom-buffer {
+    position: absolute;
+    right: 0px;
+    width: 100%;
+    height: 10px;
+    bottom: -10px;
+}
+
+.review-dropdown-left-buffer{
+    position: absolute;
+    left: -10px;
+    width: 10px;
+    height: 100%;
+    top:0px;
 }
 
 .review-single-rating-title-container {

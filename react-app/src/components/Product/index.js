@@ -23,6 +23,7 @@ import "./product.css";
 function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
+  const [showEditReviewModal, setShowEditReviewModal] = useState(false);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
@@ -164,14 +165,6 @@ function Product() {
   const deleteReview = async (currReview) => {
     await dispatch(deleteOneReview(currReview.id));
   };
-
-  // const reviewMenuFunc = (idx) => {
-  //   const currDropdown = document.getElementsByClassName(`dropdown-${idx}`)[0];
-  //   if (reviewDropDown)
-  //     currDropdown.setAttribute("style", "display:inline !important;");
-  //   else currDropdown.setAttribute("style", "display: none !important;");
-  //   setReviewDropDown(!reviewDropDown);
-  // };
 
   return (
     <div className="product-page-outer-wrapper">
