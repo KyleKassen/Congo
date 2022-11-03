@@ -601,10 +601,56 @@
     line-height: 34px;
 }
 
+.review-edit-delete-dropdown {
+    position: relative;
+}
+
+.review-edit-delete-dropdown:hover {
+    cursor: pointer;
+}
+
 .review-edit-delete-dropdown img {
     width: 30px;
     height: 30px;
     transform: rotate(90deg)
+}
+
+.review-edit-delete-dropdown ul {
+    position: absolute;
+    display: none;
+    list-style-type: none!important;
+    top: 30px;
+    right: 3px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 13%);
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.2);
+    width: 138px;
+    height: 50px;
+    padding: 8px 0px;
+}
+
+.review-edit-delete-dropdown li {
+    text-align: start;
+    text-decoration: none;
+    padding: 2px 12px 1px 13px;
+    display: block;
+    white-space: nowrap;
+    outline: 0;
+    border: 1px solid transparent;
+    user-select: none;
+    /* margin-left: 1px; */
+}
+
+.review-edit-delete-dropdown li:hover {
+    border-color: #D5D9D9;
+    background-color: #F0F2F2!important;
+}
+
+.review-edit-delete-dropdown li:active {
+    border-color: #D5D9D9;
+    background-color: #EDFDFF;
+    border-color: #007185!important;
 }
 
 .review-single-rating-title-container {

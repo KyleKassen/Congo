@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadOneProduct } from "../../store/product";
-import { loadAllReviews } from "../../store/review";
+import { loadAllReviews, deleteOneReview } from "../../store/review";
 import { loadAllAddresses } from "../../store/address";
 import EditReview from "../Forms/ReviewForms/editReview";
 import Review from "../Review/index";
@@ -23,6 +23,7 @@ import "./product.css";
 function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
+  const [reviewDropDown, setReviewDropDown] = useState(true)
   // const [reviewImgs, setReviewImgs] = useState([]);
   const { productId } = useParams();
 
@@ -56,8 +57,8 @@ function Product() {
   let two = 0;
   let one = 0;
   let reviewImgs = [];
+  console.log("refresh happened");
   for (let review of reviews) {
-    console.log("review.rating is", review.rating);
     switch (review.rating) {
       case 5:
         five += 1;
@@ -157,6 +158,21 @@ function Product() {
       </>
     );
   };
+
+  const editReview = async (currReview) => {
+    return null
+  }
+
+  const deleteReview = async (currReview) => {
+    await dispatch(deleteOneReview(currReview.id))
+  }
+
+  const reviewMenuFunc = (idx) => {
+    const currDropdown = document.getElementsByClassName(`dropdown-${idx}`)[0]
+    if (reviewDropDown) currDropdown.setAttribute("style", "display:inline !important;")
+    else currDropdown.setAttribute("style", "display: none !important;")
+    setReviewDropDown(!reviewDropDown)
+  }
 
   return (
     <div className="product-page-outer-wrapper">
@@ -478,7 +494,15 @@ function Product() {
                           <p>{review.user.username}</p>
                         </div>
                         <div className="review-edit-delete-dropdown">
-                          {review.userId === userId && <img src={threesq} />}
+                          {review.userId === userId && <img src={threesq} onMouseEnter={() => reviewMenuFunc(idx)} onMouseLeave={() => reviewMenuFunc(idx)}/>}
+                            <ul className={`dropdown-${idx}`}>
+                              <li onClick={() => editReview(review)}>Edit Review</li>
+                              <li onClick={() => deleteReview(review)}>Delete Review</li>
+                            </ul>
+                            <div className="review-dropdown-top-buffer"></div>
+                            <div className="review-dropdown-right-buffer"></div>
+                            <div className="review-dropdown-bottom-buffer"></div>
+                            <div className="review-dropdown-left-buffer"></div>
                         </div>
                       </div>
                       <div className="review-single-rating-title-container">

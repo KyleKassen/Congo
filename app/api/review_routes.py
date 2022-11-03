@@ -50,7 +50,12 @@ def delete_review(id):
     """
     Delete a review
     """
-    review = Review.query.get(id)
+    review = Review.query.filter_by(id=id).options(joinedload(Review.review_image)).all()[0]
+
+    print("\n\n\n", review.review_image)
+
+    for image in review.review_image:
+        delete = delete_file_from_s3(image.url)
 
     user = current_user.to_dict()
     user_id = user['id']
