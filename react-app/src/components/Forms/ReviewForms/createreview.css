@@ -12,6 +12,7 @@
 .create-review-container h2 {
     width: 100%;
     padding-bottom: 4px;
+    padding-top: 25px;
     margin-bottom: 16px;
     font-size: 24px;
 }
@@ -117,8 +118,8 @@
 }
 
 .create-review-uploaded-image-container {
-    width: 86px;
-    height: 86px;
+    width: 90px;
+    height: 90px;
     background-color: #373d3e;
     border-radius: 8px;
     position: relative;
@@ -155,9 +156,10 @@
 }
 
 .create-review-uploaded-image-container img {
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 0.5px);
+    height: calc(100% - 0.5px);
     object-fit: cover;
+    border-radius: 8px;
 }
 
 .create-review-img-upload-button {
@@ -179,6 +181,11 @@
     height: 25px;
 }
 
+.create-review-img-body-divider {
+    margin-top: 25px !important;
+    margin-bottom: 14px !important;
+}
+
 .create-review-body-container textarea {
     width: calc(100% - 14px);
     height: calc(130px - 14px);
@@ -188,7 +195,8 @@
     box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
     -webkit-transition: all .3s linear;
     transition: all .3s linear;
-    margin: 14px 0px;
+    margin-top: 14px;
+    margin-bottom: 6px;
 }
 
 .create-review-body-container textarea:focus {

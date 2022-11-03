@@ -183,6 +183,16 @@ function CreateReview() {
 
   console.log("current image url array is ", imageUrls)
 
+  window.onbeforeunload = (event) => {
+    const e = event || window.event;
+    // Cancel the event
+    e.preventDefault();
+    if (e) {
+      e.returnValue = ''; // Legacy method for cross browser support
+    }
+    return ''; // Legacy method for cross browser support
+  };
+
   return (
     <div className="create-review-wrapper">
       <div className="create-review-container">
@@ -280,7 +290,7 @@ function CreateReview() {
               </div>
             </div>
           </div>
-          <hr />
+          <hr className="create-review-img-body-divider"/>
           <div className="create-review-body-container">
             <h3>Add a written review</h3>
             <textarea
