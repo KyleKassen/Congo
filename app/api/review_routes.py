@@ -4,6 +4,9 @@ from app.models import Product, ProductImage, Review, ReviewImage, User, db
 from sqlalchemy import func
 from sqlalchemy.orm import joinedload, subqueryload
 from ..forms.review_form import ReviewForm
+from app.s3_functions import upload_file_to_s3, allowed_file, get_unique_filename
+from werkzeug.datastructures import CombinedMultiDict
+from werkzeug.utils import secure_filename
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -64,3 +67,42 @@ def delete_review(id):
         "statusCode": 200,
         "message": "successfully deleted"
     }
+
+@review_routes.route('/<int:id>/images', methods=['POST'])
+@login_required
+def add_review_img(id):
+    """
+    Add Images to Review
+    """
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+
+    image.filename = get_unique_filename(image.filename)
+    print("\n\n\n\n", image.filename)
+
+
+    upload = upload_file_to_s3(image)
+    print("\n\n\n\n", upload)
+    print("\n\n\n\n", upload["url"])
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+    new_image = ReviewImage(review_id=id, url=url)
+    db.session.add(new_image)
+    db.session.commit()
+    return {"url": url}

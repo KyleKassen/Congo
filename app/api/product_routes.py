@@ -207,9 +207,13 @@ def create_review(id):
             "message": "Current User owns the product"
         }
 
+    # if "image" not in request.files:
+    #     return {"errors": "image required"}, 400
+    # print(request.files["image"])
+
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
+
 
     if form.validate_on_submit():
         review = Review(

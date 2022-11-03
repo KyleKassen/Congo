@@ -10,6 +10,8 @@ function CreateReview() {
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  const [image, setImage] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const { productId } = useParams();
@@ -32,6 +34,9 @@ function CreateReview() {
     console.log(review);
     console.log(rating);
 
+    const formData = new FormData();
+    formData.append("image", image);
+
     const newReview = {
       product_id: productId,
       title: title,
@@ -39,14 +44,33 @@ function CreateReview() {
       rating: rating,
     };
 
+    // let response = null
     try {
       const response = await dispatch(createOneReview(newReview, productId));
       console.log(response);
+      if (response.id) {
+        console.log('review posted correctly', response.id)
+        const res = await fetch(`/api/reviews/${response.id}/images`, {
+          method: "POST",
+          body: formData,
+        });
+        if (res.ok) {
+          await res.json();
+          setImageLoading(false);
+          // history.push("/images");
+        } else {
+          setImageLoading(false);
+          // a real app would probably use more advanced
+          // error handling
+          console.log("error");
+        }
+      }
     } catch (res) {
       console.log(res);
       console.log("ERROR IN REVIEW FORM RESPONSE");
     }
-    history.push(`/product/${productId}`);
+
+    // history.push(`/product/${productId}`);
   };
 
   const handleStarClick = (starNumber) => {
@@ -103,6 +127,11 @@ function CreateReview() {
     }
     starFive.src = selectstar;
     setRating(5);
+  };
+
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
   };
 
   return (
@@ -172,8 +201,11 @@ function CreateReview() {
             />
           </div>
           <hr />
+          <div className="create-review-img-upload-container">
+            <input type="file" accept="image/*" onChange={updateImage} />
+          </div>
           <div className="create-review-body-container">
-          <h3>Add a written review</h3>
+            <h3>Add a written review</h3>
             <textarea
               id="form-field-body"
               className="form-field"
@@ -204,6 +236,7 @@ function CreateReview() {
           >
             Submit
           </button>
+          {imageLoading && <p>Loading...</p>}
         </form>
       </div>
     </div>
