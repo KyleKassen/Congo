@@ -15,6 +15,8 @@ import Review from "../Review/index";
 
 import locationpin from "../../media/images/buyboxlocation.png";
 import lock from "../../media/images/greyLock.png";
+// import threesquares from "../../media/images/threesquares.png";
+import threesq from "../../media/images/threesq.svg";
 
 import "./product.css";
 
@@ -108,7 +110,7 @@ function Product() {
 
   const todayDay = objToday.getDate();
   const todayMonth = months[objToday.getMonth()];
-  const todayYear = objToday.getFullYear()
+  const todayYear = objToday.getFullYear();
   const monthThree = months[objTodayThree.getMonth()];
   const dayThree = objTodayThree.getDate();
   const monthFive = months[objTodayFive.getMonth()];
@@ -442,7 +444,9 @@ function Product() {
           <div className="review-create-section">
             <h3>Review this product</h3>
             <p>Share your thoughts with other customers</p>
-            <button onClick={() => createReview()}>Write a customer review</button>
+            <button onClick={() => createReview()}>
+              Write a customer review
+            </button>
           </div>
           <div>
             <hr className="review-left-divider" />
@@ -468,9 +472,14 @@ function Product() {
                   if (idx > 10) return null;
                   return (
                     <div key={idx} className="review-single-content-container">
-                      <div className="review-single-user-info-container">
-                        <img src={review.user.picture} />
-                        <p>{review.user.username}</p>
+                      <div className="review-user-edit-delete-container">
+                        <div className="review-single-user-info-container">
+                          <img src={review.user.picture} />
+                          <p>{review.user.username}</p>
+                        </div>
+                        <div className="review-edit-delete-dropdown">
+                          {review.userId === userId && <img src={threesq} />}
+                        </div>
                       </div>
                       <div className="review-single-rating-title-container">
                         <div className="product-star-rating">
@@ -478,16 +487,26 @@ function Product() {
                         </div>
                         <p>{review.title}</p>
                       </div>
-                      <p className="review-single-date">Reviewed in the United States on {todayMonth} {todayDay}, {todayYear}</p>
-                      <p className="review-single-verified">Verified Purchase</p>
+                      <p className="review-single-date">
+                        Reviewed in the United States on {todayMonth} {todayDay}
+                        , {todayYear}
+                      </p>
+                      <p className="review-single-verified">
+                        Verified Purchase
+                      </p>
                       <p className="review-single-review">{review.review}</p>
                       {review.images && (
                         <div className="review-single-all-images-container">
-                        {review.images.map((image, idx) => {
-                          return (<div key={idx} className="review-single-image-container">
-                            <img src={image.url} />
-                          </div>)
-                        })}
+                          {review.images.map((image, idx) => {
+                            return (
+                              <div
+                                key={idx}
+                                className="review-single-image-container"
+                              >
+                                <img src={image.url} />
+                              </div>
+                            );
+                          })}
                         </div>
                       )}
                       <div className="review-single-helpful-abuse-container">

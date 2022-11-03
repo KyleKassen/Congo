@@ -436,9 +436,9 @@
     margin-top: 1px;
 }
 
-.product-review-rating i {
+/* .product-review-rating i {
     background-position: -196px -414px;
-}
+} */
 
 .product-review-total-ratings {
     color: #565959;
@@ -573,6 +573,12 @@
     margin-bottom: 16px;
 }
 
+.review-user-edit-delete-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .review-single-user-info-container {
     height: 34px;
     width: 100%;
@@ -593,6 +599,12 @@
     font-size: 13px;
     height: 34px;
     line-height: 34px;
+}
+
+.review-edit-delete-dropdown img {
+    width: 30px;
+    height: 30px;
+    transform: rotate(90deg)
 }
 
 .review-single-rating-title-container {

@@ -72,7 +72,7 @@ function CreateReview() {
       console.log("ERROR IN REVIEW FORM RESPONSE");
     }
 
-    // history.push(`/product/${productId}`);
+    history.push(`/product/${productId}`);
   };
 
   useEffect(async () => {
