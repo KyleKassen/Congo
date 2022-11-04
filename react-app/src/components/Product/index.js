@@ -188,7 +188,8 @@ function Product() {
 
   const deleteProduct = async (id) => {
     await dispatch(deleteOneProduct(id));
-    history.push(`/product/${productId}`)
+    await dispatch(loadAllProducts())
+    // history.push(`/product/${productId}`)
   }
 
   return (
