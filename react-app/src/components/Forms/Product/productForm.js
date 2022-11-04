@@ -36,6 +36,8 @@ function ProductForm({createProduct}) {
     if (title.length > 255) currentErrors['title'] = "Maximum title length is 255 characters"
     if (!description) currentErrors['description'] = "Please enter a description"
     if (!price) currentErrors['price'] = "Please enter a price"
+    if (parseInt(price) > 1000000) currentErrors['price'] = "Price must be below $1,000,000"
+    console.log(`price is ${typeof(price)}`)
 
     if (Object.values(currentErrors).length > 0) {
       setErrorMsgs(currentErrors)
@@ -129,7 +131,7 @@ function ProductForm({createProduct}) {
             <input
               id="form-field-price"
               className="form-field"
-              placeholder="What is your product?"
+              placeholder="How much do you want to sell your product for?"
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
