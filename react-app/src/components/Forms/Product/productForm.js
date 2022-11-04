@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createOneReview } from "../../../store/review";
-import { addOneProduct } from "../../../store/product";
+import { addOneProduct, updateOneProduct } from "../../../store/product";
 import "./productform.css";
 
 function ProductForm({createProduct}) {
@@ -14,8 +13,18 @@ function ProductForm({createProduct}) {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const {productId} = useParams();
 
   const userId = useSelector((state) => state.session.user.id);
+  const currentProduct = useSelector(state => state.products.allProducts[productId])
+
+  useEffect(() => {
+    if (!createProduct) {
+        setTitle(currentProduct.title);
+        setDescription(currentProduct.description);
+        setPrice(currentProduct.price);
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,17 +38,30 @@ function ProductForm({createProduct}) {
     //   sold_by: 'Amazon.com',
     //   fulfilled_by: 'Amazon.com',
     };
-    let productId = 0
-    try {
-        const response = await dispatch(addOneProduct(newProduct));
-        console.log('Product response from server', response)
-        productId = response.id
-    } catch (res) {
-        console.log(res);
-        console.log("Error IN Product Form Response")
+
+    if (createProduct) {
+        let productId = 0
+        try {
+            const response = await dispatch(addOneProduct(newProduct));
+            console.log('Product response from server', response)
+            productId = response.id
+        } catch (res) {
+            console.log(res);
+            console.log("Error IN Product Form Response")
+        }
+        history.push(`/product/${productId}`);
+    } else {
+        try {
+            const response = await dispatch(updateOneProduct(newProduct, productId));
+            console.log('Product response from server', response)
+        } catch (res) {
+            console.log(res);
+            console.log("Error IN Product Form Response")
+        }
+
+        history.push(`/product/${productId}`);
     }
 
-    history.push(`/product/${productId}`);
   };
 
   return (

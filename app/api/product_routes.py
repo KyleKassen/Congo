@@ -131,26 +131,28 @@ def update_product(id):
     user = current_user.to_dict()
     owner_id = user['id']
 
-    if (owner_id != form.data['seller_id']):
-        return {
-            "statusCode": 400,
-            "message": "Not the correct user"
-        }
-
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     updated_product = Product.query.get(id)
 
+
+    # if owner_id != form.data['seller_id']:
+    #     return {
+    #         "statusCode": 400,
+    #         "message": "Not the correct user"
+    #     }
+
+
     if form.validate_on_submit():
         updated_product.title = form.data['title'],
         updated_product.description = form.data['description'],
-        updated_product.sold_by = form.data['sold_by'],
-        updated_product.fulfilled_by = form.data['fulfilled_by'],
-        updated_product.quantity = form.data['quantity'],
+        # updated_product.sold_by = form.data['sold_by'],
+        # updated_product.fulfilled_by = form.data['fulfilled_by'],
+        # updated_product.quantity = form.data['quantity'],
         updated_product.price = form.data['price'],
-        updated_product.sale_price = form.data['sale_price'],
-        updated_product.shipping_price = form.data['shipping_price'],
-        updated_product.prime = form.data['prime']
+        # updated_product.sale_price = form.data['sale_price'],
+        # updated_product.shipping_price = form.data['shipping_price'],
+        # updated_product.prime = form.data['prime']
 
         db.session.commit()
 
