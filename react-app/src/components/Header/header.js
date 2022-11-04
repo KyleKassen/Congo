@@ -74,7 +74,7 @@ function Header() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    history.push(`businesses/search?input=${search}`);
+    // history.push(`businesses/search?input=${search}`);
   }
 
   const logoutFunc = async () => {
@@ -89,8 +89,8 @@ function Header() {
     <div>
       <div className="header-outer-container">
         <div className="header-left-container">
-          <div className="header-logo header-hover-border">
-            <img src={congo2} />
+          <div className="header-logo header-hover-border heading-working-hover">
+            <img src={congo2} onClick={() => history.push("/")}/>
           </div>
           <div className="header-set-location header-hover-border">
             <img src={whitepin} />
@@ -152,7 +152,7 @@ function Header() {
             </div>
           )} */}
             <div
-              className="header-user-auth header-hover-border"
+              className="header-user-auth header-hover-border heading-working-hover"
               >
               {session.user && (
               <p className="header-top-text">Hello, {name}</p>
