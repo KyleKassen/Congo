@@ -103,6 +103,31 @@
     background-color: #F7FEFF;
 }
 
+.product-form-error-container {
+    position: relative;
+    margin-top: -7px;
+    margin-bottom: 7px;
+    padding-left: 3px;
+    display: flex;
+    padding-top: 14.4px;
+}
+
+.product-form-error-text {
+    font-size: 14px;
+    line-height: 15px;
+    color: #DD0000;
+}
+
+.product-form-error-icon {
+    background-image: url("../../../media/images/amazonicon2.png");
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    width: 5px;
+    height: 13px;
+    background-position: -141px -130px;
+    padding-right: 10px;
+}
+
 .create-review-img-upload-container input {
     display: none;
 }
