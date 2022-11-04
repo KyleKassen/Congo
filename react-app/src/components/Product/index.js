@@ -7,9 +7,10 @@ import {
   useHistory,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadOneProduct } from "../../store/product";
+import { loadOneProduct, loadAllProducts, deleteOneProduct } from "../../store/product";
 import { loadAllReviews, deleteOneReview } from "../../store/review";
 import { loadAllAddresses } from "../../store/address";
+import { Modal } from "../../context/Modal";
 import EditReview from "../Forms/ReviewForms/editReview";
 import Review from "../Review/index";
 
@@ -24,11 +25,15 @@ function Product() {
   const [loaded, setLoaded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
   const [showEditReviewModal, setShowEditReviewModal] = useState(false);
+  const [editReviewId, setEditReviewId] = useState(0);
   const { productId } = useParams();
 
   const dispatch = useDispatch();
   const history = useHistory();
   const product = useSelector((state) => state.products.singleProduct);
+  const allProductsProduct = useSelector(
+    (state) => state.products.allProducts[productId]
+  );
   const reviews = useSelector((state) =>
     Object.values(state.reviews.productReviews)
   );
@@ -37,9 +42,12 @@ function Product() {
   );
   const userId = useSelector((state) => state.session.user?.id);
 
+  console.log(`object keys producs ${product}`);
+
   useEffect(() => {
     (async () => {
       await dispatch(loadOneProduct(productId));
+      await dispatch(loadAllProducts(productId));
       await dispatch(loadAllReviews(productId));
       if (userId) {
         {
@@ -49,6 +57,14 @@ function Product() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  if (!allProductsProduct) {
+    return (
+      <div className="product-page-no-product">
+        <h1>No Product Found</h1>
+      </div>
+    )
+  }
 
   let five = 0;
   let four = 0;
@@ -73,6 +89,8 @@ function Product() {
         break;
       case 1:
         one += 1;
+        break;
+      case null:
         break;
     }
 
@@ -123,7 +141,9 @@ function Product() {
   const getStars = (rating, addon) => {
     return (
       <>
-        {rating > 4.6 && <i className="stars-img product-5-stars"></i>}
+        {rating > 4.6 && (
+          <i className={`stars-img product-5-stars${addon}`}></i>
+        )}
         {rating <= 4.6 && rating > 4 && (
           <i className={`stars-img product-45-stars${addon}`}></i>
         )}
@@ -148,7 +168,7 @@ function Product() {
         {rating <= 1 && rating > 0.6 && (
           <i className={`stars-img product-1-stars${addon}`}></i>
         )}
-        {rating <= 0.6 && (
+        {rating <= 0.6 && rating != null && (
           <i className={`stars-img product-05-stars${addon}`}></i>
         )}
         {rating == null && (
@@ -165,6 +185,11 @@ function Product() {
   const deleteReview = async (currReview) => {
     await dispatch(deleteOneReview(currReview.id));
   };
+
+  const deleteProduct = async (id) => {
+    await dispatch(deleteOneProduct(id));
+    history.push(`/product/${productId}`)
+  }
 
   return (
     <div className="product-page-outer-wrapper">
@@ -204,12 +229,31 @@ function Product() {
           <div className="product-title">
             <h1>{product.title}</h1>
           </div>
-          <div className="product-rating-container">
-            <div className="product-star-rating">
-              {getStars(product.rating, "")}
+          <div className="product-rating-edit-container">
+            <div className="product-rating-container">
+              <div className="product-star-rating">
+                {getStars(product.rating, "")}
+              </div>
+              <div className="product-rating-count">
+                <span>{product.reviewCount} ratings</span>
+              </div>
             </div>
-            <div className="product-rating-count">
-              <span>{product.reviewCount} ratings</span>
+            <div className="review-edit-delete-dropdown">
+              {product.sellerId === userId && <img src={threesq} />}
+              <ul>
+                <li
+                  onClick={() => {
+                    history.push(`/editproduct/${product.id}`);
+                  }}
+                >
+                  Edit Product
+                </li>
+                <li onClick={() => deleteProduct(product.id)}>Delete Product</li>
+                <div className="review-dropdown-top-buffer"></div>
+                <div className="review-dropdown-right-buffer"></div>
+                <div className="review-dropdown-bottom-buffer"></div>
+                <div className="review-dropdown-left-buffer"></div>
+              </ul>
             </div>
           </div>
           <hr />
@@ -270,13 +314,14 @@ function Product() {
             </div>
             <div className="buy-box-delivery-location">
               <img src={locationpin} />
-              {userId && (
+              {userId && addresses.length > 0 && (
                 <span>
                   Deliver to {addresses && addresses[0]?.city}{" "}
                   {addresses && addresses[0]?.zipcode}
                 </span>
               )}
               {!userId && <span>Sign in to see delivery location</span>}
+              {addresses.length === 0 && <span>No delivery address found</span>}
             </div>
             <div className="buy-box-stock">
               <p>In Stock.</p>
@@ -335,13 +380,16 @@ function Product() {
                     <div
                       className="review-table-bar-filled 5star-bar-filled"
                       style={{
-                        width: `${Math.floor((five / reviews.length) * 100)}%`,
+                        width: `${
+                          reviews.length &&
+                          Math.floor((five / reviews.length) * 100)
+                        }%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-5star-percent">
-                  {Math.floor((five / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((five / reviews.length) * 100)}%
                 </td>
               </tr>
               <tr className="review-table-4star">
@@ -353,13 +401,16 @@ function Product() {
                     <div
                       className="review-table-bar-filled 4star-bar-filled"
                       style={{
-                        width: `${Math.floor((four / reviews.length) * 100)}%`,
+                        width: `${
+                          reviews.length &&
+                          Math.floor((four / reviews.length) * 100)
+                        }%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-4star-percent">
-                  {Math.floor((four / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((four / reviews.length) * 100)}%
                 </td>
               </tr>
               <tr className="review-table-3star">
@@ -371,13 +422,17 @@ function Product() {
                     <div
                       className="review-table-bar-filled 3star-bar-filled"
                       style={{
-                        width: `${Math.floor((three / reviews.length) * 100)}%`,
+                        width: `${
+                          reviews.length &&
+                          Math.floor((three / reviews.length) * 100)
+                        }%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-3star-percent">
-                  {Math.floor((three / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((three / reviews.length) * 100)}
+                  %
                 </td>
               </tr>
               <tr className="review-table-2star">
@@ -389,13 +444,16 @@ function Product() {
                     <div
                       className="review-table-bar-filled 2star-bar-filled"
                       style={{
-                        width: `${Math.floor((two / reviews.length) * 100)}%`,
+                        width: `${
+                          reviews.length &&
+                          Math.floor((two / reviews.length) * 100)
+                        }%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-2star-percent">
-                  {Math.floor((two / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((two / reviews.length) * 100)}%
                 </td>
               </tr>
               <tr className="review-table-1star">
@@ -407,13 +465,16 @@ function Product() {
                     <div
                       className="review-table-bar-filled 1star-bar-filled"
                       style={{
-                        width: `${Math.floor((one / reviews.length) * 100)}%`,
+                        width: `${
+                          reviews.length &&
+                          Math.floor((one / reviews.length) * 100)
+                        }%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-1star-percent">
-                  {Math.floor((one / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((one / reviews.length) * 100)}%
                 </td>
               </tr>
             </tbody>
@@ -433,7 +494,7 @@ function Product() {
           </div>
         </div>
         <div className="review-right-container">
-          {reviewImgs.length && (
+          {reviewImgs.length > 0 && (
             <>
               <h3 className="review-images-heading">Review Images</h3>
               <div className="review-images-container">
@@ -445,7 +506,8 @@ function Product() {
             </>
           )}
           <div className="reviews-content-container">
-            <h3>From the United States</h3>
+            {reviewImgs.length > 0 && <h3>From the United States</h3>}
+            {reviewImgs.length === 0 && <h3>No reviews for this product</h3>}
             {reviews && (
               <>
                 {reviews.map((review, idx) => {
@@ -458,13 +520,14 @@ function Product() {
                           <p>{review.user.username}</p>
                         </div>
                         <div className="review-edit-delete-dropdown">
-                          {review.userId === userId && (
-                            <img
-                              src={threesq}
-                            />
-                          )}
+                          {review.userId === userId && <img src={threesq} />}
                           <ul>
-                            <li onClick={() => editReview(review)}>
+                            <li
+                              onClick={() => {
+                                setShowEditReviewModal(true);
+                                setEditReviewId(review.id);
+                              }}
+                            >
                               Edit Review
                             </li>
                             <li onClick={() => deleteReview(review)}>
@@ -491,7 +554,7 @@ function Product() {
                         Verified Purchase
                       </p>
                       <p className="review-single-review">{review.review}</p>
-                      {review.images && (
+                      {review.images.length > 0 && (
                         <div className="review-single-all-images-container">
                           {review.images.map((image, idx) => {
                             return (
@@ -518,6 +581,14 @@ function Product() {
           </div>
         </div>
       </div>
+      {showEditReviewModal && (
+        <Modal onClose={() => setShowEditReviewModal(false)}>
+          <EditReview
+            setShowEditReviewModal={setShowEditReviewModal}
+            editReviewId={editReviewId}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

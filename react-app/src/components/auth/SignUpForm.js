@@ -26,7 +26,7 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data);
-        
+
         for(let err of data) {
           console.log(err)
           if (err.startsWith('email')) {
@@ -37,9 +37,13 @@ const SignUpForm = () => {
     }
 
     if (!username) currentErrors['name'] = 'Enter your name';
+    if (username.length > 59) currentErrors['name'] = 'Entered name is too long'
     if (!email) currentErrors['email'] = 'Enter your email';
+    if (email.length > 254) currentErrors['email'] = 'Entered email is too long';
+    if (password.length > 254) currentErrors['password'] = 'Maximum of 255 characters';
     if (password.length < 6) currentErrors['password'] = 'Minimum 6 characters required';
     if (password !== repeatPassword) currentErrors['password2'] = 'Passwords must match'
+    if (!email.includes(".") || !email.includes("@")) currentErrors['email'] = 'Enter a valid email'
 
     setErrorMsgs(currentErrors);
   };

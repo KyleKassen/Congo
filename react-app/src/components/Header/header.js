@@ -74,7 +74,7 @@ function Header() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    history.push(`businesses/search?input=${search}`);
+    // history.push(`businesses/search?input=${search}`);
   }
 
   const logoutFunc = async () => {
@@ -89,8 +89,8 @@ function Header() {
     <div>
       <div className="header-outer-container">
         <div className="header-left-container">
-          <div className="header-logo header-hover-border">
-            <img src={congo2} />
+          <div className="header-logo header-hover-border heading-working-hover">
+            <img src={congo2} onClick={() => history.push("/")}/>
           </div>
           <div className="header-set-location header-hover-border">
             <img src={whitepin} />
@@ -152,7 +152,7 @@ function Header() {
             </div>
           )} */}
             <div
-              className="header-user-auth header-hover-border"
+              className="header-user-auth header-hover-border heading-working-hover"
               >
               {session.user && (
               <p className="header-top-text">Hello, {name}</p>
@@ -183,7 +183,13 @@ function Header() {
                 <div className="header-account-dropdown-bottom">
                 <div className="header-account-dropdown-seller">
                   <p className="header-account-dropdown-title">Become a Seller</p>
-                  <a className="header-dropdown-text">Add a Product</a>
+                  <a className="header-dropdown-text" onClick={() => {
+                    if (session.user) {
+                      history.push('/addproduct')
+                    } else {
+                      history.push('/login')
+                    }
+                  }}>Add a Product</a>
                 </div>
                 <div className="header-account-dropdown-your-account">
                   <p className="header-account-dropdown-title">Your Account</p>

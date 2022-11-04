@@ -1,15 +1,15 @@
-.create-review-wrapper {
+.product-form-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.create-review-container {
+.product-form-container {
     width: 704px;
     padding: 13px 14px;
 }
 
-.create-review-container h2 {
+.product-form-container h2 {
     width: 100%;
     padding-bottom: 4px;
     padding-top: 25px;
@@ -35,7 +35,7 @@
     padding: 0px 10px;
 }
 
-.create-review-container hr {
+.product-form-container hr {
     border-top: 1px solid #e7e7e7;
     height: 1px;
     margin: 16px 0px;
@@ -62,7 +62,7 @@
     cursor: pointer;
 }
 
-.create-review-container h3 {
+.product-form-container h3 {
     font-size: 18px;
     font-weight: 700;
 }
@@ -84,32 +84,7 @@
     height: 32.2px;
 }
 
-.review-form-error-container {
-    position: relative;
-    margin-top: -7px;
-    margin-bottom: 7px;
-    padding-left: 3px;
-    display: flex;
-    padding-top: 14.4px;
-}
-
-.review-form-error-text {
-    font-size: 14px;
-    line-height: 15px;
-    color: #DD0000;
-}
-
-.review-form-error-icon {
-    background-image: url("../../../media/images/amazonicon2.png");
-    background-size: 400px 900px;
-    background-repeat: no-repeat;
-    width: 5px;
-    height: 13px;
-    background-position: -141px -130px;
-    padding-right: 10px;
-}
-
-.create-review-title-container input {
+.product-form-title-container input {
     width: calc(100% - 14px);
     height: calc(31px - 6px);
     padding: 3px 7px;
@@ -121,11 +96,36 @@
     margin: 14px 0px;
 }
 
-.create-review-title-container input:focus {
+.product-form-title-container input:focus {
     outline: none;
     border: 1px solid #e77600;
     box-shadow: 0 0 3px 2px rgba(228,121,17,0.5);
     background-color: #F7FEFF;
+}
+
+.product-form-error-container {
+    position: relative;
+    margin-top: -7px;
+    margin-bottom: 7px;
+    padding-left: 3px;
+    display: flex;
+    padding-top: 14.4px;
+}
+
+.product-form-error-text {
+    font-size: 14px;
+    line-height: 15px;
+    color: #DD0000;
+}
+
+.product-form-error-icon {
+    background-image: url("../../../media/images/amazonicon2.png");
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    width: 5px;
+    height: 13px;
+    background-position: -141px -130px;
+    padding-right: 10px;
 }
 
 .create-review-img-upload-container input {
@@ -206,12 +206,7 @@
     height: 25px;
 }
 
-.create-review-img-body-divider {
-    margin-top: 25px !important;
-    margin-bottom: 14px !important;
-}
-
-.create-review-body-container textarea {
+.product-form-description-container textarea {
     width: calc(100% - 14px);
     height: calc(130px - 14px);
     padding: 7px 7px;
@@ -225,14 +220,33 @@
     resize: none;
 }
 
-.create-review-body-container textarea:focus {
+.product-form-description-container textarea:focus {
     outline: none;
     border: 1px solid #e77600;
     box-shadow: 0 0 3px 2px rgba(228,121,17,0.5);
     background-color: #F7FEFF;
 }
 
-#create-review-button {
+.product-form-price-container input {
+    width: calc(100% - 14px);
+    height: calc(31px - 6px);
+    padding: 3px 7px;
+    border: 1px solid #888C8C;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+    -webkit-transition: all .3s linear;
+    transition: all .3s linear;
+    margin: 14px 0px;
+}
+
+.product-form-price-container input:focus {
+    outline: none;
+    border: 1px solid #e77600;
+    box-shadow: 0 0 3px 2px rgba(228,121,17,0.5);
+    background-color: #F7FEFF;
+}
+
+#product-form-button {
     background: #FFD814;
     border: 1px solid #FCD200;
     border-radius: 8px;
@@ -243,13 +257,13 @@
     float: right;
 }
 
-#create-review-button:hover {
+#product-form-button:hover {
     background: #F7CA00;
     border-color: #F2C200;
     cursor: pointer;
 }
 
-#create-review-button:active {
+#product-form-button:active {
     background: #FFD814;
     border: 1px solid #FCD200;
 }

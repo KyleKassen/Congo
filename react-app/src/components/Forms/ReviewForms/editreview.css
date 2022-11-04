@@ -4,12 +4,12 @@
     justify-content: center;
 }
 
-.create-review-container {
+.edit-review-container {
     width: 704px;
-    padding: 13px 14px;
+    padding: 0px 24px 13px 24px;
 }
 
-.create-review-container h2 {
+.edit-review-container h2 {
     width: 100%;
     padding-bottom: 4px;
     padding-top: 25px;
@@ -35,7 +35,7 @@
     padding: 0px 10px;
 }
 
-.create-review-container hr {
+.edit-review-container hr {
     border-top: 1px solid #e7e7e7;
     height: 1px;
     margin: 16px 0px;
@@ -62,7 +62,7 @@
     cursor: pointer;
 }
 
-.create-review-container h3 {
+.edit-review-container h3 {
     font-size: 18px;
     font-weight: 700;
 }

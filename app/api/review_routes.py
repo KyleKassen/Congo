@@ -76,7 +76,7 @@ def delete_review(id):
 
 @review_routes.route('/<int:id>/images', methods=['POST'])
 @login_required
-def add_review_imgages(id):
+def add_review_images(id):
     """
     Add Images to Review
     """
@@ -145,9 +145,18 @@ def delete_review_img():
     Delete a review image
     """
     urlObj = request.json
+    url = urlObj['url']
+
+    rev_image = ReviewImage.query.filter_by(url=url).all()
+    print("\n\n\n\n", rev_image)
+    if rev_image:
+        print("\n\n\n\nifstatement ran", rev_image)
+        db.session.delete(rev_image[0])
+        db.session.commit()
+
     print("\n\n\nrequest.json", urlObj)
 
-    delete = delete_file_from_s3(urlObj['url'])
+    delete = delete_file_from_s3(url)
 
     print(f'delete response from s3 helper function {delete}')
 

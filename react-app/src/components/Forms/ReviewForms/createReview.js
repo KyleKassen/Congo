@@ -5,7 +5,9 @@ import { createOneReview } from "../../../store/review";
 import selectstar from "../../../media/images/selectstar.svg";
 import unselectstar from "../../../media/images/unselectstar.svg";
 import plus from "../../../media/images/plusicon.svg";
+import amazonicons from "../../../media/images/amazonicon2.png";
 import "./createreview.css";
+import { loadOneProduct } from "../../../store/product";
 
 function CreateReview() {
   const [title, setTitle] = useState("");
@@ -15,6 +17,8 @@ function CreateReview() {
   const [imageUrls, setImageUrls] = useState([]);
   const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [errormsgs, setErrorMsgs] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   const { productId } = useParams();
   console.log(`productId is ${productId}`);
@@ -22,19 +26,67 @@ function CreateReview() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
   const userId = useSelector((state) => state.session.user.id);
-  const product = useSelector((state) => state.products.allProducts[productId]);
+  const product = useSelector((state) => state.products.singleProduct);
+
+  useEffect(() => {
+    (async () => {
+      await dispatch(loadOneProduct(productId));
+      setLoaded(true);
+    })();
+  }, [dispatch]);
+
+  useEffect(async () => {
+    console.log("This is inside image useeffect", image);
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    if (image) {
+      const res = await fetch(`/api/reviews/images`, {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        const urlObj = await res.json();
+        console.log("urlObj from adding to s3 is:", urlObj);
+        const url = urlObj.url;
+        setImageUrls([...imageUrls, url]);
+      }
+
+      setImage(null);
+    }
+  }, [image]);
+
+
+  if (!loaded) {
+    return null;
+  }
+
 
   const productTitle =
-    product.title.length > 95 ? `${product.title.slice(95)}...` : product.title;
+  product.title?.length > 95 ? `${product.title.slice(95)}...` : product.title;
 
-  useEffect(() => {}, [title, review, rating]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(title);
     console.log(review);
     console.log(rating);
+
+    let currentErrors = {}
+
+    if (!title) currentErrors['title'] = "Please enter your headline"
+    if (title.length > 255) currentErrors['title'] = "Maximum headline length is 255 characters"
+    if (!rating) currentErrors['rating'] = "Please select a star rating"
+    if (!review) currentErrors['review'] = "Please enter your review"
+    if (review.length > 5000) currentErrors['review'] = "Maximum review length is 5000 characters"
+
+    if (Object.values(currentErrors).length > 0) {
+      setErrorMsgs(currentErrors)
+      return;
+    }
 
     const newReview = {
       product_id: productId,
@@ -75,27 +127,6 @@ function CreateReview() {
     history.push(`/product/${productId}`);
   };
 
-  useEffect(async () => {
-    console.log("This is inside image useeffect", image);
-
-    const formData = new FormData();
-    formData.append("image", image);
-
-    if (image) {
-      const res = await fetch(`/api/reviews/images`, {
-        method: "POST",
-        body: formData,
-      });
-      if (res.ok) {
-        const urlObj = await res.json();
-        console.log("urlObj from adding to s3 is:", urlObj);
-        const url = urlObj.url;
-        setImageUrls([...imageUrls, url]);
-      }
-
-      setImage(null);
-    }
-  }, [image]);
 
   const handleStarClick = (starNumber) => {
     let starOne = document.getElementsByClassName("create-review-star1")[0]
@@ -183,15 +214,15 @@ function CreateReview() {
 
   console.log("current image url array is ", imageUrls)
 
-  window.onbeforeunload = (event) => {
-    const e = event || window.event;
-    // Cancel the event
-    e.preventDefault();
-    if (e) {
-      e.returnValue = ''; // Legacy method for cross browser support
-    }
-    return ''; // Legacy method for cross browser support
-  };
+  // window.onbeforeunload = (event) => {
+  //   const e = event || window.event;
+  //   // Cancel the event
+  //   e.preventDefault();
+  //   if (e) {
+  //     e.returnValue = ''; // Legacy method for cross browser support
+  //   }
+  //   return ''; // Legacy method for cross browser support
+  // };
 
   return (
     <div className="create-review-wrapper">
@@ -239,6 +270,12 @@ function CreateReview() {
               <img src={unselectstar} />
             </button>
           </div>
+          {errormsgs.rating && (
+              <div className="review-form-error-container">
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.rating}</p>
+              </div>
+              )}
         </div>
         <hr />
         <form onSubmit={handleSubmit}>
@@ -256,9 +293,14 @@ function CreateReview() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
             />
           </div>
+          {errormsgs.title && (
+              <div className="review-form-error-container">
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.title}</p>
+              </div>
+              )}
           <hr />
           <div className="create-review-img-upload-container">
             <h3>Add a photo or video</h3>
@@ -300,9 +342,14 @@ function CreateReview() {
               type="textarea"
               value={review}
               onChange={(e) => setReview(e.target.value)}
-              required
             ></textarea>
           </div>
+          {errormsgs.review && (
+              <div className="review-form-error-container">
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.review}</p>
+              </div>
+              )}
           <div>
             <input
               id="form-field-rating"
@@ -311,7 +358,6 @@ function CreateReview() {
               type="hidden"
               value={rating}
               onChange={(e) => setRating(e.target.value)}
-              required
             />
           </div>
           <hr />
