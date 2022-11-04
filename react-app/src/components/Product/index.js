@@ -76,6 +76,8 @@ function Product() {
       case 1:
         one += 1;
         break;
+      case null:
+        break;
     }
 
     if (review.images) {
@@ -125,7 +127,7 @@ function Product() {
   const getStars = (rating, addon) => {
     return (
       <>
-        {rating > 4.6 && <i className="stars-img product-5-stars"></i>}
+        {rating > 4.6 && <i className={`stars-img product-5-stars${addon}`}></i>}
         {rating <= 4.6 && rating > 4 && (
           <i className={`stars-img product-45-stars${addon}`}></i>
         )}
@@ -150,7 +152,7 @@ function Product() {
         {rating <= 1 && rating > 0.6 && (
           <i className={`stars-img product-1-stars${addon}`}></i>
         )}
-        {rating <= 0.6 && (
+        {rating <= 0.6 && rating != null && (
           <i className={`stars-img product-05-stars${addon}`}></i>
         )}
         {rating == null && (
@@ -337,13 +339,13 @@ function Product() {
                     <div
                       className="review-table-bar-filled 5star-bar-filled"
                       style={{
-                        width: `${Math.floor((five / reviews.length) * 100)}%`,
+                        width: `${reviews.length && Math.floor((five / reviews.length) * 100)}%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-5star-percent">
-                  {Math.floor((five / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((five / reviews.length) * 100)}%
                 </td>
               </tr>
               <tr className="review-table-4star">
@@ -355,13 +357,13 @@ function Product() {
                     <div
                       className="review-table-bar-filled 4star-bar-filled"
                       style={{
-                        width: `${Math.floor((four / reviews.length) * 100)}%`,
+                        width: `${reviews.length && Math.floor((four / reviews.length) * 100)}%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-4star-percent">
-                  {Math.floor((four / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((four / reviews.length) * 100)}%
                 </td>
               </tr>
               <tr className="review-table-3star">
@@ -373,13 +375,13 @@ function Product() {
                     <div
                       className="review-table-bar-filled 3star-bar-filled"
                       style={{
-                        width: `${Math.floor((three / reviews.length) * 100)}%`,
+                        width: `${reviews.length && Math.floor((three / reviews.length) * 100)}%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-3star-percent">
-                  {Math.floor((three / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((three / reviews.length) * 100)}%
                 </td>
               </tr>
               <tr className="review-table-2star">
@@ -391,13 +393,13 @@ function Product() {
                     <div
                       className="review-table-bar-filled 2star-bar-filled"
                       style={{
-                        width: `${Math.floor((two / reviews.length) * 100)}%`,
+                        width: `${reviews.length && Math.floor((two / reviews.length) * 100)}%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-2star-percent">
-                  {Math.floor((two / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((two / reviews.length) * 100)}%
                 </td>
               </tr>
               <tr className="review-table-1star">
@@ -409,13 +411,13 @@ function Product() {
                     <div
                       className="review-table-bar-filled 1star-bar-filled"
                       style={{
-                        width: `${Math.floor((one / reviews.length) * 100)}%`,
+                        width: `${reviews.length && Math.floor((one / reviews.length) * 100)}%`,
                       }}
                     ></div>
                   </div>
                 </td>
                 <td className="review-table-percent-text review-table-1star-percent">
-                  {Math.floor((one / reviews.length) * 100)}%
+                  {reviews.length && Math.floor((one / reviews.length) * 100)}%
                 </td>
               </tr>
             </tbody>
@@ -435,7 +437,7 @@ function Product() {
           </div>
         </div>
         <div className="review-right-container">
-          {reviewImgs.length && (
+          {reviewImgs.length > 0 && (
             <>
               <h3 className="review-images-heading">Review Images</h3>
               <div className="review-images-container">
@@ -447,7 +449,8 @@ function Product() {
             </>
           )}
           <div className="reviews-content-container">
-            <h3>From the United States</h3>
+          {reviewImgs.length > 0 && <h3>From the United States</h3>}
+          {reviewImgs.length === 0 && <h3>No reviews for this product</h3>}
             {reviews && (
               <>
                 {reviews.map((review, idx) => {
@@ -492,7 +495,7 @@ function Product() {
                         Verified Purchase
                       </p>
                       <p className="review-single-review">{review.review}</p>
-                      {review.images.length > 1 && (
+                      {review.images.length > 0 && (
                         <div className="review-single-all-images-container">
                           {review.images.map((image, idx) => {
                             return (
