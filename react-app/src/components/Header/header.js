@@ -95,16 +95,16 @@ function Header() {
           <div className="header-logo header-hover-border heading-working-hover">
             <img src={congo2} onClick={() => history.push("/")}/>
           </div>
-          <div className="header-set-location header-hover-border">
+          {/* <div className="header-set-location header-hover-border">
             <img src={whitepin} />
             <div>
               <p className="header-top-text">Deliver to</p>
               <p className="header-bottom-text">Select your address</p>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className={`header-middle-container ${focusClass}`}>
-          <div className="header-search-bar-outer-container">
+          {/* <div className="header-search-bar-outer-container">
             <form onSubmit={onSubmit} className="text">
               <div className="header-search-bar-container">
                 <select
@@ -138,13 +138,13 @@ function Header() {
                 </button>
               </div>
             </form>
-          </div>
+          </div> */}
         </div>
         <div className="header-right-container">
-          <div className="header-language header-hover-border">
+          {/* <div className="header-language header-hover-border">
             <img src={flag} />
             EN
-          </div>
+          </div> */}
           {/* {!session.user && (
             <div
               className="header-user-auth header-hover-border"
@@ -207,7 +207,7 @@ function Header() {
                 </div>
               </div>
             </div>
-          <div className="header-returns header-hover-border">
+          {/* <div className="header-returns header-hover-border">
             <p className="header-top-text">Returns</p>
             <p className="header-bottom-text">& Orders</p>
           </div>
@@ -217,10 +217,10 @@ function Header() {
             </div>
             <img src={cart} />
             <p className="header-bottom-text">Cart</p>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className="header-mainnav-container">
+      {/* <div className="header-mainnav-container">
         <div className="header-mainnav-all header-hover-border">
           <div className="header-mainnav-all-img-container">
             <img src={hamburger} />
@@ -242,7 +242,7 @@ function Header() {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 }
