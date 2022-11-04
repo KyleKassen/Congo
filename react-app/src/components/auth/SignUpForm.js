@@ -26,7 +26,7 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data);
-        
+
         for(let err of data) {
           console.log(err)
           if (err.startsWith('email')) {
@@ -40,6 +40,7 @@ const SignUpForm = () => {
     if (!email) currentErrors['email'] = 'Enter your email';
     if (password.length < 6) currentErrors['password'] = 'Minimum 6 characters required';
     if (password !== repeatPassword) currentErrors['password2'] = 'Passwords must match'
+    if (!email.includes(".") || !email.includes("@")) currentErrors['email'] = 'Enter a valid email'
 
     setErrorMsgs(currentErrors);
   };

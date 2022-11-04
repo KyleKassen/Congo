@@ -183,7 +183,13 @@ function Header() {
                 <div className="header-account-dropdown-bottom">
                 <div className="header-account-dropdown-seller">
                   <p className="header-account-dropdown-title">Become a Seller</p>
-                  <a className="header-dropdown-text">Add a Product</a>
+                  <a className="header-dropdown-text" onClick={() => {
+                    if (session.user) {
+                      history.push('/addproduct')
+                    } else {
+                      history.push('/login')
+                    }
+                  }}>Add a Product</a>
                 </div>
                 <div className="header-account-dropdown-your-account">
                   <p className="header-account-dropdown-title">Your Account</p>
