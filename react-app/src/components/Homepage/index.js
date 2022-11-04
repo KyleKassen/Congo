@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useHistory} from "react-router-dom";
 import Carousel from "../Carousel";
 import { useSelector } from "react-redux";
 import "./homepage.css";
@@ -8,13 +9,15 @@ function Homepage() {
     Object.values(state.products.allProducts)
   );
 
-  let saleProducts = [];
-  for (let product of products) {
-    // console.log(product)
-    if (product.salePrice) {
-      saleProducts.push(product);
-    }
-  }
+  const history = useHistory();
+
+  // let saleProducts = [];
+  // for (let product of products) {
+  //   // console.log(product)
+  //   if (product.salePrice) {
+  //     saleProducts.push(product);
+  //   }
+  // }
 
   // console.log(products)
 
@@ -23,24 +26,24 @@ function Homepage() {
       <Carousel />
       <div className="home-outer-wrapper">
         <div className="home-outer-container">
-          {saleProducts.map((product) => {
-            let salePercentage = (
-              1 -
-              product.salePrice / product.price
-            ).toString();
-            let formatPerc = salePercentage.slice(2, 4);
+          {products.map((product) => {
+            // let salePercentage = (
+            //   1 -
+            //   product.salePrice / product.price
+            // ).toString();
+            // let formatPerc = salePercentage.slice(2, 4);
             return (
-              <div className="home-flex-item">
+              <div className="home-flex-item" onClick={() => history.push(`/product/${product.id}`)}>
                 <h2>Epic Deals</h2>
                 <div className="home-product-img-container">
                   <img src={product.images[0].url} />
                 </div>
-                <p>
+                {/* <p>
                   {formatPerc}% off <span>Top deal</span>
-                </p>
-                <p>
+                </p> */}
+                {/* <p>
                   ${product.salePrice} List Price: {product.price}
-                </p>
+                </p> */}
                 <p>{product.title.slice(0, 45)} ...</p>
               </div>
             );

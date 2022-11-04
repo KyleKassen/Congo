@@ -289,7 +289,7 @@
 .buy-box-addtocart:hover {
     background: #F7CA00;
     border: 1px solid #F2C200;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .buy-box-buynow {
@@ -301,7 +301,7 @@
 .buy-box-buynow:hover {
     background: #FA8900;
     border: 1px solid #E3931E;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .buy-box-secure {
