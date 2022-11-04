@@ -175,7 +175,7 @@ def delete_product(id):
     user_id = user['id']
     product = Product.query.get(id)
 
-    if (user_id != product['seller_id']):
+    if (user_id != product.seller_id):
         return {
             "statusCode": 400,
             "message": "Not the correct user"

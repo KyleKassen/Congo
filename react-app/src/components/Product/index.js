@@ -7,7 +7,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadOneProduct, loadAllProducts } from "../../store/product";
+import { loadOneProduct, loadAllProducts, deleteOneProduct } from "../../store/product";
 import { loadAllReviews, deleteOneReview } from "../../store/review";
 import { loadAllAddresses } from "../../store/address";
 import { Modal } from "../../context/Modal";
@@ -186,6 +186,11 @@ function Product() {
     await dispatch(deleteOneReview(currReview.id));
   };
 
+  const deleteProduct = async (id) => {
+    await dispatch(deleteOneProduct(id));
+    history.push(`/product/${productId}`)
+  }
+
   return (
     <div className="product-page-outer-wrapper">
       <div className="product-page-wrapper">
@@ -243,7 +248,7 @@ function Product() {
                 >
                   Edit Product
                 </li>
-                <li onClick={() => deleteReview(product.id)}>Delete Product</li>
+                <li onClick={() => deleteProduct(product.id)}>Delete Product</li>
                 <div className="review-dropdown-top-buffer"></div>
                 <div className="review-dropdown-right-buffer"></div>
                 <div className="review-dropdown-bottom-buffer"></div>
