@@ -17,6 +17,7 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
   const [startingUrls, setStartingUrls] = useState([]);
   const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [errormsgs, setErrorMsgs] = useState({});
 
   const { productId } = useParams();
   console.log(`productId is ${productId}`);
@@ -61,6 +62,19 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
       review: review,
       rating: rating,
     };
+
+    let currentErrors = {}
+
+    if (!title) currentErrors['title'] = "Please enter your headline"
+    if (title.length > 255) currentErrors['title'] = "Maximum headline length is 255 characters"
+    if (!rating) currentErrors['rating'] = "Please select a star rating"
+    if (!review) currentErrors['review'] = "Please enter your review"
+    if (review.length > 5000) currentErrors['review'] = "Maximum review length is 5000 characters"
+
+    if (Object.values(currentErrors).length > 0) {
+      setErrorMsgs(currentErrors)
+      return;
+    }
 
     try {
       const response = await dispatch(updateOneReview(newReview, editReviewId));
@@ -272,6 +286,12 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
             </button>
           </div>
         </div>
+        {errormsgs.rating && (
+              <div className="review-form-error-container">
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.rating}</p>
+              </div>
+              )}
         <hr />
         <form onSubmit={handleSubmit}>
           <div>
@@ -291,6 +311,12 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
               required
             />
           </div>
+          {errormsgs.title && (
+              <div className="review-form-error-container">
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.title}</p>
+              </div>
+              )}
           <hr />
           <div className="create-review-img-upload-container">
             <h3>Add a photo or video</h3>
@@ -340,6 +366,12 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
               required
             ></textarea>
           </div>
+          {errormsgs.review && (
+              <div className="review-form-error-container">
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.review}</p>
+              </div>
+              )}
           <div>
             <input
               id="form-field-rating"
