@@ -27,7 +27,7 @@ function CreateReview() {
   const history = useHistory();
 
 
-  const userId = useSelector((state) => state.session.user.id);
+  const user = useSelector((state) => state.session.user);
   const product = useSelector((state) => state.products.singleProduct);
 
   useEffect(() => {
@@ -58,6 +58,12 @@ function CreateReview() {
       setImage(null);
     }
   }, [image]);
+
+  let userId;
+  if (!user) {
+    history.push(`/product/${productId}`)
+    history.push('/login')
+  } else userId = user.id
 
 
   if (!loaded) {
