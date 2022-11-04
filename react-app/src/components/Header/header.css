@@ -296,6 +296,7 @@
 .header-dropdown-text:hover {
     text-decoration: underline;
     color: #e47911;
+    cursor: pointer;
 }
 
 .header-account-dropdown-your-account {
