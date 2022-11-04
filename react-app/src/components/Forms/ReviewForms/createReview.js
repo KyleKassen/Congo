@@ -272,7 +272,8 @@ function CreateReview() {
           </div>
           {errormsgs.rating && (
               <div className="review-form-error-container">
-                <p className="review-form-error-text"><i className="review-form-error-icon"></i> {errormsgs.rating}</p>
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.rating}</p>
               </div>
               )}
         </div>
@@ -292,9 +293,14 @@ function CreateReview() {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
             />
           </div>
+          {errormsgs.title && (
+              <div className="review-form-error-container">
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.title}</p>
+              </div>
+              )}
           <hr />
           <div className="create-review-img-upload-container">
             <h3>Add a photo or video</h3>
@@ -336,9 +342,14 @@ function CreateReview() {
               type="textarea"
               value={review}
               onChange={(e) => setReview(e.target.value)}
-              required
             ></textarea>
           </div>
+          {errormsgs.review && (
+              <div className="review-form-error-container">
+                <i className="review-form-error-icon"></i>
+                <p className="review-form-error-text"> {errormsgs.review}</p>
+              </div>
+              )}
           <div>
             <input
               id="form-field-rating"
@@ -347,7 +358,6 @@ function CreateReview() {
               type="hidden"
               value={rating}
               onChange={(e) => setRating(e.target.value)}
-              required
             />
           </div>
           <hr />
