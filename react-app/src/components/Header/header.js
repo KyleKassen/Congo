@@ -29,12 +29,15 @@ function Header() {
   useEffect(() => {
     if (session?.user?.username) {
       let currentName = ""
+      console.log(currentName)
       currentName = session.user.username.split(" ")
+      console.log(currentName)
       currentName = currentName[0]
+      console.log(currentName)
       if (currentName.length > 12) {
-        currentName = currentName.slice(10) + "..."
+        currentName = currentName.slice(0,8) + "..."
       }
-      setName(currentName.charAt(0).toUpperCase() + currentName.slice(1))
+      setName(currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase())
     }
   }, [session])
 
