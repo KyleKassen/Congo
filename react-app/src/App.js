@@ -11,6 +11,7 @@ import User from "./components/User";
 import Homepage from "./components/Homepage";
 import Product from "./components/Product";
 import CreateReview from "./components/Forms/ReviewForms/createReview";
+import ProductForm from "./components/Forms/Product/productForm";
 import Checkout from "./components/Checkout";
 import { authenticate } from "./store/session";
 import { loadAllProducts, loadOneProduct } from "./store/product";
@@ -39,6 +40,14 @@ function App() {
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/addproduct" exact={true}>
+          <Header />
+          <ProductForm createProduct={true}/>
+        </Route>
+        <Route path="/editproduct/:productId" exact={true}>
+          <Header />
+          <ProductForm createProduct={false}/>
         </Route>
         <Route path="/product/:productId" exact={true}>
           <Header />

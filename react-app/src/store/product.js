@@ -39,14 +39,14 @@ export const addOne = (product) => {
   };
 };
 
-export const addOneProduct = (product) => async (dispatch) => {
+export const addOneProduct = (newProduct) => async (dispatch) => {
   console.log("Adding One Product Thunk");
-  const response = await fetch(`/api/reviews/`, {
+  const response = await fetch(`/api/products/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(product),
+    body: JSON.stringify(newProduct),
   });
 
   const product = await response.json();
@@ -69,14 +69,14 @@ export const updateOne = (product) => {
   };
 };
 
-export const updateOneProduct = (product, id) => async (dispatch) => {
+export const updateOneProduct = (oldProduct, id) => async (dispatch) => {
   console.log("Updating One Product Thunk");
-  const response = await fetch(`/api/reviews/${id}`, {
+  const response = await fetch(`/api/products/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(product),
+    body: JSON.stringify(oldProduct),
   });
 
   const product = await response.json();

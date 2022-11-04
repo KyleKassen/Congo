@@ -10,7 +10,7 @@ class ProductForm(FlaskForm):
     quantity = IntegerField('Quantity')
     price = FloatField('Price', validators=[DataRequired()])
     sale_price = FloatField('Sale Price')
-    shipping_Price = FloatField('Shipping Price')
+    shipping_price = FloatField('Shipping Price')
     prime = BooleanField('Prime')
 
     submit = SubmitField('Submit')

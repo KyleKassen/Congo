@@ -23,7 +23,7 @@ function CreateReview() {
   const history = useHistory();
 
   const userId = useSelector((state) => state.session.user.id);
-  const product = useSelector((state) => state.products.allProducts[productId]);
+  const product = useSelector((state) => state.products.singleProduct);
 
   const productTitle =
     product.title.length > 95 ? `${product.title.slice(95)}...` : product.title;

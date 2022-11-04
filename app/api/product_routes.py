@@ -81,7 +81,7 @@ def create_product():
 
     if form.validate_on_submit():
         product = Product(
-            seller_id,
+            seller_id=seller_id,
             title=form.data['title'],
             description=form.data['description'],
             sold_by=form.data['sold_by'],
@@ -93,6 +93,28 @@ def create_product():
             prime=form.data['prime']
         )
         db.session.add(product)
+        db.session.commit()
+        product_dict = product.to_dict()
+        product_id = product_dict["id"]
+
+        pm1 = ProductImage(
+            product_id=product_id,
+            url="https://thumbnail.imgbin.com/13/18/17/imgbin-coffee-tea-packaging-and-labeling-parcel-bag-design-G9E3ksvw2BMKK24u9zX6A61pT_t.jpg"
+        )
+        pm2 = ProductImage(
+            product_id=product_id,
+            url="https://thumbnail.imgbin.com/24/25/17/imgbin-plastic-pharmaceutical-packaging-design-45ZC5ctTVBCgnuE8dJwstb2XU_t.jpg"
+        )
+        pm3 = ProductImage(
+            product_id=product_id,
+            url="https://cdn.imgbin.com/22/2/15/imgbin-rectangle-box-NhLKGVy7J5LYtbnTDB1suXTUC.jpg"
+        )
+        pm4 = ProductImage(
+            product_id=product_id,
+            url="https://png.pngtree.com/element_pic/00/16/10/22580aa3ca49b8c.jpg"
+        )
+
+        db.session.add_all([pm1, pm2, pm3, pm4])
         db.session.commit()
 
         return product.to_dict()
