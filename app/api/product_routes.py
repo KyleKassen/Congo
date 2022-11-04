@@ -37,6 +37,9 @@ def get_product(id):
     """
 
     product = Product.query.get(id)
+    print(f'\n\n\n\n{product}')
+    if product == None:
+        return 'No Product Found'
     images = ProductImage.query.filter_by(product_id=id).all()
     user = User.query.filter_by(id=product.seller_id).first()
 

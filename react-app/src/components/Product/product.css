@@ -1,3 +1,8 @@
+.product-page-no-product {
+    display: flex;
+    justify-content: center;
+}
+
 .product-page-outer-wrapper {
     width: 100%;
     display: flex;
@@ -164,6 +169,11 @@
 .product-title h1 {
     font-size: 24px;
     font-weight: 400;
+}
+
+.product-rating-edit-container {
+    display: flex;
+    justify-content: space-between;
 }
 
 .product-rating-container {
