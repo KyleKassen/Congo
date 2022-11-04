@@ -9,6 +9,7 @@ function ProductForm({createProduct}) {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState([]);
+  const [errormsgs, setErrorMsgs] = useState({});
 
 
   const dispatch = useDispatch();
@@ -28,6 +29,18 @@ function ProductForm({createProduct}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let currentErrors = {}
+
+    if (!title) currentErrors['title'] = "Please enter your title"
+    if (title.length > 255) currentErrors['title'] = "Maximum title length is 255 characters"
+    if (!description) currentErrors['description'] = "Please enter a description"
+    if (!price) currentErrors['price'] = "Please enter a price"
+
+    if (Object.values(currentErrors).length > 0) {
+      setErrorMsgs(currentErrors)
+      return;
+    }
 
     const newProduct = {
       title,
@@ -84,9 +97,14 @@ function ProductForm({createProduct}) {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
             />
           </div>
+          {errormsgs.title && (
+              <div className="product-form-error-container">
+                <i className="product-form-error-icon"></i>
+                <p className="product-form-error-text"> {errormsgs.title}</p>
+              </div>
+              )}
           <hr />
           <div className="product-form-description-container">
             <h3>Description</h3>
@@ -97,22 +115,32 @@ function ProductForm({createProduct}) {
               type="textarea"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              required
             ></textarea>
           </div>
+          {errormsgs.description && (
+              <div className="product-form-error-container">
+                <i className="product-form-error-icon"></i>
+                <p className="product-form-error-text"> {errormsgs.description}</p>
+              </div>
+              )}
           <hr />
           <div className="product-form-price-container">
             <h3>Price</h3>
             <input
-              id="form-field-title"
+              id="form-field-price"
               className="form-field"
               placeholder="What is your product?"
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              required
             />
           </div>
+          {errormsgs.price && (
+              <div className="product-form-error-container">
+                <i className="product-form-error-icon"></i>
+                <p className="product-form-error-text"> {errormsgs.price}</p>
+              </div>
+              )}
           <hr />
           <button
             id="product-form-button"

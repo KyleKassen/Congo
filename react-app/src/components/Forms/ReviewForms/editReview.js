@@ -308,7 +308,6 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
             />
           </div>
           {errormsgs.title && (
@@ -363,7 +362,6 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
               type="textarea"
               value={review}
               onChange={(e) => setReview(e.target.value)}
-              required
             ></textarea>
           </div>
           {errormsgs.review && (
@@ -380,7 +378,6 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
               type="hidden"
               value={rating}
               onChange={(e) => setRating(e.target.value)}
-              required
             />
           </div>
           <hr />
