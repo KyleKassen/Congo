@@ -1,6 +1,6 @@
 ![congo-logo]
 
-[congo-logo]: ./src/media/images/CONGOwhite.png
+[congo-logo]: https://user-images.githubusercontent.com/85040622/200080201-66d545c3-2730-4ff9-971a-1ce1f2ac2bfa.png
 
 [Congo](https://congo-site.herokuapp.com/) is a web application inspired by Amazon. Congo is an online ecommerce store. On Congo, you can list leave reviews and add products.
 
