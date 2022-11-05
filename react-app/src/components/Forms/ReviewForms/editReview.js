@@ -56,10 +56,31 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
     console.log(review);
     console.log(rating);
 
+    function textFold(input, lineSize) {
+      const output = []
+      let outputCharCount = 0
+      let outputCharsInCurrentLine = 0
+      for (var i = 0; i < input.length; i++) {
+        const inputChar = input[i]
+        output[outputCharCount++] = inputChar
+        if (inputChar === '\n') {
+          outputCharsInCurrentLine = 0
+        } else if (outputCharsInCurrentLine > lineSize-2) {
+          output[outputCharCount++] = '\n'
+          outputCharsInCurrentLine = 0
+        } else {
+          outputCharsInCurrentLine++
+        }
+      }
+      return output.join('')
+    }
+    let newTitle = textFold(title, 38)
+    let updateReview = textFold(review, 48)
+
     const newReview = {
       product_id: productId,
-      title: title,
-      review: review,
+      title: newTitle,
+      review: updateReview,
       rating: rating,
     };
 

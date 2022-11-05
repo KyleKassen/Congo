@@ -4,79 +4,105 @@ import { useDispatch, useSelector } from "react-redux";
 import { addOneProduct, updateOneProduct } from "../../../store/product";
 import "./productform.css";
 
-function ProductForm({createProduct}) {
+function ProductForm({ createProduct }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState([]);
   const [errormsgs, setErrorMsgs] = useState({});
 
-
   const dispatch = useDispatch();
   const history = useHistory();
-  const {productId} = useParams();
+  const { productId } = useParams();
 
   const userId = useSelector((state) => state.session.user.id);
-  const currentProduct = useSelector(state => state.products.allProducts[productId])
+  const currentProduct = useSelector(
+    (state) => state.products.allProducts[productId]
+  );
 
   useEffect(() => {
     if (!createProduct) {
-        setTitle(currentProduct.title);
-        setDescription(currentProduct.description);
-        setPrice(currentProduct.price);
+      setTitle(currentProduct.title);
+      setDescription(currentProduct.description);
+      setPrice(currentProduct.price);
     }
-  }, [])
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let currentErrors = {}
+    let currentErrors = {};
 
-    if (!title) currentErrors['title'] = "Please enter your title"
-    if (title.length > 255) currentErrors['title'] = "Maximum title length is 255 characters"
-    if (!description) currentErrors['description'] = "Please enter a description"
-    if (!price) currentErrors['price'] = "Please enter a price"
-    if (parseInt(price) > 1000000) currentErrors['price'] = "Price must be below $1,000,000"
-    console.log(`price is ${typeof(price)}`)
+    if (!title) currentErrors["title"] = "Please enter your title";
+    if (title.length > 255)
+      currentErrors["title"] = "Maximum title length is 255 characters";
+    if (!description)
+      currentErrors["description"] = "Please enter a description";
+    if (!price) currentErrors["price"] = "Please enter a price";
+    if (parseInt(price) > 1000000)
+      currentErrors["price"] = "Price must be below $1,000,000";
+    console.log(`price is ${typeof price}`);
 
     if (Object.values(currentErrors).length > 0) {
-      setErrorMsgs(currentErrors)
+      setErrorMsgs(currentErrors);
       return;
     }
 
+    function textFold(input, lineSize) {
+      const output = []
+      let outputCharCount = 0
+      let outputCharsInCurrentLine = 0
+      for (var i = 0; i < input.length; i++) {
+        const inputChar = input[i]
+        output[outputCharCount++] = inputChar
+        if (inputChar === '\n') {
+          outputCharsInCurrentLine = 0
+        } else if (outputCharsInCurrentLine > lineSize-2) {
+          output[outputCharCount++] = '\n'
+          outputCharsInCurrentLine = 0
+        } else {
+          outputCharsInCurrentLine++
+        }
+      }
+      return output.join('')
+    }
+    let newTitle = textFold(title, 50)
+    let newDescription = textFold(description, 99)
+
     const newProduct = {
-      title,
-      description,
+      title: newTitle,
+      description: newDescription,
       price,
-    //   prime: true,
-    //   quantity: 100,
-    //   sold_by: 'Amazon.com',
-    //   fulfilled_by: 'Amazon.com',
+      //   prime: true,
+      //   quantity: 100,
+      //   sold_by: 'Amazon.com',
+      //   fulfilled_by: 'Amazon.com',
     };
 
     if (createProduct) {
-        let productId = 0
-        try {
-            const response = await dispatch(addOneProduct(newProduct));
-            console.log('Product response from server', response)
-            productId = response.id
-        } catch (res) {
-            console.log(res);
-            console.log("Error IN Product Form Response")
-        }
-        history.push(`/product/${productId}`);
+      let productId = 0;
+      try {
+        const response = await dispatch(addOneProduct(newProduct));
+        console.log("Product response from server", response);
+        productId = response.id;
+      } catch (res) {
+        console.log(res);
+        console.log("Error IN Product Form Response");
+      }
+      history.push(`/product/${productId}`);
     } else {
-        try {
-            const response = await dispatch(updateOneProduct(newProduct, productId));
-            console.log('Product response from server', response)
-        } catch (res) {
-            console.log(res);
-            console.log("Error IN Product Form Response")
-        }
+      try {
+        const response = await dispatch(
+          updateOneProduct(newProduct, productId)
+        );
+        console.log("Product response from server", response);
+      } catch (res) {
+        console.log(res);
+        console.log("Error IN Product Form Response");
+      }
 
-        history.push(`/product/${productId}`);
+      history.push(`/product/${productId}`);
     }
-
   };
 
   return (
@@ -102,11 +128,11 @@ function ProductForm({createProduct}) {
             />
           </div>
           {errormsgs.title && (
-              <div className="product-form-error-container">
-                <i className="product-form-error-icon"></i>
-                <p className="product-form-error-text"> {errormsgs.title}</p>
-              </div>
-              )}
+            <div className="product-form-error-container">
+              <i className="product-form-error-icon"></i>
+              <p className="product-form-error-text"> {errormsgs.title}</p>
+            </div>
+          )}
           <hr />
           <div className="product-form-description-container">
             <h3>Description</h3>
@@ -120,11 +146,14 @@ function ProductForm({createProduct}) {
             ></textarea>
           </div>
           {errormsgs.description && (
-              <div className="product-form-error-container">
-                <i className="product-form-error-icon"></i>
-                <p className="product-form-error-text"> {errormsgs.description}</p>
-              </div>
-              )}
+            <div className="product-form-error-container">
+              <i className="product-form-error-icon"></i>
+              <p className="product-form-error-text">
+                {" "}
+                {errormsgs.description}
+              </p>
+            </div>
+          )}
           <hr />
           <div className="product-form-price-container">
             <h3>Price</h3>
@@ -138,11 +167,11 @@ function ProductForm({createProduct}) {
             />
           </div>
           {errormsgs.price && (
-              <div className="product-form-error-container">
-                <i className="product-form-error-icon"></i>
-                <p className="product-form-error-text"> {errormsgs.price}</p>
-              </div>
-              )}
+            <div className="product-form-error-container">
+              <i className="product-form-error-icon"></i>
+              <p className="product-form-error-text"> {errormsgs.price}</p>
+            </div>
+          )}
           <hr />
           <button
             id="product-form-button"
