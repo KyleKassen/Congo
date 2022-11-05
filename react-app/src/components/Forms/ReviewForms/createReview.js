@@ -27,7 +27,7 @@ function CreateReview() {
   const history = useHistory();
 
 
-  const userId = useSelector((state) => state.session.user.id);
+  const user = useSelector((state) => state.session.user);
   const product = useSelector((state) => state.products.singleProduct);
 
   useEffect(() => {
@@ -59,6 +59,12 @@ function CreateReview() {
     }
   }, [image]);
 
+  let userId;
+  if (!user) {
+    history.push(`/product/${productId}`)
+    history.push('/login')
+  } else userId = user.id
+
 
   if (!loaded) {
     return null;
@@ -88,10 +94,32 @@ function CreateReview() {
       return;
     }
 
+    function textFold(input, lineSize) {
+      const output = []
+      let outputCharCount = 0
+      let outputCharsInCurrentLine = 0
+      for (var i = 0; i < input.length; i++) {
+        const inputChar = input[i]
+        output[outputCharCount++] = inputChar
+        if (inputChar === '\n') {
+          outputCharsInCurrentLine = 0
+        } else if (outputCharsInCurrentLine > lineSize-2) {
+          output[outputCharCount++] = '\n'
+          outputCharsInCurrentLine = 0
+        } else {
+          outputCharsInCurrentLine++
+        }
+      }
+      return output.join('')
+    }
+    let newTitle = textFold(title, 48)
+    let updateReview = textFold(review, 48)
+
+
     const newReview = {
       product_id: productId,
-      title: title,
-      review: review,
+      title: newTitle,
+      review: updateReview,
       rating: rating,
     };
 

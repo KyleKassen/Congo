@@ -116,13 +116,13 @@ def add_img_to_s3():
 
 
     image.filename = get_unique_filename(image.filename)
-    print("\n\n\n\n", image.filename)
+    # print("\n\n\n\n", image.filename)
     # print("\n\n\n\n", image.Key)
 
 
     upload = upload_file_to_s3(image)
-    print("\n\n\n\n", upload)
-    print("\n\n\n\n", upload["url"])
+    # print("\n\n\n\n", upload)
+    # print("\n\n\n\n", upload["url"])
 
     if "url" not in upload:
         # if the dictionary doesn't have a url key
@@ -154,7 +154,7 @@ def delete_review_img():
         db.session.delete(rev_image[0])
         db.session.commit()
 
-    print("\n\n\nrequest.json", urlObj)
+    # print("\n\n\nrequest.json", urlObj)
 
     delete = delete_file_from_s3(url)
 

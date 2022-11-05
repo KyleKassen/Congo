@@ -7,7 +7,11 @@ import {
   useHistory,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadOneProduct, loadAllProducts, deleteOneProduct } from "../../store/product";
+import {
+  loadOneProduct,
+  loadAllProducts,
+  deleteOneProduct,
+} from "../../store/product";
 import { loadAllReviews, deleteOneReview } from "../../store/review";
 import { loadAllAddresses } from "../../store/address";
 import { Modal } from "../../context/Modal";
@@ -63,7 +67,7 @@ function Product() {
       <div className="product-page-no-product">
         <h1>No Product Found</h1>
       </div>
-    )
+    );
   }
 
   let five = 0;
@@ -188,9 +192,9 @@ function Product() {
 
   const deleteProduct = async (id) => {
     await dispatch(deleteOneProduct(id));
-    await dispatch(loadAllProducts())
+    await dispatch(loadAllProducts());
     // history.push(`/product/${productId}`)
-  }
+  };
 
   return (
     <div className="product-page-outer-wrapper">
@@ -249,7 +253,9 @@ function Product() {
                 >
                   Edit Product
                 </li>
-                <li onClick={() => deleteProduct(product.id)}>Delete Product</li>
+                <li onClick={() => deleteProduct(product.id)}>
+                  Delete Product
+                </li>
                 <div className="review-dropdown-top-buffer"></div>
                 <div className="review-dropdown-right-buffer"></div>
                 <div className="review-dropdown-bottom-buffer"></div>
@@ -483,16 +489,20 @@ function Product() {
           <div>
             <hr className="review-left-divider" />
           </div>
-          <div className="review-create-section">
-            <h3>Review this product</h3>
-            <p>Share your thoughts with other customers</p>
-            <button onClick={() => createReview()}>
-              Write a customer review
-            </button>
-          </div>
-          <div>
-            <hr className="review-left-divider" />
-          </div>
+          {userId !== product.sellerId && (
+            <>
+              <div className="review-create-section">
+                <h3>Review this product</h3>
+                <p>Share your thoughts with other customers</p>
+                <button onClick={() => createReview()}>
+                  Write a customer review
+                </button>
+              </div>
+              <div>
+                <hr className="review-left-divider" />
+              </div>
+            </>
+          )}
         </div>
         <div className="review-right-container">
           {reviewImgs.length > 0 && (

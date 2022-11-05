@@ -707,13 +707,13 @@
 }
 
 .review-single-rating-title-container {
-    display: flex;
+    /* display: flex; */
 }
 
 .review-single-rating-title-container p {
     font-size: 14px;
     font-weight: 700;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 
 .review-single-date {
