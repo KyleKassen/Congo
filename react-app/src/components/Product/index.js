@@ -343,11 +343,11 @@ function Product() {
             <div className="buy-box-ship-sold">
               <div className="buy-box-ship-from">
                 <p className="buy-box-grey-text">Ships From</p>
-                <p className="ship-sold-location">Amazon.com</p>
+                <p className="ship-sold-location">Congo.com</p>
               </div>
               <div className="buy-box-sold-by">
                 <p className="buy-box-grey-text">Sold By</p>
-                <p className="ship-sold-location">Amazon.com</p>
+                <p className="ship-sold-location">Congo.com</p>
               </div>
             </div>
             <div className="buy-box-return-policy">

@@ -43,10 +43,14 @@ const SignUpForm = () => {
           console.log(err)
           if (err.startsWith('email')) {
             currentErrors['email'] = 'Email address already exists in our system'
+          } else if(err.startsWith('username')) {
+            currentErrors['name'] = "Username is already in use."
           }
         }
       }
     }
+    setErrors(currentErrors)
+    setErrorMsgs(currentErrors);
 
   };
 

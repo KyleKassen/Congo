@@ -8,6 +8,7 @@ function ProductForm({ createProduct }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
   const [errors, setErrors] = useState([]);
   const [errormsgs, setErrorMsgs] = useState({});
 
@@ -15,10 +16,19 @@ function ProductForm({ createProduct }) {
   const history = useHistory();
   const { productId } = useParams();
 
-  const userId = useSelector((state) => state.session.user.id);
+  const user = useSelector((state) => state.session.user);
   const currentProduct = useSelector(
     (state) => state.products.allProducts[productId]
   );
+
+  let userId;
+
+  if (!user) {
+    history.push('/productId')
+    history.push('/login')
+  } else {
+    userId = user.id
+  }
 
   useEffect(() => {
     if (!createProduct) {
@@ -39,6 +49,8 @@ function ProductForm({ createProduct }) {
     if (!description)
       currentErrors["description"] = "Please enter a description";
     if (!price) currentErrors["price"] = "Please enter a price";
+    if (price < 0) currentErrors["price"] = "Price must be a postive value";
+    if (image.match(/\.(jpeg|jpg|gif|png)$/) == null) currentErrors["image"] = "Invalid URL"
     if (parseInt(price) > 1000000)
       currentErrors["price"] = "Price must be below $1,000,000";
     console.log(`price is ${typeof price}`);
@@ -73,6 +85,7 @@ function ProductForm({ createProduct }) {
       title: newTitle,
       description: newDescription,
       price,
+      image
       //   prime: true,
       //   quantity: 100,
       //   sold_by: 'Amazon.com',
@@ -173,6 +186,23 @@ function ProductForm({ createProduct }) {
             </div>
           )}
           <hr />
+          <div className="product-form-title-container">
+            <h3>Image</h3>
+            <input
+              id="form-field-title"
+              className="form-field"
+              placeholder="Please enter the an image URL"
+              type="text"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </div>
+          {errormsgs.title && (
+            <div className="product-form-error-container">
+              <i className="product-form-error-icon"></i>
+              <p className="product-form-error-text"> {errormsgs.title}</p>
+            </div>
+          )}
           <button
             id="product-form-button"
             className="button button-submit"
