@@ -328,7 +328,7 @@ function Product() {
                 </span>
               )}
               {!userId && <span>Sign in to see delivery location</span>}
-              {addresses.length === 0 && <span>No delivery address found</span>}
+              {addresses.length === 0 && userId && <span>No delivery address found</span>}
             </div>
             <div className="buy-box-stock">
               <p>In Stock.</p>
