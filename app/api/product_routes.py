@@ -146,6 +146,7 @@ def update_product(id):
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     updated_product = Product.query.get(id)
+    updated_prodImage = ProductImage.query.filter_by(product_id=id).first()
 
 
     # if owner_id != form.data['seller_id']:
@@ -165,6 +166,7 @@ def update_product(id):
         # updated_product.sale_price = form.data['sale_price'],
         # updated_product.shipping_price = form.data['shipping_price'],
         # updated_product.prime = form.data['prime']
+        updated_prodImage.url = form.data['image']
 
         db.session.commit()
 

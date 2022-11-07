@@ -83,10 +83,10 @@ function CreateReview() {
 
     let currentErrors = {}
 
-    if (!title) currentErrors['title'] = "Please enter your headline"
+    if (!title.trim()) currentErrors['title'] = "Please enter your headline"
     if (title.length > 255) currentErrors['title'] = "Maximum headline length is 255 characters"
     if (!rating) currentErrors['rating'] = "Please select a star rating"
-    if (!review) currentErrors['review'] = "Please enter your review"
+    if (!review.trim()) currentErrors['review'] = "Please enter your review"
     if (review.length > 5000) currentErrors['review'] = "Maximum review length is 5000 characters"
 
     if (Object.values(currentErrors).length > 0) {

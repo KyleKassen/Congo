@@ -35,6 +35,7 @@ function ProductForm({ createProduct }) {
       setTitle(currentProduct.title);
       setDescription(currentProduct.description);
       setPrice(currentProduct.price);
+      setImage(currentProduct.images[0].url);
     }
   }, []);
 
@@ -43,14 +44,15 @@ function ProductForm({ createProduct }) {
 
     let currentErrors = {};
 
-    if (!title) currentErrors["title"] = "Please enter your title";
+    if (!title.trim()) currentErrors["title"] = "Please enter your title";
     if (title.length > 255)
       currentErrors["title"] = "Maximum title length is 255 characters";
-    if (!description)
+    if (!description.trim())
       currentErrors["description"] = "Please enter a description";
     if (!price) currentErrors["price"] = "Please enter a price";
     if (price < 0) currentErrors["price"] = "Price must be a postive value";
     if (image.match(/\.(jpeg|jpg|gif|png)$/) == null) currentErrors["image"] = "Invalid URL"
+    if (!image.trim()) currentErrors["image"] = "Please enter an image URL"
     if (parseInt(price) > 1000000)
       currentErrors["price"] = "Price must be below $1,000,000";
     console.log(`price is ${typeof price}`);
@@ -197,10 +199,10 @@ function ProductForm({ createProduct }) {
               onChange={(e) => setImage(e.target.value)}
             />
           </div>
-          {errormsgs.title && (
+          {errormsgs.image && (
             <div className="product-form-error-container">
               <i className="product-form-error-icon"></i>
-              <p className="product-form-error-text"> {errormsgs.title}</p>
+              <p className="product-form-error-text"> {errormsgs.image}</p>
             </div>
           )}
           <button
