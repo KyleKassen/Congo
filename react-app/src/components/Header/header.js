@@ -3,7 +3,7 @@ import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { logout } from "../../store/session";
-import {login} from "../../store/session";
+import { login } from "../../store/session";
 import congo from "../../media/images/CONGO.png";
 import congo2 from "../../media/images/CONGOblack.png";
 import locationPin from "../../media/icons/locationPin.png";
@@ -28,18 +28,20 @@ function Header() {
 
   useEffect(() => {
     if (session?.user?.username) {
-      let currentName = ""
-      console.log(currentName)
-      currentName = session.user.username.split(" ")
-      console.log(currentName)
-      currentName = currentName[0]
-      console.log(currentName)
+      let currentName = "";
+      console.log(currentName);
+      currentName = session.user.username.split(" ");
+      console.log(currentName);
+      currentName = currentName[0];
+      console.log(currentName);
       if (currentName.length > 12) {
-        currentName = currentName.slice(0,8) + "..."
+        currentName = currentName.slice(0, 8) + "...";
       }
-      setName(currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase())
+      setName(
+        currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
+      );
     }
-  }, [session])
+  }, [session]);
 
   const departments = ["All", "Amazon", "Appliances", "Clothing"];
   const mainNav = [
@@ -85,15 +87,15 @@ function Header() {
   };
 
   const logInDemo = async () => {
-    await dispatch(login('demo@aa.io', 'password'));
-  }
+    await dispatch(login("demo@aa.io", "password"));
+  };
 
   return (
     <div>
       <div className="header-outer-container">
         <div className="header-left-container">
           <div className="header-logo header-hover-border heading-working-hover">
-            <img src={congo2} onClick={() => history.push("/")}/>
+            <img src={congo2} onClick={() => history.push("/")} />
           </div>
           {/* <div className="header-set-location header-hover-border">
             <img src={whitepin} />
@@ -154,49 +156,71 @@ function Header() {
               <p className="header-bottom-text">Account & Lists</p>
             </div>
           )} */}
-            <div
-              className="header-user-auth header-hover-border heading-working-hover"
-              >
-              {session.user && (
-              <p className="header-top-text">Hello, {name}</p>
-              )}
-              {!session.user && (
-                <p className="header-top-text">Hello, sign in</p>
-              )}
-              <div className="header-bottom-acclists-img-container">
-                <p className="header-bottom-text">Account & Lists</p>
-                <img src={downarrow} />
+          <div className="header-user-auth header-hover-border heading-working-hover">
+            {session.user && <p className="header-top-text">Hello, {name}</p>}
+            {!session.user && <p className="header-top-text">Hello, sign in</p>}
+            <div className="header-bottom-acclists-img-container">
+              <p className="header-bottom-text">Account & Lists</p>
+              <img src={downarrow} />
+            </div>
+            <div className="header-account-dropdown-container">
+              <div className="header-account-dropdown-arrow">
+                <div className="header-account-dropdown-inner-arrow"></div>
               </div>
-              <div className="header-account-dropdown-container">
-                <div className="header-account-dropdown-arrow">
-                  <div className="header-account-dropdown-inner-arrow"></div>
-                </div>
-                {!session.user && (
+              {!session.user && (
                 <div className="header-account-dropdown-signin-container">
                   {/* <a className="header-account-dropdown-signin">
                     <span className="header-account-dropdown-signin yellow-gradient-button">Sign in</span>
                   </a> */}
                   <div className="header-account-signin-demo-container">
-                  <div className="header-account-dropdown-signin yellow-gradient-button" onClick={() => history.push("/login")}>Sign in</div>
-                  <div className="header-account-dropdown-signin yellow-gradient-button" onClick={() => logInDemo()}>Demo User</div>
+                    <div
+                      className="header-account-dropdown-signin yellow-gradient-button"
+                      onClick={() => history.push("/login")}
+                    >
+                      Sign in
+                    </div>
+                    <div
+                      className="header-account-dropdown-signin yellow-gradient-button"
+                      onClick={() => logInDemo()}
+                    >
+                      Demo User
+                    </div>
                   </div>
-                  <p className="header-account-new-customer">New customer? <span className="start-here-signup header-dropdown-text" onClick={() => history.push('/sign-up')}>Start here.</span></p>
+                  <p className="header-account-new-customer">
+                    New customer?{" "}
+                    <span
+                      className="start-here-signup header-dropdown-text"
+                      onClick={() => history.push("/sign-up")}
+                    >
+                      Start here.
+                    </span>
+                  </p>
                 </div>
-                )}
-                <div className="header-account-dropdown-bottom">
+              )}
+              <div className="header-account-dropdown-bottom">
                 <div className="header-account-dropdown-seller">
-                  <p className="header-account-dropdown-title">Become a Seller</p>
-                  <a className="header-dropdown-text" onClick={() => {
-                    if (session.user) {
-                      history.push('/addproduct')
-                    } else {
-                      history.push('/login')
-                    }
-                  }}>Add a Product</a>
+                  <p className="header-account-dropdown-title">
+                    Become a Seller
+                  </p>
+                  <a
+                    className="header-dropdown-text"
+                    onClick={() => {
+                      if (session.user) {
+                        history.push("/addproduct");
+                      } else {
+                        history.push("/login");
+                      }
+                    }}
+                  >
+                    Add a Product
+                  </a>
                 </div>
                 <div className="header-account-dropdown-your-account">
                   <p className="header-account-dropdown-title">Your Account</p>
-                  <a className="header-dropdown-text" onClick={() => logoutFunc()}>
+                  <a
+                    className="header-dropdown-text"
+                    onClick={() => logoutFunc()}
+                  >
                     Sign Out
                   </a>
                 </div>
@@ -204,9 +228,13 @@ function Header() {
                 <div className="header-account-dropdown-buffer-right"></div>
                 <div className="header-account-dropdown-buffer-bottom"></div>
                 <div className="header-account-dropdown-buffer-left"></div>
-                </div>
+              </div>
+              <div className="header-dropdown-about-links">
+                <p className="header-dropdown-about-links-p">Developer: Kyle Kassen</p>
+                <p>LinkedIn:  <a href="https://www.linkedin.com/in/kyle-kassen/">    Kyle Kassen</a></p>
               </div>
             </div>
+          </div>
           {/* <div className="header-returns header-hover-border">
             <p className="header-top-text">Returns</p>
             <p className="header-bottom-text">& Orders</p>
