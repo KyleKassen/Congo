@@ -11,6 +11,7 @@ class ProductForm(FlaskForm):
     price = FloatField('Price', validators=[DataRequired()])
     sale_price = FloatField('Sale Price')
     shipping_price = FloatField('Shipping Price')
+    image = StringField('Image')
     prime = BooleanField('Prime')
 
     submit = SubmitField('Submit')

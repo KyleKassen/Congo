@@ -34,7 +34,7 @@ function Homepage() {
             // let formatPerc = salePercentage.slice(2, 4);
             return (
               <div className="home-flex-item" onClick={() => history.push(`/product/${product.id}`)}>
-                <h2>Epic Deals</h2>
+                {/* <h2>Epic Deals</h2> */}
                 <div className="home-product-img-container">
                   <img src={product.images[0].url} />
                 </div>

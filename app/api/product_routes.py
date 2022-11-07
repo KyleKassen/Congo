@@ -100,24 +100,33 @@ def create_product():
         product_dict = product.to_dict()
         product_id = product_dict["id"]
 
-        pm1 = ProductImage(
-            product_id=product_id,
-            url="https://thumbnail.imgbin.com/13/18/17/imgbin-coffee-tea-packaging-and-labeling-parcel-bag-design-G9E3ksvw2BMKK24u9zX6A61pT_t.jpg"
-        )
-        pm2 = ProductImage(
-            product_id=product_id,
-            url="https://thumbnail.imgbin.com/24/25/17/imgbin-plastic-pharmaceutical-packaging-design-45ZC5ctTVBCgnuE8dJwstb2XU_t.jpg"
-        )
-        pm3 = ProductImage(
-            product_id=product_id,
-            url="https://cdn.imgbin.com/22/2/15/imgbin-rectangle-box-NhLKGVy7J5LYtbnTDB1suXTUC.jpg"
-        )
-        pm4 = ProductImage(
-            product_id=product_id,
-            url="https://png.pngtree.com/element_pic/00/16/10/22580aa3ca49b8c.jpg"
-        )
+        prodImage = ""
 
-        db.session.add_all([pm1, pm2, pm3, pm4])
+        if form.data['image']:
+            prodImage = ProductImage(
+            product_id=product_id,
+            url=form.data['image'])
+        else:
+            prodImage = "https://thumbnail.imgbin.com/13/18/17/imgbin-coffee-tea-packaging-and-labeling-parcel-bag-design-G9E3ksvw2BMKK24u9zX6A61pT_t.jpg"
+
+        # pm1 = ProductImage(
+        #     product_id=product_id,
+        #     url="https://thumbnail.imgbin.com/13/18/17/imgbin-coffee-tea-packaging-and-labeling-parcel-bag-design-G9E3ksvw2BMKK24u9zX6A61pT_t.jpg"
+        # )
+        # pm2 = ProductImage(
+        #     product_id=product_id,
+        #     url="https://thumbnail.imgbin.com/24/25/17/imgbin-plastic-pharmaceutical-packaging-design-45ZC5ctTVBCgnuE8dJwstb2XU_t.jpg"
+        # )
+        # pm3 = ProductImage(
+        #     product_id=product_id,
+        #     url="https://cdn.imgbin.com/22/2/15/imgbin-rectangle-box-NhLKGVy7J5LYtbnTDB1suXTUC.jpg"
+        # )
+        # pm4 = ProductImage(
+        #     product_id=product_id,
+        #     url="https://png.pngtree.com/element_pic/00/16/10/22580aa3ca49b8c.jpg"
+        # )
+
+        db.session.add(prodImage)
         db.session.commit()
 
         return product.to_dict()
@@ -137,6 +146,7 @@ def update_product(id):
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     updated_product = Product.query.get(id)
+    updated_prodImage = ProductImage.query.filter_by(product_id=id).first()
 
 
     # if owner_id != form.data['seller_id']:
@@ -156,6 +166,7 @@ def update_product(id):
         # updated_product.sale_price = form.data['sale_price'],
         # updated_product.shipping_price = form.data['shipping_price'],
         # updated_product.prime = form.data['prime']
+        updated_prodImage.url = form.data['image']
 
         db.session.commit()
 

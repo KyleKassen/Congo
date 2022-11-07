@@ -22,9 +22,9 @@ const SignUpForm = () => {
 
     let currentErrors = {}
 
-    if (!username) currentErrors['name'] = 'Enter your name';
+    if (!username.trim()) currentErrors['name'] = 'Enter your name';
     if (username.length > 60) currentErrors['name'] = 'Maximum of 60 characters'
-    if (!email) currentErrors['email'] = 'Enter your email';
+    if (!email.trim()) currentErrors['email'] = 'Enter your email';
     if (email.length > 255) currentErrors['email'] = 'Maximum of 255 characters';
     if (password.length > 255) currentErrors['password'] = 'Maximum of 255 characters';
     if (password.length < 6) currentErrors['password'] = 'Minimum 6 characters required';
@@ -43,10 +43,14 @@ const SignUpForm = () => {
           console.log(err)
           if (err.startsWith('email')) {
             currentErrors['email'] = 'Email address already exists in our system'
+          } else if(err.startsWith('username')) {
+            currentErrors['name'] = "Username is already in use."
           }
         }
       }
     }
+    setErrors(currentErrors)
+    setErrorMsgs(currentErrors);
 
   };
 
