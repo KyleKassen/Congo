@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e7a65bcb4367
+Revision ID: 6bf549a8c756
 Revises: 
-Create Date: 2022-11-01 09:28:59.358954
+Create Date: 2022-11-07 19:46:32.482554
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e7a65bcb4367'
+revision = '6bf549a8c756'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,7 +25,7 @@ def upgrade():
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(length=40), nullable=False),
+    sa.Column('username', sa.String(length=60), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('profile_picture', sa.String(), nullable=True),
@@ -47,15 +47,15 @@ def upgrade():
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('seller_id', sa.Integer(), nullable=True),
-    sa.Column('title', sa.String(length=255), nullable=False),
+    sa.Column('title', sa.String(length=260), nullable=False),
     sa.Column('description', sa.String(), nullable=False),
-    sa.Column('sold_by', sa.String(), nullable=False),
-    sa.Column('fulfilled_by', sa.String(), nullable=False),
-    sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.Column('sold_by', sa.String(), nullable=True),
+    sa.Column('fulfilled_by', sa.String(), nullable=True),
+    sa.Column('quantity', sa.Integer(), nullable=True),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('sale_price', sa.Float(), nullable=True),
     sa.Column('shipping_price', sa.Float(), nullable=True),
-    sa.Column('prime', sa.Boolean(), nullable=False),
+    sa.Column('prime', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -108,7 +108,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('product_id', sa.Integer(), nullable=True),
-    sa.Column('title', sa.String(length=255), nullable=False),
+    sa.Column('title', sa.String(length=260), nullable=False),
     sa.Column('review', sa.String(length=5000), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('number_helpful', sa.Integer(), nullable=False),

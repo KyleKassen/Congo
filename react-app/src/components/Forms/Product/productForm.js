@@ -44,8 +44,13 @@ function ProductForm({ createProduct }) {
 
     let currentErrors = {};
 
+    let newTitle = textFold(title, 50)
+    let newDescription = textFold(description, 99)
+
+    let titleChar = newTitle.replaceAll("\n", "")
+
     if (!title.trim()) currentErrors["title"] = "Please enter your title";
-    if (title.length > 255)
+    if (titleChar.length > 255)
       currentErrors["title"] = "Maximum title length is 255 characters";
     if (!description.trim())
       currentErrors["description"] = "Please enter a description";
@@ -80,8 +85,6 @@ function ProductForm({ createProduct }) {
       }
       return output.join('')
     }
-    let newTitle = textFold(title, 50)
-    let newDescription = textFold(description, 99)
 
     const newProduct = {
       title: newTitle,

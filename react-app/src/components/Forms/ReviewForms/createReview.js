@@ -83,10 +83,16 @@ function CreateReview() {
 
     let currentErrors = {}
 
+    let newTitle = textFold(title, 48)
+    let updateReview= textFold(review, 48)
+
+    let titleChar = newTitle.replaceAll("\n", "")
+    let reviewChar = updateReview.replaceAll("\n", "")
+
     if (!title.trim()) currentErrors['title'] = "Please enter your headline"
-    if (title.length > 255) currentErrors['title'] = "Maximum headline length is 255 characters"
+    if (titleChar.length > 255) currentErrors['title'] = "Maximum headline length is 255 characters"
     if (!rating) currentErrors['rating'] = "Please select a star rating"
-    if (!review.trim()) currentErrors['review'] = "Please enter your review"
+    if (!reviewChar.trim()) currentErrors['review'] = "Please enter your review"
     if (review.length > 5000) currentErrors['review'] = "Maximum review length is 5000 characters"
 
     if (Object.values(currentErrors).length > 0) {
@@ -112,8 +118,8 @@ function CreateReview() {
       }
       return output.join('')
     }
-    let newTitle = textFold(title, 48)
-    let updateReview = textFold(review, 48)
+    // let newTitle = textFold(title, 48)
+    // let updateReview = textFold(review, 48)
 
 
     const newReview = {
