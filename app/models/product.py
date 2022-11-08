@@ -15,7 +15,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    title = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(260), nullable=False)
     description = db.Column(db.String, nullable=False)
     sold_by = db.Column(db.String, default='Amazon.com')
     fulfilled_by = db.Column(db.String, default='Amazon.com')
