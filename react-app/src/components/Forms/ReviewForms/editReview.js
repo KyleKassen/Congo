@@ -119,11 +119,8 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
         if (res.ok) {
           await res.json();
           setImageLoading(false);
-          // history.push("/images");
         } else {
           setImageLoading(false);
-          // a real app would probably use more advanced
-          // error handling
           console.log("error");
         }
       }
@@ -239,14 +236,6 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
     const url = imageUrls[imageIndex];
 
     setImagesToDelete([...imagesToDelete, url]);
-
-    // const deleteRes = await fetch("/api/reviews/images", {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ url: url }),
-    // });
     const imagesArray = [...imageUrls];
     imagesArray.splice(imageIndex, 1);
     setImageUrls(imagesArray);
@@ -256,15 +245,6 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
 
   console.log("current image url array is ", imageUrls);
 
-  // window.onbeforeunload = (event) => {
-  //   const e = event || window.event;
-  //   // Cancel the event
-  //   e.preventDefault();
-  //   if (e) {
-  //     e.returnValue = ''; // Legacy method for cross browser support
-  //   }
-  //   return ''; // Legacy method for cross browser support
-  // };
 
   return (
     <div className="create-review-wrapper">
