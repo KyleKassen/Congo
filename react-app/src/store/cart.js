@@ -25,27 +25,32 @@ export const loadCartItems = (userId) => async (dispatch) => {
   return cartItems;
 };
 
-
 //##########################
 // Reducer
 //##########################
-const initialState = { items: {} };
+const initialState = { items: {}, totalQuantity: 0 };
 
 export const cartReducer = (state = initialState, action) => {
-    let newState = {
-        ...state,
-        items: { ...state.items }
-    };
+  let newState = {
+    ...state,
+    items: { ...state.items },
+    totalQuantity: state.totalQuantity,
+  };
 
-    switch (action.type) {
-        case LOAD:
-            newState.items = {};
-            action.payload.cartItems.forEach(item => newState.items[item.id] = item)
-            return newState;
+  switch (action.type) {
+    case LOAD:
+      newState.items = {};
+      let quantity = 0;
+      action.payload.cartItems.forEach((item) => {
+        newState.items[item.id] = item;
+        quantity += item.quantity
+      });
+      newState.totalQuantity = quantity;
+      return newState;
 
-        default:
-            return state;
-    }
-}
+    default:
+      return state;
+  }
+};
 
 export default cartReducer;

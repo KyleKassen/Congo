@@ -12,7 +12,7 @@ import darkpin from "../../media/images/darkpin.png";
 import downarrow from "../../media/images/downarrow.png";
 import whitepin from "../../media/images/whitepin.png";
 import hamburger from "../../media/images/hamburger.png";
-import cart from "../../media/images/cart.png";
+import cartImage from "../../media/images/cart.png";
 import flag from "../../media/icons/flag.png";
 import "./header.css";
 
@@ -26,6 +26,7 @@ function Header() {
   const history = useHistory();
 
   const session = useSelector((state) => state.session);
+  const cart = useSelector(state => state.cart)
 
   useEffect(async () => {
     if (session?.user?.username) {
@@ -244,9 +245,14 @@ function Header() {
           </div>
           <div className="header-cart header-hover-border">
             <div className="header-cart-counter-container">
-              <span>0</span>
+              {cart &&
+                <span>{cart.totalQuantity}</span>
+              }
+              {!cart &&
+                <span>0</span>
+              }
             </div>
-            <img src={cart} />
+            <img src={cartImage} />
             <p className="header-bottom-text">Cart</p>
           </div>
         </div>
