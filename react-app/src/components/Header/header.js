@@ -147,7 +147,7 @@ function Header() {
             <img src={flag} />
             EN
           </div>
-          {!session.user && (
+          {/* {!session.user && (
             <div
               className="header-user-auth header-hover-border"
               onClick={() => history.push("/login")}
@@ -155,7 +155,7 @@ function Header() {
               <p className="header-top-text">Hello, sign in</p>
               <p className="header-bottom-text">Account & Lists</p>
             </div>
-          )}
+          )} */}
           <div className="header-user-auth header-hover-border heading-working-hover">
             {session.user && <p className="header-top-text">Hello, {name}</p>}
             {!session.user && <p className="header-top-text">Hello, sign in</p>}
