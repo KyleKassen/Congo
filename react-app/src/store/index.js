@@ -5,13 +5,15 @@ import products from './product';
 import reviews from './review';
 import addresses from './address';
 import payments from './payment';
+import cart from './cart';
 
 const rootReducer = combineReducers({
   session,
   products,
   reviews,
   addresses,
-  payments
+  payments,
+  cart
 });
 
 

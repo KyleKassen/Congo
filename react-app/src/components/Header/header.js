@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { logout } from "../../store/session";
 import { login } from "../../store/session";
+import { loadCartItems } from "../../store/cart";
 import congo from "../../media/images/CONGO.png";
 import congo2 from "../../media/images/CONGOblack.png";
 import locationPin from "../../media/icons/locationPin.png";
@@ -26,7 +27,7 @@ function Header() {
 
   const session = useSelector((state) => state.session);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (session?.user?.username) {
       let currentName = "";
       console.log(currentName);
@@ -40,6 +41,8 @@ function Header() {
       setName(
         currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
       );
+
+      await dispatch(loadCartItems(session.user.id))
     }
   }, [session]);
 

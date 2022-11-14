@@ -15,7 +15,7 @@ def seed():
     seed_users()
     seed_products()
     seed_reviews()
-    seed_cartItems
+    seed_cartItems()
     # Add other seed functions here
 
 
@@ -25,5 +25,5 @@ def undo():
     undo_users()
     undo_products()
     undo_reviews()
-    undo_cartItems
+    undo_cartItems()
     # Add other undo functions here

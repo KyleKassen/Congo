@@ -8,7 +8,7 @@ from ..forms.review_form import ReviewForm
 
 cart_routes = Blueprint('carts', __name__)
 
-@cart_routes.route('/<int:id>')
+@cart_routes.route('/<int:user_id>')
 def get_cart_items(user_id):
     """
     Get All Cart Items
