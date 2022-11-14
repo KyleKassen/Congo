@@ -16,7 +16,6 @@ def get_cart_items(user_id):
 
     items = CartItem.query.filter_by(buyer_id=user_id).options(joinedload(CartItem.product)).all()
 
-    # result = {'cartItems': [item.to_dict() for item in items]}
     result = []
 
     for item in items:
@@ -28,3 +27,29 @@ def get_cart_items(user_id):
         result.append(currItem)
 
     return {'cartItems': result}
+
+
+@cart_routes.route('/<int:product_id>', methods=['POST'])
+def add_cart_item(product_id):
+    """
+    Add a cart Items
+    """
+
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    item = CartItem.query.filter_by(product_id=product_id).one()
+
+    if item:
+        item.quantity += 1
+    else:
+        item = CartItem(
+            buyer_id=user_id,
+            product_id=product_id,
+            quantity=1
+        )
+        db.session.add(item)
+
+    db.session.commit()
+
+    return item.to_dict()
