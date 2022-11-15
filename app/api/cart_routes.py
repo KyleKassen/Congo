@@ -16,13 +16,17 @@ def get_cart_items(user_id):
 
     items = CartItem.query.filter_by(buyer_id=user_id).options(joinedload(CartItem.product)).all()
 
+
     result = []
 
     for item in items:
+        product_image = ProductImage.query.filter_by(product_id=item.product.id).first()
+        product = item.product.to_dict()
+        product['image'] = product_image.to_dict()
         currItem = {
             "id":item.id,
             "quantity":item.quantity,
-            "product":item.product.to_dict()
+            "product":product
         }
         result.append(currItem)
 
