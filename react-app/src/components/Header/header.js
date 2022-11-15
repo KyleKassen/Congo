@@ -261,7 +261,7 @@ function Header() {
             <p className="header-top-text">Returns</p>
             <p className="header-bottom-text">& Orders</p>
           </div>
-          <div className="header-cart header-hover-border">
+          <div className="header-cart header-hover-border" onClick={() => history.push('/cart')}>
             <div className="header-cart-counter-container">
               {cart.totalQuantity < 100 &&<span>{cart.totalQuantity}</span>}
               {cart && cart.totalQuantity > 99 && <span>99+</span>}
