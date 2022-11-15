@@ -284,6 +284,7 @@
 .buy-box-addtocart {
     background: #FFD814;
     border: 1px solid #FCD200;
+    user-select: none;
 }
 
 .buy-box-addtocart:hover {
@@ -296,6 +297,7 @@
     background: #FFA41C;
     border: 1px solid #FF8F00;
     margin-bottom: 12px;
+    user-select: none;
 }
 
 .buy-box-buynow:hover {

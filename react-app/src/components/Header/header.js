@@ -26,7 +26,7 @@ function Header() {
   const history = useHistory();
 
   const session = useSelector((state) => state.session);
-  const cart = useSelector(state => state.cart)
+  const cart = useSelector((state) => state.cart);
 
   useEffect(async () => {
     if (session?.user?.username) {
@@ -43,9 +43,18 @@ function Header() {
         currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
       );
 
-      await dispatch(loadCartItems(session.user.id))
+      await dispatch(loadCartItems(session.user.id));
     }
   }, [session]);
+
+  useEffect(async () => {
+    let cartCount = document.getElementsByClassName(
+      "header-cart-counter-container"
+    )[0];
+    if (cart.totalQuantity > 9)
+      cartCount.classList.add("cart-count-double-digit");
+    else cartCount.classList.add("cart-count-single-digit");
+  }, [cart]);
 
   const departments = ["All", "Amazon", "Appliances", "Clothing"];
   const mainNav = [
@@ -234,8 +243,16 @@ function Header() {
                 <div className="header-account-dropdown-buffer-left"></div>
               </div>
               <div className="header-dropdown-about-links">
-                <p className="header-dropdown-about-links-p">Developer: Kyle Kassen</p>
-                <p>LinkedIn:  <a href="https://www.linkedin.com/in/kyle-kassen/">    Kyle Kassen</a></p>
+                <p className="header-dropdown-about-links-p">
+                  Developer: Kyle Kassen
+                </p>
+                <p>
+                  LinkedIn:{" "}
+                  <a href="https://www.linkedin.com/in/kyle-kassen/">
+                    {" "}
+                    Kyle Kassen
+                  </a>
+                </p>
               </div>
             </div>
           </div>
@@ -245,12 +262,8 @@ function Header() {
           </div>
           <div className="header-cart header-hover-border">
             <div className="header-cart-counter-container">
-              {cart &&
-                <span>{cart.totalQuantity}</span>
-              }
-              {!cart &&
-                <span>0</span>
-              }
+              {cart && <span>{cart.totalQuantity}</span>}
+              {!cart && <span>0</span>}
             </div>
             <img src={cartImage} />
             <p className="header-bottom-text">Cart</p>
