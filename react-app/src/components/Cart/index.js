@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import "./cart.css";
 
 function Cart() {
-
-    const cartItems = useSelector(state => Object.values(state.cart.items))
+  const cartItems = useSelector((state) => Object.values(state.cart.items));
 
   return (
     <>
@@ -15,12 +14,15 @@ function Cart() {
               <h2>Shopping Cart</h2>
               <p>Price</p>
               <div className="cart-items-container">
-                {cartItems.map(item => {
-                    return (
-                        <>
-                        
-                        </>
-                    )
+                {cartItems.map((item) => {
+                  return (
+                    <div className="cart-item-container">
+                      <div className="cart-item-img-container">
+                        <img src={`${item.product.image.url}`} />
+                      </div>
+                      <div className="cart-item-middle-container"></div>
+                    </div>
+                  );
                 })}
               </div>
             </div>
