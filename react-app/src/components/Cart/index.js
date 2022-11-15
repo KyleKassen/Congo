@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import picon from "../../media/images/primeicons.png";
 import "./cart.css";
 
 function Cart() {
@@ -20,7 +21,17 @@ function Cart() {
                       <div className="cart-item-img-container">
                         <img src={`${item.product.image.url}`} />
                       </div>
-                      <div className="cart-item-middle-container"></div>
+                      <div className="cart-item-middle-container">
+                        <p className="cart-item-title">{item.product.title}</p>
+                        <p className="cart-item-instock">In Stock</p>
+                        <div className="cart-item-prime-container">
+                          <div className="cart-item-prime-icon"></div>
+                          <p>
+                            Eligible for FREE Same-Day, Overnight or Tomorrow
+                            delivery
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
