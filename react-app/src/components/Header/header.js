@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { logout } from "../../store/session";
 import { login } from "../../store/session";
-import { loadCartItems } from "../../store/cart";
+import { loadCartItems, resetCart } from "../../store/cart";
 import congo from "../../media/images/CONGO.png";
 import congo2 from "../../media/images/CONGOblack.png";
 import locationPin from "../../media/icons/locationPin.png";
@@ -96,6 +96,7 @@ function Header() {
   }
 
   const logoutFunc = async () => {
+    await dispatch(resetCart());
     await dispatch(logout());
   };
 

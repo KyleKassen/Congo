@@ -198,6 +198,7 @@ function Product() {
   };
 
   const addToCart = async () => {
+    if (!userId) history.push('/login')
     await dispatch(addCartItem(product.id))
   }
 

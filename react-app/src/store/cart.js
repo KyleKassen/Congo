@@ -1,5 +1,6 @@
 const LOAD = "cart/load";
 const ADD = "cart/add";
+const RESET = "cart/reset";
 
 //##########################
 // LOAD Cart Items
@@ -31,29 +32,35 @@ export const loadCartItems = (userId) => async (dispatch) => {
 //##########################
 
 export const add = (cartItem) => {
-    console.log("Add cart item");
-    return {
-      type: ADD,
-      payload: cartItem,
-    };
+  console.log("Add cart item");
+  return {
+    type: ADD,
+    payload: cartItem,
   };
+};
 
-  export const addCartItem = (productId) => async (dispatch) => {
-    console.log("Adding cart item Thunk");
-    const response = await fetch(`/api/carts/${productId}`, {
-        method: "POST"
-    });
+export const addCartItem = (productId) => async (dispatch) => {
+  console.log("Adding cart item Thunk");
+  const response = await fetch(`/api/carts/${productId}`, {
+    method: "POST",
+  });
 
-    const cartItem = await response.json();
+  const cartItem = await response.json();
 
-    console.log(cartItem)
+  console.log(cartItem);
 
-    if (response.ok) {
-      await dispatch(add(cartItem));
-    }
+  if (response.ok) {
+    await dispatch(add(cartItem));
+  }
 
-    return cartItem;
-  };
+  return cartItem;
+};
+
+//##########################
+// Reset Cart
+//##########################
+
+export const resetCart = () => ({type: RESET})
 
 //##########################
 // Reducer
@@ -73,15 +80,18 @@ export const cartReducer = (state = initialState, action) => {
       let quantity = 0;
       action.payload.cartItems.forEach((item) => {
         newState.items[item.id] = item;
-        quantity += item.quantity
+        quantity += item.quantity;
       });
       newState.totalQuantity = quantity;
       return newState;
 
     case ADD:
-        newState.items[action.payload.id] = action.payload;
-        newState.totalQuantity += 1;
-        return newState;
+      newState.items[action.payload.id] = action.payload;
+      newState.totalQuantity += 1;
+      return newState;
+
+    case RESET:
+        return initialState;
 
     default:
       return state;

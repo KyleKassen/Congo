@@ -53,11 +53,11 @@
     cursor: pointer;
 }
 
-/* .header-hover-border:hover {
+.header-hover-border:hover {
     border: 1px solid white;
     border-radius: 2px;
     cursor: pointer;
-} */
+}
 
 .header-set-location {
     width: 155px;
@@ -359,7 +359,7 @@
     width: calc(2px + 100%);
     height: 40px;
     right: 1px;
-    top: -40px;
+    top: -10px;
 }
 
 .header-account-dropdown-buffer-right {
