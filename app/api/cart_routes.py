@@ -39,6 +39,7 @@ def add_cart_item(product_id):
     user_id = user['id']
 
     item = CartItem.query.filter_by(product_id=product_id).one()
+    product = Product.query.get(product_id)
 
     if item:
         item.quantity += 1
@@ -52,4 +53,10 @@ def add_cart_item(product_id):
 
     db.session.commit()
 
-    return item.to_dict()
+    result = {
+        "id":item.id,
+        "quantity":item.quantity,
+        "product":product.to_dict()
+    }
+
+    return result

@@ -14,7 +14,7 @@ export const load = (cartItems) => {
 };
 
 export const loadCartItems = (userId) => async (dispatch) => {
-  console.log("Loading all review Thunk");
+  console.log("Loading cart Thunk");
   const response = await fetch(`/api/carts/${userId}`);
 
   const cartItems = await response.json();
@@ -33,18 +33,20 @@ export const loadCartItems = (userId) => async (dispatch) => {
 export const add = (cartItem) => {
     console.log("Add cart item");
     return {
-      type: LOAD,
+      type: ADD,
       payload: cartItem,
     };
   };
 
   export const addCartItem = (productId) => async (dispatch) => {
-    console.log("Loading all review Thunk");
+    console.log("Adding cart item Thunk");
     const response = await fetch(`/api/carts/${productId}`, {
         method: "POST"
     });
 
     const cartItem = await response.json();
+
+    console.log(cartItem)
 
     if (response.ok) {
       await dispatch(add(cartItem));
@@ -78,11 +80,7 @@ export const cartReducer = (state = initialState, action) => {
 
     case ADD:
         newState.items[action.payload.id] = action.payload;
-        let addQuantity = 0;
-        newState.items.forEach(item => {
-            addQuantity += item.quantity
-        })
-        newState.totalQuantity = addQuantity;
+        newState.totalQuantity += 1;
         return newState;
 
     default:
