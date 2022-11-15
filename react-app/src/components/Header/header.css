@@ -422,6 +422,7 @@
 .cart-count-double-digit span {
     font-size: 14px;
     left: 12.5px;
+    top: -24px;
 }
 
 .header-cart img {
