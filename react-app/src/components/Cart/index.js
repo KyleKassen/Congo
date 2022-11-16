@@ -6,7 +6,7 @@ import "./cart.css";
 
 function Cart() {
   const history = useHistory();
-  const [quantities, setQuantities]= useState({});
+  const [quantities, setQuantities] = useState({});
   const [currentItem, setCurrentItem] = useState(0);
 
   const cartItems = useSelector((state) => Object.values(state.cart.items));
@@ -14,29 +14,41 @@ function Cart() {
   const updateQuantity = async (itemId, quantity) => {};
 
   const showCustomForm = (itemId) => {
-    const dropDownContainer = document.getElementById(`item-${itemId}dropdown`)
-    dropDownContainer.classList.add('disable-quantity-selection')
+    const dropDownContainer = document.getElementById(`item-${itemId}dropdown`);
+    dropDownContainer.classList.add("disable-quantity-selection");
+    const customQuantityContainer = document.getElementById(
+      `item-${itemId}custom`
+    );
+    customQuantityContainer.classList.add("show-custom-quantity");
   };
 
   const handleChange = (itemId, e) => {
     const currentQantities = quantities;
     quantities[itemId] = e.target.value;
 
-    setQuantities({...currentQantities})
-  }
+    const re = /^[0-9\b]+$/;
+
+    // Only set it if its a number
+    if (e.target.value === "" || re.test(e.target.value)) {
+      setQuantities({ ...currentQantities });
+    } else {
+      quantities[itemId] = "";
+      setQuantities({ ...currentQantities });
+    }
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // console.log('first variable is :', e)
-    console.log('second variable is :', currentItem)
-  }
+    console.log("second variable is :", currentItem);
+  };
 
   // Get rid of input field changing when scrolling
-  document.addEventListener("wheel", function(event){
-    if(document.activeElement.type === "number"){
-        document.activeElement.blur();
+  document.addEventListener("wheel", function (event) {
+    if (document.activeElement.type === "number") {
+      document.activeElement.blur();
     }
-});
+  });
 
   return (
     <>
@@ -72,49 +84,84 @@ function Cart() {
                             delivery
                           </p>
                         </div>
-                        <div className={`class-item-quantity-drop-down`} id={`item-${item.id}dropdown`}>
-                          <div className="class-item-quantity-button">
-                            <p>
-                              Qty: <span>{item.quantity}</span> <i></i>
-                            </p>
+                        <div className="cart-item-bottom-half-container">
+                          <div
+                            className={`cart-item-quantity-drop-down`}
+                            id={`item-${item.id}dropdown`}
+                          >
+                            <div className="cart-item-quantity-button">
+                              <p>
+                                Qty: <span>{item.quantity}</span> <i></i>
+                              </p>
+                            </div>
+                            <ul>
+                              <li>0 (Delete)</li>
+                              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
+                                if (
+                                  num === item.quantity &&
+                                  item.quantity < 10
+                                ) {
+                                  return (
+                                    <li
+                                      className="cart-item-quantity-active"
+                                      onClick={() =>
+                                        updateQuantity(item.id, num)
+                                      }
+                                    >
+                                      {num}
+                                    </li>
+                                  );
+                                } else if (num === 10 && item.quanity > 9) {
+                                  return (
+                                    <li
+                                      className="cart-item-quantity-active cart-item-10plus"
+                                      onClick={() => showCustomForm(item.id)}
+                                    >
+                                      10+
+                                    </li>
+                                  );
+                                } else if (num === 10) {
+                                  return (
+                                    <li
+                                      className="cart-item-10plus"
+                                      onClick={() => showCustomForm(item.id)}
+                                    >
+                                      10+
+                                    </li>
+                                  );
+                                } else {
+                                  return <li>{num}</li>;
+                                }
+                              })}
+                            </ul>
                           </div>
-                          <ul>
-                            <li>0 (Delete)</li>
-                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
-                              if (num === item.quantity && item.quantity < 10) {
-                                return (
-                                  <li
-                                    className="class-item-quantity-active"
-                                    onClick={() => updateQuantity(item.id, num)}
-                                  >
-                                    {num}
-                                  </li>
-                                );
-                              } else if (num === 10 && item.quanity > 9) {
-                                return (
-                                  <li className="class-item-quantity-active class-item-10plus" onClick={() => showCustomForm(item.id)}>
-                                    10+
-                                  </li>
-                                );
-                              } else if (num === 10) {
-                                return <li className="class-item-10plus" onClick={() => showCustomForm(item.id)}>10+</li>;
-                              } else {
-                                return <li>{num}</li>;
-                              }
-                            })}
-                          </ul>
-                        </div>
-                        <div className={`class-item-custom-quantity`} id={`item-${item.id}custom`}>
-                            <form className="class-item-custom-form" onSubmit={handleSubmit}>
+                          <div
+                            className={`cart-item-custom-quantity`}
+                            id={`item-${item.id}custom`}
+                          >
+                            <form
+                              className="cart-item-custom-form"
+                              onSubmit={handleSubmit}
+                            >
                               <div className="custom-quantity-form-field">
                                 <input
                                   className="custom-quantity-input-field"
-                                  type="number"
+                                  type="text"
+                                  maxlength="3"
                                   value={quantities[item.id]}
-                                  onChange={(e) => handleChange(item.id, e)}/>
+                                  onChange={(e) => handleChange(item.id, e)}
+                                />
                               </div>
-                              <button type="submit" onClick={() => setCurrentItem(item.id)}>Update</button>
+                              <button
+                                type="submit"
+                                onClick={() => setCurrentItem(item.id)}
+                              >
+                                Update
+                              </button>
                             </form>
+                          </div>
+                          <i className="cart-bottom-divider"></i>
+                          <p className="cart-bottom-delete-button">Delete</p>
                         </div>
                       </div>
                     </div>
