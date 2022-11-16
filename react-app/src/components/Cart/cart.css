@@ -207,6 +207,16 @@
     margin-right: 4px;
 }
 
+.disable-quantity-selection {
+    display: none;
+}
+
+.class-item-custom-form {
+    display: flex;
+}
+
+
+
 .class-item-quantity-button i {
     background-image: url(../../media/images/amazonicon2.png);
     -webkit-background-size: 400px 900px;
