@@ -5,6 +5,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import joinedload, subqueryload, immediateload
 from ..forms.product_form import ProductForm
 from ..forms.review_form import ReviewForm
+from ..forms.cart_form import CartForm
 
 cart_routes = Blueprint('carts', __name__)
 
@@ -72,4 +73,24 @@ def edit_cart_item(product_id):
     Edit a cart Item
     """
 
+    quantity = 0
+
     item = CartItem.query.filter_by(product_id=product_id).one()
+
+    form = CartForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        quantity = form.data['quantity']
+
+        if quantity == 0:
+            db.session.delete(item)
+            db.session.commit()
+            return quantity
+
+        item.quantity = quantity
+        db.session.commit()
+
+        return {'itemQuantity': quantity}
+
+    return {'error': 'edit cart quantity errored out'}
