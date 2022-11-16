@@ -44,6 +44,9 @@ function Cart() {
                           </p>
                         </div>
                         <div className='class-item-quantity-drop-down'>
+                            <div className="class-item-quantity-button">
+                                <p>Qty: <span>{item.quantity}</span> <i></i></p>
+                            </div>
                             <ul>
                                 <li>0 (Delete)</li>
                                 <li>1</li>

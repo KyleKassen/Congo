@@ -111,6 +111,62 @@
     cursor: pointer;
 }
 
+.class-item-quantity-drop-down ul {
+    display: none;
+}
+
+.class-item-quantity-button {
+    font-size: 13px;
+    border-radius: 7px;
+    background: #F0F2F2;
+    box-shadow: 0 2px 5px rgb(15 17 17 / 15%);
+    height: 29px;
+    line-height: 29px;
+    border: 1px solid #D5D9D9;
+    width: 75px;
+    user-select: none;
+}
+
+.class-item-quantity-button:hover {
+    cursor: pointer;
+    background-color: #E3E6E6;
+}
+
+.class-item-quantity-button:active {
+    border-color: #007185;
+    box-shadow: 0 0 0 3px #c8f3fa;
+}
+
+.class-item-quantity-button:active~ul {
+    display: inline;
+}
+
+.class-item-quantity-button:focus {
+    outline: 0
+}
+
+.class-item-quantity-button p {
+    padding-left: 11px;
+}
+
+.class-item-quantity-button span {
+    margin-left: 2px;
+    margin-right: 4px;
+}
+
+.class-item-quantity-button i {
+    background-image: url(../../media/images/amazonicon2.png);
+    -webkit-background-size: 400px 900px;
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 8px;
+    background-position: -7px -102px;
+    display: inline-block;
+    /* vertical-align: top; */
+    margin-bottom: 1.5px;
+}
+
 .cart-right-container {
     padding: 0px 20px 5px 20px;
     width: 260px;
