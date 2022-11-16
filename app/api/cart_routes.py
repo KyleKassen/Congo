@@ -75,9 +75,14 @@ def edit_cart_item(product_id):
 
     quantity = 0
 
+    print('\n\n\n\n', product_id)
+
     item = CartItem.query.filter_by(product_id=product_id).one()
 
+
     form = CartForm()
+
+    print("\n\n\n\n", form)
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
@@ -91,6 +96,6 @@ def edit_cart_item(product_id):
         item.quantity = quantity
         db.session.commit()
 
-        return {'itemQuantity': quantity}
+        return item.to_dict()
 
     return {'error': 'edit cart quantity errored out'}

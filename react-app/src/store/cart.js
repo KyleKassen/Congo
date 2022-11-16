@@ -1,5 +1,6 @@
 const LOAD = "cart/load";
 const ADD = "cart/add";
+const EDIT = "cart/edit";
 const RESET = "cart/reset";
 
 //##########################
@@ -57,6 +58,39 @@ export const addCartItem = (productId) => async (dispatch) => {
 };
 
 //##########################
+// EDIT Cart Items
+//##########################
+
+export const edit = (cartItem) => {
+  console.log("Edit cart item", cartItem);
+  return {
+    type: EDIT,
+    payload: cartItem,
+  };
+};
+
+export const editCartItem = (productId, quantity) => async (dispatch) => {
+  console.log("Editing cart item Thunk");
+  const response = await fetch(`/api/carts/${productId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({"quantity": quantity})
+  });
+
+  const cartItem = await response.json();
+
+  console.log(cartItem);
+
+  if (response.ok) {
+    await dispatch(edit(cartItem));
+  }
+
+  return cartItem;
+};
+
+//##########################
 // Reset Cart
 //##########################
 
@@ -88,6 +122,11 @@ export const cartReducer = (state = initialState, action) => {
     case ADD:
       newState.items[action.payload.id] = action.payload;
       newState.totalQuantity += 1;
+      return newState;
+
+    case EDIT:
+      newState.totalQuantity += action.payload.quantity - state.items[action.payload.id].quantity
+      newState.items[action.payload.id].quantity = action.payload.quantity
       return newState;
 
     case RESET:

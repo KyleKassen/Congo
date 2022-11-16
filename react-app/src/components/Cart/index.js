@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { edit, editCartItem, loadCartItems } from "../../store/cart";
 import picon from "../../media/images/primeicons.png";
 import "./cart.css";
 
 function Cart() {
-  const history = useHistory();
   const [quantities, setQuantities] = useState({});
   const [currentItem, setCurrentItem] = useState(0);
 
-  const cartItems = useSelector((state) => Object.values(state.cart.items));
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const updateQuantity = async (itemId, quantity) => {};
+  const cartItems = useSelector((state) => Object.values(state.cart.items));
+  const userId = useSelector(state => state.session.user.id)
+
+  const updateQuantity = async (itemId, quantity) => {
+    console.log(`quantity is : ${quantity}`)
+    const response = await dispatch(editCartItem(itemId, quantity))
+
+    if (quantity === 0) {
+      await dispatch(loadCartItems(userId))
+    }
+  };
 
   const showCustomForm = (itemId) => {
     const dropDownContainer = document.getElementById(`item-${itemId}dropdown`);
@@ -41,6 +52,7 @@ function Cart() {
     e.preventDefault();
     // console.log('first variable is :', e)
     console.log("second variable is :", currentItem);
+    updateQuantity(currentItem, quantities[currentItem])
   };
 
   // Get rid of input field changing when scrolling
@@ -66,23 +78,27 @@ function Cart() {
                         <img src={`${item.product.image.url}`} />
                       </div>
                       <div className="cart-item-middle-container">
-                        <p className="cart-item-title">{item.product.title}</p>
-                        <p className="cart-item-instock">In Stock</p>
-                        <p className="cart-item-bottom-p">
-                          Shipped from:{" "}
-                          <span onClick={() => history.push("/")}>
-                            Congo.com
-                          </span>
-                        </p>
-                        <p className="cart-item-bottom-p">
-                          Gift options not available.
-                        </p>
-                        <div className="cart-item-prime-container">
-                          <div className="cart-item-prime-icon"></div>
-                          <p>
-                            Eligible for FREE Same-Day, Overnight or Tomorrow
-                            delivery
+                        <div className="cart-item-upper-half-container">
+                          <p className="cart-item-title">
+                            {item.product.title}
                           </p>
+                          <p className="cart-item-instock">In Stock</p>
+                          <p className="cart-item-bottom-p">
+                            Shipped from:{" "}
+                            <span onClick={() => history.push("/")}>
+                              Congo.com
+                            </span>
+                          </p>
+                          <p className="cart-item-bottom-p">
+                            Gift options not available.
+                          </p>
+                          <div className="cart-item-prime-container">
+                            <div className="cart-item-prime-icon"></div>
+                            <p>
+                              Eligible for FREE Same-Day, Overnight or Tomorrow
+                              delivery
+                            </p>
+                          </div>
                         </div>
                         <div className="cart-item-bottom-half-container">
                           <div
@@ -95,7 +111,7 @@ function Cart() {
                               </p>
                             </div>
                             <ul>
-                              <li>0 (Delete)</li>
+                              <li onClick={() => updateQuantity(item.id, 0)}>0 (Delete)</li>
                               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
                                 if (
                                   num === item.quantity &&
@@ -111,7 +127,7 @@ function Cart() {
                                       {num}
                                     </li>
                                   );
-                                } else if (num === 10 && item.quanity > 9) {
+                                } else if (num === 10 && item.quantity > 9) {
                                   return (
                                     <li
                                       className="cart-item-quantity-active cart-item-10plus"
@@ -130,7 +146,7 @@ function Cart() {
                                     </li>
                                   );
                                 } else {
-                                  return <li>{num}</li>;
+                                  return <li onClick={() => updateQuantity(item.id, num)}>{num}</li>;
                                 }
                               })}
                             </ul>

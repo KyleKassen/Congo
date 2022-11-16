@@ -63,6 +63,9 @@
 
 .cart-item-middle-container {
     padding-left: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -292,7 +295,17 @@
     margin-top: 9px;
 }
 
+.cart-bottom-delete-button {
+    color: #007185;
+    font-size: 12px;
+    line-height: 35px;
+}
 
+.cart-bottom-delete-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+
+}
 
 .cart-right-container {
     padding: 0px 20px 5px 20px;
