@@ -111,8 +111,48 @@
     cursor: pointer;
 }
 
+.class-item-quantity-drop-down {
+    position: relative;
+}
+
 .class-item-quantity-drop-down ul {
+    position: absolute;
     display: none;
+    list-style-type: none!important;
+    top: 0px;
+    left: 0px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 13%);
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.2);
+    width: 88.84px;
+    height: 274px;
+    padding: 8px 0px;
+    background-color: white;
+    z-index: 1;
+}
+
+.class-item-quantity-drop-down li {
+    text-align: start;
+    text-decoration: none;
+    padding: 2px 12px 1px 13px;
+    display: block;
+    white-space: nowrap;
+    outline: 0;
+    border: 1px solid transparent;
+    user-select: none;
+    font-size: 15px;
+}
+
+.class-item-quantity-drop-down li:hover {
+    border-color: #D5D9D9;
+    background-color: #F0F2F2!important;
+}
+
+.class-item-quantity-drop-down li:active {
+    border-color: #D5D9D9;
+    background-color: #EDFDFF;
+    border-color: #007185!important;
 }
 
 .class-item-quantity-button {
@@ -137,9 +177,10 @@
     box-shadow: 0 0 0 3px #c8f3fa;
 }
 
-.class-item-quantity-button:active~ul {
+.class-item-quantity-button~ul:hover {
     display: inline;
 }
+
 
 .class-item-quantity-button:focus {
     outline: 0
