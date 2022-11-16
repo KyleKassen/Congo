@@ -125,6 +125,11 @@ export const cartReducer = (state = initialState, action) => {
       return newState;
 
     case EDIT:
+      if (action.payload.quantity === 0) {
+        newState.totalQuantity -= state.items[action.payload.id].quantity
+        delete newState.items[action.payload.id]
+        return newState;
+      }
       newState.totalQuantity += action.payload.quantity - state.items[action.payload.id].quantity
       newState.items[action.payload.id].quantity = action.payload.quantity
       return newState;

@@ -19,9 +19,6 @@ function Cart() {
     console.log(`quantity is : ${quantity}`)
     const response = await dispatch(editCartItem(itemId, quantity))
 
-    if (quantity === 0) {
-      await dispatch(loadCartItems(userId))
-    }
   };
 
   const showCustomForm = (itemId) => {

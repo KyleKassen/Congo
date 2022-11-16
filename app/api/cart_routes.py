@@ -91,7 +91,10 @@ def edit_cart_item(product_id):
         if quantity == 0:
             db.session.delete(item)
             db.session.commit()
-            return quantity
+            return {
+                "quantity": quantity,
+                "id": product_id
+                }
 
         item.quantity = quantity
         db.session.commit()

@@ -3,6 +3,6 @@ from wtforms import SubmitField, IntegerField
 from wtforms.validators import DataRequired
 
 class CartForm(FlaskForm):
-    quantity = IntegerField("Quantity", validators=[DataRequired()])
+    quantity = IntegerField("Quantity")
 
     submit = SubmitField('Submit')
