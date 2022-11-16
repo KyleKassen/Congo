@@ -31,6 +31,13 @@ function Cart() {
     console.log('second variable is :', currentItem)
   }
 
+  // Get rid of input field changing when scrolling
+  document.addEventListener("wheel", function(event){
+    if(document.activeElement.type === "number"){
+        document.activeElement.blur();
+    }
+});
+
   return (
     <>
       <div className="cart-outer-wrapper">
