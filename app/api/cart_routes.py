@@ -64,3 +64,12 @@ def add_cart_item(product_id):
     }
 
     return result
+
+
+@cart_routes.route('/<int:product_id', methods=['PUT'])
+def edit_cart_item(product_id):
+    """
+    Edit a cart Item
+    """
+
+    item = CartItem.query.filter_by(product_id=product_id).one()
