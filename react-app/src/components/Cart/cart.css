@@ -215,7 +215,31 @@
     display: flex;
 }
 
+.custom-quantity-input-field {
+    margin-bottom: 4px;
+    padding: 3px 7px;
+    width: 61px;
+    border: 1px solid #888C8C;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+    outline: 0;
+    height: 23px;
+    font-size: 13px;
+    line-height: 19px;
+}
 
+.custom-quantity-input-field:focus {
+
+}
+
+.custom-quantity-input-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-quantity-input-field[type=number] {
+    -moz-appearance: textfield;
+  }
 
 .class-item-quantity-button i {
     background-image: url(../../media/images/amazonicon2.png);

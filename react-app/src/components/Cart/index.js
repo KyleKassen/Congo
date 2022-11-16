@@ -101,6 +101,7 @@ function Cart() {
                             <form className="class-item-custom-form" onSubmit={handleSubmit}>
                               <div className="custom-quantity-form-field">
                                 <input
+                                  className="custom-quantity-input-field"
                                   type="number"
                                   value={quantities[item.id]}
                                   onChange={(e) => handleChange(item.id, e)}/>
