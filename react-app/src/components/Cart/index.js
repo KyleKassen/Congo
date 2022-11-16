@@ -43,23 +43,28 @@ function Cart() {
                             delivery
                           </p>
                         </div>
-                        <div className='class-item-quantity-drop-down'>
-                            <div className="class-item-quantity-button">
-                                <p>Qty: <span>{item.quantity}</span> <i></i></p>
-                            </div>
-                            <ul>
-                                <li>0 (Delete)</li>
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
-                                <li>6</li>
-                                <li>7</li>
-                                <li>8</li>
-                                <li>9</li>
-                                <li>10+</li>
-                            </ul>
+                        <div className="class-item-quantity-drop-down">
+                          <div className="class-item-quantity-button">
+                            <p>
+                              Qty: <span>{item.quantity}</span> <i></i>
+                            </p>
+                          </div>
+                          <ul>
+                            <li>0 (Delete)</li>
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
+                              if (num === item.quantity && item.quantity < 10) {
+                                return (
+                                  <li className="class-item-quantity-active">
+                                    {num}
+                                  </li>
+                                );
+                              } else if(num === 10 && item.quanity > 9) {
+                                return <li className="class-item-quantity-active">10+</li>
+                              } else {
+                                return <li>{num}</li>
+                              }
+                            })}
+                          </ul>
                         </div>
                       </div>
                     </div>
