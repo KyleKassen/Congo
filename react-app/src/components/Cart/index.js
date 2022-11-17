@@ -268,7 +268,7 @@ function Cart() {
                   ${Math.round(total * 100) / 100}
                 </span>
               </p>
-              <div className="cart-checkout-button">
+              <div className="cart-checkout-button" onClick={() => history.push('/checkout')}>
                 <p>Proceed to checkout</p>
               </div>
             </div>
