@@ -118,12 +118,37 @@ function Checkout() {
                       <h3 className="shipping-starter-index text-color-orange">
                         1
                       </h3>
-                      <h3 className="shipping-starter-heading text-color-orange">
+                      <h3 className="shipping-change-heading text-color-orange">
                         Choose a shipping address
                       </h3>
                       <div className="close-change-icon-container">
-                        <p className="shipping-change-close" onClick={() => setChangeAddress(false)}>Close</p><i onClick={() => setChangeAddress(false)}></i>
+                        <p
+                          className="shipping-change-close"
+                          onClick={() => setChangeAddress(false)}
+                        >
+                          Close
+                        </p>
+                        <i onClick={() => setChangeAddress(false)}></i>
                       </div>
+                    </div>
+                    <div className="shipping-list-container">
+                      <div className="shipping-list-header-container">
+                        <h3>All shipping addresses</h3>
+                        <hr />
+                      </div>
+                      <form>
+                        {addresses.map((address) => {
+                          return (
+                            <div className="address-container">
+                              <input
+                                type="radio"
+                                name={`address${address.id}`}
+                              />
+                              <label>hello</label>
+                            </div>
+                          );
+                        })}
+                      </form>
                     </div>
                   </div>
                 )}

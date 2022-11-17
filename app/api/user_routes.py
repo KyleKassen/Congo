@@ -64,8 +64,8 @@ def create_address():
             city=form.data['city'],
             state=form.data['state'],
             zipcode=form.data['zipcode'],
-            first_name=form.data['firstName'],
-            last_name=form.data['lastName']
+            first_name=form.data['first_name'],
+            last_name=form.data['last_name']
         )
 
         db.session.add(address)
@@ -102,8 +102,8 @@ def update_address(id):
         update_address.city = form.data['city']
         update_address.state = form.data['state']
         update_address.zipcode = form.data['zipcode']
-        update_address.first_name = form.data['firstName']
-        update_address.last_name = form.data['lastName']
+        update_address.first_name = form.data['first_name']
+        update_address.last_name = form.data['last_name']
 
         db.session.commit()
 
