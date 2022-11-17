@@ -51,9 +51,13 @@ function Header() {
     let cartCount = document.getElementsByClassName(
       "header-cart-counter-container"
     )[0];
-    if (cart.totalQuantity > 9)
+    if (cart.totalQuantity > 9){
       cartCount.classList.add("cart-count-double-digit");
-    else cartCount.classList.add("cart-count-single-digit");
+      cartCount.classList.remove("cart-count-single-digit");
+    } else {
+      cartCount.classList.add("cart-count-single-digit");
+      cartCount.classList.remove("cart-count-double-digit");
+    }
   }, [cart]);
 
   const departments = ["All", "Amazon", "Appliances", "Clothing"];
