@@ -58,6 +58,8 @@ class ShippingAddress(db.Model):
         return {
             'id': self.id,
             'userId': self.user_id,
+            'firstName': self.first_name,
+            'lastName': self.last_name,
             'address': self.address,
             'city': self.city,
             'state': self.state,
