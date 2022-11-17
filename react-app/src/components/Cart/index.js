@@ -100,7 +100,7 @@ function Cart() {
                         <div className="cart-item-bottom-half-container">
                           <div
                             className={`cart-item-quantity-drop-down`}
-                            id={`item-${item.id}dropdown`}
+                            id={`item-${item.product.id}dropdown`}
                           >
                             <div className="cart-item-quantity-button">
                               <p>
@@ -108,7 +108,7 @@ function Cart() {
                               </p>
                             </div>
                             <ul>
-                              <li onClick={() => updateQuantity(item.id, 0)}>0 (Delete)</li>
+                              <li onClick={() => updateQuantity(item.product.id, 0)}>0 (Delete)</li>
                               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => {
                                 if (
                                   num === item.quantity &&
@@ -118,7 +118,7 @@ function Cart() {
                                     <li
                                       className="cart-item-quantity-active"
                                       onClick={() =>
-                                        updateQuantity(item.id, num)
+                                        updateQuantity(item.product.id, num)
                                       }
                                     >
                                       {num}
@@ -128,7 +128,7 @@ function Cart() {
                                   return (
                                     <li
                                       className="cart-item-quantity-active cart-item-10plus"
-                                      onClick={() => showCustomForm(item.id)}
+                                      onClick={() => showCustomForm(item.product.id)}
                                     >
                                       10+
                                     </li>
@@ -137,20 +137,20 @@ function Cart() {
                                   return (
                                     <li
                                       className="cart-item-10plus"
-                                      onClick={() => showCustomForm(item.id)}
+                                      onClick={() => showCustomForm(item.product.id)}
                                     >
                                       10+
                                     </li>
                                   );
                                 } else {
-                                  return <li onClick={() => updateQuantity(item.id, num)}>{num}</li>;
+                                  return <li onClick={() => updateQuantity(item.product.id, num)}>{num}</li>;
                                 }
                               })}
                             </ul>
                           </div>
                           <div
                             className={`cart-item-custom-quantity`}
-                            id={`item-${item.id}custom`}
+                            id={`item-${item.product.id}custom`}
                           >
                             <form
                               className="cart-item-custom-form"
@@ -161,20 +161,20 @@ function Cart() {
                                   className="custom-quantity-input-field"
                                   type="text"
                                   maxlength="3"
-                                  value={quantities[item.id]}
-                                  onChange={(e) => handleChange(item.id, e)}
+                                  value={quantities[item.product.id]}
+                                  onChange={(e) => handleChange(item.product.id, e)}
                                 />
                               </div>
                               <button
                                 type="submit"
-                                onClick={() => setCurrentItem(item.id)}
+                                onClick={() => setCurrentItem(item.product.id)}
                               >
                                 Update
                               </button>
                             </form>
                           </div>
                           <i className="cart-bottom-divider"></i>
-                          <p className="cart-bottom-delete-button">Delete</p>
+                          <p className="cart-bottom-delete-button" onClick={()=> updateQuantity(item.product.id, 0)}>Delete</p>
                         </div>
                       </div>
                     </div>

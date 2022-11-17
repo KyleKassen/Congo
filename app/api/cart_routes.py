@@ -43,7 +43,7 @@ def add_cart_item(product_id):
     user = current_user.to_dict()
     user_id = user['id']
 
-    item = CartItem.query.filter_by(product_id=product_id).one()
+    item = CartItem.query.filter_by(product_id=product_id).first()
     product = Product.query.get(product_id)
 
     if item:
@@ -58,10 +58,13 @@ def add_cart_item(product_id):
 
     db.session.commit()
 
+    product_dict = product.to_dict()
+    product_dict["image"] = ProductImage.query.filter_by(product_id=product.id).first().to_dict()
+
     result = {
         "id":item.id,
         "quantity":item.quantity,
-        "product":product.to_dict()
+        "product":product_dict
     }
 
     return result
@@ -93,7 +96,7 @@ def edit_cart_item(product_id):
             db.session.commit()
             return {
                 "quantity": quantity,
-                "id": product_id
+                "id": item.id
                 }
 
         item.quantity = quantity
