@@ -60,7 +60,7 @@ function Header() {
     }
   }, [cart]);
 
-  const departments = ["All", "Amazon", "Appliances", "Clothing"];
+  const departments = ['All', 'Alex Skills', 'Amazon Devices', 'Amazon Explore', 'Amazon Pharmacy', 'Amazon Warehouse', 'Appliances', 'Apps & Games', 'Arts, Crafts & Sewing', 'Audible Books & Originals', 'Automotive Parts & Accessories', 'Baby', 'Beauty & Personal Care', 'Books', 'CDs & Vinyl', 'Cell Phones & Accessories', 'Clothing, Shoes & Jewely', 'Collectibles & Fine Art', 'Computes', 'Credit and Payment Cards', 'Digital Educational Resources', 'Digital Music', 'Electronics', 'Garden & Outdoor', 'Gift Cards', 'Grocery & Gourmet Food', 'Handmade', 'Health, Household & Babe Care', 'Home & Business Services', 'Home & Kitchen', 'Industrial & Scientific', 'Just for Prime', 'Kindle Store', 'Luggage & Travel Gear', 'Luxury Store', 'Magazine Subscriptions', 'Movies & TV', 'Musical Instruments', 'Office Products', 'Online Learning', 'Pet Supplies', 'Premium Beauty', 'Prime Video', 'Smart Home', 'Software', 'Sports & Outdoors', 'Subscription Boxes', 'Tools & Home Improvement', 'Toys & Games', 'Under $10', 'Video Games']
   const mainNav = [
     "Best Sellers",
     "Amazon Basics",
