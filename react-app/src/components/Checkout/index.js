@@ -18,6 +18,7 @@ function Checkout() {
   const [loaded, setLoaded] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [changeAddress, setChangeAddress] = useState(false);
   const [defaultAddress, setDefaultAddress] = useState(0);
 
   const dispatch = useDispatch();
@@ -80,29 +81,53 @@ function Checkout() {
           <div className="checkout-outer-container">
             <div className="checkout-left-container">
               <div className="checkout-shipping-section">
-                <div className="checkout-shipping-starter-container">
-                  <div className="checkout-shipping-starter-left">
-                    <h3 className="shipping-starter-index">1</h3>
-                    <h3 className="shipping-starter-heading">
-                      Shipping address
-                    </h3>
-                    <div className="checkout-shipping-starter-address-container">
-                      {defaultAddress && (
-                        <>
-                          <p>
-                            {defaultAddress.firstName} {defaultAddress.lastName}
-                          </p>
-                          <p>{defaultAddress.address}</p>
-                          <p>
-                            {defaultAddress.city}, {defaultAddress.state}{" "}
-                            {defaultAddress.zipcode}
-                          </p>
-                        </>
-                      )}
+                {!changeAddress && (
+                  <div className="checkout-shipping-starter-container">
+                    <div className="checkout-shipping-starter-left">
+                      <h3 className="shipping-starter-index">1</h3>
+                      <h3 className="shipping-starter-heading">
+                        Shipping address
+                      </h3>
+                      <div className="checkout-shipping-starter-address-container">
+                        {defaultAddress && (
+                          <>
+                            <p>
+                              {defaultAddress.firstName}{" "}
+                              {defaultAddress.lastName}
+                            </p>
+                            <p>{defaultAddress.address}</p>
+                            <p>
+                              {defaultAddress.city}, {defaultAddress.state}{" "}
+                              {defaultAddress.zipcode}
+                            </p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <p
+                      className="shipping-starter-change"
+                      onClick={() => setChangeAddress(true)}
+                    >
+                      Change
+                    </p>
+                  </div>
+                )}
+                {changeAddress && (
+                  <div className="checkout-shipping-change-container">
+                    <div className="shipping-change-header-container">
+                      <h3 className="shipping-starter-index text-color-orange">
+                        1
+                      </h3>
+                      <h3 className="shipping-starter-heading text-color-orange">
+                        Choose a shipping address
+                      </h3>
+                      <div className="close-change-icon-container">
+                        <p className="shipping-change-close" onClick={() => setChangeAddress(false)}>Close</p><i onClick={() => setChangeAddress(false)}></i>
+                      </div>
                     </div>
                   </div>
-                  <p className="shipping-starter-change">Change</p>
-                </div>
+                )}
+                <hr />
                 <button onClick={() => setShowAddressModal(true)}>
                   Add Address
                 </button>

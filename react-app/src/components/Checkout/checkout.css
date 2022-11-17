@@ -71,6 +71,7 @@
 
 .checkout-left-container {
     width: 100%;
+    padding-right: 29px;
 }
 
 .checkout-shipping-starter-container {
@@ -102,10 +103,53 @@
     width: 100%;
 }
 
-.shipping-starter-change {
-    float: right;
+.shipping-starter-change, .shipping-change-close {
+    /* float: right; */
+    color: #007185;
+    font-size: 14px;
+}
+
+.shipping-starter-change:hover, .shipping-change-close:hover, .close-change-icon-container i:hover {
+    cursor: pointer;
+    color: #C7511F;
+    text-decoration: underline;
 }
 
 .checkout-right-container {
     min-width: 252px;
+}
+
+.checkout-outer-container hr {
+    border-top: 1px solid #e7e7e7;
+    display: block;
+    height: 1px;
+    line-height: 19px;
+    margin-bottom: 14px;
+    margin-top: 5px;
+}
+
+.text-color-orange {
+    color: #C45500
+}
+
+.shipping-change-header-container {
+    display: flex;
+}
+
+.close-change-icon-container {
+    display: flex;
+    float: right;
+}
+
+.close-change-icon-container i {
+    background-image: url('../../media/images/amazonicon2.png');
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    opacity: .64;
+    width: 10px;
+    height: 9px;
+    background-position: -297px -5px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 3px;
 }
