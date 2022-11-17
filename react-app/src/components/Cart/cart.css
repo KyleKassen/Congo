@@ -15,7 +15,7 @@
 
 .cart-left-right-container {
     display: flex;
-    width: calc(100%-40px);
+    width: calc(100% - 40px);
     margin-top: 16px;
     color: #0f1111;
     margin-left: 20px;
@@ -24,7 +24,7 @@
 }
 
 .cart-left-container {
-    width: calc(100%-20px);
+    width: calc(100% - 20px);
     margin-right: 20px;
     background-color: white;
     padding: 20px;
@@ -191,6 +191,14 @@
     border: 1px solid #D5D9D9;
     width: 75px;
     user-select: none;
+}
+
+.medium-quantity {
+    width: 80px;
+}
+
+.large-quantity {
+    width: 90px;
 }
 
 .cart-item-quantity-button:hover {

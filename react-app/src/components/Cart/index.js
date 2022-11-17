@@ -121,11 +121,27 @@ function Cart() {
                               className={`cart-item-quantity-drop-down`}
                               id={`item-${item.product.id}dropdown`}
                             >
-                              <div className="cart-item-quantity-button">
-                                <p>
-                                  Qty: <span>{item.quantity}</span> <i></i>
-                                </p>
-                              </div>
+                              {item.quantity <= 9 && (
+                                <div className="cart-item-quantity-button">
+                                  <p>
+                                    Qty: <span>{item.quantity}</span> <i></i>
+                                  </p>
+                                </div>
+                              )}
+                              {item.quantity > 9 && item.quantity <= 99 && (
+                                <div className="cart-item-quantity-button medium-quantity">
+                                  <p>
+                                    Qty: <span>{item.quantity}</span> <i></i>
+                                  </p>
+                                </div>
+                              )}
+                              {item.quantity > 99 && (
+                                <div className="cart-item-quantity-button large-quantity">
+                                  <p>
+                                    Qty: <span>{item.quantity}</span> <i></i>
+                                  </p>
+                                </div>
+                              )}
                               <ul
                                 className="cart-item-ul"
                                 id={`cart-ul-${idx}`}
