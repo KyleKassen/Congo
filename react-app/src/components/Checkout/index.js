@@ -144,9 +144,9 @@ function Checkout() {
                         <hr />
                       </div>
                       <form>
-                        {addresses.map((address) => {
+                        {addresses.map((address, idx) => {
                           return (
-                            <div className={`address-container address-container${address.id}`}>
+                            <div key={idx} className={`address-container address-container${address.id}`}>
                               <input type="radio" id={`address${address.id}`} name="address-selection" onClick={() => handleAddressSelection(address.id)}/>
                               <label for={`address${address.id}`}>
                                 <span>
@@ -154,17 +154,13 @@ function Checkout() {
                                 </span>
                                 {address.address}, {address.city},{" "}
                                 {address.state}, {address.zipcode}, United States {" "}
-                                <span className="address-edit-span checkout-text-hover"> Edit address</span>
+                                <Address address={address} />
                               </label>
                             </div>
                           );
                         })}
                       </form>
-                    </div>
-                  </div>
-                )}
-                <hr />
-                <button onClick={() => setShowAddressModal(true)}>
+                      <button onClick={() => setShowAddressModal(true)}>
                   Add Address
                 </button>
                 {showAddressModal && (
@@ -172,14 +168,26 @@ function Checkout() {
                     <CreateAddress setShowAddressModal={setShowAddressModal} />
                   </Modal>
                 )}
-                {addresses &&
+                    </div>
+                  </div>
+                )}
+                <hr />
+                {/* <button onClick={() => setShowAddressModal(true)}>
+                  Add Address
+                </button>
+                {showAddressModal && (
+                  <Modal onClose={() => setShowAddressModal(false)}>
+                    <CreateAddress setShowAddressModal={setShowAddressModal} />
+                  </Modal>
+                )} */}
+                {/* {addresses &&
                   addresses.map((address, idx) => {
                     return (
                       <div key={idx}>
                         <Address address={address} />
                       </div>
                     );
-                  })}
+                  })} */}
               </div>
               <button onClick={() => setShowPaymentModal(true)}>
                 Add Payment

@@ -180,15 +180,17 @@ input[type=radio] {
     bottom: -4px;
 }
 
-.address-active {
-    background-color: #C45500;
-}
 
 .address-container {
-    border: 1px solid black;
     padding: 9px;
+    border: 1px solid transparent;
 }
 
+.address-active {
+    background-color: #FCF5EE;
+    border: 1px solid #FBD8B4;
+    border-radius: 5px;
+}
 .address-container label {
     padding-left: 5px;
     padding-bottom: 4px;
