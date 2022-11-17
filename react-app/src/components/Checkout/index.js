@@ -19,15 +19,14 @@ function Checkout() {
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [changeAddress, setChangeAddress] = useState(false);
-  const [defaultAddress, setDefaultAddress] = useState(0);
+  const [defaultAddress, setDefaultAddress] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const userId = useSelector((state) => state.session.user.id);
-  const addresses = useSelector((state) =>
-    Object.values(state.addresses.addresses)
-  );
+  const addressObj = useSelector(state => state.addresses.addresses)
+  const addresses =  Object.values(addressObj)
   const payments = useSelector((state) =>
     Object.values(state.payments.payments)
   );
@@ -44,10 +43,18 @@ function Checkout() {
 
   useEffect(() => {
     setDefaultAddress(addresses[0]);
-  }, [addresses]);
+  }, [loaded]);
 
   if (!loaded) {
     return null;
+  }
+
+  const handleAddressSelection = (addressId) => {
+    const addressContainer = document.getElementsByClassName(`address-container${defaultAddress.id}`)[0]
+    addressContainer.classList.remove('address-active')
+    const newSelectedAddress = document.getElementsByClassName(`address-container${addressId}`)[0]
+    newSelectedAddress.classList.add('address-active')
+    setDefaultAddress(addressObj[addressId]);
   }
 
   return (
@@ -139,8 +146,8 @@ function Checkout() {
                       <form>
                         {addresses.map((address) => {
                           return (
-                            <div className="address-container">
-                              <input type="radio" id={`address${address.id}`} />
+                            <div className={`address-container address-container${address.id}`}>
+                              <input type="radio" id={`address${address.id}`} name="address-selection" onClick={() => handleAddressSelection(address.id)}/>
                               <label for={`address${address.id}`}>
                                 <span>
                                   {address.firstName} {address.lastName}{" "}
