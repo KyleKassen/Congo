@@ -66,7 +66,7 @@ function App() {
           <Cart />
         </ProtectedRoute>
         <ProtectedRoute path="/checkout" exact={true}>
-          <Header />
+          {/* <Header /> */}
           <Checkout />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
