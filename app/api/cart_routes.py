@@ -41,9 +41,10 @@ def add_cart_item(product_id):
     """
 
     user = current_user.to_dict()
+
     user_id = user['id']
 
-    item = CartItem.query.filter_by(product_id=product_id).first()
+    item = CartItem.query.filter_by(product_id=product_id, buyer_id=user_id).first()
     product = Product.query.get(product_id)
 
     if item:
