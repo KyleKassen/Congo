@@ -140,11 +140,15 @@ function Checkout() {
                         {addresses.map((address) => {
                           return (
                             <div className="address-container">
-                              <input
-                                type="radio"
-                                name={`address${address.id}`}
-                              />
-                              <label>hello</label>
+                              <input type="radio" id={`address${address.id}`} />
+                              <label for={`address${address.id}`}>
+                                <span>
+                                  {address.firstName} {address.lastName}{" "}
+                                </span>
+                                {address.address}, {address.city},{" "}
+                                {address.state}, {address.zipcode}, United States {" "}
+                                <span className="address-edit-span checkout-text-hover"> Edit address</span>
+                              </label>
                             </div>
                           );
                         })}

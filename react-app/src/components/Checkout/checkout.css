@@ -109,7 +109,7 @@
     font-size: 14px;
 }
 
-.shipping-starter-change:hover, .shipping-change-close:hover, .close-change-icon-container i:hover {
+.shipping-starter-change:hover, .shipping-change-close:hover, .close-change-icon-container i:hover, .checkout-text-hover:hover {
     cursor: pointer;
     color: #C7511F;
     text-decoration: underline;
@@ -168,6 +168,7 @@
 
 .shipping-list-container hr {
     border-top: 1px solid #e7e7e7;
+    margin-bottom: 4px !important;
 }
 
 
@@ -176,5 +177,20 @@ input[type=radio] {
     width: 14px;
     vertical-align: top;
     position: relative;
-    bottom: -3px;
+    bottom: -4px;
+}
+
+.address-container label {
+    padding-left: 5px;
+    padding-bottom: 4px;
+}
+
+.address-container span {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.address-edit-span {
+    color: #007185;
+    font-weight: 400 !important;
 }
