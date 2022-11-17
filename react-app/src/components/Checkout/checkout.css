@@ -201,7 +201,21 @@ input[type=radio] {
     font-weight: 700;
 }
 
-.address-edit-span {
+.address-button-span {
     color: #007185;
     font-weight: 400 !important;
+    font-size: 14px;
+}
+
+.add-address-container {
+    padding-top: 9px;
+    padding-left: 9px;
+    margin-bottom: 32px;
+}
+
+.add-address-container img {
+    height: 16px;
+    width: 16px;
+    margin-right: 8px;
+    margin-bottom: -2px;
 }

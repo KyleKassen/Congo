@@ -17,12 +17,8 @@ function Address({ address }) {
 
   return (
     <>
-      {/* <p>{address.address}</p>
-      <p>{address.city}</p>
-      <p>{address.state}</p>
-      <p>{address.zipcode}</p> */}
-      <span className="address-edit-span checkout-text-hover" onClick={() => setShowModal(true)}>Edit address</span>{" | "}
-      <span className="address-edit-span checkout-text-hover" onClick={() => deleteAddress(address.id)}>Delete address</span>
+      <span className="address-button-span checkout-text-hover" onClick={() => setShowModal(true)}>Edit address</span>{" | "}
+      <span className="address-button-span checkout-text-hover" onClick={() => deleteAddress(address.id)}>Delete address</span>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditAddress setShowModal={setShowModal} addressId={address.id} />

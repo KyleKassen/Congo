@@ -12,6 +12,7 @@ import Payment from "../Payment";
 import congoWhite from "../../media/images/CONGOwhite.png";
 import congoWhiteTransparent from "../../media/images/CONGOwhite-transparent.png";
 import lock from "../../media/images/greyLock.png";
+import plusicon from "../../media/images/plus.png";
 import "./checkout.css";
 
 function Checkout() {
@@ -25,8 +26,8 @@ function Checkout() {
   const history = useHistory();
 
   const userId = useSelector((state) => state.session.user.id);
-  const addressObj = useSelector(state => state.addresses.addresses)
-  const addresses =  Object.values(addressObj)
+  const addressObj = useSelector((state) => state.addresses.addresses);
+  const addresses = Object.values(addressObj);
   const payments = useSelector((state) =>
     Object.values(state.payments.payments)
   );
@@ -50,12 +51,16 @@ function Checkout() {
   }
 
   const handleAddressSelection = (addressId) => {
-    const addressContainer = document.getElementsByClassName(`address-container${defaultAddress.id}`)[0]
-    addressContainer.classList.remove('address-active')
-    const newSelectedAddress = document.getElementsByClassName(`address-container${addressId}`)[0]
-    newSelectedAddress.classList.add('address-active')
+    const addressContainer = document.getElementsByClassName(
+      `address-container${defaultAddress.id}`
+    )[0];
+    if (addressContainer) addressContainer.classList.remove("address-active");
+    const newSelectedAddress = document.getElementsByClassName(
+      `address-container${addressId}`
+    )[0];
+    newSelectedAddress.classList.add("address-active");
     setDefaultAddress(addressObj[addressId]);
-  }
+  };
 
   return (
     <>
@@ -146,28 +151,50 @@ function Checkout() {
                       <form>
                         {addresses.map((address, idx) => {
                           return (
-                            <div key={idx} className={`address-container address-container${address.id}`}>
-                              <input type="radio" id={`address${address.id}`} name="address-selection" onClick={() => handleAddressSelection(address.id)}/>
+                            <div
+                              key={idx}
+                              className={`address-container address-container${address.id}`}
+                            >
+                              <input
+                                type="radio"
+                                id={`address${address.id}`}
+                                name="address-selection"
+                                onClick={() =>
+                                  handleAddressSelection(address.id)
+                                }
+                              />
                               <label for={`address${address.id}`}>
                                 <span>
                                   {address.firstName} {address.lastName}{" "}
                                 </span>
                                 {address.address}, {address.city},{" "}
-                                {address.state}, {address.zipcode}, United States {" "}
-                                <Address address={address} />
+                                {address.state}, {address.zipcode}, United
+                                States <Address address={address} />
                               </label>
                             </div>
                           );
                         })}
                       </form>
-                      <button onClick={() => setShowAddressModal(true)}>
-                  Add Address
-                </button>
-                {showAddressModal && (
-                  <Modal onClose={() => setShowAddressModal(false)}>
-                    <CreateAddress setShowAddressModal={setShowAddressModal} />
-                  </Modal>
-                )}
+                      <div className="add-address-container">
+                        <img
+                          className="address-button-span checkout-text-hover"
+                          src={plusicon}
+                          onClick={() => setShowAddressModal(true)}
+                        />
+                        <span
+                          className="address-button-span checkout-text-hover"
+                          onClick={() => setShowAddressModal(true)}
+                        >
+                          Add a new address
+                        </span>
+                        {showAddressModal && (
+                          <Modal onClose={() => setShowAddressModal(false)}>
+                            <CreateAddress
+                              setShowAddressModal={setShowAddressModal}
+                            />
+                          </Modal>
+                        )}
+                      </div>
                     </div>
                   </div>
                 )}
