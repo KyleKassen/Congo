@@ -87,6 +87,7 @@
 
 .cart-item-prime-container {
     display: flex;
+    margin-top: 5px;
 }
 
 .cart-item-prime-container p{
@@ -166,6 +167,10 @@
     cursor: pointer;
 }
 
+.disable-hover {
+    display: none !important;
+}
+
 .cart-item-quantity-drop-down li:active {
     border-color: #D5D9D9;
     background-color: #EDFDFF;
@@ -206,6 +211,7 @@
     border-color: #D5D9D9;
     background-color: #EDFDFF;
     border-color: #007185!important;
+    margin-bottom:1px;
 }
 
 

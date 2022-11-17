@@ -18,7 +18,11 @@ function Cart() {
 
   const updateQuantity = async (itemId, quantity) => {
     console.log(`quantity is : ${quantity}`);
+    const cartUlItems = document.getElementsByClassName("cart-item-ul")
+    console.log(cartUlItems)
+    Object.values(cartUlItems).forEach(ulItem => ulItem.classList.add("disable-hover"))
     const response = await dispatch(editCartItem(itemId, quantity));
+    Object.values(cartUlItems).forEach(ulItem => ulItem.classList.remove("disable-hover"))
   };
 
   const showCustomForm = (itemId) => {
@@ -114,7 +118,7 @@ function Cart() {
                                   Qty: <span>{item.quantity}</span> <i></i>
                                 </p>
                               </div>
-                              <ul>
+                              <ul className="cart-item-ul">
                                 <li
                                   onClick={() =>
                                     updateQuantity(item.product.id, 0)
