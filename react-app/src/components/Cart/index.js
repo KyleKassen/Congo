@@ -236,8 +236,8 @@ function Cart() {
                   );
                 })}
               </div>
-              <div className="class-item-price-container">
-                <p className="class-items-subtotal">
+              <div className="cart-item-price-container">
+                <p className="cart-items-subtotal cart-item-float-right">
                   Subtotal ({cart.totalQuantity} items):
                   <span className="cart-item-price-style">
                     ${Math.round(total * 100) / 100}
@@ -246,7 +246,15 @@ function Cart() {
               </div>
             </div>
             <div className="cart-right-container">
-              <p>right column</p>
+              <p className="cart-items-subtotal">
+                Subtotal ({cart.totalQuantity} items):
+                <span className="cart-item-price-style">
+                  ${Math.round(total * 100) / 100}
+                </span>
+              </p>
+              <div className="cart-checkout-button">
+                <p>Proceed to checkout</p>
+              </div>
             </div>
           </div>
         </div>
