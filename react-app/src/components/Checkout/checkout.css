@@ -66,9 +66,46 @@
 .checkout-outer-container {
     width: 1114px;
     padding: 14px 18px 18px 18px;
+    display: flex;
+}
+
+.checkout-left-container {
+    width: 100%;
 }
 
 .checkout-shipping-starter-container {
     display: flex;
-    
+    justify-content: space-between;
+}
+
+.checkout-shipping-starter-left {
+    display: flex;
+}
+
+.checkout-shipping-starter-container h3 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.shipping-starter-index {
+    width: 35px;
+}
+
+.shipping-starter-heading {
+    width: 178px;
+}
+
+.checkout-shipping-starter-address-container p {
+    color: #333;
+    font-size: 14px;
+    width: 100%;
+}
+
+.shipping-starter-change {
+    float: right;
+}
+
+.checkout-right-container {
+    min-width: 252px;
 }
