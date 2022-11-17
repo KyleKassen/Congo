@@ -64,5 +64,11 @@
 }
 
 .checkout-outer-container {
-    width: 1150px;
+    width: 1114px;
+    padding: 14px 18px 18px 18px;
+}
+
+.checkout-shipping-starter-container {
+    display: flex;
+    
 }

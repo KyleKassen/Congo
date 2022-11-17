@@ -18,6 +18,7 @@ function Checkout() {
   const [loaded, setLoaded] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [defaultAddress, setDefaultAddress] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -36,6 +37,7 @@ function Checkout() {
       await dispatch(loadAllAddresses(userId));
       await dispatch(loadAllPayments(userId));
       await dispatch(loadCartItems(userId));
+      setDefaultAddress(addresses[0]);
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -68,34 +70,51 @@ function Checkout() {
         </div>
       </div>
       <div className="checkout-outer-container">
-        <button onClick={() => setShowAddressModal(true)}>Add Address</button>
-        {showAddressModal && (
-          <Modal onClose={() => setShowAddressModal(false)}>
-            <CreateAddress setShowAddressModal={setShowAddressModal} />
-          </Modal>
-        )}
-        {addresses &&
-          addresses.map((address, idx) => {
-            return (
-              <div key={idx}>
-                <Address address={address} />
+        <div className="checkout-left-container">
+          <div className="checkout-shipping-section">
+            <div className="checkout-shipping-starter-container">
+              <h3>1</h3>
+              <h3>Shipping address</h3>
+              <div className="checkout-shipping-starter-address-container">
+                <p></p>
+                <p></p>
+                <p></p>
               </div>
-            );
-          })}
-        <button onClick={() => setShowPaymentModal(true)}>Add Payment</button>
-        {showPaymentModal && (
-          <Modal onClose={() => setShowPaymentModal(false)}>
-            <CreatePayment setShowPaymentModal={setShowPaymentModal} />
-          </Modal>
-        )}
-        {payments &&
-          payments.map((payment, idx) => {
-            return (
-              <div key={idx}>
-                <Payment payment={payment} />
-              </div>
-            );
-          })}
+              <p>Change</p>
+            </div>
+            <button onClick={() => setShowAddressModal(true)}>
+              Add Address
+            </button>
+            {showAddressModal && (
+              <Modal onClose={() => setShowAddressModal(false)}>
+                <CreateAddress setShowAddressModal={setShowAddressModal} />
+              </Modal>
+            )}
+            {addresses &&
+              addresses.map((address, idx) => {
+                return (
+                  <div key={idx}>
+                    <Address address={address} />
+                  </div>
+                );
+              })}
+          </div>
+          <button onClick={() => setShowPaymentModal(true)}>Add Payment</button>
+          {showPaymentModal && (
+            <Modal onClose={() => setShowPaymentModal(false)}>
+              <CreatePayment setShowPaymentModal={setShowPaymentModal} />
+            </Modal>
+          )}
+          {payments &&
+            payments.map((payment, idx) => {
+              return (
+                <div key={idx}>
+                  <Payment payment={payment} />
+                </div>
+              );
+            })}
+        </div>
+        <div className="checkout-right-container"></div>
       </div>
     </div>
   );
