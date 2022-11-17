@@ -50,6 +50,10 @@
     padding-top: 14px;
 }
 
+.checkout-header-logo:hover {
+    cursor: pointer;
+}
+
 .header-lock-container {
     display: flex;
     justify-content: center;
@@ -218,4 +222,34 @@ input[type=radio] {
     width: 16px;
     margin-right: 8px;
     margin-bottom: -2px;
+}
+
+.shipping-list-bottom-container {
+    border-radius: 0px 0px 8px 8px;
+    padding: 12px 18px 11px;
+    background: #F0F2F2;
+    font-weight: 700;
+    margin-left: 35px;
+    margin-top: -1px;
+    border: 1px #D5D9D9 solid;
+    margin-bottom: 15px;
+}
+
+.yellow-checkout-button {
+    border-radius: 8px;
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    font-size: 13px;
+    padding-left: 11px;
+    padding-right: 10px;
+    display: inline-block;
+    height: 29px;
+    line-height: 29px;
+}
+
+.yellow-checkout-button:hover {
+    cursor: pointer;
+    background: #F7CA00;
+    border: 1px solid #F2C200;
 }

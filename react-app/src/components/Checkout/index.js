@@ -71,6 +71,7 @@ function Checkout() {
               <img
                 className="checkout-header-logo"
                 src={congoWhiteTransparent}
+                onClick={() => history.push('/')}
               />
               <h1>
                 Checkout{" "}
@@ -194,6 +195,11 @@ function Checkout() {
                             />
                           </Modal>
                         )}
+                      </div>
+                    </div>
+                    <div className="shipping-list-bottom-container">
+                      <div className="shipping-use-address yellow-checkout-button">
+                        Use this address
                       </div>
                     </div>
                   </div>
