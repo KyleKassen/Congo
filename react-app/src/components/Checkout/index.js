@@ -20,6 +20,8 @@ function Checkout() {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const userId = useSelector((state) => state.session.user.id);
   const addresses = useSelector((state) =>
     Object.values(state.addresses.addresses)
@@ -48,9 +50,21 @@ function Checkout() {
         <div className="checkout-header-container">
           <img className="checkout-header-logo" src={congoWhiteTransparent} />
           <h1>
-            Checkout (<span>{cart.totalQuantity} items</span>)
+            Checkout{" "}
+            <span className="checkout-heading-outer-span">
+              (
+              <span
+                className="checkout-heading-inner-span"
+                onClick={() => history.push("/cart")}
+              >
+                {cart.totalQuantity} items
+              </span>
+              )
+            </span>
           </h1>
-          <img className="checkout-header-lock" src={lock} />
+          <div className="header-lock-container">
+            <img className="checkout-header-lock" src={lock} />
+          </div>
         </div>
       </div>
       <div className="checkout-outer-container">
