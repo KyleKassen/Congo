@@ -8,6 +8,8 @@ function CreateAddress({setShowAddressModal}) {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipcode, setZipcode] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [errors, setErrors] = useState([]);
 
   const dispatch = useDispatch();
@@ -27,6 +29,8 @@ function CreateAddress({setShowAddressModal}) {
         city,
         state,
         zipcode,
+        first_name:firstName,
+        last_name:lastName
     }
 
     try {
@@ -48,6 +52,28 @@ function CreateAddress({setShowAddressModal}) {
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
+        </div>
+        <div>
+          <input
+            id="form-field-address"
+            className="form-field"
+            placeholder="First Name"
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <input
+            id="form-field-address"
+            className="form-field"
+            placeholder="Last Name"
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
         </div>
         <div>
           <input
