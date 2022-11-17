@@ -148,6 +148,10 @@
     z-index: 1;
 }
 
+.cart-last-item-ul {
+    top: -240px !important;
+}
+
 .cart-item-quantity-drop-down li {
     text-align: start;
     text-decoration: none;
