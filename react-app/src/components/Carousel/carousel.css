@@ -14,7 +14,7 @@
 .carousel-outer-container img{
     width: 100%;
     object-fit: contain;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0));
 
 }
 
