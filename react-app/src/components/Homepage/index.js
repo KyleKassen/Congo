@@ -80,7 +80,10 @@ function Homepage() {
                   </div>
                 </div>
                 <div className="home-price-container">
-                  $<span>{product.price}</span>
+                  <span className="home-money-sign">$</span><span>{product.price}</span>
+                </div>
+                <div className="home-prime-container">
+                  <i></i><span>FREE Delivery</span>
                 </div>
               </div>
             );

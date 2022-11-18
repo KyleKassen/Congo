@@ -71,3 +71,15 @@
 .home-rating-count span {
     margin-left: 10px !important;
 }
+
+.home-price-container {
+    font-size: 17px;
+    padding-top: 5px;
+}
+
+.home-money-sign {
+    font-size: 11px;
+    vertical-align: top;
+    padding-top: 2px;
+    display: inline-block;
+}
