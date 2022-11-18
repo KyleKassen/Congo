@@ -81,7 +81,11 @@ def edit_cart_item(product_id):
 
     print('\n\n\n\n', product_id)
 
-    item = CartItem.query.filter_by(product_id=product_id).one()
+    user = current_user.to_dict()
+
+    user_id = user['id']
+
+    item = CartItem.query.filter_by(product_id=product_id, buyer_id=user_id).first()
 
 
     form = CartForm()

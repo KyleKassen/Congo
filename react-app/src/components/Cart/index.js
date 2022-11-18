@@ -90,12 +90,12 @@ function Cart() {
                   return (
                     <div className="cart-item-container">
                       <div className="cart-item-left-container">
-                        <div className="cart-item-img-container">
+                        <div className="cart-item-img-container" onClick={() => history.push(`/product/${item.product.id}`)}>
                           <img src={`${item.product.image.url}`} />
                         </div>
                         <div className="cart-item-middle-container">
                           <div className="cart-item-upper-half-container">
-                            <p className="cart-item-title">
+                            <p className="cart-item-title" onClick={() => history.push(`/product/${item.product.id}`)}>
                               {item.product.title}
                             </p>
                             <p className="cart-item-instock">In Stock</p>
