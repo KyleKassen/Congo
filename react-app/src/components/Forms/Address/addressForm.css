@@ -1,0 +1,112 @@
+.address-form-container {
+    width: 592px;
+}
+
+.address-form-container input {
+    border: 1px solid #888C8C;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+    height: 31px;
+    padding: 3px 7px;
+    line-height: normal;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.address-form-container p {
+    color: #0F1111;
+    line-height:  20px;
+    font-size: 14px;
+    font-weight: 700;
+    padding-left: 2px;
+    padding-bottom: 2px;
+}
+
+.address-form-header-container {
+    width: 100%;
+    background: -webkit-linear-gradient(top,#f7f7f7,#eaeaea);
+    background: linear-gradient(to bottom,#f7f7f7,#eaeaea);
+    border-bottom: 1px solid #d5d9d9;
+    border-radius: 8px 8px 0px 0px;
+    padding-left: 24px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.address-form-header-container h4 {
+    padding: 16px 0px;
+    font-size: 16px;
+    color: #0F1111
+}
+
+.address-form-close-button-container {
+    min-width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.address-form-close-button-container:hover {
+    cursor: pointer;
+}
+
+.address-form-header-container i {
+    background-image: url('../../../media/images/amazonicon2.png');
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    opacity: .64;
+    width: 10px;
+    height: 9px;
+    background-position: -297px -5px;
+    z-index: 2;
+    display: inline-block;
+}
+
+.address-form-bottom-section {
+    padding: 16px 24px;
+}
+
+.address-form-bottom-section h2 {
+    color: #0F1111;
+    margin-bottom: 20px;
+}
+
+.address-name-fields {
+    display: flex;
+}
+
+.address-name-fields div {
+    width: 50%;
+}
+
+.address-first-name, .address-city-container, .address-state-container {
+    margin-right: 16px;
+}
+
+.address-flex-inputs {
+    display: flex;
+}
+
+.address-flex-inputs div {
+    width: 33%;
+}
+
+.review-button-submit {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    height: 29px;
+    padding: 1px 6px;
+    margin-bottom: 16px;
+}
+
+.review-button-submit:hover {
+    cursor: pointer;
+    background: #F7CA00;
+    border: 1px solid #F2C200;
+}

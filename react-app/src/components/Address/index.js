@@ -5,7 +5,7 @@ import EditAddress from "../Forms/Address/editAddress";
 import { deleteOneAddress } from "../../store/address";
 import { Modal } from "../../context/Modal";
 
-function Address({ address }) {
+function Address({ address, setFinalAddress, setChangeAddress}) {
   const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
@@ -17,15 +17,11 @@ function Address({ address }) {
 
   return (
     <>
-      <p>{address.address}</p>
-      <p>{address.city}</p>
-      <p>{address.state}</p>
-      <p>{address.zipcode}</p>
-      <button onClick={() => deleteAddress(address.id)}>delete</button>
-      <button onClick={() => setShowModal(true)}>update</button>
+      <span className="address-button-span checkout-text-hover" onClick={() => setShowModal(true)}>Edit address</span>{" | "}
+      <span className="address-button-span checkout-text-hover" onClick={() => deleteAddress(address.id)}>Delete address</span>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditAddress setShowModal={setShowModal} addressId={address.id} />
+          <EditAddress setShowModal={setShowModal} addressId={address.id} setFinalAddress={setFinalAddress} setChangeAddress={setChangeAddress}/>
         </Modal>
       )}
     </>

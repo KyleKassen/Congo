@@ -28,6 +28,8 @@ def seed_users():
 
     sa1 = ShippingAddress(
         user_id = 4,
+        first_name = "Kyle",
+        last_name = "Kassen",
         address = '123 barracks way',
         city = 'College Station',
         state = 'TX',

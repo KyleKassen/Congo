@@ -16,7 +16,6 @@ def get_products():
     """
 
     products = Product.query.options(joinedload(Product.product_image)).all()
-    #products = Product.query.join(ProductImage).all()
 
     result = {'products': []}
     for product in products:
@@ -26,7 +25,6 @@ def get_products():
 
         result['products'].append(curr_product)
 
-    # return {'products': [image.to_dict() for product in products for image in product.product_image]}
     return result
 
 
@@ -46,20 +44,12 @@ def get_product(id):
     rating = Review.query.with_entities(
         func.avg(Review.rating)).filter_by(product_id=id).first()
     review_count = Review.query.filter_by(product_id=id).count()
-    print(f'\n\n\n\n rating is {rating[0] is not None} {rating[0]}')
+    # print(f'\n\n\n\n rating is {rating[0] is not None} {rating[0]}')
     if rating[0] is not None:
         rating = float(round(rating[0], 1))
     else:
         rating = None
 
-    # reviews = Review.query.filter_by(product_id=id).options(joinedload(Review.review_image)).all()
-
-    # result_reviews = []
-    # for review in reviews:
-    #     current = review.to_dict()
-    #     current['images'] = [image.to_dict() for image in review.review_image]
-    #     result_reviews.append(current)
-    # result['reviews'] = result_reviews
 
     result = product.to_dict()
     result['images'] = [image.to_dict() for image in images]
@@ -109,22 +99,6 @@ def create_product():
         else:
             prodImage = "https://thumbnail.imgbin.com/13/18/17/imgbin-coffee-tea-packaging-and-labeling-parcel-bag-design-G9E3ksvw2BMKK24u9zX6A61pT_t.jpg"
 
-        # pm1 = ProductImage(
-        #     product_id=product_id,
-        #     url="https://thumbnail.imgbin.com/13/18/17/imgbin-coffee-tea-packaging-and-labeling-parcel-bag-design-G9E3ksvw2BMKK24u9zX6A61pT_t.jpg"
-        # )
-        # pm2 = ProductImage(
-        #     product_id=product_id,
-        #     url="https://thumbnail.imgbin.com/24/25/17/imgbin-plastic-pharmaceutical-packaging-design-45ZC5ctTVBCgnuE8dJwstb2XU_t.jpg"
-        # )
-        # pm3 = ProductImage(
-        #     product_id=product_id,
-        #     url="https://cdn.imgbin.com/22/2/15/imgbin-rectangle-box-NhLKGVy7J5LYtbnTDB1suXTUC.jpg"
-        # )
-        # pm4 = ProductImage(
-        #     product_id=product_id,
-        #     url="https://png.pngtree.com/element_pic/00/16/10/22580aa3ca49b8c.jpg"
-        # )
 
         db.session.add(prodImage)
         db.session.commit()
@@ -149,23 +123,12 @@ def update_product(id):
     updated_prodImage = ProductImage.query.filter_by(product_id=id).first()
 
 
-    # if owner_id != form.data['seller_id']:
-    #     return {
-    #         "statusCode": 400,
-    #         "message": "Not the correct user"
-    #     }
-
-
     if form.validate_on_submit():
         updated_product.title = form.data['title'],
         updated_product.description = form.data['description'],
-        # updated_product.sold_by = form.data['sold_by'],
-        # updated_product.fulfilled_by = form.data['fulfilled_by'],
-        # updated_product.quantity = form.data['quantity'],
+
         updated_product.price = form.data['price'],
-        # updated_product.sale_price = form.data['sale_price'],
-        # updated_product.shipping_price = form.data['shipping_price'],
-        # updated_product.prime = form.data['prime']
+
         updated_prodImage.url = form.data['image']
 
         db.session.commit()
@@ -248,10 +211,6 @@ def create_review(id):
             "statusCode": 400,
             "message": "Current User owns the product"
         }
-
-    # if "image" not in request.files:
-    #     return {"errors": "image required"}, 400
-    # print(request.files["image"])
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']

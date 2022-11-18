@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { logout } from "../../store/session";
 import { login } from "../../store/session";
+import { loadCartItems, resetCart } from "../../store/cart";
 import congo from "../../media/images/CONGO.png";
 import congo2 from "../../media/images/CONGOblack.png";
 import locationPin from "../../media/icons/locationPin.png";
@@ -11,7 +12,7 @@ import darkpin from "../../media/images/darkpin.png";
 import downarrow from "../../media/images/downarrow.png";
 import whitepin from "../../media/images/whitepin.png";
 import hamburger from "../../media/images/hamburger.png";
-import cart from "../../media/images/cart.png";
+import cartImage from "../../media/images/cart.png";
 import flag from "../../media/icons/flag.png";
 import "./header.css";
 
@@ -25,8 +26,9 @@ function Header() {
   const history = useHistory();
 
   const session = useSelector((state) => state.session);
+  const cart = useSelector((state) => state.cart);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (session?.user?.username) {
       let currentName = "";
       console.log(currentName);
@@ -40,10 +42,25 @@ function Header() {
       setName(
         currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
       );
+
+      await dispatch(loadCartItems(session.user.id));
     }
   }, [session]);
 
-  const departments = ["All", "Amazon", "Appliances", "Clothing"];
+  useEffect(async () => {
+    let cartCount = document.getElementsByClassName(
+      "header-cart-counter-container"
+    )[0];
+    if (cart.totalQuantity > 9){
+      cartCount.classList.add("cart-count-double-digit");
+      cartCount.classList.remove("cart-count-single-digit");
+    } else {
+      cartCount.classList.add("cart-count-single-digit");
+      cartCount.classList.remove("cart-count-double-digit");
+    }
+  }, [cart]);
+
+  const departments = ['All', 'Alex Skills', 'Amazon Devices', 'Amazon Explore', 'Amazon Pharmacy', 'Amazon Warehouse', 'Appliances', 'Apps & Games', 'Arts, Crafts & Sewing', 'Audible Books & Originals', 'Automotive Parts & Accessories', 'Baby', 'Beauty & Personal Care', 'Books', 'CDs & Vinyl', 'Cell Phones & Accessories', 'Clothing, Shoes & Jewely', 'Collectibles & Fine Art', 'Computes', 'Credit and Payment Cards', 'Digital Educational Resources', 'Digital Music', 'Electronics', 'Garden & Outdoor', 'Gift Cards', 'Grocery & Gourmet Food', 'Handmade', 'Health, Household & Babe Care', 'Home & Business Services', 'Home & Kitchen', 'Industrial & Scientific', 'Just for Prime', 'Kindle Store', 'Luggage & Travel Gear', 'Luxury Store', 'Magazine Subscriptions', 'Movies & TV', 'Musical Instruments', 'Office Products', 'Online Learning', 'Pet Supplies', 'Premium Beauty', 'Prime Video', 'Smart Home', 'Software', 'Sports & Outdoors', 'Subscription Boxes', 'Tools & Home Improvement', 'Toys & Games', 'Under $10', 'Video Games']
   const mainNav = [
     "Best Sellers",
     "Amazon Basics",
@@ -83,6 +100,7 @@ function Header() {
   }
 
   const logoutFunc = async () => {
+    await dispatch(resetCart());
     await dispatch(logout());
   };
 
@@ -97,16 +115,16 @@ function Header() {
           <div className="header-logo header-hover-border heading-working-hover">
             <img src={congo2} onClick={() => history.push("/")} />
           </div>
-          {/* <div className="header-set-location header-hover-border">
+          <div className="header-set-location header-hover-border">
             <img src={whitepin} />
             <div>
               <p className="header-top-text">Deliver to</p>
               <p className="header-bottom-text">Select your address</p>
             </div>
-          </div> */}
+          </div>
         </div>
         <div className={`header-middle-container ${focusClass}`}>
-          {/* <div className="header-search-bar-outer-container">
+          <div className="header-search-bar-outer-container">
             <form onSubmit={onSubmit} className="text">
               <div className="header-search-bar-container">
                 <select
@@ -140,13 +158,13 @@ function Header() {
                 </button>
               </div>
             </form>
-          </div> */}
+          </div>
         </div>
         <div className="header-right-container">
-          {/* <div className="header-language header-hover-border">
+          <div className="header-language header-hover-border">
             <img src={flag} />
             EN
-          </div> */}
+          </div>
           {/* {!session.user && (
             <div
               className="header-user-auth header-hover-border"
@@ -230,25 +248,35 @@ function Header() {
                 <div className="header-account-dropdown-buffer-left"></div>
               </div>
               <div className="header-dropdown-about-links">
-                <p className="header-dropdown-about-links-p">Developer: Kyle Kassen</p>
-                <p>LinkedIn:  <a href="https://www.linkedin.com/in/kyle-kassen/">    Kyle Kassen</a></p>
+                <p className="header-dropdown-about-links-p">
+                  Developer: Kyle Kassen
+                </p>
+                <p>
+                  LinkedIn:{" "}
+                  <a href="https://www.linkedin.com/in/kyle-kassen/">
+                    {" "}
+                    Kyle Kassen
+                  </a>
+                </p>
               </div>
             </div>
           </div>
-          {/* <div className="header-returns header-hover-border">
+          <div className="header-returns header-hover-border">
             <p className="header-top-text">Returns</p>
             <p className="header-bottom-text">& Orders</p>
           </div>
-          <div className="header-cart header-hover-border">
+          <div className="header-cart header-hover-border" onClick={() => history.push('/cart')}>
             <div className="header-cart-counter-container">
-              <span>0</span>
+              {cart.totalQuantity < 100 &&<span>{cart.totalQuantity}</span>}
+              {cart && cart.totalQuantity > 99 && <span>99+</span>}
+              {!cart && <span>0</span>}
             </div>
-            <img src={cart} />
+            <img src={cartImage} />
             <p className="header-bottom-text">Cart</p>
-          </div> */}
+          </div>
         </div>
       </div>
-      {/* <div className="header-mainnav-container">
+      <div className="header-mainnav-container">
         <div className="header-mainnav-all header-hover-border">
           <div className="header-mainnav-all-img-container">
             <img src={hamburger} />
@@ -270,7 +298,7 @@ function Header() {
             </div>
           );
         })}
-      </div> */}
+      </div>
     </div>
   );
 }

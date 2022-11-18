@@ -43,6 +43,8 @@ class ShippingAddress(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
@@ -56,6 +58,8 @@ class ShippingAddress(db.Model):
         return {
             'id': self.id,
             'userId': self.user_id,
+            'firstName': self.first_name,
+            'lastName': self.last_name,
             'address': self.address,
             'city': self.city,
             'state': self.state,

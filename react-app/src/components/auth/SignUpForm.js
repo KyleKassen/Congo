@@ -83,11 +83,6 @@ const SignUpForm = () => {
         <div className="signup-form-container">
           <h1 className="signup-create-account">Create Account</h1>
           <form onSubmit={onSignUp}>
-            {/* <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div> */}
             <div className="signup-field">
               <label>Your name</label>
               <input

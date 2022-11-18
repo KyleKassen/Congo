@@ -53,11 +53,11 @@
     cursor: pointer;
 }
 
-/* .header-hover-border:hover {
+.header-hover-border:hover {
     border: 1px solid white;
     border-radius: 2px;
     cursor: pointer;
-} */
+}
 
 .header-set-location {
     width: 155px;
@@ -185,7 +185,6 @@
 .header-user-auth {
     width: 125px;
     position: relative;
-    margin-right: 110px;
 }
 
 .header-bottom-acclists-img-container {
@@ -360,7 +359,7 @@
     width: calc(2px + 100%);
     height: 40px;
     right: 1px;
-    top: -40px;
+    top: -10px;
 }
 
 .header-account-dropdown-buffer-right {
@@ -412,15 +411,23 @@
     top: -22px;
     position: absolute;
     color: #f08804;
-    font-size: 16px;
     font-weight: 700;
     width: 19px;
+}
 
+.cart-count-single-digit span {
+    font-size: 16px;
+}
+
+.cart-count-double-digit span {
+    font-size: 14px;
+    left: 12.5px;
+    top: -24px;
 }
 
 .header-cart img {
     width: 38px;
-    height: 26px;
+    height: 29px;
     object-fit: contain;
 }
 

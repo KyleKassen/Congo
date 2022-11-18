@@ -14,6 +14,7 @@ import {
 } from "../../store/product";
 import { loadAllReviews, deleteOneReview } from "../../store/review";
 import { loadAllAddresses } from "../../store/address";
+import { addCartItem } from "../../store/cart";
 import { Modal } from "../../context/Modal";
 import EditReview from "../Forms/ReviewForms/editReview";
 import Review from "../Review/index";
@@ -196,6 +197,12 @@ function Product() {
     // history.push(`/product/${productId}`)
   };
 
+  const addToCart = async () => {
+    if (!userId) history.push('/login')
+    await dispatch(addCartItem(product.id))
+    history.push('/cart')
+  }
+
   return (
     <div className="product-page-outer-wrapper">
       <div className="product-page-wrapper">
@@ -334,8 +341,8 @@ function Product() {
               <p>In Stock.</p>
             </div>
             <div className="buy-box-quantity"></div>
-            {/* <div className="buy-box-addtocart buy-box-button">Add to Cart</div>
-            <div className="buy-box-buynow buy-box-button">Buy Now</div> */}
+            <div className="buy-box-addtocart buy-box-button" onClick={() => addToCart()}>Add to Cart</div>
+            <div className="buy-box-buynow buy-box-button">Buy Now</div>
             <div className="buy-box-secure">
               <img src={lock} />
               <span>Secure Transaction</span>

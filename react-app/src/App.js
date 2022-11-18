@@ -10,6 +10,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Homepage from "./components/Homepage";
 import Product from "./components/Product";
+import Cart from "./components/Cart";
 import CreateReview from "./components/Forms/ReviewForms/createReview";
 import ProductForm from "./components/Forms/Product/productForm";
 import Checkout from "./components/Checkout";
@@ -43,11 +44,11 @@ function App() {
         </Route>
         <Route path="/addproduct" exact={true}>
           <Header />
-          <ProductForm createProduct={true}/>
+          <ProductForm createProduct={true} />
         </Route>
         <Route path="/editproduct/:productId" exact={true}>
           <Header />
-          <ProductForm createProduct={false}/>
+          <ProductForm createProduct={false} />
         </Route>
         <Route path="/product/:productId" exact={true}>
           <Header />
@@ -60,8 +61,12 @@ function App() {
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/checkout" exact={true}>
+        <ProtectedRoute path="/cart" exact={true}>
           <Header />
+          <Cart />
+        </ProtectedRoute>
+        <ProtectedRoute path="/checkout" exact={true}>
+          {/* <Header /> */}
           <Checkout />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
