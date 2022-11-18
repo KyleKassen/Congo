@@ -171,10 +171,21 @@ def seed_reviews():
         review_id = 14,
         url = 'https://m.media-amazon.com/images/I/71C-mRlnBbL.jpg'
     )
+    r15 = Review(
+        user_id = 3,
+        product_id = 7,
+        title = 'Exactly what was expected so warm and comfortable',
+        review = "A must buy .The warm fuzzy inside keeps you warm.And so many colors to choose from to match what I am wearing.I couldn't decide on just one so I bought 5. Definitely worth it.",
+        rating = 5,
+    )
+    r15i1 = ReviewImage(
+        review_id = 15,
+        url = 'https://m.media-amazon.com/images/I/71UCvuZswxL.jpg'
+    )
 
 
-    db.session.add_all([r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14])
-    db.session.add_all([r3i1, r4i1, r5i1, r6i1, r7i1, r8i1, r9i1, r9i2, r9i3, r10i1, r11i1, r11i2, r13i1, r14i1])
+    db.session.add_all([r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15])
+    db.session.add_all([r3i1, r4i1, r5i1, r6i1, r7i1, r8i1, r9i1, r9i2, r9i3, r10i1, r11i1, r11i2, r13i1, r14i1, r15i1])
 
     db.session.commit()
 

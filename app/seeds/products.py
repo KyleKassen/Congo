@@ -83,6 +83,17 @@ def seed_products():
         prime = True
     )
 
+    p8 = Product(
+        seller_id=2,
+        title = "Hanes Men's Sweatshirt, EcoSmart Fleece Crewneck Sweatshirt, Cotton-Blend Fleece Sweatshirt, Plush Fleece Pullover Sweatshirt",
+        description ="Now this medium weight 7.8-oz fleece sweatshirt is even better, because it is made with up to 5% polyester created from recycled plastic. You'll want to wear these comfortable sweats every chance you get. After all, they come in plush, midweight cotton-blend fleece that's low-pill, & super-soft\n Ahora esta sudadera de forro polar de peso medio de 7.8 onzas es aún mejor, porque está hecha con hasta 5% de poliéster creado a partir de plástico reciclado. Querrás usar estas cómodas sudaderas deportivos cada vez que puedas. Después de todo, vienen en felpa de mezcla de algodón de peso medio que es de bajo frisado y súper suave.\n Jetzt ist dieses mittelschwere 221 g Fleece-Sweatshirt noch besser, denn es besteht aus bis zu 5% Polyester aus recyceltem Kunststoff. Sie werden diese bequemen Sweatshirts bei jeder Chance tragen wollen. Schließlich kommen sie aus plüschigem, mittelschwerem Baumwoll-Mischgewebe, das fusselarm und superweich ist.\n עכשיו סווטשירט פליז במשקל בינוני 221 גרם זה אפילו טוב יותר, כי הוא עשוי עם עד 5% פוליאסטר שנוצר מפלסטיק ממוחזר. תרצו ללבוש את הטרנינג הנוח הזה בכל הזדמנות שתקבלו. אחרי הכל, הם מגיעים בפליז קטיפתי במשקל בינוני מתערובת כותנה במשקל נמוך ורך במיוחד. الآن هذا السويت شيرت الصوفي متوسط الوزن 7.8 اونصة هو الأفضل، لأنه مصنوع من البوليستر بنسبة تصل إلى 5% المصنوع من البلاستيك المعاد تدويره. سترغب في ارتداء هذا السويت شيرت المريح في كل فرصة تحصل عليها. في النهاية، تأتي في صوف مخملي متوسط الوزن من مزيج القطن منخفض الوبر وفائق النعومة. \n 现在这款中等重量的 221.13 克羊毛运动衫更好,因为它由回收塑料制成的 5% 聚酯纤维制成。 每一次机会都想穿着这些舒适的运动衫。 毕竟,它们采用长毛绒、中等重量棉混纺羊毛,低起球,超柔软。現在這款中等重量的 8 盎司刷毛運動衫更好,因為它是由高達 5% 的再生塑膠製成的聚酯製成。 每次獲得時,您都會想穿上這些舒適的汗水。 畢竟,它們採用低起球且超級柔軟的中磅數棉混紡刷毛。이제 이 중간 무게의 7.8-o 플리스 스웨트셔츠는 재활용 플라스틱으로 만들어진 최대 5% 폴리에스터로 만들어져 더욱 좋습니다.",
+        fulfilled_by = 'Congo.com',
+        sold_by = 'Congo.com',
+        quantity = 1000,
+        price = 11.00,
+        prime = True
+    )
+
 
 
     for cat in categories:
@@ -94,7 +105,7 @@ def seed_products():
             p3.categories.append(curr_cat)
 
         fire_stick.categories.append(curr_cat)
-    db.session.add_all([fire_stick, p2, p3, p4, p5, p6, p7])
+    db.session.add_all([fire_stick, p2, p3, p4, p5, p6, p7, p8])
     db.session.commit()
 
 
@@ -211,6 +222,22 @@ def seed_products():
         product_id=7,
         url='https://m.media-amazon.com/images/I/51GW7Eds5LL._SL1001_.jpg'
     )
+    pm29 = ProductImage(
+        product_id=8,
+        url='https://m.media-amazon.com/images/I/71ghm0DvLXL._AC_UX679_.jpg'
+    )
+    pm30 = ProductImage(
+        product_id=8,
+        url='https://m.media-amazon.com/images/I/61ZRmAgqkpL._AC_UX679_.jpg'
+    )
+    pm31 = ProductImage(
+        product_id=8,
+        url='https://m.media-amazon.com/images/I/61UXptuWWLL._AC_UX679_.jpg'
+    )
+    pm32 = ProductImage(
+        product_id=8,
+        url='https://m.media-amazon.com/images/I/61UOGeFglgL._AC_UX679_.jpg'
+    )
 
 
     q1 = Question(
@@ -228,7 +255,7 @@ def seed_products():
 
     # fire_stick.categories.append
     # db.session.add(fire_stick)
-    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13, pm14, pm15, pm16, pm17, pm18, pm19, pm20, pm21, pm22, pm23, pm24, pm25, pm26, pm27, pm28])
+    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13, pm14, pm15, pm16, pm17, pm18, pm19, pm20, pm21, pm22, pm23, pm24, pm25, pm26, pm27, pm28, pm29, pm30, pm31, pm32])
     db.session.commit()
     db.session.add(q1)
     db.session.add(a1)
