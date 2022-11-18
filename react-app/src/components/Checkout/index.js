@@ -21,6 +21,7 @@ function Checkout() {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [changeAddress, setChangeAddress] = useState(false);
   const [defaultAddress, setDefaultAddress] = useState({});
+  const [finalAddress, setFinalAddress] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -44,6 +45,7 @@ function Checkout() {
 
   useEffect(() => {
     setDefaultAddress(addresses[0]);
+    setFinalAddress(addresses[0])
   }, [loaded]);
 
   if (!loaded) {
@@ -61,6 +63,11 @@ function Checkout() {
     newSelectedAddress.classList.add("address-active");
     setDefaultAddress(addressObj[addressId]);
   };
+
+  const handleUseAddress = () => {
+    setFinalAddress(defaultAddress);
+    setChangeAddress(false);
+  }
 
   return (
     <>
@@ -102,16 +109,16 @@ function Checkout() {
                         Shipping address
                       </h3>
                       <div className="checkout-shipping-starter-address-container">
-                        {defaultAddress && (
+                        {finalAddress && (
                           <>
                             <p>
-                              {defaultAddress.firstName}{" "}
-                              {defaultAddress.lastName}
+                              {finalAddress.firstName}{" "}
+                              {finalAddress.lastName}
                             </p>
-                            <p>{defaultAddress.address}</p>
+                            <p>{finalAddress.address}</p>
                             <p>
-                              {defaultAddress.city}, {defaultAddress.state}{" "}
-                              {defaultAddress.zipcode}
+                              {finalAddress.city}, {finalAddress.state}{" "}
+                              {finalAddress.zipcode}
                             </p>
                           </>
                         )}
@@ -198,29 +205,13 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="shipping-list-bottom-container">
-                      <div className="shipping-use-address yellow-checkout-button">
+                      <div className="shipping-use-address yellow-checkout-button" onClick={() => handleUseAddress()}>
                         Use this address
                       </div>
                     </div>
                   </div>
                 )}
                 <hr />
-                {/* <button onClick={() => setShowAddressModal(true)}>
-                  Add Address
-                </button>
-                {showAddressModal && (
-                  <Modal onClose={() => setShowAddressModal(false)}>
-                    <CreateAddress setShowAddressModal={setShowAddressModal} />
-                  </Modal>
-                )} */}
-                {/* {addresses &&
-                  addresses.map((address, idx) => {
-                    return (
-                      <div key={idx}>
-                        <Address address={address} />
-                      </div>
-                    );
-                  })} */}
               </div>
               <button onClick={() => setShowPaymentModal(true)}>
                 Add Payment
