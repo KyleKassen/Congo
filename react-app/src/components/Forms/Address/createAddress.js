@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createOneAddress } from "../../../store/address";
 import "./addressForm.css";
 
-function CreateAddress({ setShowAddressModal }) {
+function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}) {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -32,14 +32,18 @@ function CreateAddress({ setShowAddressModal }) {
       last_name: lastName,
     };
 
+    let response;
+
     try {
-      const response = await dispatch(createOneAddress(newaddress));
+      response = await dispatch(createOneAddress(newaddress));
       console.log(response);
     } catch (res) {
       console.log(res);
       console.log("ERROR IN address FORM RESPONSE");
     }
-
+    console.log(typeof response)
+    setFinalAddress({...response});
+    setChangeAddress(false);
     setShowAddressModal(false);
   };
 
@@ -139,7 +143,7 @@ function CreateAddress({ setShowAddressModal }) {
             type="submit"
             disabled={errors.length}
           >
-            Submit
+            Use this address
           </button>
         </form>
       </div>

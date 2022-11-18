@@ -19,6 +19,8 @@
     line-height:  20px;
     font-size: 14px;
     font-weight: 700;
+    padding-left: 2px;
+    padding-bottom: 2px;
 }
 
 .address-form-header-container {
@@ -93,3 +95,18 @@
     width: 33%;
 }
 
+.review-button-submit {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    height: 29px;
+    padding: 1px 6px;
+    margin-bottom: 16px;
+}
+
+.review-button-submit:hover {
+    cursor: pointer;
+    background: #F7CA00;
+    border: 1px solid #F2C200;
+}

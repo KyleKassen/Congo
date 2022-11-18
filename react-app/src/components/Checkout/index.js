@@ -177,7 +177,7 @@ function Checkout() {
                                 </span>
                                 {address.address}, {address.city},{" "}
                                 {address.state}, {address.zipcode}, United
-                                States <Address address={address} />
+                                States <Address address={address} setFinalAddress={setFinalAddress}/>
                               </label>
                             </div>
                           );
@@ -199,6 +199,8 @@ function Checkout() {
                           <Modal onClose={() => setShowAddressModal(false)}>
                             <CreateAddress
                               setShowAddressModal={setShowAddressModal}
+                              setFinalAddress={setFinalAddress}
+                              setChangeAddress={setChangeAddress}
                             />
                           </Modal>
                         )}
