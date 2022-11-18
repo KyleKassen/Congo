@@ -34,6 +34,7 @@
 .home-flex-item p {
     padding-top: 20px;
     color: #007185;
+    min-height: 42px;
 }
 
 .home-flex-item p:hover {
@@ -43,7 +44,7 @@
 
 .home-product-img-container {
     width: 100%;
-    height: 230px;
+    height: 210px;
     display: flex;
     justify-content: center;
 }

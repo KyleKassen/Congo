@@ -35,6 +35,7 @@ def get_products():
             rating = None
 
         curr_product['rating'] = rating
+        curr_product['reviewCount'] = review_count
 
         result['products'].append(curr_product)
 
