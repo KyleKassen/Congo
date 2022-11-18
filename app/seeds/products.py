@@ -41,7 +41,7 @@ def seed_products():
     p4 = Product(
         seller_id=2,
         title = 'Mini PC Windows 11 Pro, 8GB DDR4 128GB SSD Intel Celeron J4125 Mini Desktop Computer, Support 2.5-inch SSD, 2.4G+5.0G WiFi, 4K HDMI x2, Gigabit Ethernet, BT 4.2, Support Windows 10 Pro Micro PC',
-        description ="The TCL 3-Series is the simply smart way to enjoy endless entertainment. Enjoy over half a million movies and TV episodes available to stream plus sports, news, music, kids and family, food, science and tech, fitness, foreign language and so much more. Start streaming free TV right from your home screen or browse 250+ free live channels with the Live TV Channel Guide to find what to watch next. Your favorite broadcast TV, streaming channels, gaming console and other devices are front-and-center within a simple, customizable home screen. There's no more flipping through inputs or wading through complicated menus. The super-simple remote—with about half the number of buttons on a traditional TV remote—puts you in control of your favorite entertainment and includes one-touch shortcuts to popular channels like Netflix.",
+        description ="KAMRUI mini computer is smaller than a magazine whose size is only 5.1*1.8*5.1. It can be put in a bag and taken away at any time. You can work and play wherever you go.Mini pc windows 11 pro makes the work more efficient, makes your office more beautiful, and its simple to use, beautiful and generous, and does not take up space. We offer 7*24H Customer Service, lifetime technical support, 1 year quality after-service. KAMRUI Mini computer supports 2.4G+5.8G dual band WiF and this micro pc supports Bluetooth 4.2 which could be connected with your multimedia devices, mouse, acoustics or headset.Mini computer support connecting multiple devices and can work with server, monitoring equipment, office equipment, monitor, projector, TV and so on. KAMRUI pc desktop comes with 2x HDMI and VGA port, Support 4K@60Hz(3280 x 2160), Good for home entertainment, movie, video conference, feel free to enjoy all your favorite movies with your family, bringing you the best playback experience. You can also easily connect triple monitors at the same time, and perform different tasks on the triple screens, increasing your productivity. KAMRUI micro computer with high-speed 8GB(2400MHZ) DDR4, Built-in 128GB M.2 2242 SSD. you can expand the storage with M.2 SATA SSD 2242 upgrade storage to 2TB (no included) . You can also add a 2.5 SSD (no included) to expand the memory wonderful safety data bank and larger storage space for you. Easily deal with simultaneous multitasking, entertainment, audio and video, office, diversified modern micro computers.",
         fulfilled_by = 'Amazon.com',
         sold_by = 'Trend-KAMRUI',
         quantity = 10,
@@ -49,6 +49,18 @@ def seed_products():
         sale_price = 189.95,
         prime = True
     )
+
+    p5 = Product(
+        seller_id=2,
+        title = 'Pre Workout Powder; Pre-KAGED Elite Preworkout for Men & Women, High Stimulant for Workout Energy, Focus & Pumps; Premium L-Citrulline, Beta Alanine, Creatine, & 388mg of Caffeine, Glacier Grape',
+        description ="PRE-KAGED Elite was designed for athletes who want to take their performance to the next level. With 20 premium ingredients, including 9 patented ingredients, this all-in-one pre-workout powder will help you achieve heightened energy, sharp mental focus, and bigger pumps than ever before. It's so powerful, you'll never use another pre-workout product again. PurCaf organic caffeine from non-GMO green coffee beans gives you clean, sustained energy that will help you push through even the most grueling workouts. Taurine, tyrosine, and branched chain amino acids (BCAAs) provide essential nutrients that help your muscles recover faster so you can get back in the gym sooner. MASSIVE PUMPS: Creatine Nitrate (NO3-T) is a 2-in-1, patented and highly effective form of creatine that works as a nitric oxide booster helping produce incredible muscles pumps. NO3-T can enhance endurance, allowing you to train harder, longer. NEXT LEVEL POWER: ElevATP is a cutting-edge nutritional technology that helps increase lean muscle mass. It can also help you produce more strength and power output during training sessions. ElevATP is scientifically proven to help increase energy levels and ATP production.",
+        fulfilled_by = 'Congo.com',
+        sold_by = 'Congo.com',
+        quantity = 10,
+        price = 53.99,
+        prime = True
+    )
+
 
     for cat in categories:
         curr_cat = Category(name=cat)
@@ -116,6 +128,26 @@ def seed_products():
         product_id=4,
         url='https://m.media-amazon.com/images/I/81Q+REjadzL._AC_SL1500_.jpg'
     )
+    pm14 = ProductImage(
+        product_id=5,
+        url='https://m.media-amazon.com/images/I/61Gfn6E+9WL._AC_SL1500_.jpg'
+    )
+    pm15 = ProductImage(
+        product_id=5,
+        url='https://m.media-amazon.com/images/I/81EAbUrKeML._AC_SL1500_.jpg'
+    )
+    pm16 = ProductImage(
+        product_id=5,
+        url='https://m.media-amazon.com/images/I/819BYh7RAHL._AC_SL1500_.jpg'
+    )
+    pm17 = ProductImage(
+        product_id=5,
+        url='https://m.media-amazon.com/images/I/810x26LsPVL._AC_SL1500_.jpg'
+    )
+    pm18 = ProductImage(
+        product_id=5,
+        url='https://m.media-amazon.com/images/I/710SuGhhdkL._AC_SL1500_.jpg'
+    )
 
     q1 = Question(
         product_id=1,
@@ -132,7 +164,7 @@ def seed_products():
 
     # fire_stick.categories.append
     # db.session.add(fire_stick)
-    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13])
+    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13, pm14, pm15, pm16, pm17, pm18])
     db.session.commit()
     db.session.add(q1)
     db.session.add(a1)
