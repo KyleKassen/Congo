@@ -17,11 +17,24 @@ def get_products():
 
     products = Product.query.options(joinedload(Product.product_image)).all()
 
+
     result = {'products': []}
     for product in products:
         curr_product = product.to_dict()
         curr_product['images'] = [image.to_dict()
                                   for image in product.product_image]
+
+
+        rating = Review.query.with_entities(
+            func.avg(Review.rating)).filter_by(product_id=product.id).first()
+        review_count = Review.query.filter_by(product_id=product.id).count()
+        # print(f'\n\n\n\n rating is {rating[0] is not None} {rating[0]}')
+        if rating[0] is not None:
+            rating = float(round(rating[0], 1))
+        else:
+            rating = None
+
+        curr_product['rating'] = rating
 
         result['products'].append(curr_product)
 

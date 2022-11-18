@@ -44,7 +44,8 @@ function Homepage() {
                 {/* <p>
                   ${product.salePrice} List Price: {product.price}
                 </p> */}
-                <p>{product.title.slice(0, 45)} ...</p>
+                {product.title.length > 80 && <p>{product.title.slice(0, 80)} ...</p>}
+                {product.title.length <= 80 && <p>{product.title}</p>}
               </div>
             );
           })}
