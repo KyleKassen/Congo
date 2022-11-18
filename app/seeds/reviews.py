@@ -52,9 +52,31 @@ def seed_reviews():
         review_id = 4,
         url = 'https://m.media-amazon.com/images/I/A1b9B0wzJyL.jpg'
     )
+    r5 = Review(
+        user_id = 3,
+        product_id = 3,
+        title = 'Perfect',
+        review = "This is exactly what I was looking for! Can watch cable through provider app and my other streaming services (HULU, Netflix, Amazon Prime, Peacock). Sounds good and picture is crystal clear.",
+        rating = 5,
+    )
+    r5i1 = ReviewImage(
+        review_id = 5,
+        url = 'https://m.media-amazon.com/images/I/61vnAkxMxFL.jpg'
+    )
+    r6 = Review(
+        user_id = 3,
+        product_id = 4,
+        title = 'Amazing Mini Pc Under Budget',
+        review = "The Computer comes with a lot of useful features, so it is a really great choice if you have a small budget. This mini PC comes with a high speed Intel Celeron J4125 processor. With a powerful processor and a pre-installed copy of Windows 11, it has a powerful core. I bought the 8GB RAM/128GB storage pc (windows 11 pro) and it performs very well. The internet browsing, Netflix or Youtube watching, and doing some other work were seamless and there was no lag at all. A dual-screen model can be used (2 HDMI and 1 VGA port), which reduces waiting time and increases work efficiency. I can carry it with me when traveling and watch movies on any TV. Don't expect to play heavy games on it, however. The machine isn't specifically designed for playing games. For home use, it's satisfactory. The power and speed of the machine are both sufficient. Excellent product. My keyboard and mouse are attached to this mini PC where I am typing this review.",
+        rating = 5,
+    )
+    r6i1 = ReviewImage(
+        review_id = 6,
+        url = 'https://m.media-amazon.com/images/I/7179KhG2PUL.jpg'
+    )
 
-    db.session.add_all([r3, r4])
-    db.session.add_all([r3i1, r4i1])
+    db.session.add_all([r3, r4, r5, r6])
+    db.session.add_all([r3i1, r4i1, r5i1, r6i1])
 
     db.session.commit()
 

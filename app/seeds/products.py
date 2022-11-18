@@ -92,9 +92,29 @@ def seed_products():
         product_id=3,
         url='https://m.media-amazon.com/images/I/71yi46Ali0L._AC_SL1500_.jpg'
     )
+    pm9 = ProductImage(
+        product_id=3,
+        url='https://m.media-amazon.com/images/I/81LRcd7llnL._AC_SL1500_.jpg'
+    )
     pm5 = ProductImage(
         product_id=4,
         url='https://m.media-amazon.com/images/I/71BuQGT+eXL._AC_SL1500_.jpg'
+    )
+    pm10 = ProductImage(
+        product_id=4,
+        url='https://m.media-amazon.com/images/I/61syEga94BL._AC_.jpg'
+    )
+    pm11 = ProductImage(
+        product_id=4,
+        url='https://m.media-amazon.com/images/I/71ZmYvecbIL._AC_SL1500_.jpg'
+    )
+    pm12 = ProductImage(
+        product_id=4,
+        url='https://m.media-amazon.com/images/I/71fH21RTA5L._AC_SL1500_.jpg'
+    )
+    pm13 = ProductImage(
+        product_id=4,
+        url='https://m.media-amazon.com/images/I/81Q+REjadzL._AC_SL1500_.jpg'
     )
 
     q1 = Question(
@@ -112,7 +132,7 @@ def seed_products():
 
     # fire_stick.categories.append
     # db.session.add(fire_stick)
-    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8])
+    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13])
     db.session.commit()
     db.session.add(q1)
     db.session.add(a1)
