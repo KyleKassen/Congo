@@ -60,7 +60,7 @@ function CreateAddress({ setShowAddressModal }) {
             ))}
           </div>
           <div className="address-name-fields">
-            <div>
+            <div className="address-first-name">
               <p>First name</p>
               <input
                 id="form-field-address"
@@ -84,16 +84,18 @@ function CreateAddress({ setShowAddressModal }) {
             </div>
           </div>
           <div>
+            <p>Address</p>
             <input
               id="form-field-address"
               className="form-field"
-              placeholder="Street"
+              placeholder="Street address or P.O. Box"
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               required
             />
           </div>
+          <div className="address-flex-inputs">
           <div>
             <input
               id="form-field-city"
@@ -126,6 +128,7 @@ function CreateAddress({ setShowAddressModal }) {
               onChange={(e) => setZipcode(e.target.value)}
               required
             />
+          </div>
           </div>
           <button
             id="create-address-button"
