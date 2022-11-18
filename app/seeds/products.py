@@ -61,6 +61,29 @@ def seed_products():
         prime = True
     )
 
+    p6 = Product(
+        seller_id=2,
+        title = 'Rivalus Rivalwhey Vanilla 10lb, Vanilla, 10 Pound',
+        description ="Whey is amongst the most popular protein sources for athletes - and for good reason. Whey proteins are highly digestible, rich in all the essential amino acids (including the three BCAAs), and have a thin consistency that is exceptionally drinkable. Rivalwhey's 100% whey protein recipe blends high-purity whey isolate (primary protein source, BTW), ultra-filtered whey concentrate, and speedy whey hydrolysate to provide an exceptional balance of clean macros, great taste, unsurpassed quality, and bang for your hard-earned buck. So good it should have been called UNRIVALED WHEY.",
+        fulfilled_by = 'Congo.com',
+        sold_by = 'Congo.com',
+        quantity = 10,
+        price = 106.99,
+        prime = True
+    )
+
+    p7 = Product(
+        seller_id=2,
+        title = 'Colgate Optic White Renewal Teeth Whitening Toothpaste with Fluoride, 3% Hydrogen Peroxide, High Impact White, Mint - 3 Ounce (2 Pack)',
+        description ="Colgate Optic White Renewal is whitening that works. Get 10X whiter teeth* with this teeth whitening toothpaste, which contains dentist recommended hydrogen peroxide. With a patented 3% hydrogen peroxide formula which deeply whitens beyond surface stains, this hydrogen peroxide toothpaste not only removes surface stains, but also can penetrate to work below the tooth surface. Colgate Optic White Renewal toothpaste, High Impact White, is a mint toothpaste that has a refreshing mint flavor that freshens breath. It is also an anticavity fluoride toothpaste that helps to protect against cavities. Enamel-safe for daily use, add this Colgate whitening toothpaste to your oral care routine for teeth whitening that safely whitens the inside as well as the outside of your teeth. Colgate Optic White Renewal whitening and stain removal toothpaste is a vegan toothpaste that's also gluten-free and sugar-free. For good oral hygiene, brush your teeth twice a day for two minutes. Optic White toothpaste is made by Colgate, the brand that knows the power of a healthy smile. *vs. a fluoride toothpaste without hydrogen peroxide, after 4 weeks of use as directed.",
+        fulfilled_by = 'Congo.com',
+        sold_by = 'Congo.com',
+        quantity = 1000,
+        price = 10.18,
+        prime = True
+    )
+
+
 
     for cat in categories:
         curr_cat = Category(name=cat)
@@ -71,7 +94,7 @@ def seed_products():
             p3.categories.append(curr_cat)
 
         fire_stick.categories.append(curr_cat)
-    db.session.add_all([fire_stick, p2, p3, p4])
+    db.session.add_all([fire_stick, p2, p3, p4, p5, p6, p7])
     db.session.commit()
 
 
@@ -148,6 +171,27 @@ def seed_products():
         product_id=5,
         url='https://m.media-amazon.com/images/I/710SuGhhdkL._AC_SL1500_.jpg'
     )
+    pm19 = ProductImage(
+        product_id=6,
+        url='https://m.media-amazon.com/images/I/61GQhwHALxL._AC_SL1200_.jpg'
+    )
+    pm20 = ProductImage(
+        product_id=6,
+        url='https://m.media-amazon.com/images/I/51RCANdHlfL._AC_SL1200_.jpg'
+    )
+    pm21 = ProductImage(
+        product_id=6,
+        url='https://m.media-amazon.com/images/I/61cP20X65UL._AC_SL1080_.jpg'
+    )
+    pm22 = ProductImage(
+        product_id=6,
+        url='https://m.media-amazon.com/images/I/71TmjHLMlTL._AC_SL1080_.jpg'
+    )
+    pm23 = ProductImage(
+        product_id=6,
+        url='https://m.media-amazon.com/images/I/8176shz92RL._AC_SL1500_.jpg'
+    )
+
 
     q1 = Question(
         product_id=1,
@@ -164,7 +208,7 @@ def seed_products():
 
     # fire_stick.categories.append
     # db.session.add(fire_stick)
-    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13, pm14, pm15, pm16, pm17, pm18])
+    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13, pm14, pm15, pm16, pm17, pm18, pm19, pm20, pm21, pm22, pm23])
     db.session.commit()
     db.session.add(q1)
     db.session.add(a1)
