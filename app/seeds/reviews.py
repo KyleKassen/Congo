@@ -149,10 +149,32 @@ def seed_reviews():
         review = "This is a great tasting protein powder that goes down well. Forget about your mixing cup and water. Get a Vitamix Explorian Blender, some Walmart Vanilla Soy Milk, put the amount you want in the blender jar and put it into the freezer until it's mushy. Put three heavy pinches of frozen Walmart unsweetened coconut flakes, then blend in the protein powder and any frozen fruit chunks you want or just plain. Very good.",
         rating = 5,
     )
+    r13 = Review(
+        user_id = 3,
+        product_id = 7,
+        title = 'Suspicious knock off?',
+        review = "I buy this toothpaste all the time from Walmart. My package looks like the picture advertised, every time I buy it. You can see from the picture that is not what I got. The box feels cheap compared to the one I buy in the store and so do the tubes, like a knockoff. You can see the one I recieved vs. the one I got in store. I have noticed some minor differences in text/design but the back says that the tubes are now recyclable. That's the only explanation that may be possible. They both have the same expiration date as well, I bought my last box about two weeks ago from Walmart, it was also a double pack. I did some research and I think it's interesting that Colgate doesn't list Amazon as their online retailer for where you can buy this toothpaste, surely if it was legit they would list Amazon? As far as the actual toothpaste I buy in the store, I love it. I have been using it for months even before I got Invisalign and I love how white my teeth have become. Everyone complains about my teeth, my gums, etc. but I don't think they realize how hydrogen peroxide works. You will see white spots on your gums when you brush too hard because it's killing the bacteria, like you do when you use hydrogen peroxide on a wound. The toothpaste in these tubes is the same consistency as the one I buy in store, it's not 'watery'. That's how it normally is, that's hydrogen peroxide in the paste. Just mix it a little in the tube before you use it and you won't have that problem. It's worth the money when you buy it from the store but this package from Amazon really has me suspicious. I will not be buying this on Amazon again, I will continue to buy from the store.",
+        rating = 3,
+    )
+    r13i1 = ReviewImage(
+        review_id = 13,
+        url = 'https://m.media-amazon.com/images/I/91RXfWoSahL.jpg'
+    )
+    r14 = Review(
+        user_id = 3,
+        product_id = 7,
+        title = 'Great toothpaste...',
+        review = "This toothpaste has got to be the best ever and I should know because I have tried so many different ones. Your teeth feel amazingly clean and your breath fresh.My teeth are whiter, not like bright white but whiter than they have been in quite awhile. The toothpaste is also sugar free which is a plus because as you know, sugar is not a friend of teeth. So if you are looking for an honest toothpaste that will do what it says this is the one for you.Of course I would recommend!",
+        rating = 5,
+    )
+    r14i1 = ReviewImage(
+        review_id = 14,
+        url = 'https://m.media-amazon.com/images/I/71C-mRlnBbL.jpg'
+    )
 
 
-    db.session.add_all([r3, r4, r5, r6, r7, r8, r9, r10, r11, r12])
-    db.session.add_all([r3i1, r4i1, r5i1, r6i1, r7i1, r8i1, r9i1, r9i2, r9i3, r10i1, r11i1, r11i2])
+    db.session.add_all([r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14])
+    db.session.add_all([r3i1, r4i1, r5i1, r6i1, r7i1, r8i1, r9i1, r9i2, r9i3, r10i1, r11i1, r11i2, r13i1, r14i1])
 
     db.session.commit()
 

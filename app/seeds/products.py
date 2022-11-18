@@ -191,6 +191,26 @@ def seed_products():
         product_id=6,
         url='https://m.media-amazon.com/images/I/8176shz92RL._AC_SL1500_.jpg'
     )
+    pm24 = ProductImage(
+        product_id=7,
+        url='https://m.media-amazon.com/images/I/61gNhn1tf+L._SL1000_.jpg'
+    )
+    pm25 = ProductImage(
+        product_id=7,
+        url='https://m.media-amazon.com/images/I/61ZKYY+mCQL._SL1001_.jpg'
+    )
+    pm26 = ProductImage(
+        product_id=7,
+        url='https://m.media-amazon.com/images/I/51H7rZh4EIL._SL1001_.jpg'
+    )
+    pm27 = ProductImage(
+        product_id=7,
+        url='https://m.media-amazon.com/images/I/615H64cf73L._SL1001_.jpg'
+    )
+    pm28 = ProductImage(
+        product_id=7,
+        url='https://m.media-amazon.com/images/I/51GW7Eds5LL._SL1001_.jpg'
+    )
 
 
     q1 = Question(
@@ -208,7 +228,7 @@ def seed_products():
 
     # fire_stick.categories.append
     # db.session.add(fire_stick)
-    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13, pm14, pm15, pm16, pm17, pm18, pm19, pm20, pm21, pm22, pm23])
+    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8, pm9, pm10, pm11, pm12, pm13, pm14, pm15, pm16, pm17, pm18, pm19, pm20, pm21, pm22, pm23, pm24, pm25, pm26, pm27, pm28])
     db.session.commit()
     db.session.add(q1)
     db.session.add(a1)
