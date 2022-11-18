@@ -16,7 +16,7 @@ def seed_products():
     )
 
     p2 = Product(
-        seller_id=1,
+        seller_id=2,
         title = 'TCL 55" Class 4-Series 4K UHD HDR Smart Roku TV - 55S435, 2021 Model',
         description ='The 4-Series Roku TV delivers stunning 4K picture quality with four times the resolution of Full HD for enhanced clarity and detail, as well as endless entertainment with thousands of streaming channels. High dynamic range (HDR) technology delivers bright and accurate colors for a lifelike viewing experience. In addition, your favorite HD shows, movies, and sporting events are upscaled to near Ultra HD resolution with 4K Upscaling. The simple, personalized home screen allows seamless access to thousands of streaming channels, plus your cable box, Blu-ray player, gaming console, and other devices without flipping through inputs or complicated menus. The super-simple remote—with about half the number of buttons on a traditional TV remote—puts you in control of your favorite entertainment.',
         fulfilled_by = 'Amazon.com',
@@ -28,7 +28,7 @@ def seed_products():
     )
 
     p3 = Product(
-        seller_id=1,
+        seller_id=2,
         title = 'TCL 32" Class 3-Series HD 720p LED Smart Roku TV - 32S355',
         description ="The TCL 3-Series is the simply smart way to enjoy endless entertainment. Enjoy over half a million movies and TV episodes available to stream plus sports, news, music, kids and family, food, science and tech, fitness, foreign language and so much more. Start streaming free TV right from your home screen or browse 250+ free live channels with the Live TV Channel Guide to find what to watch next. Your favorite broadcast TV, streaming channels, gaming console and other devices are front-and-center within a simple, customizable home screen. There's no more flipping through inputs or wading through complicated menus. The super-simple remote—with about half the number of buttons on a traditional TV remote—puts you in control of your favorite entertainment and includes one-touch shortcuts to popular channels like Netflix.",
         fulfilled_by = 'Amazon.com',
@@ -39,7 +39,7 @@ def seed_products():
         prime = True
     )
     p4 = Product(
-        seller_id=1,
+        seller_id=2,
         title = 'Mini PC Windows 11 Pro, 8GB DDR4 128GB SSD Intel Celeron J4125 Mini Desktop Computer, Support 2.5-inch SSD, 2.4G+5.0G WiFi, 4K HDMI x2, Gigabit Ethernet, BT 4.2, Support Windows 10 Pro Micro PC',
         description ="The TCL 3-Series is the simply smart way to enjoy endless entertainment. Enjoy over half a million movies and TV episodes available to stream plus sports, news, music, kids and family, food, science and tech, fitness, foreign language and so much more. Start streaming free TV right from your home screen or browse 250+ free live channels with the Live TV Channel Guide to find what to watch next. Your favorite broadcast TV, streaming channels, gaming console and other devices are front-and-center within a simple, customizable home screen. There's no more flipping through inputs or wading through complicated menus. The super-simple remote—with about half the number of buttons on a traditional TV remote—puts you in control of your favorite entertainment and includes one-touch shortcuts to popular channels like Netflix.",
         fulfilled_by = 'Amazon.com',
@@ -76,6 +76,18 @@ def seed_products():
         product_id=2,
         url='https://m.media-amazon.com/images/I/71wJCiFPrfL._AC_SL1500_.jpg'
     )
+    pm6 = ProductImage(
+        product_id=2,
+        url='https://m.media-amazon.com/images/I/81BBgZ+Y0xL._AC_SL1500_.jpg'
+    )
+    pm7 = ProductImage(
+        product_id=2,
+        url='https://m.media-amazon.com/images/I/81rbnWZRa9L._AC_SL1500_.jpg'
+    )
+    pm8 = ProductImage(
+        product_id=2,
+        url='https://m.media-amazon.com/images/I/71ezFcQzdWL._AC_SL1500_.jpg'
+    )
     pm4 = ProductImage(
         product_id=3,
         url='https://m.media-amazon.com/images/I/71yi46Ali0L._AC_SL1500_.jpg'
@@ -100,7 +112,7 @@ def seed_products():
 
     # fire_stick.categories.append
     # db.session.add(fire_stick)
-    db.session.add_all([onepm, twopm, pm3, pm4, pm5])
+    db.session.add_all([onepm, twopm, pm3, pm4, pm5, pm6, pm7, pm8])
     db.session.commit()
     db.session.add(q1)
     db.session.add(a1)
