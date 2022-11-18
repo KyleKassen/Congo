@@ -14,13 +14,20 @@
     margin-bottom: 16px;
 }
 
+.address-form-container p {
+    color: #0F1111;
+    line-height:  20px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
 .address-form-header-container {
     width: 100%;
     background: -webkit-linear-gradient(top,#f7f7f7,#eaeaea);
     background: linear-gradient(to bottom,#f7f7f7,#eaeaea);
     border-bottom: 1px solid #d5d9d9;
     border-radius: 8px 8px 0px 0px;
-    padding: 0px 24px;
+    padding-left: 24px;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
@@ -30,6 +37,7 @@
 .address-form-header-container h4 {
     padding: 16px 0px;
     font-size: 16px;
+    color: #0F1111
 }
 
 .address-form-close-button-container {
@@ -60,6 +68,11 @@
     padding: 16px 24px;
 }
 
+.address-form-bottom-section h2 {
+    color: #0F1111;
+    margin-bottom: 20px;
+}
+
 .address-name-fields {
     display: flex;
 }
@@ -68,6 +81,15 @@
     width: 50%;
 }
 
-.address-first-name {
+.address-first-name, .address-city-container, .address-state-container {
     margin-right: 16px;
 }
+
+.address-flex-inputs {
+    display: flex;
+}
+
+.address-flex-inputs div {
+    width: 33%;
+}
+

@@ -96,43 +96,46 @@ function CreateAddress({ setShowAddressModal }) {
             />
           </div>
           <div className="address-flex-inputs">
-          <div>
-            <input
-              id="form-field-city"
-              className="form-field"
-              placeholder="City"
-              type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <input
-              id="form-field-state"
-              className="form-field"
-              placeholder="State"
-              type="text"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <input
-              id="form-field-zipcode"
-              className="form-field"
-              placeholder="ZipCode"
-              type="number"
-              value={zipcode}
-              onChange={(e) => setZipcode(e.target.value)}
-              required
-            />
-          </div>
+            <div className="address-city-container">
+              <p>City</p>
+              <input
+                id="form-field-city"
+                className="form-field"
+                placeholder="City"
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                required
+              />
+            </div>
+            <div className="address-state-container">
+              <p>State</p>
+              <input
+                id="form-field-state"
+                className="form-field"
+                placeholder="State"
+                type="text"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <p>Zip Code</p>
+              <input
+                id="form-field-zipcode"
+                className="form-field"
+                placeholder="ZipCode"
+                type="number"
+                value={zipcode}
+                onChange={(e) => setZipcode(e.target.value)}
+                required
+              />
+            </div>
           </div>
           <button
             id="create-address-button"
-            className="button button-submit"
+            className="button review-button-submit"
             type="submit"
             disabled={errors.length}
           >
