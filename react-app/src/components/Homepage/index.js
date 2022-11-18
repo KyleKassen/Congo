@@ -71,13 +71,16 @@ function Homepage() {
                   <p>{product.title.slice(0, 70)} ...</p>
                 )}
                 {product.title.length <= 70 && <p>{product.title}</p>}
-                <div className="product-rating-container">
+                <div className="product-rating-container home-rating-container">
                   <div className="product-star-rating">
                     {getStars(product.rating, "")}
                   </div>
-                  <div className="product-rating-count">
+                  <div className="product-rating-count home-rating-count">
                     <span>{product.reviewCount} ratings</span>
                   </div>
+                </div>
+                <div className="home-price-container">
+                  $<span>{product.price}</span>
                 </div>
               </div>
             );

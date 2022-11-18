@@ -59,3 +59,15 @@
 .home-product-img-container img:hover {
     cursor: pointer;
 }
+
+.home-rating-container {
+    margin-top: 7px !important;
+}
+
+.home-rating-count {
+    margin-top: -2px;
+}
+
+.home-rating-count span {
+    margin-left: 10px !important;
+}
