@@ -177,7 +177,7 @@ function Checkout() {
                                 </span>
                                 {address.address}, {address.city},{" "}
                                 {address.state}, {address.zipcode}, United
-                                States <Address address={address} setFinalAddress={setFinalAddress}/>
+                                States <Address address={address} setFinalAddress={setFinalAddress} setChangeAddress={setChangeAddress}/>
                               </label>
                             </div>
                           );
@@ -215,7 +215,7 @@ function Checkout() {
                 )}
                 <hr />
               </div>
-              <button onClick={() => setShowPaymentModal(true)}>
+              {/* <button onClick={() => setShowPaymentModal(true)}>
                 Add Payment
               </button>
               {showPaymentModal && (
@@ -230,7 +230,7 @@ function Checkout() {
                       <Payment payment={payment} />
                     </div>
                   );
-                })}
+                })} */}
             </div>
             <div className="checkout-right-container">
               <p>Right Section</p>
