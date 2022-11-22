@@ -173,7 +173,7 @@ def seed_reviews():
     )
     r15 = Review(
         user_id = 3,
-        product_id = 7,
+        product_id = 8,
         title = 'Exactly what was expected so warm and comfortable',
         review = "A must buy .The warm fuzzy inside keeps you warm.And so many colors to choose from to match what I am wearing.I couldn't decide on just one so I bought 5. Definitely worth it.",
         rating = 5,
