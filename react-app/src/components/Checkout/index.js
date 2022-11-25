@@ -276,21 +276,21 @@ function Checkout() {
                         <hr />
                       </div>
                       <form>
-                        {addresses.map((address, idx) => {
+                        {payments.map((payment, idx) => {
                           return (
                             <div
                               key={idx}
-                              className={`address-container address-container${address.id}`}
+                              className={`payment-container payment-container${payment.id}`}
                             >
                               <input
                                 type="radio"
-                                id={`address${address.id}`}
+                                id={`address${payment.id}`}
                                 name="address-selection"
                                 onClick={() =>
-                                  handleAddressSelection(address.id)
+                                  handleAddressSelection(payment.id)
                                 }
                               />
-                              <label for={`address${address.id}`}>
+                              <label for={`address${payment.id}`}>
                                 <span>
                                   {address.firstName} {address.lastName}{" "}
                                 </span>

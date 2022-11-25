@@ -271,12 +271,26 @@ input[type=radio] {
 
 .shipping-payment-subheader-container p{
     width: 170px;
+    color: #565959;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .shipping-payment-subheader-container p:nth-of-type(2){
     text-align: right;
 }
 
-.shipping-payment-subheader-container p:nth-of-type(2){
-    text-align: right;
+.payment-container {
+    padding: 9px;
+    border: 1px solid transparent;
+}
+
+.payment-container label {
+    padding-left: 5px;
+    padding-bottom: 4px;
+}
+
+.payment-container span {
+    font-size: 14px;
+    font-weight: 700;
 }
