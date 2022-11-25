@@ -253,3 +253,30 @@ input[type=radio] {
     background: #F7CA00;
     border: 1px solid #F2C200;
 }
+
+.checkout-shipping-starter-payment-container p {
+    color: #333;
+    font-size: 14px;
+    width: 100%;
+}
+
+.checkout-shipping-starter-payment-container span {
+    font-weight: 700;
+}
+
+.shipping-payment-subheader-container {
+    display: flex;
+    justify-content: end;
+}
+
+.shipping-payment-subheader-container p{
+    width: 170px;
+}
+
+.shipping-payment-subheader-container p:nth-of-type(2){
+    text-align: right;
+}
+
+.shipping-payment-subheader-container p:nth-of-type(2){
+    text-align: right;
+}

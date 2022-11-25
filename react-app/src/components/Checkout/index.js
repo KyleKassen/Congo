@@ -20,8 +20,11 @@ function Checkout() {
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [changeAddress, setChangeAddress] = useState(false);
+  const [changePayment, setChangePayment] = useState(false);
   const [defaultAddress, setDefaultAddress] = useState({});
+  const [defaultPayment, setDefaultPayment] = useState({});
   const [finalAddress, setFinalAddress] = useState({});
+  const [finalPayment, setFinalPayment] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -45,7 +48,9 @@ function Checkout() {
 
   useEffect(() => {
     setDefaultAddress(addresses[0]);
-    setFinalAddress(addresses[0])
+    setFinalAddress(addresses[0]);
+    setDefaultPayment(payments[0]);
+    setFinalPayment(payments[0]);
   }, [loaded]);
 
   if (!loaded) {
@@ -215,25 +220,20 @@ function Checkout() {
                 )}
                 <hr />
               </div>
+              {/* Payment section */}
               <div className="checkout-shipping-section">
-                {!changeAddress && (
+                {!changePayment && (
                   <div className="checkout-shipping-starter-container">
                     <div className="checkout-shipping-starter-left">
                       <h3 className="shipping-starter-index">2</h3>
                       <h3 className="shipping-starter-heading">
                         Payment method
                       </h3>
-                      <div className="checkout-shipping-starter-address-container">
+                      <div className="checkout-shipping-starter-payment-container">
                         {finalAddress && (
                           <>
                             <p>
-                              {finalAddress.firstName}{" "}
-                              {finalAddress.lastName}
-                            </p>
-                            <p>{finalAddress.address}</p>
-                            <p>
-                              {finalAddress.city}, {finalAddress.state}{" "}
-                              {finalAddress.zipcode}
+                              <span>Debit</span> card ending in {finalPayment.cardNumber.slice(finalPayment.cardNumber.length - 4, finalPayment.cardNumber.length)}
                             </p>
                           </>
                         )}
@@ -241,13 +241,13 @@ function Checkout() {
                     </div>
                     <p
                       className="shipping-starter-change"
-                      onClick={() => setChangeAddress(true)}
+                      onClick={() => setChangePayment(true)}
                     >
                       Change
                     </p>
                   </div>
                 )}
-                {changeAddress && (
+                {changePayment && (
                   <div className="checkout-shipping-change-container">
                     <div className="shipping-change-header-container">
                       <h3 className="shipping-starter-index text-color-orange">
@@ -259,16 +259,20 @@ function Checkout() {
                       <div className="close-change-icon-container">
                         <p
                           className="shipping-change-close"
-                          onClick={() => setChangeAddress(false)}
+                          onClick={() => setChangePayment(false)}
                         >
                           Close
                         </p>
-                        <i onClick={() => setChangeAddress(false)}></i>
+                        <i onClick={() => setChangePayment(false)}></i>
                       </div>
                     </div>
                     <div className="shipping-list-container">
                       <div className="shipping-list-header-container">
                         <h3>Your credit and debit cards</h3>
+                        <div className="shipping-payment-subheader-container">
+                          <p>Name on card</p>
+                          <p>Expires on</p>
+                        </div>
                         <hr />
                       </div>
                       <form>
