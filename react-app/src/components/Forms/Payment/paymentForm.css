@@ -10,8 +10,14 @@
     padding: 3px 7px;
     line-height: normal;
     box-sizing: border-box;
-    width: 100%;
     margin-bottom: 16px;
+}
+
+.payment-form-container input:focus {
+    background-color: #F7FEFF;
+    border-color: #007185;
+    box-shadow: 0 0 0 3px #c8f3fa, 0 1px 2px rgb(15 17 17 / 15%) inset;
+    outline: none;
 }
 
 .payment-form-header-container {
@@ -56,4 +62,20 @@
     background-position: -297px -5px;
     z-index: 2;
     display: inline-block;
+}
+
+.payment-form-bottom-section {
+    padding: 16px 24px;
+}
+
+.input-container {
+    display: flex;
+}
+
+.input-container p {
+    width: 119px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: right;
+    margin-right: 13.4px;
 }
