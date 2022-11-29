@@ -128,17 +128,24 @@
 .dropdown-container ul {
     position: absolute;
     list-style-type: none!important;
-    top: 0px;
-    left: 0px;
+    top: -1px;
+    left: -1px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgb(0 0 0 / 13%);
     border: 1px solid #cdcdcd;
     border-color: rgba(0,0,0,.2);
-    width: 88.84px;
-    height: 263px;
+    height: 287px;
     padding: 8px 0px;
     background-color: white;
     z-index: 1;
+}
+
+.months-dropdown ul {
+    width: 51.25px;
+}
+
+.years-dropdown ul {
+    width: 66.5px;
 }
 
 .dropdown-container li {
@@ -164,4 +171,8 @@
     border-color: #D5D9D9;
     background-color: #EDFDFF;
     border-color: #007185!important;
+}
+
+.dropdown-button:active {
+    color: blue;
 }

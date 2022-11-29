@@ -85,6 +85,11 @@ function CreatePayment({
     setCardMonth(month);
   };
 
+  const handleYearClick = (year) => {
+    setShowYears(false);
+    setCardYear(year);
+  };
+
   return (
     <div className="payment-form-container">
       <div className="payment-form-header-container">
@@ -162,12 +167,33 @@ function CreatePayment({
             </div>
             <div
               className="exp-year dropdown-button"
-              onClick={() => setShowYears(true)}
+              onClick={() => {
+                if (!showYears) setShowYears(true);
+              }}
+              onMouseLeave={() => setShowYears(false)}
             >
               <span>{cardYear}</span>
               <i className="icon-dropdown"></i>
               {showYears && (
-                <div className="years-dropdown dropdown-container"></div>
+                <div className="years-dropdown dropdown-container">
+                  <ul>
+                    {years.map((year, idx) => {
+                      return year == cardYear ? (
+                        <li
+                          key={idx}
+                          className="active-list-item"
+                          onClick={() => handleYearClick(year)}
+                        >
+                          {year}
+                        </li>
+                      ) : (
+                        <li key={idx} onClick={() => handleYearClick(year)}>
+                          {year}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
               )}
             </div>
           </div>
@@ -186,14 +212,16 @@ function CreatePayment({
               required
             />
           </div>
-          <button
-            id="edit-payment-button"
-            className="button button-submit"
-            type="submit"
-            disabled={errors.length}
-          >
-            Submit
-          </button>
+          <div>
+            <button
+              id="edit-payment-button"
+              className="button button-submit"
+              type="submit"
+              disabled={errors.length}
+            >
+              Add your card
+            </button>
+          </div>
         </form>
       </div>
     </div>
