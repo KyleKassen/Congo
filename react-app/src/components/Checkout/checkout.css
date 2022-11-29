@@ -294,7 +294,11 @@ input[type=radio] {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    align-items: center;
+    /* align-items: center; */
+}
+
+.payment-container p:nth-of-type(2) {
+    padding-right: 2px;
 }
 
 .payment-container div {
@@ -304,4 +308,6 @@ input[type=radio] {
 .payment-container img {
     width: 30px;
     height: 18.75px;
+    padding-left: 12px;
+    padding-right: 20px;
 }

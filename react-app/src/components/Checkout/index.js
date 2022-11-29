@@ -32,6 +32,7 @@ function Checkout() {
 
   const userId = useSelector((state) => state.session.user.id);
   const addressObj = useSelector((state) => state.addresses.addresses);
+  const paymentObj = useSelector(state => state.payments.payments);
   const addresses = Object.values(addressObj);
   const payments = useSelector((state) =>
     Object.values(state.payments.payments)
@@ -70,9 +71,26 @@ function Checkout() {
     setDefaultAddress(addressObj[addressId]);
   };
 
+  const handlePaymentSelection = (paymentId) => {
+    const paymentContainer = document.getElementsByClassName(
+      `payment-container${defaultPayment.id}`
+    )[0];
+    if (paymentContainer) paymentContainer.classList.remove("payment-active");
+    const newSelectedPayment = document.getElementsByClassName(
+      `payment-container${paymentId}`
+    )[0];
+    newSelectedPayment.classList.add("payment-active");
+    setDefaultPayment(paymentObj[paymentId]);
+  };
+
   const handleUseAddress = () => {
     setFinalAddress(defaultAddress);
     setChangeAddress(false);
+  };
+
+  const handleUsePayment = () => {
+    setFinalPayment(defaultPayment);
+    setChangePayment(false);
   };
 
   return (
@@ -301,7 +319,7 @@ function Checkout() {
                                     id={`address${payment.id}`}
                                     name="address-selection"
                                     onClick={() =>
-                                      handleAddressSelection(payment.id)
+                                      handlePaymentSelection(payment.id)
                                     }
                                   />
                                   <img src={card} />
