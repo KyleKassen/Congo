@@ -13,6 +13,7 @@ import congoWhite from "../../media/images/CONGOwhite.png";
 import congoWhiteTransparent from "../../media/images/CONGOwhite-transparent.png";
 import lock from "../../media/images/greyLock.png";
 import plusicon from "../../media/images/plus.png";
+import card from "../../media/images/stockcard.gif";
 import "./checkout.css";
 
 function Checkout() {
@@ -72,7 +73,7 @@ function Checkout() {
   const handleUseAddress = () => {
     setFinalAddress(defaultAddress);
     setChangeAddress(false);
-  }
+  };
 
   return (
     <>
@@ -83,7 +84,7 @@ function Checkout() {
               <img
                 className="checkout-header-logo"
                 src={congoWhiteTransparent}
-                onClick={() => history.push('/')}
+                onClick={() => history.push("/")}
               />
               <h1>
                 Checkout{" "}
@@ -117,8 +118,7 @@ function Checkout() {
                         {finalAddress && (
                           <>
                             <p>
-                              {finalAddress.firstName}{" "}
-                              {finalAddress.lastName}
+                              {finalAddress.firstName} {finalAddress.lastName}
                             </p>
                             <p>{finalAddress.address}</p>
                             <p>
@@ -182,7 +182,12 @@ function Checkout() {
                                 </span>
                                 {address.address}, {address.city},{" "}
                                 {address.state}, {address.zipcode}, United
-                                States <Address address={address} setFinalAddress={setFinalAddress} setChangeAddress={setChangeAddress}/>
+                                States{" "}
+                                <Address
+                                  address={address}
+                                  setFinalAddress={setFinalAddress}
+                                  setChangeAddress={setChangeAddress}
+                                />
                               </label>
                             </div>
                           );
@@ -212,7 +217,10 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="shipping-list-bottom-container">
-                      <div className="shipping-use-address yellow-checkout-button" onClick={() => handleUseAddress()}>
+                      <div
+                        className="shipping-use-address yellow-checkout-button"
+                        onClick={() => handleUseAddress()}
+                      >
                         Use this address
                       </div>
                     </div>
@@ -233,7 +241,11 @@ function Checkout() {
                         {finalAddress && (
                           <>
                             <p>
-                              <span>Debit</span> card ending in {finalPayment.cardNumber.slice(finalPayment.cardNumber.length - 4, finalPayment.cardNumber.length)}
+                              <span>Debit</span> card ending in{" "}
+                              {finalPayment.cardNumber.slice(
+                                finalPayment.cardNumber.length - 4,
+                                finalPayment.cardNumber.length
+                              )}
                             </p>
                           </>
                         )}
@@ -291,12 +303,24 @@ function Checkout() {
                                 }
                               />
                               <label for={`address${payment.id}`}>
-                                <span>
-                                  {address.firstName} {address.lastName}{" "}
-                                </span>
-                                {address.address}, {address.city},{" "}
-                                {address.state}, {address.zipcode}, United
-                                States <Address address={address} setFinalAddress={setFinalAddress} setChangeAddress={setChangeAddress}/>
+                                <div>
+                                  <img src={card} />
+                                  <p>
+                                    <span style={{ "font-weight": "bold" }}>
+                                      Debit Card
+                                    </span>{" "}
+                                    ending in{" "}
+                                    {payment.cardNumber.slice(
+                                      payment.cardNumber.length - 4,
+                                      payment.cardNumber.length
+                                    )}
+                                  </p>
+                                  <p>{payment.cardHolder}</p>
+                                  <p>
+                                    {String(payment.cardExp).slice(2)}/20
+                                    {String(payment.cardExp).slice(2, 4)}
+                                  </p>
+                                </div>
                               </label>
                             </div>
                           );
@@ -326,7 +350,10 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="shipping-list-bottom-container">
-                      <div className="shipping-use-address yellow-checkout-button" onClick={() => handleUseAddress()}>
+                      <div
+                        className="shipping-use-address yellow-checkout-button"
+                        onClick={() => handleUseAddress()}
+                      >
                         Use this address
                       </div>
                     </div>

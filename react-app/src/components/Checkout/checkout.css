@@ -288,9 +288,12 @@ input[type=radio] {
 .payment-container label {
     padding-left: 5px;
     padding-bottom: 4px;
+    height: 24px;
+    font-size: 14px;
+    display: flex;
 }
 
-.payment-container span {
-    font-size: 14px;
-    font-weight: 700;
+.payment-container img {
+    width: 30px;
+    height: 18.75px;
 }
