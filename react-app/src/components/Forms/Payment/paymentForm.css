@@ -179,6 +179,14 @@
     font-size: 13px;
     line-height: 29px;
     text-align: center;
+    background: transparent linear-gradient(to bottom,#F7F7F7,#EAEAEA) repeat scroll 0 0;
+    border-top: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 50%) inset, 0 -1px 0 rgb(255 255 255 / 40%) inset;
+    margin-right: -24px;
+    margin-left: -24px;
+    padding: 8px 18px 8px 0px;
+    margin-bottom: -16px;
+    border-radius: 0px 0px 9px 9px;
 }
 
 

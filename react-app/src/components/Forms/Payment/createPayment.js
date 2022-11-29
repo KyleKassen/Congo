@@ -108,114 +108,114 @@ function CreatePayment({
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div className="input-container">
-            <p>Card number</p>
-            <input
-              id="form-field-cardnumber"
-              className="form-field"
-              // placeholder="Card Number"
-              type="text"
-              value={cardNumber}
-              onChange={(e) => setCardNumber(e.target.value)}
-              required
-            />
-          </div>
-          <div className="input-container">
-            <p>Name on card</p>
-            <input
-              id="form-field-cardholder"
-              className="form-field"
-              // placeholder="Card Holder"
-              type="text"
-              value={cardHolder}
-              onChange={(e) => setCardHolder(e.target.value)}
-              required
-            />
-          </div>
-          <div className="input-container">
-            <p>Expiration date</p>
-            <div
-              className="exp-month dropdown-button"
-              onClick={() => {
-                if (!showMonths) setShowMonths(true);
-              }}
-              onMouseLeave={() => setShowMonths(false)}
-            >
-              <span>{cardMonth}</span>
-              <i className="icon-dropdown"></i>
-              {showMonths && (
-                <div className="months-dropdown dropdown-container">
-                  <ul>
-                    {months.map((month, idx) => {
-                      return month == cardMonth ? (
-                        <li
-                          key={idx}
-                          className="active-list-item"
-                          onClick={() => handleMonthClick(month)}
-                        >
-                          {month}
-                        </li>
-                      ) : (
-                        <li key={idx} onClick={() => handleMonthClick(month)}>
-                          {month}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
+          <div className="form-middle-container">
+            <div className="input-container">
+              <p>Card number</p>
+              <input
+                id="form-field-cardnumber"
+                className="form-field"
+                // placeholder="Card Number"
+                type="text"
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value)}
+                required
+              />
             </div>
-            <div
-              className="exp-year dropdown-button"
-              onClick={() => {
-                if (!showYears) setShowYears(true);
-              }}
-              onMouseLeave={() => setShowYears(false)}
-            >
-              <span>{cardYear}</span>
-              <i className="icon-dropdown"></i>
-              {showYears && (
-                <div className="years-dropdown dropdown-container">
-                  <ul>
-                    {years.map((year, idx) => {
-                      return year == cardYear ? (
-                        <li
-                          key={idx}
-                          className="active-list-item"
-                          onClick={() => handleYearClick(year)}
-                        >
-                          {year}
-                        </li>
-                      ) : (
-                        <li key={idx} onClick={() => handleYearClick(year)}>
-                          {year}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
+            <div className="input-container">
+              <p>Name on card</p>
+              <input
+                id="form-field-cardholder"
+                className="form-field"
+                // placeholder="Card Holder"
+                type="text"
+                value={cardHolder}
+                onChange={(e) => setCardHolder(e.target.value)}
+                required
+              />
             </div>
-          </div>
-          <div className="input-container">
-            <p>
-              <span>Security Code </span>
-              <span>(CVV/CVC)</span>
-            </p>
-            <input
-              id="form-field-securitycode"
-              className="form-field"
-              // placeholder="Security Code"
-              type="number"
-              value={securityCode}
-              onChange={(e) => setSecurityCode(e.target.value)}
-              required
-            />
+            <div className="input-container">
+              <p>Expiration date</p>
+              <div
+                className="exp-month dropdown-button"
+                onClick={() => {
+                  if (!showMonths) setShowMonths(true);
+                }}
+                onMouseLeave={() => setShowMonths(false)}
+              >
+                <span>{cardMonth}</span>
+                <i className="icon-dropdown"></i>
+                {showMonths && (
+                  <div className="months-dropdown dropdown-container">
+                    <ul>
+                      {months.map((month, idx) => {
+                        return month == cardMonth ? (
+                          <li
+                            key={idx}
+                            className="active-list-item"
+                            onClick={() => handleMonthClick(month)}
+                          >
+                            {month}
+                          </li>
+                        ) : (
+                          <li key={idx} onClick={() => handleMonthClick(month)}>
+                            {month}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              <div
+                className="exp-year dropdown-button"
+                onClick={() => {
+                  if (!showYears) setShowYears(true);
+                }}
+                onMouseLeave={() => setShowYears(false)}
+              >
+                <span>{cardYear}</span>
+                <i className="icon-dropdown"></i>
+                {showYears && (
+                  <div className="years-dropdown dropdown-container">
+                    <ul>
+                      {years.map((year, idx) => {
+                        return year == cardYear ? (
+                          <li
+                            key={idx}
+                            className="active-list-item"
+                            onClick={() => handleYearClick(year)}
+                          >
+                            {year}
+                          </li>
+                        ) : (
+                          <li key={idx} onClick={() => handleYearClick(year)}>
+                            {year}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="input-container">
+              <p>
+                <span>Security Code </span>
+                <span>(CVV/CVC)</span>
+              </p>
+              <input
+                id="form-field-securitycode"
+                className="form-field"
+                // placeholder="Security Code"
+                type="number"
+                value={securityCode}
+                onChange={(e) => setSecurityCode(e.target.value)}
+                required
+              />
+            </div>
           </div>
           <div className="form-bottom-buttons-container">
-            <div className="form-cancel-button">
-              Cancel
-            </div>
+            <div className="form-cancel-button">Cancel</div>
             <button
               id="edit-payment-button"
               className="button button-submit yellow-button"
