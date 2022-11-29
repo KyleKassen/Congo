@@ -63,7 +63,7 @@ function CreatePayment({
     const newPayment = {
       card_number: cardNumber,
       card_holder: cardHolder,
-      card_exp: cardExp,
+      card_exp: `${cardMonth}${cardYear.slice(2,4)}`,
       security_code: securityCode,
     };
 
@@ -90,6 +90,28 @@ function CreatePayment({
     setShowYears(false);
     setCardYear(year);
   };
+
+  const handleCVVPopup = (display) => {
+    const popup = document.getElementsByClassName("security-code-info-container")[0]
+    const popupArrow = document.getElementsByClassName("popup-arrow")[0]
+    const popupArrowInner = document.getElementsByClassName("popup-inner-arrow")[0]
+    if (display) {
+
+      popup.style.display = "block";
+      popupArrow.style.display = "block";
+      popupArrowInner.style.display = "block";
+      // popupArrow.style.opacity = 1;
+      // popupArrowInner.style.opacity = 1;
+      // popup.style.opacity = 1;
+    } else {
+      popup.style.display = "none";
+      popupArrow.style.display = "none";
+      popupArrowInner.style.display = "none";
+      // popup.style.opacity = 0;
+      // popupArrow.style.opacity = 0;
+      // popupArrowInner.style.opacity = 0;
+    }
+  }
 
   return (
     <div className="payment-form-container">
@@ -208,7 +230,7 @@ function CreatePayment({
                   <span>Security Code </span>
                   <span>(CVV/CVC)</span>
                 </p>
-                <div className="security-input-container">
+                <div className="security-input-container" onMouseLeave={() => handleCVVPopup(false)}>
                 <input
                   id="form-field-securitycode"
                   className="form-field"
@@ -219,13 +241,13 @@ function CreatePayment({
                   onChange={(e) => setSecurityCode(e.target.value)}
                   required
                 />
-                <span>(<span className="interactive-text">What's this?</span>)</span>
+                <span>(<span className="interactive-text" onMouseEnter={() => handleCVVPopup(true)} >What's this?</span>)</span>
                 <div className="popup-arrow">
                 <div className="popup-inner-arrow"></div>
                 </div>
-                <div className="security-code-info-container">
+                <div className="security-code-info-container" onMouseEnter={() => handleCVVPopup(true)} onMouseLeave={() => handleCVVPopup(false)}>
                   <p>The CVV number is the last three digits at the back of your card. For American Express cards, the CVV is a 4-digit number on the front of the card.</p>
-                  <div>
+                  <div onClick={() => handleCVVPopup(false)}>
                     <i></i>
                   </div>
                   <img src={cvv} />

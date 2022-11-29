@@ -118,6 +118,7 @@
     border-right-color: rgba(0,0,0,.2);
     top: 16px;
     left: 151px;
+    display:none;
 }
 
 .popup-inner-arrow {
@@ -129,6 +130,7 @@
     z-index: 100;
     top: -8px;
     left: -6px;
+    display:none;
 }
 
 .security-code-info-container {
@@ -143,6 +145,7 @@
     border-radius: 4px;
     top: -119px;
     left: 158px;
+    display:none;
 }
 
 .security-code-info-container div {
