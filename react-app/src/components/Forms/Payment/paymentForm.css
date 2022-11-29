@@ -1,0 +1,15 @@
+.payment-form-container {
+    width: 716px;
+}
+
+.payment-form-container input {
+    border: 1px solid #888C8C;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+    height: 31px;
+    padding: 3px 7px;
+    line-height: normal;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 16px;
+}

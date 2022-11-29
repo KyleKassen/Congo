@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {useParams, useHistory} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {createOnepayment} from "../../../store/payment";
+import { createOnepayment } from "../../../store/payment";
 
-function CreatePayment({setShowPaymentModal}) {
+function CreatePayment({
+  setShowPaymentModal,
+  setFinalPayment,
+  setChangePayment,
+}) {
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolder, setCardHolder] = useState("");
   const [cardExp, setCardExp] = useState("");
@@ -15,32 +19,40 @@ function CreatePayment({setShowPaymentModal}) {
 
   const userId = useSelector((state) => state.session.user.id);
 
-  useEffect(() => {
+  useEffect(() => {}, [cardNumber, cardHolder, cardExp, securityCode]);
 
-  }, [cardNumber, cardHolder, cardExp, securityCode])
-
-  const handleSubmit = async(e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     const newPayment = {
-        card_number:cardNumber,
-        card_holder:cardHolder,
-        card_exp:cardExp,
-        security_code:securityCode,
-    }
+      card_number: cardNumber,
+      card_holder: cardHolder,
+      card_exp: cardExp,
+      security_code: securityCode,
+    };
+
+    let response;
 
     try {
-        const response = await dispatch(createOnepayment(newPayment))
-        console.log(response)
+      const response = await dispatch(createOnepayment(newPayment));
+      console.log(response);
     } catch (res) {
-        console.log(res)
-        console.log("ERROR IN payment FORM RESPONSE")
+      console.log(res);
+      console.log("ERROR IN payment FORM RESPONSE");
     }
-    setShowPaymentModal(false)
-  }
+    setShowPaymentModal(false);
+    setFinalPayment({...response})
+    setChangePayment(false);
+  };
 
   return (
-    <>
+    <div className="payment-form-container">
+      <div className="payment-form-header-container">
+        <h4>Add a debit card</h4>
+        <div className="payment-form-close-button-container" onClick={() => setShowPaymentModal(false)}>
+          <i></i>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div>
           {errors.map((error, ind) => (
@@ -48,6 +60,7 @@ function CreatePayment({setShowPaymentModal}) {
           ))}
         </div>
         <div>
+          <p>Card number</p>
           <input
             id="form-field-cardnumber"
             className="form-field"
@@ -59,6 +72,7 @@ function CreatePayment({setShowPaymentModal}) {
           />
         </div>
         <div>
+          <p>Name on card</p>
           <input
             id="form-field-cardholder"
             className="form-field"
@@ -70,6 +84,7 @@ function CreatePayment({setShowPaymentModal}) {
           />
         </div>
         <div>
+          <p>Expiration date</p>
           <input
             id="form-field-cardexp"
             className="form-field"
@@ -81,6 +96,7 @@ function CreatePayment({setShowPaymentModal}) {
           />
         </div>
         <div>
+          <p><span>Security Code</span><span>(CVV/CVC)</span></p>
           <input
             id="form-field-securitycode"
             className="form-field"
@@ -100,7 +116,7 @@ function CreatePayment({setShowPaymentModal}) {
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
