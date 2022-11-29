@@ -95,11 +95,11 @@ function CreatePayment({
           </div>
           <div className="input-container">
             <p>Expiration date</p>
-            <div className="exp-month">
-
+            <div className="exp-month dropdown-button">
+              <span>{cardMonth}</span><i className="icon-dropdown"></i>
             </div>
-            <div className="exp-year">
-              
+            <div className="exp-year dropdown-button">
+              <span>{cardYear}</span><i className="icon-dropdown"></i>
             </div>
 
           </div>
