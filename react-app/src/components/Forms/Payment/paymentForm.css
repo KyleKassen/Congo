@@ -1,3 +1,13 @@
+.interactive-text {
+    color: #007185;
+}
+
+.interactive-text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #C7511F;
+}
+
 .payment-form-container {
     width: 716px;
 }
@@ -79,6 +89,19 @@
     margin-right: 2%;
 }
 
+.security-input-container span {
+    font-size: 14px;
+}
+
+#form-field-securitycode{
+    width: 25%;
+    margin-right: 4px;
+}
+
+
+.form-middle-right-container {
+    max-width: 270px;
+}
 
 .form-middle-right-container p {
     font-size: 14px;

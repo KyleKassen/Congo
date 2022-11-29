@@ -207,15 +207,19 @@ function CreatePayment({
                   <span>Security Code </span>
                   <span>(CVV/CVC)</span>
                 </p>
+                <div className="security-input-container">
                 <input
                   id="form-field-securitycode"
                   className="form-field"
                   // placeholder="Security Code"
-                  type="number"
+                  type="password"
+                  maxLength="4"
                   value={securityCode}
                   onChange={(e) => setSecurityCode(e.target.value)}
                   required
                 />
+                <span>(<span className="interactive-text">What's this?</span>)</span>
+                </div>
               </div>
             </div>
             <div className="form-middle-right-container">
