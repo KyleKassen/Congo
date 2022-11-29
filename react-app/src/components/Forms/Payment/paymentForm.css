@@ -192,8 +192,20 @@
 
 .form-cancel-button:hover {
     background-color: #F7FAFA;
+    cursor: pointer;
 }
 
-.form-bottom-buttons-container button {
+.yellow-button {
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    padding-left: 11px;
+    padding-right: 10px;
+}
 
+.yellow-button:hover {
+    background: #F7CA00;
+    border-color: #F2C200;
+    cursor: pointer;
 }

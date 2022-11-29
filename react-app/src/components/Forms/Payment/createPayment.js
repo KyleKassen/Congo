@@ -218,7 +218,7 @@ function CreatePayment({
             </div>
             <button
               id="edit-payment-button"
-              className="button button-submit"
+              className="button button-submit yellow-button"
               type="submit"
               disabled={errors.length}
             >
