@@ -65,7 +65,7 @@ function EditAddress({
     <div className="address-form-container">
       <div className="address-form-header-container">
         <h4>Update your shipping address</h4>
-        <div className="address-form-close-button-container">
+        <div className="address-form-close-button-container" onClick={() => setShowModal(false)}>
           <i></i>
         </div>
       </div>

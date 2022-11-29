@@ -348,20 +348,20 @@ function Checkout() {
                         <img
                           className="address-button-span checkout-text-hover"
                           src={plusicon}
-                          onClick={() => setShowAddressModal(true)}
+                          onClick={() => setShowPaymentModal(true)}
                         />
                         <span
                           className="address-button-span checkout-text-hover"
-                          onClick={() => setShowAddressModal(true)}
+                          onClick={() => setShowPaymentModal(true)}
                         >
-                          Add a new address
+                          Add a debit card
                         </span>
-                        {showAddressModal && (
-                          <Modal onClose={() => setShowAddressModal(false)}>
-                            <CreateAddress
-                              setShowAddressModal={setShowAddressModal}
-                              setFinalAddress={setFinalAddress}
-                              setChangeAddress={setChangeAddress}
+                        {showPaymentModal && (
+                          <Modal onClose={() => setShowPaymentModal(false)}>
+                            <CreatePayment
+                              setShowPaymentModal={setShowPaymentModal}
+                              setFinalPayment={setFinalPayment}
+                              setChangePayment={setChangePayment}
                             />
                           </Modal>
                         )}
@@ -372,7 +372,7 @@ function Checkout() {
                         className="shipping-use-address yellow-checkout-button"
                         onClick={() => handleUseAddress()}
                       >
-                        Use this address
+                        Use this payment method
                       </div>
                     </div>
                   </div>
