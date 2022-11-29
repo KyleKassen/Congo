@@ -294,16 +294,16 @@ function Checkout() {
                               key={idx}
                               className={`payment-container payment-container${payment.id}`}
                             >
-                              <input
-                                type="radio"
-                                id={`address${payment.id}`}
-                                name="address-selection"
-                                onClick={() =>
-                                  handleAddressSelection(payment.id)
-                                }
-                              />
                               <label for={`address${payment.id}`}>
                                 <div>
+                                  <input
+                                    type="radio"
+                                    id={`address${payment.id}`}
+                                    name="address-selection"
+                                    onClick={() =>
+                                      handleAddressSelection(payment.id)
+                                    }
+                                  />
                                   <img src={card} />
                                   <p>
                                     <span style={{ "font-weight": "bold" }}>
@@ -315,12 +315,12 @@ function Checkout() {
                                       payment.cardNumber.length
                                     )}
                                   </p>
-                                  <p>{payment.cardHolder}</p>
-                                  <p>
-                                    {String(payment.cardExp).slice(2)}/20
-                                    {String(payment.cardExp).slice(2, 4)}
-                                  </p>
                                 </div>
+                                <p>{payment.cardHolder}</p>
+                                <p>
+                                  {String(payment.cardExp).slice(2)}/20
+                                  {String(payment.cardExp).slice(2, 4)}
+                                </p>
                               </label>
                             </div>
                           );

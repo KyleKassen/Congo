@@ -283,6 +283,7 @@ input[type=radio] {
 .payment-container {
     padding: 9px;
     border: 1px solid transparent;
+    height: 21px;
 }
 
 .payment-container label {
@@ -290,6 +291,13 @@ input[type=radio] {
     padding-bottom: 4px;
     height: 24px;
     font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.payment-container div {
     display: flex;
 }
 
