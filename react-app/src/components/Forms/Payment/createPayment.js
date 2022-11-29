@@ -17,11 +17,40 @@ function CreatePayment({
   const [securityCode, setSecurityCode] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const [showMonths, setShowMonths] = useState(false);
+  const [showYears, setShowYears] = useState(false);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
-  let showMonths = false;
-  let showYears = false;
+  const months = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  const years = [
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032",
+    "2033",
+  ];
 
   const userId = useSelector((state) => state.session.user.id);
 
@@ -95,13 +124,35 @@ function CreatePayment({
           </div>
           <div className="input-container">
             <p>Expiration date</p>
-            <div className="exp-month dropdown-button">
-              <span>{cardMonth}</span><i className="icon-dropdown"></i>
+            <div
+              className="exp-month dropdown-button"
+              onClick={() => setShowMonths(true)}
+            >
+              <span>{cardMonth}</span>
+              <i className="icon-dropdown"></i>
+              {showMonths && (
+                <div className="months-dropdown dropdown-container">
+                  <ul>
+                    {months.map((month, idx) => {
+                      return <li key={idx} onClick={() => {
+                        setCardMonth(month)
+                        setShowMonths(false)
+                      }}>{month}</li>;
+                    })}
+                  </ul>
+                </div>
+              )}
             </div>
-            <div className="exp-year dropdown-button">
-              <span>{cardYear}</span><i className="icon-dropdown"></i>
+            <div
+              className="exp-year dropdown-button"
+              onClick={() => setShowYears(true)}
+            >
+              <span>{cardYear}</span>
+              <i className="icon-dropdown"></i>
+              {showYears && (
+                <div className="years-dropdown dropdown-container"></div>
+              )}
             </div>
-
           </div>
           <div className="input-container">
             <p>

@@ -10,7 +10,7 @@
     padding: 3px 7px;
     line-height: normal;
     box-sizing: border-box;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 }
 
 .payment-form-container input:focus {
@@ -92,6 +92,12 @@
     justify-content: center;
     align-items: center;
     margin-right: 5.4px;
+    margin-bottom: 8px;
+}
+
+.dropdown-button:hover {
+    cursor: pointer;
+    background-color: #E3E6E6;
 }
 
 .dropdown-button span {
