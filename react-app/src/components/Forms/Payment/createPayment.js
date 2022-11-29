@@ -63,9 +63,33 @@ function CreatePayment({
     const newPayment = {
       card_number: cardNumber,
       card_holder: cardHolder,
-      card_exp: `${cardMonth}${cardYear.slice(2,4)}`,
+      card_exp: `${cardMonth}${cardYear.slice(2, 4)}`,
       security_code: securityCode,
     };
+
+    let currentErrors = [];
+
+    const intCardMonth = parseInt(cardMonth);
+    const intCardYear = parseInt(cardYear);
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth() + 1;
+
+    if (/^\d+$/.test(cardNumber) || cardNumber.length < 15)
+      currentErrors.push("Card number is not correct.");
+    if (
+      intCardYear < currentYear ||
+      (intCardYear == currentYear && currentMonth <= intCardMonth)
+    )
+      currentErrors.push("Expiration date is not correct.");
+    if (/^\d+$/.test(securityCode) || securityCode.length < 3)
+      currentErrors.push(
+        "Security code (CVV) is not correct. Look for the 3-digit code on the back of the card, near the signature line."
+      );
+
+    if (currentErrors.length > 0) {
+      setErrors([...currentErrors])
+      return;
+    }
 
     let response;
 
@@ -92,11 +116,13 @@ function CreatePayment({
   };
 
   const handleCVVPopup = (display) => {
-    const popup = document.getElementsByClassName("security-code-info-container")[0]
-    const popupArrow = document.getElementsByClassName("popup-arrow")[0]
-    const popupArrowInner = document.getElementsByClassName("popup-inner-arrow")[0]
+    const popup = document.getElementsByClassName(
+      "security-code-info-container"
+    )[0];
+    const popupArrow = document.getElementsByClassName("popup-arrow")[0];
+    const popupArrowInner =
+      document.getElementsByClassName("popup-inner-arrow")[0];
     if (display) {
-
       popup.style.display = "block";
       popupArrow.style.display = "block";
       popupArrowInner.style.display = "block";
@@ -111,7 +137,7 @@ function CreatePayment({
       // popupArrow.style.opacity = 0;
       // popupArrowInner.style.opacity = 0;
     }
-  }
+  };
 
   return (
     <div className="payment-form-container">
@@ -140,6 +166,7 @@ function CreatePayment({
                   className="form-field"
                   // placeholder="Card Number"
                   type="text"
+                  maxLength="16"
                   value={cardNumber}
                   onChange={(e) => setCardNumber(e.target.value)}
                   required
@@ -152,6 +179,7 @@ function CreatePayment({
                   className="form-field"
                   // placeholder="Card Holder"
                   type="text"
+                  maxLength="50"
                   value={cardHolder}
                   onChange={(e) => setCardHolder(e.target.value)}
                   required
@@ -230,28 +258,48 @@ function CreatePayment({
                   <span>Security Code </span>
                   <span>(CVV/CVC)</span>
                 </p>
-                <div className="security-input-container" onMouseLeave={() => handleCVVPopup(false)}>
-                <input
-                  id="form-field-securitycode"
-                  className="form-field"
-                  // placeholder="Security Code"
-                  type="password"
-                  maxLength="4"
-                  value={securityCode}
-                  onChange={(e) => setSecurityCode(e.target.value)}
-                  required
-                />
-                <span>(<span className="interactive-text" onMouseEnter={() => handleCVVPopup(true)} >What's this?</span>)</span>
-                <div className="popup-arrow">
-                <div className="popup-inner-arrow"></div>
-                </div>
-                <div className="security-code-info-container" onMouseEnter={() => handleCVVPopup(true)} onMouseLeave={() => handleCVVPopup(false)}>
-                  <p>The CVV number is the last three digits at the back of your card. For American Express cards, the CVV is a 4-digit number on the front of the card.</p>
-                  <div onClick={() => handleCVVPopup(false)}>
-                    <i></i>
+                <div
+                  className="security-input-container"
+                  onMouseLeave={() => handleCVVPopup(false)}
+                >
+                  <input
+                    id="form-field-securitycode"
+                    className="form-field"
+                    // placeholder="Security Code"
+                    type="password"
+                    maxLength="4"
+                    value={securityCode}
+                    onChange={(e) => setSecurityCode(e.target.value)}
+                    required
+                  />
+                  <span>
+                    (
+                    <span
+                      className="interactive-text"
+                      onMouseEnter={() => handleCVVPopup(true)}
+                    >
+                      What's this?
+                    </span>
+                    )
+                  </span>
+                  <div className="popup-arrow">
+                    <div className="popup-inner-arrow"></div>
                   </div>
-                  <img src={cvv} />
-                </div>
+                  <div
+                    className="security-code-info-container"
+                    onMouseEnter={() => handleCVVPopup(true)}
+                    onMouseLeave={() => handleCVVPopup(false)}
+                  >
+                    <p>
+                      The CVV number is the last three digits at the back of
+                      your card. For American Express cards, the CVV is a
+                      4-digit number on the front of the card.
+                    </p>
+                    <div onClick={() => handleCVVPopup(false)}>
+                      <i></i>
+                    </div>
+                    <img src={cvv} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -272,7 +320,12 @@ function CreatePayment({
             </div>
           </div>
           <div className="form-bottom-buttons-container">
-            <div className="form-cancel-button">Cancel</div>
+            <div
+              className="form-cancel-button"
+              onClick={() => setShowPaymentModal(false)}
+            >
+              Cancel
+            </div>
             <button
               id="edit-payment-button"
               className="button button-submit yellow-button"
