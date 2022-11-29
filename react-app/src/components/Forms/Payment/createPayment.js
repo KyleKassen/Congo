@@ -212,7 +212,10 @@ function CreatePayment({
               required
             />
           </div>
-          <div>
+          <div className="form-bottom-buttons-container">
+            <div className="form-cancel-button">
+              Cancel
+            </div>
             <button
               id="edit-payment-button"
               className="button button-submit"
