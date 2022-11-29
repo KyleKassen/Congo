@@ -87,6 +87,16 @@
     background: #F0F2F2;
     box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
     font-size: 13px;
+    height: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5.4px;
+}
+
+.dropdown-button span {
+    padding-left: 11px;
+    padding-right: 5px;
 }
 
 .icon-dropdown {
@@ -99,5 +109,5 @@
     background-position: -7px -102px;
     display: inline-block;
     /* vertical-align: top; */
-    margin-bottom: 1.5px;
+    margin-right: 10px;
 }

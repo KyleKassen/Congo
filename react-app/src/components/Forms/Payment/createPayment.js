@@ -74,7 +74,7 @@ function CreatePayment({
             <input
               id="form-field-cardnumber"
               className="form-field"
-              placeholder="Card Number"
+              // placeholder="Card Number"
               type="text"
               value={cardNumber}
               onChange={(e) => setCardNumber(e.target.value)}
@@ -86,7 +86,7 @@ function CreatePayment({
             <input
               id="form-field-cardholder"
               className="form-field"
-              placeholder="Card Holder"
+              // placeholder="Card Holder"
               type="text"
               value={cardHolder}
               onChange={(e) => setCardHolder(e.target.value)}
@@ -111,7 +111,7 @@ function CreatePayment({
             <input
               id="form-field-securitycode"
               className="form-field"
-              placeholder="Security Code"
+              // placeholder="Security Code"
               type="number"
               value={securityCode}
               onChange={(e) => setSecurityCode(e.target.value)}
