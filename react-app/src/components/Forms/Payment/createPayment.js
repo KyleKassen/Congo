@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createOnepayment } from "../../../store/payment";
+import "./paymentForm.css";
 
 function CreatePayment({
   setShowPaymentModal,

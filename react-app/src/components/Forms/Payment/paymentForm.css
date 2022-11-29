@@ -13,3 +13,47 @@
     width: 100%;
     margin-bottom: 16px;
 }
+
+.payment-form-header-container {
+    width: 100%;
+    background: -webkit-linear-gradient(top,#f7f7f7,#eaeaea);
+    background: linear-gradient(to bottom,#f7f7f7,#eaeaea);
+    border-bottom: 1px solid #d5d9d9;
+    border-radius: 8px 8px 0px 0px;
+    padding-left: 24px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.payment-form-header-container h4 {
+    padding: 16px 0px;
+    font-size: 16px;
+    color: #0F1111
+}
+
+.payment-form-close-button-container {
+    min-width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5px;
+}
+
+.payment-form-close-button-container:hover {
+    cursor: pointer;
+}
+
+.payment-form-header-container i {
+    background-image: url('../../../media/images/amazonicon2.png');
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    opacity: .64;
+    width: 10px;
+    height: 9px;
+    background-position: -297px -5px;
+    z-index: 2;
+    display: inline-block;
+}
