@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createOnepayment } from "../../../store/payment";
+import cvv from "../../../media/images/cvv.gif";
 import "./paymentForm.css";
 
 function CreatePayment({
@@ -219,6 +220,14 @@ function CreatePayment({
                   required
                 />
                 <span>(<span className="interactive-text">What's this?</span>)</span>
+                <div className="popup-arrow">
+                <div className="popup-inner-arrow"></div>
+                </div>
+                <div className="security-code-info-container">
+                  <p>The CVV number is the last three digits at the back of your card. For American Express cards, the CVV is a 4-digit number on the front of the card.</p>
+                  <i></i>
+                  <img src={cvv} />
+                </div>
                 </div>
               </div>
             </div>
