@@ -68,6 +68,80 @@
     padding: 16px 24px;
 }
 
+.form-middle-container {
+    display: flex;
+}
+
+.form-middle-left-container {
+    margin-bottom: 12px;
+    border-right: 1px solid #EEE;
+    width: 60%;
+    margin-right: 2%;
+}
+
+
+.form-middle-right-container p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-middle-right-container i{
+    height: 29px;
+    width: 45px;
+    display: block;
+    float: left;
+    margin-right: 6px;
+    background-image: url(../../../media/images/cardImages.png);
+}
+
+.card1 {
+    background-position: 0px;
+}
+
+.card2 {
+    background-position: -45px;
+}
+
+.card3 {
+    background-position: -90px;
+}
+
+.card4 {
+    background-position: -135px;
+}
+
+.card5 {
+    background-position: -180px;
+}
+
+.card6 {
+    background-position: -225px;
+}
+
+.card7 {
+    background-position: -270px;
+}
+
+.card8 {
+    background-position: -315px;
+}
+
+.card9 {
+    background-position: -360px;
+}
+
+.card10 {
+    background-position: -405px;
+}
+
+.card11 {
+    background-position: -450px;
+}
+
+.card12 {
+    background-position: -585px;
+}
+
 .input-container {
     display: flex;
 }
@@ -184,7 +258,7 @@
     box-shadow: 0 1px 0 rgb(255 255 255 / 50%) inset, 0 -1px 0 rgb(255 255 255 / 40%) inset;
     margin-right: -24px;
     margin-left: -24px;
-    padding: 8px 18px 8px 0px;
+    padding: 8px 18px 12px 0px;
     margin-bottom: -16px;
     border-radius: 0px 0px 9px 9px;
 }
