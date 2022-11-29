@@ -80,6 +80,11 @@ function CreatePayment({
     setChangePayment(false);
   };
 
+  const handleMonthClick = month => {
+    setShowMonths(false)
+    setCardMonth(month)
+  }
+
   return (
     <div className="payment-form-container">
       <div className="payment-form-header-container">
@@ -126,7 +131,10 @@ function CreatePayment({
             <p>Expiration date</p>
             <div
               className="exp-month dropdown-button"
-              onClick={() => setShowMonths(true)}
+              onClick={() => {
+                if(!showMonths) setShowMonths(true)
+              }}
+              onMouseLeave={() => setShowMonths(false)}
             >
               <span>{cardMonth}</span>
               <i className="icon-dropdown"></i>
@@ -134,10 +142,7 @@ function CreatePayment({
                 <div className="months-dropdown dropdown-container">
                   <ul>
                     {months.map((month, idx) => {
-                      return <li key={idx} onClick={() => {
-                        setCardMonth(month)
-                        setShowMonths(false)
-                      }}>{month}</li>;
+                      return <li key={idx} onClick={() => handleMonthClick(month)}>{month}</li>;
                     })}
                   </ul>
                 </div>

@@ -93,6 +93,7 @@
     align-items: center;
     margin-right: 5.4px;
     margin-bottom: 8px;
+    position: relative;
 }
 
 .dropdown-button:hover {
@@ -117,3 +118,13 @@
     /* vertical-align: top; */
     margin-right: 10px;
 }
+
+.dropdown-container {
+    position: absolute;
+    top:0px;
+    right: 0px;
+}
+
+/* .set-display {
+    display: none;
+} */
