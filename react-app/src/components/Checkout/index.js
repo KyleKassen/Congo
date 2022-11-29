@@ -256,7 +256,7 @@ function Checkout() {
                         Payment method
                       </h3>
                       <div className="checkout-shipping-starter-payment-container">
-                        {finalAddress && (
+                        {finalPayment && (
                           <>
                             <p>
                               <span>Debit</span> card ending in{" "}
@@ -307,6 +307,7 @@ function Checkout() {
                       </div>
                       <form>
                         {payments.map((payment, idx) => {
+                          payment.cardExp  = String(payment.cardExp).length == 3 ? `0${String(payment.cardExp)}` : String(payment.cardExp)
                           return (
                             <div
                               key={idx}
@@ -336,8 +337,8 @@ function Checkout() {
                                 </div>
                                 <p>{payment.cardHolder}</p>
                                 <p>
-                                  {String(payment.cardExp).slice(2)}/20
-                                  {String(payment.cardExp).slice(2, 4)}
+                                  {payment.cardExp.slice(0,2)}/20
+                                  {payment.cardExp.slice(2, 4)}
                                 </p>
                               </label>
                             </div>
@@ -370,7 +371,7 @@ function Checkout() {
                     <div className="shipping-list-bottom-container">
                       <div
                         className="shipping-use-address yellow-checkout-button"
-                        onClick={() => handleUseAddress()}
+                        onClick={() => handleUsePayment()}
                       >
                         Use this payment method
                       </div>
