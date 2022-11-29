@@ -80,10 +80,10 @@ function CreatePayment({
     setChangePayment(false);
   };
 
-  const handleMonthClick = month => {
-    setShowMonths(false)
-    setCardMonth(month)
-  }
+  const handleMonthClick = (month) => {
+    setShowMonths(false);
+    setCardMonth(month);
+  };
 
   return (
     <div className="payment-form-container">
@@ -132,7 +132,7 @@ function CreatePayment({
             <div
               className="exp-month dropdown-button"
               onClick={() => {
-                if(!showMonths) setShowMonths(true)
+                if (!showMonths) setShowMonths(true);
               }}
               onMouseLeave={() => setShowMonths(false)}
             >
@@ -142,7 +142,19 @@ function CreatePayment({
                 <div className="months-dropdown dropdown-container">
                   <ul>
                     {months.map((month, idx) => {
-                      return <li key={idx} onClick={() => handleMonthClick(month)}>{month}</li>;
+                      return month == cardMonth ? (
+                        <li
+                          key={idx}
+                          className="active-list-item"
+                          onClick={() => handleMonthClick(month)}
+                        >
+                          {month}
+                        </li>
+                      ) : (
+                        <li key={idx} onClick={() => handleMonthClick(month)}>
+                          {month}
+                        </li>
+                      );
                     })}
                   </ul>
                 </div>
