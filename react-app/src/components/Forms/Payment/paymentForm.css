@@ -55,14 +55,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 5px;
+    margin-right: 5px;
+    border: 1px solid transparent;
+}
+
+.payment-form-close-button-container:active {
+    border: 1px solid #007185;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
 }
 
 .payment-form-close-button-container:hover {
     cursor: pointer;
 }
 
-.payment-form-header-container i {
+.payment-form-header-container i, .security-code-info-container i {
     background-image: url('../../../media/images/amazonicon2.png');
     background-size: 400px 900px;
     background-repeat: no-repeat;
@@ -136,6 +143,29 @@
     border-radius: 4px;
     top: -119px;
     left: 158px;
+}
+
+.security-code-info-container div {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 8px;
+    width: 10px;
+    height: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.security-code-info-container div:active {
+    border: 1px solid #007185;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+}
+
+.security-code-info-container div:hover {
+    cursor: pointer;
 }
 
 .security-code-info-container p {

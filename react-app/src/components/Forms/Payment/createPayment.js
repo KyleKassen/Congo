@@ -225,7 +225,9 @@ function CreatePayment({
                 </div>
                 <div className="security-code-info-container">
                   <p>The CVV number is the last three digits at the back of your card. For American Express cards, the CVV is a 4-digit number on the front of the card.</p>
-                  <i></i>
+                  <div>
+                    <i></i>
+                  </div>
                   <img src={cvv} />
                 </div>
                 </div>
