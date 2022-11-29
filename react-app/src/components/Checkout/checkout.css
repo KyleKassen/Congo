@@ -294,11 +294,10 @@ input[type=radio] {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    /* align-items: center; */
 }
 
 .payment-container p:nth-of-type(2) {
-    padding-right: 2px;
+    padding-right: 7px;
 }
 
 .payment-container div {
@@ -310,4 +309,15 @@ input[type=radio] {
     height: 18.75px;
     padding-left: 12px;
     padding-right: 20px;
+    padding-top: 1px;
+}
+
+.payment-container p {
+    padding-top: 2px;
+}
+
+.payment-active {
+    background-color: #FCF5EE;
+    border: 1px solid #FBD8B4;
+    border-radius: 5px;
 }
