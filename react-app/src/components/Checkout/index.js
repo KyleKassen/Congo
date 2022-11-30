@@ -32,7 +32,7 @@ function Checkout() {
 
   const userId = useSelector((state) => state.session.user.id);
   const addressObj = useSelector((state) => state.addresses.addresses);
-  const paymentObj = useSelector(state => state.payments.payments);
+  const paymentObj = useSelector((state) => state.payments.payments);
   const addresses = Object.values(addressObj);
   const payments = useSelector((state) =>
     Object.values(state.payments.payments)
@@ -259,6 +259,7 @@ function Checkout() {
                         {finalPayment && (
                           <>
                             <p>
+                              {console.log(finalPayment)}
                               <span>Debit</span> card ending in{" "}
                               {finalPayment.cardNumber.slice(
                                 finalPayment.cardNumber.length - 4,
@@ -307,7 +308,10 @@ function Checkout() {
                       </div>
                       <form>
                         {payments.map((payment, idx) => {
-                          payment.cardExp  = String(payment.cardExp).length == 3 ? `0${String(payment.cardExp)}` : String(payment.cardExp)
+                          payment.cardExp =
+                            String(payment.cardExp).length == 3
+                              ? `0${String(payment.cardExp)}`
+                              : String(payment.cardExp);
                           return (
                             <div
                               key={idx}
@@ -337,7 +341,7 @@ function Checkout() {
                                 </div>
                                 <p>{payment.cardHolder}</p>
                                 <p>
-                                  {payment.cardExp.slice(0,2)}/20
+                                  {payment.cardExp.slice(0, 2)}/20
                                   {payment.cardExp.slice(2, 4)}
                                 </p>
                               </label>
@@ -380,22 +384,20 @@ function Checkout() {
                 )}
                 <hr />
               </div>
-              {/* <button onClick={() => setShowPaymentModal(true)}>
-                Add Payment
-              </button>
-              {showPaymentModal && (
-                <Modal onClose={() => setShowPaymentModal(false)}>
-                  <CreatePayment setShowPaymentModal={setShowPaymentModal} />
-                </Modal>
-              )}
-              {payments &&
-                payments.map((payment, idx) => {
-                  return (
-                    <div key={idx}>
-                      <Payment payment={payment} />
+              {/*Review items and shipping section */}
+              <div className="checkout-cart-section">
+                <div className="checkout-items-header-container">
+                <div className="checkout-shipping-starter-left">
+                      <h3 className="checkout-items-index">3</h3>
+                      <h3 className="checkout-items-heading">
+                        Review items and shipping
+                      </h3>
+                      <div className="checkout-shipping-starter-payment-container">
+
+                      </div>
                     </div>
-                  );
-                })} */}
+                </div>
+              </div>
             </div>
             <div className="checkout-right-container">
               <p>Right Section</p>

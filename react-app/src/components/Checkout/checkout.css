@@ -321,3 +321,7 @@ input[type=radio] {
     border: 1px solid #FBD8B4;
     border-radius: 5px;
 }
+
+.checkout-items-index {
+    width: 35px;
+}
