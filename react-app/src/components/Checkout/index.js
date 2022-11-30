@@ -38,6 +38,7 @@ function Checkout() {
     Object.values(state.payments.payments)
   );
   const cart = useSelector((state) => state.cart);
+  const cartItems = Object.values(cart.items);
 
   useEffect(() => {
     (async () => {
@@ -385,17 +386,25 @@ function Checkout() {
                 <hr />
               </div>
               {/*Review items and shipping section */}
-              <div className="checkout-cart-section">
-                <div className="checkout-items-header-container">
-                <div className="checkout-shipping-starter-left">
-                      <h3 className="checkout-items-index">3</h3>
-                      <h3 className="checkout-items-heading">
-                        Review items and shipping
-                      </h3>
-                      <div className="checkout-shipping-starter-payment-container">
-
-                      </div>
+              <div className="checkout-items-section">
+                <div className="items-header-container">
+                  <div className="checkout-shipping-starter-left">
+                    <h3 className="items-index">3</h3>
+                    <h3 className="items-heading">Review items and shipping</h3>
+                    <div className="items-outer-container">
+                      {cartItems.map((item, idx) => {
+                        return (
+                          <div key={idx} className="item-outer-container">
+                            <div className="item-delivery-container"></div>
+                            <div className="item-bottom-container">
+                              <div className="item-left-container"></div>
+                              <div className="item-right-container"></div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
