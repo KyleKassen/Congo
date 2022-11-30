@@ -368,7 +368,7 @@ input[type=radio] {
 .item-left-container img {
     width: 90px;
     height: 90px;
-    object-fit: cover;
+    object-fit: contain;
     margin-right: 6px;
 }
 
@@ -388,10 +388,18 @@ input[type=radio] {
     margin-left: 5px;
 }
 
+.item-info-container p:nth-child(3) {
+    font-weight: 400 !important;
+    font-size: 12px;
+    color: #565959;
+    padding-top: 8px;
+}
+
 .item-info-pp-container {
     display: flex;
     padding-top: 3px;
 }
+
 
 .item-info-price {
     color: #B12704

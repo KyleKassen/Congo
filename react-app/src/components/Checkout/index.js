@@ -167,8 +167,8 @@ function Checkout() {
     let ss = pad(remain % 60);
     const timeEle = document.getElementsByClassName("time");
     if (timeEle) {
-      for(let i = 0; i < Object.values(timeEle).length; i++)
-      timeEle[i].innerHTML = hh + " hours and " + mm + " minute";
+      for (let i = 0; i < Object.values(timeEle).length; i++)
+        timeEle[i].innerHTML = hh + " hours and " + mm + " minute";
     }
     setTimeout(tick, 60000);
   }
@@ -493,12 +493,18 @@ function Checkout() {
                               <div className="item-info-container">
                                 <p>{item.product.title}</p>
                                 <div className="item-info-pp-container">
-                                <p className="item-info-price">${item.product.price}</p><i></i>
-
+                                  <p className="item-info-price">
+                                    ${item.product.price}
+                                  </p>
+                                  <i></i>
                                 </div>
+                                <p>Sold by: <span>Congo</span></p>
                               </div>
                             </div>
-                            <div className="item-right-container"></div>
+                            <div className="item-right-container">
+                              <p>Choose your Prime deliery option:</p>
+                              <input type="radio" />
+                            </div>
                           </div>
                         </div>
                       );
