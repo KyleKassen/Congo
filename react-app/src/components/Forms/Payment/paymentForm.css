@@ -81,6 +81,49 @@
     display: inline-block;
 }
 
+.payment-error-outer-container {
+    border: 2px solid #CC0C39;
+    border-left-width: 12px;
+    position: relative;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.payment-error-container {
+    padding: 14px 18px 18px 18px;
+}
+
+.payment-error-container i {
+    background-image: url(https://m.media-amazon.com/images/S/sash/ouR9NRElwmzAIev.png);
+    -webkit-background-size: 512px 512px;
+    background-size: 512px 512px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    left: 18px;
+    top: 16px;
+    background-position: -452px -422px;
+}
+
+.payment-error-container h4 {
+    color: #C40000;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    padding-bottom: 10px;
+    padding-left: 26px;
+}
+
+.payment-error-container li {
+    font-size: 14px;
+}
+
+.payment-error-container ul {
+    padding-left: 18px;
+}
+
 .payment-form-bottom-section {
     padding: 16px 24px;
 }

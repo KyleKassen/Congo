@@ -74,20 +74,24 @@ function CreatePayment({
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
 
+    console.log(currentYear + '<' + intCardYear + "<" + currentMonth + "< " + intCardMonth)
+
     if (/^\d+$/.test(cardNumber) || cardNumber.length < 15)
       currentErrors.push("Card number is not correct.");
     if (
       intCardYear < currentYear ||
-      (intCardYear == currentYear && currentMonth <= intCardMonth)
+      (intCardYear == currentYear && currentMonth >= intCardMonth)
     )
       currentErrors.push("Expiration date is not correct.");
     if (/^\d+$/.test(securityCode) || securityCode.length < 3)
       currentErrors.push(
-        "Security code (CVV) is not correct. Look for the 3-digit code on the back of the card, near the signature line."
+        "Security code (CVV) is not correct. Look for the 3-digit code on the back of the card."
       );
 
+    if (!cardHolder) currentErrors.push("Cardholder's name is required.")
+
     if (currentErrors.length > 0) {
-      setErrors([...currentErrors])
+      setErrors([...currentErrors]);
       return;
     }
 
@@ -152,11 +156,19 @@ function CreatePayment({
       </div>
       <div className="payment-form-bottom-section">
         <form onSubmit={handleSubmit}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
+          {errors.length > 0 && (
+            <div className="payment-error-outer-container">
+              <div className="payment-error-container">
+                <i></i>
+                <h4>There was a problem.</h4>
+                <ul>
+                  {errors.map((error, ind) => (
+                    <li key={ind}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
           <div className="form-middle-container">
             <div className="form-middle-left-container">
               <div className="input-container">
@@ -169,7 +181,7 @@ function CreatePayment({
                   maxLength="16"
                   value={cardNumber}
                   onChange={(e) => setCardNumber(e.target.value)}
-                  required
+                  // required
                 />
               </div>
               <div className="input-container">
@@ -182,7 +194,7 @@ function CreatePayment({
                   maxLength="50"
                   value={cardHolder}
                   onChange={(e) => setCardHolder(e.target.value)}
-                  required
+                  // required
                 />
               </div>
               <div className="input-container">
@@ -270,7 +282,7 @@ function CreatePayment({
                     maxLength="4"
                     value={securityCode}
                     onChange={(e) => setSecurityCode(e.target.value)}
-                    required
+                    // required
                   />
                   <span>
                     (
@@ -330,7 +342,7 @@ function CreatePayment({
               id="edit-payment-button"
               className="button button-submit yellow-button"
               type="submit"
-              disabled={errors.length}
+              // disabled={errors.length}
             >
               Add your card
             </button>
