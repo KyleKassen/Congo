@@ -490,6 +490,13 @@ function Checkout() {
                           <div className="item-bottom-container">
                             <div className="item-left-container">
                               <img src={`${item.product.image.url}`} />
+                              <div className="item-info-container">
+                                <p>{item.product.title}</p>
+                                <div className="item-info-pp-container">
+                                <p className="item-info-price">${item.product.price}</p><i></i>
+
+                                </div>
+                              </div>
                             </div>
                             <div className="item-right-container"></div>
                           </div>

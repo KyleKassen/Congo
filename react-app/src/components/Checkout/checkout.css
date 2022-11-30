@@ -334,11 +334,12 @@ input[type=radio] {
 
 .item-outer-container {
     margin-left: 35px;
-    width: 100%;
+    width: calc(100% - 35px);
     padding: 14px 18px;
     border: 1px solid #D5D9D9;
     border-radius: 8px;
     margin-bottom: 8px;
+    box-sizing: border-box;
 }
 
 .item-delivery-container {
@@ -346,13 +347,52 @@ input[type=radio] {
     color: #565959;
 }
 
+.item-delivery-container p:nth-child(2) {
+    margin-bottom: 8px;
+}
+
 .item-delivery-span {
     margin-right: 5px;
     display: inline-block;
+}
+
+.item-bottom-container {
+    display: flex;
+}
+
+.item-left-container {
+    display: flex;
+    width: 50%;
 }
 
 .item-left-container img {
     width: 90px;
     height: 90px;
     object-fit: cover;
+    margin-right: 6px;
+}
+
+.item-info-container p {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.item-info-container i {
+    background-image: url(../../media/images/primeicons.png);
+    background-size: 512px 256px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 53px;
+    height: 15px;
+    background-position: -185px -182px;
+    margin-left: 5px;
+}
+
+.item-info-pp-container {
+    display: flex;
+    padding-top: 3px;
+}
+
+.item-info-price {
+    color: #B12704
 }
