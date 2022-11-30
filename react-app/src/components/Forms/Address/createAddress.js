@@ -155,7 +155,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
                 className="form-field"
                 placeholder="ZipCode"
                 type="test"
-                maxLength={7}
+                maxLength={5}
                 value={zipcode}
                 onChange={(e) => setZipcode(e.target.value)}
 
