@@ -325,3 +325,7 @@ input[type=radio] {
 .items-index {
     width: 35px;
 }
+
+.item-outer-container {
+    margin-left: 35px;
+}

@@ -94,8 +94,8 @@ function Checkout() {
     setChangePayment(false);
   };
 
-  // -------------------------------------------------
-  // Dealing with delivery times and such vvvvvvvvvvvv
+  // -----------------------------------------------------------------
+  // Dealing with delivery times and such vvvvvvvvvvvvvvvvvvvvvvvvvvvv
   let objToday = new Date();
   let objTodayThree = new Date();
   let objTodayFour = new Date();
@@ -105,18 +105,18 @@ function Checkout() {
   objTodayNine.setDate(objTodayNine.getDate() + 9);
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan.",
+    "Feb.",
+    "Mar.",
+    "Apr.",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jun.",
+    "Jul.",
+    "Aug.",
+    "Sep.",
+    "Oct.",
+    "Nov.",
+    "Dec.",
   ];
 
   const days = [
@@ -142,8 +142,35 @@ function Checkout() {
   const weekDayNine = days[objTodayNine.getDay()];
   const monthNine = months[objTodayNine.getMonth()];
   const dayNine = objTodayNine.getDate();
-  // Dealing with delivery times and such ^^^^^^^^^^^^
-  // -------------------------------------------------
+  // Dealing with delivery times and such ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  // -----------------------------------------------------------------
+
+  // -----------------------------------------------------------------
+  // Countdown timer for shipping vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  let start = new Date;
+  start.setHours(24, 0, 0); // 12pm
+  if (loaded) tick();
+
+  function pad(num) {
+    return ("0" + parseInt(num)).substr(-2);
+  }
+
+  function tick() {
+    let now = new Date;
+    if (now > start) { // too late, go to tomorrow
+      start.setDate(start.getDate() + 1);
+    }
+    let remain = ((start - now) / 1000);
+    let hh = pad((remain / 60 / 60) % 60);
+    let mm = pad((remain / 60) % 60);
+    let ss = pad(remain % 60);
+    const timeEle = document.getElementById('time');
+    if (timeEle) timeEle.innerHTML  =
+    hh + " hours and " + mm + " minute";
+    setTimeout(tick, 1000);
+  }
+  // Countdown timer for shipping ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  // -----------------------------------------------------------------
 
   return (
     <>
@@ -442,11 +469,14 @@ function Checkout() {
                   <div className="checkout-shipping-starter-left">
                     <h3 className="items-index">3</h3>
                     <h3 className="items-heading">Review items and shipping</h3>
+                  </div>
                     <div className="items-outer-container">
                       {cartItems.map((item, idx) => {
                         return (
                           <div key={idx} className="item-outer-container">
-                            <div className="item-delivery-container"></div>
+                            <div className="item-delivery-container">
+                              <p><span>Delivery: {monthThree} {dayThree}</span>If you order in the next <span id="time"></span></p>
+                            </div>
                             <div className="item-bottom-container">
                               <div className="item-left-container"></div>
                               <div className="item-right-container"></div>
@@ -455,7 +485,6 @@ function Checkout() {
                         );
                       })}
                     </div>
-                  </div>
                 </div>
               </div>
             </div>
