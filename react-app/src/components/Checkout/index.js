@@ -178,8 +178,11 @@ function Checkout() {
 
   // -----------------------------------------------------------------
   // Handle shipping time change vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  const handleShippingChange = (idx) => {
-
+  const handleShippingChange = (button, idx) => {
+    const deliveryTime = document.getElementsByClassName(`item-delivery-${idx}`)[0]
+    if (button == 3) deliveryTime.innerHTML = `Delivery: ${monthThree} ${dayThree}, ${todayYear}`;
+    else if (button == 4) deliveryTime.innerHTML = `Delivery: ${monthFour} ${dayFour}, ${todayYear}`;
+    else if (button == 9) deliveryTime.innerHTML = `Delivery: ${monthNine} ${dayNine}, ${todayYear}`;
   }
   // Handle shipping time change ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
@@ -488,8 +491,8 @@ function Checkout() {
                         <div key={idx} className="item-outer-container">
                           <div className="item-delivery-container">
                             <p>
-                              <span className="item-delivery-span bold-green-text">
-                                Delivery: {monthThree} {dayThree}, 2022
+                              <span className={`item-delivery-span bold-green-text item-delivery-${idx}`}>
+                                Delivery: {monthThree} {dayThree}, {todayYear}
                               </span>
                               If you order in the next{" "}
                               <span className="time"></span>
@@ -513,14 +516,14 @@ function Checkout() {
                             <div className="item-right-container">
                               <p>Choose your Prime deliery option:</p>
                               <div className="item-shipping-radio-container">
-                              <input type="radio" defaultChecked={true} id={`fast-shipping-${idx}`} name={`shipping-input-${idx}`}/>
+                              <input type="radio" defaultChecked={true} id={`fast-shipping-${idx}`} name={`shipping-input-${idx}`} onClick={() => handleShippingChange(3, idx)}/>
                               <label for={`fast-shipping-${idx}`}>
                                 <p className="bold-green-text">{weekDayThree}, {monthThree} {dayThree}</p>
                                 <p>FREE <span>Prime Delivery</span></p>
                               </label>
                               </div>
                               <div className="item-shipping-radio-container">
-                              <input type="radio" id={`mid-shipping-${idx}`} name={`shipping-input-${idx}`}/>
+                              <input type="radio" id={`mid-shipping-${idx}`} name={`shipping-input-${idx}`} onClick={() => handleShippingChange(4, idx)}/>
                               <label for={`mid-shipping-${idx}`}>
                                 <p className="bold-green-text">{weekDayFour}, {monthFour} {dayFour}</p>
                                 <p>FREE <span>Congo Day Delivery</span></p>
@@ -528,7 +531,7 @@ function Checkout() {
                               </label>
                               </div>
                               <div className="item-shipping-radio-container">
-                              <input type="radio" id={`slow-shipping-${idx}`} name={`shipping-input-${idx}`}/>
+                              <input type="radio" id={`slow-shipping-${idx}`} name={`shipping-input-${idx}`} onClick={() => handleShippingChange(9, idx)}/>
                               <label for={`slow-shipping-${idx}`}>
                                 <p className="bold-green-text">{weekDayNine}, {monthNine} {dayNine}</p>
                                 <p>FREE <span>No-Rush Shipping</span></p>
