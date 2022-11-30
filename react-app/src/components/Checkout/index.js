@@ -26,6 +26,8 @@ function Checkout() {
   const [defaultPayment, setDefaultPayment] = useState({});
   const [finalAddress, setFinalAddress] = useState({});
   const [finalPayment, setFinalPayment] = useState({});
+  const [discount, setDiscount] = useState(0);
+  const [deliverySetting, setDeliverySetting] = useState({})
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -39,7 +41,6 @@ function Checkout() {
   );
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(cart.items);
-
 
   useEffect(() => {
     (async () => {
@@ -178,22 +179,46 @@ function Checkout() {
 
   // -----------------------------------------------------------------
   // Handle shipping time change vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  // let deliverySetting = {};
+
   const handleShippingChange = (button, idx) => {
+    let newObj = deliverySetting
+    deliverySetting[idx] = button
+    setDeliverySetting(newObj)
     const deliveryTime = document.getElementsByClassName(
       `item-delivery-${idx}`
     )[0];
-    if (button == 3)
+    if (button == 3) {
       deliveryTime.innerHTML = `Delivery: ${monthThree} ${dayThree}, ${todayYear}`;
-    else if (button == 4)
+      deliveryTime.style.color = "#007600";
+    } else if (button == 4) {
       deliveryTime.innerHTML = `Delivery: ${monthFour} ${dayFour}, ${todayYear}`;
-    else if (button == 9)
-      deliveryTime.innerHTML = `Delivery: ${monthNine} ${dayNine}, ${todayYear}`;
+      deliveryTime.style.color = "#007600";
+    } else if (button == 9) {
+      deliveryTime.innerHTML = `Estimated delivery: ${monthNine} ${dayNine}, ${todayYear}`;
+      deliveryTime.style.color = "#c45500";
+    }
+    // Calculate the total discount
+    setDiscount(
+      Object.values(deliverySetting).filter((x) => x === 9).length * 4
+    );
+    console.log(Object.values(deliverySetting),Object.values(deliverySetting).filter((x) => x === 9).length * 4)
   };
   // Handle shipping time change ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
 
+  // -----------------------------------------------------------------
+  // Turn number into cash format vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  const numToCash = (num) => {
+    let totalStr = String(Math.round(num * 100) / 100);
+    const totalStrArr = totalStr.split(".");
+    totalStr = totalStrArr[1].length == 1 ? `${totalStr}0` : totalStr;
+    return totalStr;
+  };
+  // Turn number into cash format ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  // -----------------------------------------------------------------
+
   let total = 0;
-  let totalStr = "";
   return (
     <>
       {loaded && (
@@ -494,13 +519,8 @@ function Checkout() {
                   </div>
                   <div className="items-outer-container">
                     {cartItems.map((item, idx) => {
-
-                      // Setting final price in money format
                       total += item.quantity * item.product.price;
-                      totalStr = String(Math.round(total * 100) / 100)
-                      const totalStrArr = totalStr.split(".")
-                      totalStr = totalStrArr[1].length == 1 ? `${totalStr}0` : totalStr
-                      // Setting final price in money format
+                      if (!deliverySetting[idx]) deliverySetting[idx] = 3;
 
                       return (
                         <div key={idx} className="item-outer-container">
@@ -508,13 +528,11 @@ function Checkout() {
                             <div className="item-top-addition-container">
                               <div className="item-addition-img"></div>
                               <h5>
-                                Get a $4 digital reward with FREE No-Rush
-                                Shipping.
+                                Get a $4 discount with FREE No-Rush Shipping.
                               </h5>
                               <p>
-                                Select No-Rush Shipping below to receive a
-                                reward towards e-books, digital movies, and
-                                music.
+                                Select No-Rush Shipping below to receive a $4
+                                discount to use towards this order.
                               </p>
                             </div>
                           )}
@@ -547,7 +565,7 @@ function Checkout() {
                               </div>
                             </div>
                             <div className="item-right-container">
-                              <p>Choose your Prime deliery option:</p>
+                              <p>Choose your Prime delivery option:</p>
                               <div className="item-shipping-radio-container">
                                 <input
                                   type="radio"
@@ -613,15 +631,20 @@ function Checkout() {
             </div>
             <div className="checkout-right-outer-container">
               <div className="checkout-right-container">
-                <div className="place-order-button">
-                  Place your order
-                </div>
-                <p>By placing your order, you agree to Congo's privacy notice and conditions of use.</p>
+                <div className="place-order-button">Place your order</div>
+                <p>
+                  By placing your order, you agree to Congo's privacy notice and
+                  conditions of use.
+                </p>
                 <hr />
                 <h3>Order Summary</h3>
                 <div className="order-summary-flex">
                   <p>Items ({cart.totalQuantity}):</p>
-                  <p>${totalStr}</p>
+                  <p>${numToCash(total)}</p>
+                </div>
+                <div className="order-summary-flex">
+                  <p>Discount:</p>
+                  <p>${discount}</p>
                 </div>
                 <div className="order-summary-flex">
                   <p>Shipping & handling:</p>
@@ -633,16 +656,16 @@ function Checkout() {
                 </div>
                 <div className="order-summary-flex">
                   <p>Total before tax:</p>
-                  <p>${totalStr}</p>
+                  <p>${numToCash(total - discount)}</p>
                 </div>
                 <div className="order-summary-flex">
                   <p>Estimated tax to be collected:</p>
-                  <p>$0</p>
+                  <p>${numToCash(total * 0.0825)}</p>
                 </div>
                 <hr />
                 <div className="order-summary-flex order-summary-total">
                   <p>Order total:</p>
-                  <p>${totalStr}</p>
+                  <p>${numToCash(total - discount + (total * 0.0825))}</p>
                 </div>
               </div>
             </div>
