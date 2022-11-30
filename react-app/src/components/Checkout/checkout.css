@@ -1,3 +1,9 @@
+.bold-green-text {
+    color: #007600;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
 .checkout-outer-wrapper {
     width: 100%;
     display: flex;
@@ -328,4 +334,25 @@ input[type=radio] {
 
 .item-outer-container {
     margin-left: 35px;
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #D5D9D9;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.item-delivery-container {
+    font-size: 14px;
+    color: #565959;
+}
+
+.item-delivery-span {
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.item-left-container img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
 }

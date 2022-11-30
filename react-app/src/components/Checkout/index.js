@@ -126,8 +126,8 @@ function Checkout() {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
-  ]
+    "Saturday",
+  ];
 
   const todayDay = objToday.getDate();
   const todayWeekDay = days[objToday.getDay()];
@@ -147,7 +147,7 @@ function Checkout() {
 
   // -----------------------------------------------------------------
   // Countdown timer for shipping vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-  let start = new Date;
+  let start = new Date();
   start.setHours(24, 0, 0); // 12pm
   if (loaded) tick();
 
@@ -156,18 +156,21 @@ function Checkout() {
   }
 
   function tick() {
-    let now = new Date;
-    if (now > start) { // too late, go to tomorrow
+    let now = new Date();
+    if (now > start) {
+      // too late, go to tomorrow
       start.setDate(start.getDate() + 1);
     }
-    let remain = ((start - now) / 1000);
+    let remain = (start - now) / 1000;
     let hh = pad((remain / 60 / 60) % 60);
     let mm = pad((remain / 60) % 60);
     let ss = pad(remain % 60);
-    const timeEle = document.getElementById('time');
-    if (timeEle) timeEle.innerHTML  =
-    hh + " hours and " + mm + " minute";
-    setTimeout(tick, 1000);
+    const timeEle = document.getElementsByClassName("time");
+    if (timeEle) {
+      for(let i = 0; i < Object.values(timeEle).length; i++)
+      timeEle[i].innerHTML = hh + " hours and " + mm + " minute";
+    }
+    setTimeout(tick, 60000);
   }
   // Countdown timer for shipping ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
@@ -470,21 +473,30 @@ function Checkout() {
                     <h3 className="items-index">3</h3>
                     <h3 className="items-heading">Review items and shipping</h3>
                   </div>
-                    <div className="items-outer-container">
-                      {cartItems.map((item, idx) => {
-                        return (
-                          <div key={idx} className="item-outer-container">
-                            <div className="item-delivery-container">
-                              <p><span>Delivery: {monthThree} {dayThree}</span>If you order in the next <span id="time"></span></p>
-                            </div>
-                            <div className="item-bottom-container">
-                              <div className="item-left-container"></div>
-                              <div className="item-right-container"></div>
-                            </div>
+                  <div className="items-outer-container">
+                    {cartItems.map((item, idx) => {
+                      return (
+                        <div key={idx} className="item-outer-container">
+                          <div className="item-delivery-container">
+                            <p>
+                              <span className="item-delivery-span bold-green-text">
+                                Delivery: {monthThree} {dayThree}, 2022
+                              </span>
+                              If you order in the next{" "}
+                              <span className="time"></span>
+                            </p>
+                            <p>Items shipped from Congo.com</p>
                           </div>
-                        );
-                      })}
-                    </div>
+                          <div className="item-bottom-container">
+                            <div className="item-left-container">
+                              <img src={`${item.product.image.url}`} />
+                            </div>
+                            <div className="item-right-container"></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
