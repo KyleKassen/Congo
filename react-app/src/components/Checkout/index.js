@@ -623,6 +623,27 @@ function Checkout() {
                   <p>Items ({cart.totalQuantity}):</p>
                   <p>${totalStr}</p>
                 </div>
+                <div className="order-summary-flex">
+                  <p>Shipping & handling:</p>
+                  <p>$0</p>
+                </div>
+                <div className="order-summary-flex order-summary-divider">
+                  <hr />
+                  <hr />
+                </div>
+                <div className="order-summary-flex">
+                  <p>Total before tax:</p>
+                  <p>${totalStr}</p>
+                </div>
+                <div className="order-summary-flex">
+                  <p>Estimated tax to be collected:</p>
+                  <p>$0</p>
+                </div>
+                <hr />
+                <div className="order-summary-flex order-summary-total">
+                  <p>Order total:</p>
+                  <p>${totalStr}</p>
+                </div>
               </div>
             </div>
           </div>

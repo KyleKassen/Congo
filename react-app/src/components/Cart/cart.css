@@ -456,4 +456,34 @@
     font-size: 18px;
 }
 
+.order-summary-flex {
+    display: flex;
+    justify-content: space-between;
+}
 
+.order-summary-flex p:first-child {
+    width: 76.5%;
+}
+
+.order-summary-divider {
+    height: 6px;
+}
+
+.order-summary-flex hr:last-child {
+    width: 23.5%;
+    margin: 0px !important;
+    padding: 3px 0px;
+    height: 0px;
+}
+
+.order-summary-flex p {
+    color: #0f1111 !important;
+    margin: 0px !important;
+    padding-bottom: 6px;
+}
+
+.order-summary-total p{
+    color: #B12704 !important;
+    font-size: 18px !important;
+    font-weight: 700;
+}
