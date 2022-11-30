@@ -51,7 +51,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
     <div className="address-form-container">
       <div className="address-form-header-container">
         <h4>Enter a new shipping address</h4>
-        <div className="address-form-close-button-container">
+        <div className="address-form-close-button-container" onClick={() => setShowAddressModal(false)}>
           <i></i>
         </div>
       </div>

@@ -1,0 +1,438 @@
+.interactive-text {
+    color: #007185;
+}
+
+.interactive-text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #C7511F;
+}
+
+.payment-form-container {
+    width: 716px;
+}
+
+.payment-form-container input {
+    border: 1px solid #888C8C;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+    height: 31px;
+    padding: 3px 7px;
+    line-height: normal;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+.payment-form-container input:focus {
+    background-color: #F7FEFF;
+    border-color: #007185;
+    box-shadow: 0 0 0 3px #c8f3fa, 0 1px 2px rgb(15 17 17 / 15%) inset;
+    outline: none;
+}
+
+.payment-form-header-container {
+    width: 100%;
+    background: -webkit-linear-gradient(top,#f7f7f7,#eaeaea);
+    background: linear-gradient(to bottom,#f7f7f7,#eaeaea);
+    border-bottom: 1px solid #d5d9d9;
+    border-radius: 8px 8px 0px 0px;
+    padding-left: 24px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.payment-form-header-container h4 {
+    padding: 16px 0px;
+    font-size: 16px;
+    color: #0F1111
+}
+
+.payment-form-close-button-container {
+    min-width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    border: 1px solid transparent;
+}
+
+.payment-form-close-button-container:active {
+    border: 1px solid #007185;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+}
+
+.payment-form-close-button-container:hover {
+    cursor: pointer;
+}
+
+.payment-form-header-container i, .security-code-info-container i {
+    background-image: url('../../../media/images/amazonicon2.png');
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    opacity: .64;
+    width: 10px;
+    height: 9px;
+    background-position: -297px -5px;
+    z-index: 2;
+    display: inline-block;
+}
+
+.payment-error-outer-container {
+    border: 2px solid #CC0C39;
+    border-left-width: 12px;
+    position: relative;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.payment-error-container {
+    padding: 14px 18px 18px 18px;
+}
+
+.payment-error-container i {
+    background-image: url(https://m.media-amazon.com/images/S/sash/ouR9NRElwmzAIev.png);
+    -webkit-background-size: 512px 512px;
+    background-size: 512px 512px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    left: 18px;
+    top: 16px;
+    background-position: -452px -422px;
+}
+
+.payment-error-container h4 {
+    color: #C40000;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    padding-bottom: 10px;
+    padding-left: 26px;
+}
+
+.payment-error-container li {
+    font-size: 14px;
+}
+
+.payment-error-container ul {
+    padding-left: 18px;
+}
+
+.payment-form-bottom-section {
+    padding: 16px 24px;
+}
+
+.form-middle-container {
+    display: flex;
+}
+
+.form-middle-left-container {
+    margin-bottom: 12px;
+    border-right: 1px solid #EEE;
+    width: 60%;
+    margin-right: 2%;
+}
+
+.security-input-container {
+    position: relative;
+}
+
+
+.security-input-container span {
+    font-size: 14px;
+}
+
+#form-field-securitycode{
+    width: 25%;
+    margin-right: 4px;
+}
+
+.popup-arrow {
+    position: absolute;
+    border: 8px solid transparent;
+    margin-top: -8px;
+    border-left: 0;
+    border-right-color: rgba(0,0,0,.2);
+    top: 16px;
+    left: 151px;
+    display:none;
+}
+
+.popup-inner-arrow {
+    border-left: 0;
+    border: 8px solid transparent;
+    border-right-color: #fff !important;
+    position: absolute;
+    display: block;
+    z-index: 100;
+    top: -8px;
+    left: -6px;
+    display:none;
+}
+
+.security-code-info-container {
+    position: absolute;
+    width: 386px;
+    height: 131px;
+    padding: 14px 18px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 13%);
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.2);
+    border-radius: 4px;
+    top: -119px;
+    left: 158px;
+    display:none;
+}
+
+.security-code-info-container div {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 8px;
+    width: 10px;
+    height: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.security-code-info-container div:active {
+    border: 1px solid #007185;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+}
+
+.security-code-info-container div:hover {
+    cursor: pointer;
+}
+
+.security-code-info-container p {
+    width: 338px !important;
+    text-align: start !important;
+    font-weight: 400 !important;
+}
+
+
+.form-middle-right-container {
+    max-width: 270px;
+}
+
+.form-middle-right-container p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-middle-right-container i{
+    height: 29px;
+    width: 45px;
+    display: block;
+    float: left;
+    margin-right: 6px;
+    background-image: url(../../../media/images/cardImages.png);
+}
+
+.card1 {
+    background-position: 0px;
+}
+
+.card2 {
+    background-position: -45px;
+}
+
+.card3 {
+    background-position: -90px;
+}
+
+.card4 {
+    background-position: -135px;
+}
+
+.card5 {
+    background-position: -180px;
+}
+
+.card6 {
+    background-position: -225px;
+}
+
+.card7 {
+    background-position: -270px;
+}
+
+.card8 {
+    background-position: -315px;
+}
+
+.card9 {
+    background-position: -360px;
+}
+
+.card10 {
+    background-position: -405px;
+}
+
+.card11 {
+    background-position: -450px;
+}
+
+.card12 {
+    background-position: -585px;
+}
+
+.input-container {
+    display: flex;
+}
+
+.input-container p {
+    width: 119px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: right;
+    margin-right: 13.4px;
+}
+
+.dropdown-button {
+    border: 1px solid#D5D9D9;
+    border-radius: 8px;
+    color: #0F1111;
+    background: #F0F2F2;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    font-size: 13px;
+    height: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5.4px;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.dropdown-button:hover {
+    cursor: pointer;
+    background-color: #E3E6E6;
+}
+
+.dropdown-button span {
+    padding-left: 11px;
+    padding-right: 5px;
+}
+
+.icon-dropdown {
+    background-image: url(../../../media/images/amazonicon2.png);
+    -webkit-background-size: 400px 900px;
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 8px;
+    background-position: -7px -102px;
+    display: inline-block;
+    /* vertical-align: top; */
+    margin-right: 10px;
+}
+
+/* .dropdown-container {
+    position: absolute;
+    top:0px;
+    right: 0px;
+} */
+
+.dropdown-container ul {
+    position: absolute;
+    list-style-type: none!important;
+    top: -1px;
+    left: -1px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 13%);
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.2);
+    height: 287px;
+    padding: 8px 0px;
+    background-color: white;
+    z-index: 1;
+}
+
+.months-dropdown ul {
+    width: 51.25px;
+}
+
+.years-dropdown ul {
+    width: 66.5px;
+}
+
+.dropdown-container li {
+    text-align: start;
+    text-decoration: none;
+    padding: 2px 12px 1px 13px;
+    display: block;
+    white-space: nowrap;
+    outline: 0;
+    border: 1px solid transparent;
+    user-select: none;
+    font-size: 15px;
+    margin-top: -1px;
+}
+
+.dropdown-container li:hover {
+    border-color: #D5D9D9;
+    background-color: #F0F2F2!important;
+    cursor: pointer;
+}
+
+.active-list-item {
+    border-color: #D5D9D9;
+    background-color: #EDFDFF;
+    border-color: #007185!important;
+}
+
+.form-bottom-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 13px;
+    line-height: 29px;
+    text-align: center;
+    background: transparent linear-gradient(to bottom,#F7F7F7,#EAEAEA) repeat scroll 0 0;
+    border-top: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 50%) inset, 0 -1px 0 rgb(255 255 255 / 40%) inset;
+    margin-right: -24px;
+    margin-left: -24px;
+    padding: 8px 18px 12px 0px;
+    margin-bottom: -16px;
+    border-radius: 0px 0px 9px 9px;
+}
+
+
+.form-cancel-button {
+    padding: 0 10px 0 11px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    border: 1px solid #D5D9D9;
+    margin-right: 5.4px;
+}
+
+.form-cancel-button:hover {
+    background-color: #F7FAFA;
+    cursor: pointer;
+}
+
+.yellow-button {
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    padding-left: 11px;
+    padding-right: 10px;
+}
+
+.yellow-button:hover {
+    background: #F7CA00;
+    border-color: #F2C200;
+    cursor: pointer;
+}

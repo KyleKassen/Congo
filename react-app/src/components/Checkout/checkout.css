@@ -253,3 +253,71 @@ input[type=radio] {
     background: #F7CA00;
     border: 1px solid #F2C200;
 }
+
+.checkout-shipping-starter-payment-container p {
+    color: #333;
+    font-size: 14px;
+    width: 100%;
+}
+
+.checkout-shipping-starter-payment-container span {
+    font-weight: 700;
+}
+
+.shipping-payment-subheader-container {
+    display: flex;
+    justify-content: end;
+}
+
+.shipping-payment-subheader-container p{
+    width: 170px;
+    color: #565959;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.shipping-payment-subheader-container p:nth-of-type(2){
+    text-align: right;
+}
+
+.payment-container {
+    padding: 9px;
+    border: 1px solid transparent;
+    height: 21px;
+}
+
+.payment-container label {
+    padding-left: 5px;
+    padding-bottom: 4px;
+    height: 24px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.payment-container p:nth-of-type(2) {
+    padding-right: 7px;
+}
+
+.payment-container div {
+    display: flex;
+}
+
+.payment-container img {
+    width: 30px;
+    height: 18.75px;
+    padding-left: 12px;
+    padding-right: 20px;
+    padding-top: 1px;
+}
+
+.payment-container p {
+    padding-top: 2px;
+}
+
+.payment-active {
+    background-color: #FCF5EE;
+    border: 1px solid #FBD8B4;
+    border-radius: 5px;
+}

@@ -13,6 +13,7 @@ import congoWhite from "../../media/images/CONGOwhite.png";
 import congoWhiteTransparent from "../../media/images/CONGOwhite-transparent.png";
 import lock from "../../media/images/greyLock.png";
 import plusicon from "../../media/images/plus.png";
+import card from "../../media/images/stockcard.gif";
 import "./checkout.css";
 
 function Checkout() {
@@ -20,14 +21,18 @@ function Checkout() {
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [changeAddress, setChangeAddress] = useState(false);
+  const [changePayment, setChangePayment] = useState(false);
   const [defaultAddress, setDefaultAddress] = useState({});
+  const [defaultPayment, setDefaultPayment] = useState({});
   const [finalAddress, setFinalAddress] = useState({});
+  const [finalPayment, setFinalPayment] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const userId = useSelector((state) => state.session.user.id);
   const addressObj = useSelector((state) => state.addresses.addresses);
+  const paymentObj = useSelector(state => state.payments.payments);
   const addresses = Object.values(addressObj);
   const payments = useSelector((state) =>
     Object.values(state.payments.payments)
@@ -45,7 +50,9 @@ function Checkout() {
 
   useEffect(() => {
     setDefaultAddress(addresses[0]);
-    setFinalAddress(addresses[0])
+    setFinalAddress(addresses[0]);
+    setDefaultPayment(payments[0]);
+    setFinalPayment(payments[0]);
   }, [loaded]);
 
   if (!loaded) {
@@ -64,10 +71,27 @@ function Checkout() {
     setDefaultAddress(addressObj[addressId]);
   };
 
+  const handlePaymentSelection = (paymentId) => {
+    const paymentContainer = document.getElementsByClassName(
+      `payment-container${defaultPayment.id}`
+    )[0];
+    if (paymentContainer) paymentContainer.classList.remove("payment-active");
+    const newSelectedPayment = document.getElementsByClassName(
+      `payment-container${paymentId}`
+    )[0];
+    newSelectedPayment.classList.add("payment-active");
+    setDefaultPayment(paymentObj[paymentId]);
+  };
+
   const handleUseAddress = () => {
     setFinalAddress(defaultAddress);
     setChangeAddress(false);
-  }
+  };
+
+  const handleUsePayment = () => {
+    setFinalPayment(defaultPayment);
+    setChangePayment(false);
+  };
 
   return (
     <>
@@ -78,7 +102,7 @@ function Checkout() {
               <img
                 className="checkout-header-logo"
                 src={congoWhiteTransparent}
-                onClick={() => history.push('/')}
+                onClick={() => history.push("/")}
               />
               <h1>
                 Checkout{" "}
@@ -112,8 +136,7 @@ function Checkout() {
                         {finalAddress && (
                           <>
                             <p>
-                              {finalAddress.firstName}{" "}
-                              {finalAddress.lastName}
+                              {finalAddress.firstName} {finalAddress.lastName}
                             </p>
                             <p>{finalAddress.address}</p>
                             <p>
@@ -177,7 +200,12 @@ function Checkout() {
                                 </span>
                                 {address.address}, {address.city},{" "}
                                 {address.state}, {address.zipcode}, United
-                                States <Address address={address} setFinalAddress={setFinalAddress} setChangeAddress={setChangeAddress}/>
+                                States{" "}
+                                <Address
+                                  address={address}
+                                  setFinalAddress={setFinalAddress}
+                                  setChangeAddress={setChangeAddress}
+                                />
                               </label>
                             </div>
                           );
@@ -207,8 +235,145 @@ function Checkout() {
                       </div>
                     </div>
                     <div className="shipping-list-bottom-container">
-                      <div className="shipping-use-address yellow-checkout-button" onClick={() => handleUseAddress()}>
+                      <div
+                        className="shipping-use-address yellow-checkout-button"
+                        onClick={() => handleUseAddress()}
+                      >
                         Use this address
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <hr />
+              </div>
+              {/* Payment section */}
+              <div className="checkout-shipping-section">
+                {!changePayment && (
+                  <div className="checkout-shipping-starter-container">
+                    <div className="checkout-shipping-starter-left">
+                      <h3 className="shipping-starter-index">2</h3>
+                      <h3 className="shipping-starter-heading">
+                        Payment method
+                      </h3>
+                      <div className="checkout-shipping-starter-payment-container">
+                        {finalPayment && (
+                          <>
+                            <p>
+                              <span>Debit</span> card ending in{" "}
+                              {finalPayment.cardNumber.slice(
+                                finalPayment.cardNumber.length - 4,
+                                finalPayment.cardNumber.length
+                              )}
+                            </p>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <p
+                      className="shipping-starter-change"
+                      onClick={() => setChangePayment(true)}
+                    >
+                      Change
+                    </p>
+                  </div>
+                )}
+                {changePayment && (
+                  <div className="checkout-shipping-change-container">
+                    <div className="shipping-change-header-container">
+                      <h3 className="shipping-starter-index text-color-orange">
+                        2
+                      </h3>
+                      <h3 className="shipping-change-heading text-color-orange">
+                        Choose a payment method
+                      </h3>
+                      <div className="close-change-icon-container">
+                        <p
+                          className="shipping-change-close"
+                          onClick={() => setChangePayment(false)}
+                        >
+                          Close
+                        </p>
+                        <i onClick={() => setChangePayment(false)}></i>
+                      </div>
+                    </div>
+                    <div className="shipping-list-container">
+                      <div className="shipping-list-header-container">
+                        <h3>Your credit and debit cards</h3>
+                        <div className="shipping-payment-subheader-container">
+                          <p>Name on card</p>
+                          <p>Expires on</p>
+                        </div>
+                        <hr />
+                      </div>
+                      <form>
+                        {payments.map((payment, idx) => {
+                          payment.cardExp  = String(payment.cardExp).length == 3 ? `0${String(payment.cardExp)}` : String(payment.cardExp)
+                          return (
+                            <div
+                              key={idx}
+                              className={`payment-container payment-container${payment.id}`}
+                            >
+                              <label for={`address${payment.id}`}>
+                                <div>
+                                  <input
+                                    type="radio"
+                                    id={`address${payment.id}`}
+                                    name="address-selection"
+                                    onClick={() =>
+                                      handlePaymentSelection(payment.id)
+                                    }
+                                  />
+                                  <img src={card} />
+                                  <p>
+                                    <span style={{ "font-weight": "bold" }}>
+                                      Debit Card
+                                    </span>{" "}
+                                    ending in{" "}
+                                    {payment.cardNumber.slice(
+                                      payment.cardNumber.length - 4,
+                                      payment.cardNumber.length
+                                    )}
+                                  </p>
+                                </div>
+                                <p>{payment.cardHolder}</p>
+                                <p>
+                                  {payment.cardExp.slice(0,2)}/20
+                                  {payment.cardExp.slice(2, 4)}
+                                </p>
+                              </label>
+                            </div>
+                          );
+                        })}
+                      </form>
+                      <div className="add-address-container">
+                        <img
+                          className="address-button-span checkout-text-hover"
+                          src={plusicon}
+                          onClick={() => setShowPaymentModal(true)}
+                        />
+                        <span
+                          className="address-button-span checkout-text-hover"
+                          onClick={() => setShowPaymentModal(true)}
+                        >
+                          Add a debit card
+                        </span>
+                        {showPaymentModal && (
+                          <Modal onClose={() => setShowPaymentModal(false)}>
+                            <CreatePayment
+                              setShowPaymentModal={setShowPaymentModal}
+                              setFinalPayment={setFinalPayment}
+                              setChangePayment={setChangePayment}
+                            />
+                          </Modal>
+                        )}
+                      </div>
+                    </div>
+                    <div className="shipping-list-bottom-container">
+                      <div
+                        className="shipping-use-address yellow-checkout-button"
+                        onClick={() => handleUsePayment()}
+                      >
+                        Use this payment method
                       </div>
                     </div>
                   </div>
