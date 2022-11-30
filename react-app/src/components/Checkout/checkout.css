@@ -1,6 +1,5 @@
 .bold-green-text {
     color: #007600;
-    font-size: 18px !important;
     font-weight: 700 !important;
 }
 
@@ -354,6 +353,7 @@ input[type=radio] {
 .item-delivery-span {
     margin-right: 5px;
     display: inline-block;
+    font-size: 18px;
 }
 
 .item-bottom-container {
@@ -421,4 +421,9 @@ input[type=radio] {
 
 .item-shipping-radio-container p {
     padding-left: 5px;
+    font-size: 14px;
+}
+
+.item-shipping-radio-container span {
+    color: #565959;
 }

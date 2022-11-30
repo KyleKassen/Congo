@@ -175,6 +175,15 @@ function Checkout() {
   // Countdown timer for shipping ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
 
+
+  // -----------------------------------------------------------------
+  // Handle shipping time change vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  const handleShippingChange = (idx) => {
+
+  }
+  // Handle shipping time change ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  // -----------------------------------------------------------------
+
   return (
     <>
       {loaded && (
@@ -504,16 +513,16 @@ function Checkout() {
                             <div className="item-right-container">
                               <p>Choose your Prime deliery option:</p>
                               <div className="item-shipping-radio-container">
-                              <input type="radio" checked="checked" id={`fast-shipping-${idx}`} name={`shipping-input-${idx}`}/>
+                              <input type="radio" defaultChecked={true} id={`fast-shipping-${idx}`} name={`shipping-input-${idx}`}/>
                               <label for={`fast-shipping-${idx}`}>
-                                <p>{weekDayThree}, {monthThree} {dayThree}</p>
+                                <p className="bold-green-text">{weekDayThree}, {monthThree} {dayThree}</p>
                                 <p>FREE <span>Prime Delivery</span></p>
                               </label>
                               </div>
                               <div className="item-shipping-radio-container">
                               <input type="radio" id={`mid-shipping-${idx}`} name={`shipping-input-${idx}`}/>
                               <label for={`mid-shipping-${idx}`}>
-                                <p>{weekDayFour}, {monthFour} {dayFour}</p>
+                                <p className="bold-green-text">{weekDayFour}, {monthFour} {dayFour}</p>
                                 <p>FREE <span>Congo Day Delivery</span></p>
                                 <p>Arrive a day later.</p>
                               </label>
@@ -521,7 +530,7 @@ function Checkout() {
                               <div className="item-shipping-radio-container">
                               <input type="radio" id={`slow-shipping-${idx}`} name={`shipping-input-${idx}`}/>
                               <label for={`slow-shipping-${idx}`}>
-                                <p>{weekDayFour}, {monthFour} {dayFour}</p>
+                                <p className="bold-green-text">{weekDayNine}, {monthNine} {dayNine}</p>
                                 <p>FREE <span>No-Rush Shipping</span></p>
                                 <p>Get a $4 reward for select digital purchases. One reward per purchase.</p>
                               </label>
