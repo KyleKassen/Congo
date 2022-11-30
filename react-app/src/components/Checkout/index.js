@@ -94,6 +94,57 @@ function Checkout() {
     setChangePayment(false);
   };
 
+  // -------------------------------------------------
+  // Dealing with delivery times and such vvvvvvvvvvvv
+  let objToday = new Date();
+  let objTodayThree = new Date();
+  let objTodayFour = new Date();
+  let objTodayNine = new Date();
+  objTodayThree.setDate(objTodayThree.getDate() + 3);
+  objTodayFour.setDate(objTodayFour.getDate() + 4);
+  objTodayNine.setDate(objTodayNine.getDate() + 9);
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
+
+  const todayDay = objToday.getDate();
+  const todayWeekDay = days[objToday.getDay()];
+  const todayMonth = months[objToday.getMonth()];
+  const todayYear = objToday.getFullYear();
+  const weekDayThree = days[objTodayThree.getDay()];
+  const monthThree = months[objTodayThree.getMonth()];
+  const dayThree = objTodayThree.getDate();
+  const weekDayFour = days[objTodayFour.getDay()];
+  const monthFour = months[objTodayFour.getMonth()];
+  const dayFour = objTodayFour.getDate();
+  const weekDayNine = days[objTodayNine.getDay()];
+  const monthNine = months[objTodayNine.getMonth()];
+  const dayNine = objTodayNine.getDate();
+  // Dealing with delivery times and such ^^^^^^^^^^^^
+  // -------------------------------------------------
+
   return (
     <>
       {loaded && (
