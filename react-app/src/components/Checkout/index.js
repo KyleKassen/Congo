@@ -600,8 +600,15 @@ function Checkout() {
                 </div>
               </div>
             </div>
-            <div className="checkout-right-container">
-              <p>Right Section</p>
+            <div className="checkout-right-outer-container">
+              <div className="checkout-right-container">
+                <div className="place-order-button">
+                  Place your order
+                </div>
+                <p>By placing your order, you agree to Congo's privacy notice and conditions of use.</p>
+                <hr />
+                <h3>Order Summary</h3>
+              </div>
             </div>
           </div>
         </div>
