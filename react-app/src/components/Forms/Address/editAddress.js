@@ -50,11 +50,14 @@ function EditAddress({
     let response;
 
     let currentErrors = {}
+    // console.log(zipCode)
+    // console.log(!/^\d+$/.test(zipCode))
+    // console.log(String(zipCode).length)
 
     if (!firstName) currentErrors['firstName'] = 'Please enter a first name.'
     if (!lastName) currentErrors['lasttName'] = "Please enter a last name."
     if (!zipCode) currentErrors['zipCode'] = "Please enter a ZIP or postal code."
-    if (!/^\d+$/.test(zipCode) || zipCode.length != 5) currentErrors['zipCode'] = "Please enter a valid ZIP or postal code."
+    if (!/^\d+$/.test(zipCode) || String(zipCode).length != 5) currentErrors['zipCode'] = "Please enter a valid ZIP or postal code."
     if (!city) currentErrors['city'] = "Please enter a city name."
     if (/\d/.test(city) ) currentErrors['city'] = "Please enter a valid city name."
     if (!state) currentErrors['state'] = "Please enter a state name."
@@ -63,7 +66,7 @@ function EditAddress({
 
     setErrors([...Object.values(currentErrors)])
 
-    if (Object.values(currentErrors)) return;
+    if (Object.values(currentErrors).length) return;
 
     try {
       response = await dispatch(updateOneAddress(updateAddress, addressId));

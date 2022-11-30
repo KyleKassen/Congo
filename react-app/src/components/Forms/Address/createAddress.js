@@ -48,7 +48,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
 
     setErrors([...Object.values(currentErrors)])
 
-    if (Object.values(currentErrors)) return;
+    if (Object.values(currentErrors).length) return;
 
     try {
       response = await dispatch(createOneAddress(newaddress));
