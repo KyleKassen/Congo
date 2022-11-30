@@ -503,7 +503,29 @@ function Checkout() {
                             </div>
                             <div className="item-right-container">
                               <p>Choose your Prime deliery option:</p>
-                              <input type="radio" />
+                              <div className="item-shipping-radio-container">
+                              <input type="radio" checked="checked" id={`fast-shipping-${idx}`} name={`shipping-input-${idx}`}/>
+                              <label for={`fast-shipping-${idx}`}>
+                                <p>{weekDayThree}, {monthThree} {dayThree}</p>
+                                <p>FREE <span>Prime Delivery</span></p>
+                              </label>
+                              </div>
+                              <div className="item-shipping-radio-container">
+                              <input type="radio" id={`mid-shipping-${idx}`} name={`shipping-input-${idx}`}/>
+                              <label for={`mid-shipping-${idx}`}>
+                                <p>{weekDayFour}, {monthFour} {dayFour}</p>
+                                <p>FREE <span>Congo Day Delivery</span></p>
+                                <p>Arrive a day later.</p>
+                              </label>
+                              </div>
+                              <div className="item-shipping-radio-container">
+                              <input type="radio" id={`slow-shipping-${idx}`} name={`shipping-input-${idx}`}/>
+                              <label for={`slow-shipping-${idx}`}>
+                                <p>{weekDayFour}, {monthFour} {dayFour}</p>
+                                <p>FREE <span>No-Rush Shipping</span></p>
+                                <p>Get a $4 reward for select digital purchases. One reward per purchase.</p>
+                              </label>
+                              </div>
                             </div>
                           </div>
                         </div>
