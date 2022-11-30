@@ -175,15 +175,19 @@ function Checkout() {
   // Countdown timer for shipping ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
 
-
   // -----------------------------------------------------------------
   // Handle shipping time change vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
   const handleShippingChange = (button, idx) => {
-    const deliveryTime = document.getElementsByClassName(`item-delivery-${idx}`)[0]
-    if (button == 3) deliveryTime.innerHTML = `Delivery: ${monthThree} ${dayThree}, ${todayYear}`;
-    else if (button == 4) deliveryTime.innerHTML = `Delivery: ${monthFour} ${dayFour}, ${todayYear}`;
-    else if (button == 9) deliveryTime.innerHTML = `Delivery: ${monthNine} ${dayNine}, ${todayYear}`;
-  }
+    const deliveryTime = document.getElementsByClassName(
+      `item-delivery-${idx}`
+    )[0];
+    if (button == 3)
+      deliveryTime.innerHTML = `Delivery: ${monthThree} ${dayThree}, ${todayYear}`;
+    else if (button == 4)
+      deliveryTime.innerHTML = `Delivery: ${monthFour} ${dayFour}, ${todayYear}`;
+    else if (button == 9)
+      deliveryTime.innerHTML = `Delivery: ${monthNine} ${dayNine}, ${todayYear}`;
+  };
   // Handle shipping time change ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
 
@@ -489,14 +493,25 @@ function Checkout() {
                     {cartItems.map((item, idx) => {
                       return (
                         <div key={idx} className="item-outer-container">
-                          <div className="item-top-addition-container">
-                            <div className="item-addition-img"></div>
-                            <p>Get a $4 digital reward with FREE No-Rush Shipping.</p>
-                            <p>Select No-Rush Shipping below to receive a reward towards e-books, digital movies, and music.</p>
-                          </div>
+                          {idx == 0 && (
+                            <div className="item-top-addition-container">
+                              <div className="item-addition-img"></div>
+                              <h5>
+                                Get a $4 digital reward with FREE No-Rush
+                                Shipping.
+                              </h5>
+                              <p>
+                                Select No-Rush Shipping below to receive a
+                                reward towards e-books, digital movies, and
+                                music.
+                              </p>
+                            </div>
+                          )}
                           <div className="item-delivery-container">
                             <p>
-                              <span className={`item-delivery-span bold-green-text item-delivery-${idx}`}>
+                              <span
+                                className={`item-delivery-span bold-green-text item-delivery-${idx}`}
+                              >
                                 Delivery: {monthThree} {dayThree}, {todayYear}
                               </span>
                               If you order in the next{" "}
@@ -515,33 +530,66 @@ function Checkout() {
                                   </p>
                                   <i></i>
                                 </div>
-                                <p>Sold by: <span>Congo</span></p>
+                                <p>
+                                  Sold by: <span>Congo</span>
+                                </p>
                               </div>
                             </div>
                             <div className="item-right-container">
                               <p>Choose your Prime deliery option:</p>
                               <div className="item-shipping-radio-container">
-                              <input type="radio" defaultChecked={true} id={`fast-shipping-${idx}`} name={`shipping-input-${idx}`} onClick={() => handleShippingChange(3, idx)}/>
-                              <label for={`fast-shipping-${idx}`}>
-                                <p className="bold-green-text">{weekDayThree}, {monthThree} {dayThree}</p>
-                                <p>FREE <span>Prime Delivery</span></p>
-                              </label>
+                                <input
+                                  type="radio"
+                                  defaultChecked={true}
+                                  id={`fast-shipping-${idx}`}
+                                  name={`shipping-input-${idx}`}
+                                  onClick={() => handleShippingChange(3, idx)}
+                                />
+                                <label for={`fast-shipping-${idx}`}>
+                                  <p className="bold-green-text">
+                                    {weekDayThree}, {monthThree} {dayThree}
+                                  </p>
+                                  <p>
+                                    FREE <span>Prime Delivery</span>
+                                  </p>
+                                </label>
                               </div>
                               <div className="item-shipping-radio-container">
-                              <input type="radio" id={`mid-shipping-${idx}`} name={`shipping-input-${idx}`} onClick={() => handleShippingChange(4, idx)}/>
-                              <label for={`mid-shipping-${idx}`}>
-                                <p className="bold-green-text">{weekDayFour}, {monthFour} {dayFour}</p>
-                                <p>FREE <span>Congo Day Delivery</span></p>
-                                <p>Arrive a day later.</p>
-                              </label>
+                                <input
+                                  type="radio"
+                                  id={`mid-shipping-${idx}`}
+                                  name={`shipping-input-${idx}`}
+                                  onClick={() => handleShippingChange(4, idx)}
+                                />
+                                <label for={`mid-shipping-${idx}`}>
+                                  <p className="bold-green-text">
+                                    {weekDayFour}, {monthFour} {dayFour}
+                                  </p>
+                                  <p>
+                                    FREE <span>Congo Day Delivery</span>
+                                  </p>
+                                  <p>Arrive a day later.</p>
+                                </label>
                               </div>
                               <div className="item-shipping-radio-container">
-                              <input type="radio" id={`slow-shipping-${idx}`} name={`shipping-input-${idx}`} onClick={() => handleShippingChange(9, idx)}/>
-                              <label for={`slow-shipping-${idx}`}>
-                                <p className="bold-green-text">{weekDayNine}, {monthNine} {dayNine}</p>
-                                <p>FREE <span>No-Rush Shipping</span></p>
-                                <p>Get a $4 reward for select digital purchases. One reward per purchase.</p>
-                              </label>
+                                <input
+                                  type="radio"
+                                  id={`slow-shipping-${idx}`}
+                                  name={`shipping-input-${idx}`}
+                                  onClick={() => handleShippingChange(9, idx)}
+                                />
+                                <label for={`slow-shipping-${idx}`}>
+                                  <p className="bold-green-text">
+                                    {weekDayNine}, {monthNine} {dayNine}
+                                  </p>
+                                  <p>
+                                    FREE <span>No-Rush Shipping</span>
+                                  </p>
+                                  <p>
+                                    Get a $4 reward for select digital
+                                    purchases. One reward per purchase.
+                                  </p>
+                                </label>
                               </div>
                             </div>
                           </div>
