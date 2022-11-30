@@ -87,7 +87,6 @@ function CreatePayment({
       currentErrors.push(
         "Security code (CVV) is not correct. Look for the 3-digit code on the back of the card."
       );
-
     if (!cardHolder) currentErrors.push("Cardholder's name is required.")
 
     if (currentErrors.length > 0) {
