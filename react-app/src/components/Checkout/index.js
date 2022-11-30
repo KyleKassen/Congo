@@ -40,6 +40,7 @@ function Checkout() {
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(cart.items);
 
+
   useEffect(() => {
     (async () => {
       await dispatch(loadAllAddresses(userId));
@@ -191,6 +192,8 @@ function Checkout() {
   // Handle shipping time change ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
 
+  let total = 0;
+  let totalStr = "";
   return (
     <>
       {loaded && (
@@ -491,6 +494,14 @@ function Checkout() {
                   </div>
                   <div className="items-outer-container">
                     {cartItems.map((item, idx) => {
+
+                      // Setting final price in money format
+                      total += item.quantity * item.product.price;
+                      totalStr = String(Math.round(total * 100) / 100)
+                      const totalStrArr = totalStr.split(".")
+                      totalStr = totalStrArr[1].length == 1 ? `${totalStr}0` : totalStr
+                      // Setting final price in money format
+
                       return (
                         <div key={idx} className="item-outer-container">
                           {idx == 0 && (
@@ -608,6 +619,10 @@ function Checkout() {
                 <p>By placing your order, you agree to Congo's privacy notice and conditions of use.</p>
                 <hr />
                 <h3>Order Summary</h3>
+                <div className="order-summary-flex">
+                  <p>Items ({cart.totalQuantity}):</p>
+                  <p>${totalStr}</p>
+                </div>
               </div>
             </div>
           </div>
