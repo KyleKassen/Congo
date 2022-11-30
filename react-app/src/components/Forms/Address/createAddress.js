@@ -41,9 +41,9 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
     if (!zipcode) currentErrors['zipcode'] = "Please enter a ZIP or postal code."
     if (!/^\d+$/.test(zipcode) || zipcode.length != 5) currentErrors['zipcode'] = "Please enter a valid ZIP or postal code."
     if (!city) currentErrors['city'] = "Please enter a city name."
-    if (/^\d+$/.test(city) ) currentErrors['city'] = "Please enter a valid city name."
+    if (/\d/.test(city) ) currentErrors['city'] = "Please enter a valid city name."
     if (!state) currentErrors['state'] = "Please enter a state name."
-    if (/^\d+$/.test(state) ) currentErrors['state'] = "Please enter a valid state name."
+    if (/\d/.test(state) ) currentErrors['state'] = "Please enter a valid state name."
     if (!address) currentErrors['address'] = "Please enter an address."
 
     setErrors([...Object.values(currentErrors)])
