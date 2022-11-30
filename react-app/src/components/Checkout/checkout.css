@@ -331,6 +331,10 @@ input[type=radio] {
     width: 35px;
 }
 
+.items-heading {
+    padding-bottom: 8px;
+}
+
 .item-outer-container {
     margin-left: 35px;
     width: calc(100% - 35px);
@@ -339,6 +343,13 @@ input[type=radio] {
     border-radius: 8px;
     margin-bottom: 8px;
     box-sizing: border-box;
+}
+
+.item-top-addition-container {
+    border-style: solid;
+    border-color: #1196AB;
+    border-width: 2px 2px 2px 12px;
+    margin-bottom: 12px;
 }
 
 .item-delivery-container {

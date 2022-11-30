@@ -489,6 +489,11 @@ function Checkout() {
                     {cartItems.map((item, idx) => {
                       return (
                         <div key={idx} className="item-outer-container">
+                          <div className="item-top-addition-container">
+                            <div className="item-addition-img"></div>
+                            <p>Get a $4 digital reward with FREE No-Rush Shipping.</p>
+                            <p>Select No-Rush Shipping below to receive a reward towards e-books, digital movies, and music.</p>
+                          </div>
                           <div className="item-delivery-container">
                             <p>
                               <span className={`item-delivery-span bold-green-text item-delivery-${idx}`}>
