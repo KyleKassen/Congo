@@ -64,7 +64,7 @@ function Checkout() {
 
   const handleAddressSelection = (addressId) => {
     const activeAddress = document.getElementsByClassName("address-active")[0];
-    if (activeAddress) activeAddress.classList.remove("address-active")
+    if (activeAddress) activeAddress.classList.remove("address-active");
     const addressContainer = document.getElementsByClassName(
       `address-container${defaultAddress.id}`
     )[0];
@@ -78,7 +78,7 @@ function Checkout() {
 
   const handlePaymentSelection = (paymentId) => {
     const activePayment = document.getElementsByClassName("payment-active")[0];
-    if (activePayment) activePayment.classList.remove("payment-active")
+    if (activePayment) activePayment.classList.remove("payment-active");
     const paymentContainer = document.getElementsByClassName(
       `payment-container${defaultPayment.id}`
     )[0];
@@ -706,10 +706,19 @@ function Checkout() {
                       );
                     })}
                     <div className="item-outer-container checkout-bottom-place-container">
-                    <div className="place-order-button checkout-bottom-button">Place your order</div>
-                    <div className="checkout-bottom-right-container">
-                      <p>Order total: ${numToCash(total - discount + total * 0.0825)}</p>
-                    </div>
+                      <div className="place-order-button checkout-bottom-button">
+                        Place your order
+                      </div>
+                      <div className="checkout-bottom-right-container">
+                        <p>
+                          Order total: $
+                          {numToCash(total - discount + total * 0.0825)}
+                        </p>
+                        <p>
+                          By placing your order, you agree to Congo's privacy
+                          notice and conditions of use.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>

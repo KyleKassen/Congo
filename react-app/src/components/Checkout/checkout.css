@@ -547,11 +547,18 @@ input[type=radio] {
 }
 
 .checkout-bottom-place-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkout-bottom-place-container {
     margin-top: 20px;
 }
 
 .checkout-bottom-button {
     width: 119px !important;
+    margin-right: 20px;
+    margin-bottom: 0px !important;
 }
 
 
@@ -559,4 +566,10 @@ input[type=radio] {
     color: #B12704 !important;
     font-size: 18px !important;
     font-weight: 700;
+}
+
+.checkout-bottom-right-container p:last-child {
+    font-size: 12px;
+    line-height: 15px;
+    color: #565656;
 }
