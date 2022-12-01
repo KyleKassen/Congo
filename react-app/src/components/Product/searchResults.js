@@ -1,39 +1,70 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import "./searchResults.css";
 
 function SearchResults() {
-    const [products, setProducts] = useState([])
-    const location= useLocation()
-    let url = new URL(window.location.href)
+  const [products, setProducts] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  const [searchDisplayTerm, setSearchDisplayTerm] = useState("")
 
-    const searchParams = url.searchParams
+  const history = useHistory();
+  const location = useLocation();
+  let url = new URL(window.location.href);
 
-    const category = searchParams.get('category') ? searchParams.get('category') : "All"
-    const searchInput = searchParams.get('input')
-    console.log(category)
-    console.log(searchInput)
+  const searchParams = url.searchParams;
 
-    let getProducts = async () => {
-        let response = await fetch(`/api/products/lookup?search=${searchInput}&category=${category}`)
-        let resultingProducts = await response.json()
-        setProducts([...Object.values(resultingProducts)])
-    }
+  const category = searchParams.get("category")
+    ? searchParams.get("category")
+    : "All";
+  const searchInput = searchParams.get("input");
+  console.log(category);
+  console.log(searchInput);
 
-    useEffect(() => {
-        getProducts()
-    }, [location])
+  let getProducts = async () => {
+    let response = await fetch(
+      `/api/products/lookup?search=${searchInput}&category=${category}`
+    );
+    let resultingProducts = await response.json();
+    setProducts([...resultingProducts.products]);
+    setLoaded(true);
+  };
 
-    return (
-        <>
+  useEffect(() => {
+    if (category == "All" && !searchInput) history.push("/")
+    getProducts();
+
+    if (!searchInput && category != "All") setSearchDisplayTerm(`Department: ${category}`)
+    if (searchInput) setSearchDisplayTerm(searchInput)
+  }, [location]);
+
+  return (
+    <>
+      {loaded && (
         <div className="search-outer-container">
-            <div className="search-container">
-                <div className="search-header-container">
-                    <p>{products.length} result for <span>"{searchInput}"</span></p>
-                </div>
+          <div className="search-container">
+            <div className="search-header-container">
+              {products.length == 1 && (
+                <p>
+                  {products.length} result for <span>"{searchDisplayTerm}"</span>
+                </p>
+              )}
+              {products.length != 1 && (
+                <p>
+                  {products.length} results for <span>"{searchDisplayTerm}"</span>
+                </p>
+              )}
             </div>
+            <div className="search-left-container">
+
+            </div>
+            <div className="search-right-container">
+
+            </div>
+          </div>
         </div>
-        </>
-    )
+      )}
+    </>
+  );
 }
 
 export default SearchResults;

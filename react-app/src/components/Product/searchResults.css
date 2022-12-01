@@ -1,0 +1,33 @@
+.search-outer-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.search-container {
+    width: 100%
+}
+
+.search-header-container {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 4px 10px -2px #ddd;
+    margin-bottom: 8px;
+    height: 41px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 0;
+}
+
+.search-header-container p {
+    font-size: 14px;
+    color: #0F1111;
+    line-height: 41px;
+    width: 1475px;
+    padding: 0px 12px;
+}
+
+.search-header-container span {
+    color: #C45500;
+}

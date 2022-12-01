@@ -194,6 +194,9 @@ def implement_search():
 
     all_final_products = []
 
+    print("all cat products")
+    print(all_cat_products)
+
     if searchInput:
         for product in all_cat_products:
             if searchInput.lower() in product.title.lower():
@@ -201,6 +204,8 @@ def implement_search():
     else:
         all_final_products = all_cat_products
 
+    print("all final products")
+    print(all_final_products)
 
     result = {'products': []}
     for product in all_final_products:
