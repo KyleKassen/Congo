@@ -144,6 +144,25 @@ function SearchResults() {
                               </div>
                               <span>{product.reviewCount}</span>
                             </div>
+                            <div className="search-product-price">
+                              <span className="search-product-price-symbol">$</span>
+                              <span className="search-product-price-whole">
+                                {Math.floor(product.price)}
+                              </span>
+                              <span className="search-product-price-decimal">
+                                {
+                                  (
+                                    Math.round(
+                                      100 *
+                                        (product.price -
+                                          Math.floor(product.price))
+                                    ) / 100
+                                  )
+                                    .toString()
+                                    .split(".")[1]
+                                }
+                              </span>
+                            </div>
                           </div>
                         </div>
                       );
