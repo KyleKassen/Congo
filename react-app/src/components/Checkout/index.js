@@ -425,7 +425,7 @@ function Checkout() {
                         {finalPayment && (
                           <>
                             <p>
-                              {console.log(finalPayment)}
+                              <img src={card} />
                               <span>Debit</span> card ending in{" "}
                               {finalPayment.cardNumber.slice(
                                 finalPayment.cardNumber.length - 4,

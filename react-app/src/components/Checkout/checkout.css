@@ -259,6 +259,13 @@ input[type=radio] {
     border: 1px solid #F2C200;
 }
 
+.checkout-shipping-starter-payment-container img {
+    width: 30px;
+    height: 18.75px;
+    padding-right: 10px;
+    margin-bottom: -5px;
+}
+
 .checkout-shipping-starter-payment-container p {
     color: #333;
     font-size: 14px;
