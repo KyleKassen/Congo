@@ -66,21 +66,39 @@ function SearchResults() {
                       <i className="search-4-star-icon star-icons"></i>
                       <span>& Up</span>
                     </div>
-                    <div  className="star-rating-div">
+                    <div className="star-rating-div">
                       <i className="search-3-star-icon star-icons"></i>
                       <span>& Up</span>
                     </div>
-                    <div  className="star-rating-div">
+                    <div className="star-rating-div">
                       <i className="search-2-star-icon star-icons"></i>
                       <span>& Up</span>
                     </div>
-                    <div  className="star-rating-div">
+                    <div className="star-rating-div">
                       <i className="search-1-star-icon star-icons"></i>
                       <span>& Up</span>
                     </div>
                   </div>
                 </div>
-                <div className="search-right-container"></div>
+                <div className="search-right-container">
+                  <div className="search-results-heading">
+                    <h2>RESULTS</h2>
+                  </div>
+                  <div className="search-products-container">
+                    {products.map((product, idx) => {
+                      return (
+                        <div key={idx} className="search-product-container">
+                          <div className="search-product-left-container">
+                            <div className="product-img-container">
+                              <img src={product.images[0].url} />
+                            </div>
+                          </div>
+                          <div className="search-product-right-container"></div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
