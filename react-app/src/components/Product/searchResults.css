@@ -53,10 +53,28 @@
     font-weight: 700;
     font-size: 14px;
     color: #0F1111;
+    margin-bottom: 8px;
 }
 
 .search-right-container {
     width: 1050px;
+}
+
+.search-review-selection span {
+    font-size: 12px;
+    color: #0F1111;
+    line-height: 20px;
+}
+
+.star-rating-div {
+    display: flex;
+    align-items: center;
+}
+
+.star-rating-div:hover  span, .star-rating-div:hover{
+    cursor: pointer;
+    color:#C45500 !important;
+    text-decoration: underline;
 }
 
 .star-icons {
@@ -66,6 +84,8 @@
     height: 22px;
     width: 95px;
     display: inline-block;
+    margin-right: 5px;
+    padding-bottom: 1px;
 }
 
 .search-4-star-icon {
