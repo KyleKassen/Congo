@@ -178,6 +178,29 @@ def delete_product(id):
     }
 
 
+@product_routes.route('/lookup')
+def implement_search(id):
+    """
+    Search for product
+    """
+    searchParams = request.args.get('search')
+    print(searchParams)
+
+    product = Product.query.get(id)
+
+    # if (user_id != product.seller_id):
+    #     return {
+    #         "statusCode": 400,
+    #         "message": "Not the correct user"
+    #     }
+
+    db.session.delete(product)
+    db.session.commit()
+
+    return {
+        "statusCode": 200,
+        "message": "successfully deleted"
+    }
 
 
 

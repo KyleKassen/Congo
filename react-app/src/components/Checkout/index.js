@@ -759,7 +759,7 @@ function Checkout() {
                 </div>
                 <div className="order-summary-flex">
                   <p>Discount:</p>
-                  <p>${discount}</p>
+                  <p>-${discount}</p>
                 </div>
                 <div className="order-summary-flex">
                   <p>Shipping & handling:</p>
