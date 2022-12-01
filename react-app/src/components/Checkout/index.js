@@ -63,6 +63,8 @@ function Checkout() {
   }
 
   const handleAddressSelection = (addressId) => {
+    const activeAddress = document.getElementsByClassName("address-active")[0];
+    if (activeAddress) activeAddress.classList.remove("address-active")
     const addressContainer = document.getElementsByClassName(
       `address-container${defaultAddress.id}`
     )[0];
@@ -75,6 +77,8 @@ function Checkout() {
   };
 
   const handlePaymentSelection = (paymentId) => {
+    const activePayment = document.getElementsByClassName("payment-active")[0];
+    if (activePayment) activePayment.classList.remove("payment-active")
     const paymentContainer = document.getElementsByClassName(
       `payment-container${defaultPayment.id}`
     )[0];
