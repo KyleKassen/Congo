@@ -58,3 +58,28 @@
 .search-right-container {
     width: 1050px;
 }
+
+.star-icons {
+    background-image: url(https://m.media-amazon.com/images/S/sash/ouR9NRElwmzAIev.png);
+    -webkit-background-size: 512px 512px;
+    background-size: 512px 512px;
+    height: 22px;
+    width: 95px;
+    display: inline-block;
+}
+
+.search-4-star-icon {
+    background-position: -2px -342px;
+}
+
+.search-3-star-icon {
+    background-position: -293px -438px;
+}
+
+.search-2-star-icon {
+    background-position: -99px -390px;
+}
+
+.search-1-star-icon {
+    background-position: -390px -486px;
+}

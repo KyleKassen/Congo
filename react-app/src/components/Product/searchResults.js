@@ -62,7 +62,22 @@ function SearchResults() {
                 <div className="search-left-container">
                   <div className="search-review-selection">
                     <p>Customer Reviews</p>
-                    <i className="search-4-star-icon"></i><span>& Up</span>
+                    <div>
+                      <i className="search-4-star-icon star-icons"></i>
+                      <span>& Up</span>
+                    </div>
+                    <div>
+                      <i className="search-3-star-icon star-icons"></i>
+                      <span>& Up</span>
+                    </div>
+                    <div>
+                      <i className="search-2-star-icon star-icons"></i>
+                      <span>& Up</span>
+                    </div>
+                    <div>
+                      <i className="search-1-star-icon star-icons"></i>
+                      <span>& Up</span>
+                    </div>
                   </div>
                 </div>
                 <div className="search-right-container"></div>
