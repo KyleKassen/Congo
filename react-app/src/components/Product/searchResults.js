@@ -5,7 +5,7 @@ import "./searchResults.css";
 function SearchResults() {
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [searchDisplayTerm, setSearchDisplayTerm] = useState("")
+  const [searchDisplayTerm, setSearchDisplayTerm] = useState("");
 
   const history = useHistory();
   const location = useLocation();
@@ -30,11 +30,12 @@ function SearchResults() {
   };
 
   useEffect(() => {
-    if (category == "All" && !searchInput) history.push("/")
+    if (category == "All" && !searchInput) history.push("/");
     getProducts();
 
-    if (!searchInput && category != "All") setSearchDisplayTerm(`Department: ${category}`)
-    if (searchInput) setSearchDisplayTerm(searchInput)
+    if (!searchInput && category != "All")
+      setSearchDisplayTerm(`Department: ${category}`);
+    if (searchInput) setSearchDisplayTerm(searchInput);
   }, [location]);
 
   return (
@@ -45,20 +46,27 @@ function SearchResults() {
             <div className="search-header-container">
               {products.length == 1 && (
                 <p>
-                  {products.length} result for <span>"{searchDisplayTerm}"</span>
+                  {products.length} result for{" "}
+                  <span>"{searchDisplayTerm}"</span>
                 </p>
               )}
               {products.length != 1 && (
                 <p>
-                  {products.length} results for <span>"{searchDisplayTerm}"</span>
+                  {products.length} results for{" "}
+                  <span>"{searchDisplayTerm}"</span>
                 </p>
               )}
             </div>
-            <div className="search-left-container">
-
-            </div>
-            <div className="search-right-container">
-
+            <div className="search-bottom-section-container">
+              <div className="search-bottom-inner-container">
+                <div className="search-left-container">
+                  <div className="search-review-selection">
+                    <p>Customer Reviews</p>
+                    <i className="search-4-star-icon"></i><span>& Up</span>
+                  </div>
+                </div>
+                <div className="search-right-container"></div>
+              </div>
             </div>
           </div>
         </div>

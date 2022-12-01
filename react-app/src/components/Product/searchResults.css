@@ -24,10 +24,37 @@
     font-size: 14px;
     color: #0F1111;
     line-height: 41px;
-    width: 1475px;
+    width: 1350px;
     padding: 0px 12px;
 }
 
 .search-header-container span {
     color: #C45500;
+    font-weight: 700;
+}
+
+.search-bottom-section-container {
+    padding-top: 14px;
+    margin: 0px 12px;
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 24px);
+}
+
+.search-bottom-inner-container {
+    width: 1350px;
+}
+
+.search-left-container {
+    width: 260px;
+}
+
+.search-review-selection p {
+    font-weight: 700;
+    font-size: 14px;
+    color: #0F1111;
+}
+
+.search-right-container {
+    width: 1050px;
 }
