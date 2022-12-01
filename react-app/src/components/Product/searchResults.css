@@ -156,6 +156,7 @@
 .search-product-price {
     margin-bottom: 12px;
     color: #0F1111;
+    margin-top: 8px;
 }
 
 .search-product-price-symbol, .search-product-price-decimal {
@@ -166,4 +167,12 @@
 
 .search-product-price-whole {
     font-size: 28px;
+}
+
+.search-product-delivery-container p {
+    font-size: 14px;
+}
+
+.search-product-delivery-container span {
+    font-weight: 700;
 }

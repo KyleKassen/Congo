@@ -78,6 +78,47 @@ function SearchResults() {
     );
   };
 
+  // -----------------------------------------------------------------
+  // Dealing with delivery times and such vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  let objToday = new Date();
+  let objTodayThree = new Date();
+  objTodayThree.setDate(objTodayThree.getDate() + 3);
+
+  const months = [
+    "Jan.",
+    "Feb.",
+    "Mar.",
+    "Apr.",
+    "May",
+    "Jun.",
+    "Jul.",
+    "Aug.",
+    "Sep.",
+    "Oct.",
+    "Nov.",
+    "Dec.",
+  ];
+
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const todayDay = objToday.getDate();
+  const todayWeekDay = days[objToday.getDay()];
+  const todayMonth = months[objToday.getMonth()];
+  const todayYear = objToday.getFullYear();
+  const weekDayThree = days[objTodayThree.getDay()];
+  const monthThree = months[objTodayThree.getMonth()];
+  const dayThree = objTodayThree.getDate();
+  // Dealing with delivery times and such ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  // -----------------------------------------------------------------
+
   return (
     <>
       {loaded && (
@@ -145,7 +186,9 @@ function SearchResults() {
                               <span>{product.reviewCount}</span>
                             </div>
                             <div className="search-product-price">
-                              <span className="search-product-price-symbol">$</span>
+                              <span className="search-product-price-symbol">
+                                $
+                              </span>
                               <span className="search-product-price-whole">
                                 {Math.floor(product.price)}
                               </span>
@@ -162,6 +205,17 @@ function SearchResults() {
                                     .split(".")[1]
                                 }
                               </span>
+                            </div>
+                            <div className="product-middle-prime">
+                              {product.prime && <i></i>}
+                            </div>
+                            <div className="search-product-delivery-container">
+                              <p>
+                                FREE deliver{" "}
+                                <span>
+                                  {weekDayThree}, {monthThree} {dayThree}
+                                </span>
+                              </p>
                             </div>
                           </div>
                         </div>
