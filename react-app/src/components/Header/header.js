@@ -95,7 +95,6 @@ function Header() {
 
   async function onSubmit(e) {
     e.preventDefault();
-
     history.push(`businesses/search?input=${search}&cat=${department}`);
   }
 
