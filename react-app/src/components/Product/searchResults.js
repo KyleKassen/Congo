@@ -38,6 +38,46 @@ function SearchResults() {
     if (searchInput) setSearchDisplayTerm(searchInput);
   }, [location]);
 
+  const getStars = (rating, addon) => {
+    return (
+      <>
+        {rating > 4.6 && (
+          <i className={`stars-img product-5-stars${addon}`}></i>
+        )}
+        {rating <= 4.6 && rating > 4 && (
+          <i className={`stars-img product-45-stars${addon}`}></i>
+        )}
+        {rating <= 4 && rating > 3.6 && (
+          <i className={`stars-img product-4-stars${addon}`}></i>
+        )}
+        {rating <= 3.6 && rating > 3 && (
+          <i className={`stars-img product-35-stars${addon}`}></i>
+        )}
+        {rating <= 3 && rating > 2.6 && (
+          <i className={`stars-img product-3-stars${addon}`}></i>
+        )}
+        {rating <= 2.6 && rating > 2 && (
+          <i className={`stars-img product-25-stars${addon}`}></i>
+        )}
+        {rating <= 2 && rating > 1.6 && (
+          <i className={`stars-img product-2-stars${addon}`}></i>
+        )}
+        {rating <= 1.6 && rating > 1 && (
+          <i className={`stars-img product-15-stars${addon}`}></i>
+        )}
+        {rating <= 1 && rating > 0.6 && (
+          <i className={`stars-img product-1-stars${addon}`}></i>
+        )}
+        {rating <= 0.6 && rating != null && (
+          <i className={`stars-img product-05-stars${addon}`}></i>
+        )}
+        {rating == null && (
+          <i className={`stars-img product-0-stars${addon}`}></i>
+        )}
+      </>
+    );
+  };
+
   return (
     <>
       {loaded && (
@@ -86,7 +126,7 @@ function SearchResults() {
                   </div>
                   <div className="search-products-container">
                     {products.map((product, idx) => {
-                        console.log(product)
+                      console.log(product);
                       return (
                         <div key={idx} className="search-product-container">
                           <div className="search-product-left-container">
@@ -96,11 +136,13 @@ function SearchResults() {
                           </div>
                           <div className="search-product-right-container">
                             <div className="search-product-title-container">
-                                <p>{product.title}</p>
+                              <p>{product.title}</p>
                             </div>
                             <div className="search-product-rating-container">
-                                <i></i>
-                                <span></span>
+                              <div className="product-star-rating">
+                                {getStars(product.rating, "")}
+                              </div>
+                              <span>{product.reviewCount}</span>
                             </div>
                           </div>
                         </div>
