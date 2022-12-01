@@ -146,6 +146,7 @@
 
 .header-search-button:hover {
     background-color: rgb(243, 168, 70);
+    cursor: pointer;
 }
 
 
