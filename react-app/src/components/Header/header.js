@@ -95,7 +95,7 @@ function Header() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    history.push(`products/search?input=${search}&category=${department}`);
+    history.push(`/products/search?input=${search}&category=${department}`);
   }
 
   const logoutFunc = async () => {

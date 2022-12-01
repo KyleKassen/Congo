@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Product, ProductImage, Review, ReviewImage, User, db
+from app.models import Product, ProductImage, Review, ReviewImage, User, db, Category
 from sqlalchemy import func
-from sqlalchemy.orm import joinedload, subqueryload
+from sqlalchemy.orm import joinedload, subqueryload, session
 from ..forms.product_form import ProductForm
 from ..forms.review_form import ReviewForm
 
@@ -179,31 +179,52 @@ def delete_product(id):
 
 
 @product_routes.route('/lookup')
-def implement_search(id):
+def implement_search():
     """
     Search for product
     """
-    searchParams = request.args.get('search')
-    print(searchParams)
+    searchInput = request.args.get('search')
+    cat = request.args.get('category')
+    all_cat_products = None
 
-    product = Product.query.get(id)
+    if (cat == "All"):
+        all_cat_products = Product.query.options(joinedload(Product.product_image)).all()
+    else:
+        all_cat_products = Product.query.filter(Product.categories.any(name=cat)).all()
 
-    # if (user_id != product.seller_id):
-    #     return {
-    #         "statusCode": 400,
-    #         "message": "Not the correct user"
-    #     }
+    all_final_products = []
 
-    db.session.delete(product)
-    db.session.commit()
-
-    return {
-        "statusCode": 200,
-        "message": "successfully deleted"
-    }
-
+    if searchInput:
+        for product in all_cat_products:
+            if searchInput.lower() in product.title.lower():
+                all_final_products.append(product)
+    else:
+        all_final_products = all_cat_products
 
 
+    result = {'products': []}
+    for product in all_final_products:
+        curr_product = product.to_dict()
+        curr_product['images'] = [image.to_dict()
+                                  for image in product.product_image]
+        print('TEEESETSTSETS')
+        print(curr_product['images'])
+
+        rating = Review.query.with_entities(
+            func.avg(Review.rating)).filter_by(product_id=product.id).first()
+        review_count = Review.query.filter_by(product_id=product.id).count()
+        # print(f'\n\n\n\n rating is {rating[0] is not None} {rating[0]}')
+        if rating[0] is not None:
+            rating = float(round(rating[0], 1))
+        else:
+            rating = None
+
+        curr_product['rating'] = rating
+        curr_product['reviewCount'] = review_count
+
+        result['products'].append(curr_product)
+
+    return result
 
 
 """
