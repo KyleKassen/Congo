@@ -27,7 +27,7 @@ function Checkout() {
   const [finalAddress, setFinalAddress] = useState({});
   const [finalPayment, setFinalPayment] = useState({});
   const [discount, setDiscount] = useState(0);
-  const [deliverySetting, setDeliverySetting] = useState({})
+  const [deliverySetting, setDeliverySetting] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -182,9 +182,9 @@ function Checkout() {
   // let deliverySetting = {};
 
   const handleShippingChange = (button, idx) => {
-    let newObj = deliverySetting
-    deliverySetting[idx] = button
-    setDeliverySetting(newObj)
+    let newObj = deliverySetting;
+    deliverySetting[idx] = button;
+    setDeliverySetting(newObj);
     const deliveryTime = document.getElementsByClassName(
       `item-delivery-${idx}`
     )[0];
@@ -202,7 +202,10 @@ function Checkout() {
     setDiscount(
       Object.values(deliverySetting).filter((x) => x === 9).length * 4
     );
-    console.log(Object.values(deliverySetting),Object.values(deliverySetting).filter((x) => x === 9).length * 4)
+    console.log(
+      Object.values(deliverySetting),
+      Object.values(deliverySetting).filter((x) => x === 9).length * 4
+    );
   };
   // Handle shipping time change ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
@@ -308,32 +311,65 @@ function Checkout() {
                       <form>
                         {addresses.map((address, idx) => {
                           return (
-                            <div
-                              key={idx}
-                              className={`address-container address-container${address.id}`}
-                            >
-                              <input
-                                type="radio"
-                                id={`address${address.id}`}
-                                name="address-selection"
-                                onClick={() =>
-                                  handleAddressSelection(address.id)
-                                }
-                              />
-                              <label for={`address${address.id}`}>
-                                <span>
-                                  {address.firstName} {address.lastName}{" "}
-                                </span>
-                                {address.address}, {address.city},{" "}
-                                {address.state}, {address.zipcode}, United
-                                States{" "}
-                                <Address
-                                  address={address}
-                                  setFinalAddress={setFinalAddress}
-                                  setChangeAddress={setChangeAddress}
-                                />
-                              </label>
-                            </div>
+                            <>
+                              {defaultAddress.id == address.id && (
+                                <div
+                                  key={idx}
+                                  className={`address-container address-container${address.id} address-active`}
+                                >
+                                  <input
+                                    type="radio"
+                                    id={`address${address.id}`}
+                                    name="address-selection"
+                                    onClick={() =>
+                                      handleAddressSelection(address.id)
+                                    }
+                                    checked="checked"
+                                  />
+                                  <label for={`address${address.id}`}>
+                                    <span>
+                                      {address.firstName} {address.lastName}{" "}
+                                    </span>
+                                    {address.address}, {address.city},{" "}
+                                    {address.state}, {address.zipcode}, United
+                                    States{" "}
+                                    <Address
+                                      address={address}
+                                      setFinalAddress={setFinalAddress}
+                                      setChangeAddress={setChangeAddress}
+                                    />
+                                  </label>
+                                </div>
+                              )}
+                              {defaultAddress.id != address.id && (
+                                <div
+                                  key={idx}
+                                  className={`address-container address-container${address.id}`}
+                                >
+                                  <input
+                                    type="radio"
+                                    id={`address${address.id}`}
+                                    name="address-selection"
+                                    onClick={() =>
+                                      handleAddressSelection(address.id)
+                                    }
+                                  />
+                                  <label for={`address${address.id}`}>
+                                    <span>
+                                      {address.firstName} {address.lastName}{" "}
+                                    </span>
+                                    {address.address}, {address.city},{" "}
+                                    {address.state}, {address.zipcode}, United
+                                    States{" "}
+                                    <Address
+                                      address={address}
+                                      setFinalAddress={setFinalAddress}
+                                      setChangeAddress={setChangeAddress}
+                                    />
+                                  </label>
+                                </div>
+                              )}
+                            </>
                           );
                         })}
                       </form>
@@ -665,7 +701,7 @@ function Checkout() {
                 <hr />
                 <div className="order-summary-flex order-summary-total">
                   <p>Order total:</p>
-                  <p>${numToCash(total - discount + (total * 0.0825))}</p>
+                  <p>${numToCash(total - discount + total * 0.0825)}</p>
                 </div>
               </div>
             </div>
