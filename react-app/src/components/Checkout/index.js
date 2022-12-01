@@ -723,6 +723,13 @@ function Checkout() {
                   </div>
                 </div>
               </div>
+              <div className="checkout-bottom-divider">
+              </div>
+              <div className="checkout-bottom-text-container">
+                <p>For an item sold by Congo.com: When you click the "Place your order" button, we will not send you an email message acknowledging receipt of your order. Your contract to purchase an item will not be complete until we send you an email notifying you that the item has been shipped.</p>
+                <p>You may return new, unopened merchandise in original condition within 30 days of delivery. Exceptions and restrictions apply.</p>
+                <p>Need to add more items to your order? Continue shopping on the <span onClick={() => history.push('/')}>Congo.com homepage.</span></p>
+              </div>
             </div>
             <div className="checkout-right-outer-container">
               <div className="checkout-right-container">
