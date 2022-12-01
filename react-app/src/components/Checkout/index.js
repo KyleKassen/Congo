@@ -475,39 +475,79 @@ function Checkout() {
                               ? `0${String(payment.cardExp)}`
                               : String(payment.cardExp);
                           return (
-                            <div
-                              key={idx}
-                              className={`payment-container payment-container${payment.id}`}
-                            >
-                              <label for={`address${payment.id}`}>
-                                <div>
-                                  <input
-                                    type="radio"
-                                    id={`address${payment.id}`}
-                                    name="address-selection"
-                                    onClick={() =>
-                                      handlePaymentSelection(payment.id)
-                                    }
-                                  />
-                                  <img src={card} />
-                                  <p>
-                                    <span style={{ "font-weight": "bold" }}>
-                                      Debit Card
-                                    </span>{" "}
-                                    ending in{" "}
-                                    {payment.cardNumber.slice(
-                                      payment.cardNumber.length - 4,
-                                      payment.cardNumber.length
-                                    )}
-                                  </p>
+                            <>
+                              {finalPayment.id == payment.id && (
+                                <div
+                                  key={idx}
+                                  className={`payment-container payment-container${payment.id} payment-active`}
+                                >
+                                  <label for={`address${payment.id}`}>
+                                    <div>
+                                      <input
+                                        type="radio"
+                                        id={`address${payment.id}`}
+                                        name="address-selection"
+                                        onClick={() =>
+                                          handlePaymentSelection(payment.id)
+                                        }
+                                        defaultChecked={true}
+                                      />
+                                      <img src={card} />
+                                      <p>
+                                        <span style={{ "font-weight": "bold" }}>
+                                          Debit Card
+                                        </span>{" "}
+                                        ending in{" "}
+                                        {payment.cardNumber.slice(
+                                          payment.cardNumber.length - 4,
+                                          payment.cardNumber.length
+                                        )}
+                                      </p>
+                                    </div>
+                                    <p>{payment.cardHolder}</p>
+                                    <p>
+                                      {payment.cardExp.slice(0, 2)}/20
+                                      {payment.cardExp.slice(2, 4)}
+                                    </p>
+                                  </label>
                                 </div>
-                                <p>{payment.cardHolder}</p>
-                                <p>
-                                  {payment.cardExp.slice(0, 2)}/20
-                                  {payment.cardExp.slice(2, 4)}
-                                </p>
-                              </label>
-                            </div>
+                              )}
+                              {finalPayment.id != payment.id && (
+                                <div
+                                  key={idx}
+                                  className={`payment-container payment-container${payment.id}`}
+                                >
+                                  <label for={`address${payment.id}`}>
+                                    <div>
+                                      <input
+                                        type="radio"
+                                        id={`address${payment.id}`}
+                                        name="address-selection"
+                                        onClick={() =>
+                                          handlePaymentSelection(payment.id)
+                                        }
+                                      />
+                                      <img src={card} />
+                                      <p>
+                                        <span style={{ "font-weight": "bold" }}>
+                                          Debit Card
+                                        </span>{" "}
+                                        ending in{" "}
+                                        {payment.cardNumber.slice(
+                                          payment.cardNumber.length - 4,
+                                          payment.cardNumber.length
+                                        )}
+                                      </p>
+                                    </div>
+                                    <p>{payment.cardHolder}</p>
+                                    <p>
+                                      {payment.cardExp.slice(0, 2)}/20
+                                      {payment.cardExp.slice(2, 4)}
+                                    </p>
+                                  </label>
+                                </div>
+                              )}
+                            </>
                           );
                         })}
                       </form>
