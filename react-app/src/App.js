@@ -10,6 +10,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Homepage from "./components/Homepage";
 import Product from "./components/Product";
+import SearchResults from "./components/Product/searchResults";
 import Cart from "./components/Cart";
 import CreateReview from "./components/Forms/ReviewForms/createReview";
 import ProductForm from "./components/Forms/Product/productForm";
@@ -57,6 +58,10 @@ function App() {
         <Route path="/product/:productId/create" exact={true}>
           <Header />
           <CreateReview />
+        </Route>
+        <Route path="/products/search">
+          <Header />
+          <SearchResults />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
