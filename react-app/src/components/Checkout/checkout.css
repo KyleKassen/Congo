@@ -458,3 +458,13 @@ input[type=radio] {
 .item-shipping-radio-container span {
     color: #565959;
 }
+
+.checkout-bottom-place-container {
+    margin-top: 20px;
+}
+
+.checkout-bottom-button {
+    width: 119px !important;
+}
+
+
