@@ -708,7 +708,7 @@ function Checkout() {
                     <div className="item-outer-container checkout-bottom-place-container">
                     <div className="place-order-button checkout-bottom-button">Place your order</div>
                     <div className="checkout-bottom-right-container">
-                      <p className="order-summary-total">Order total: ${numToCash(total - discount + total * 0.0825)}</p>
+                      <p>Order total: ${numToCash(total - discount + total * 0.0825)}</p>
                     </div>
                     </div>
                   </div>
