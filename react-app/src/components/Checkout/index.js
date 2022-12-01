@@ -312,7 +312,7 @@ function Checkout() {
                         {addresses.map((address, idx) => {
                           return (
                             <>
-                              {defaultAddress.id == address.id && (
+                              {finalAddress.id == address.id && (
                                 <div
                                   key={idx}
                                   className={`address-container address-container${address.id} address-active`}
@@ -324,7 +324,7 @@ function Checkout() {
                                     onClick={() =>
                                       handleAddressSelection(address.id)
                                     }
-                                    checked="checked"
+                                    defaultChecked={true}
                                   />
                                   <label for={`address${address.id}`}>
                                     <span>
@@ -341,7 +341,7 @@ function Checkout() {
                                   </label>
                                 </div>
                               )}
-                              {defaultAddress.id != address.id && (
+                              {finalAddress.id != address.id && (
                                 <div
                                   key={idx}
                                   className={`address-container address-container${address.id}`}
