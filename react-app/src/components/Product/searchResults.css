@@ -125,6 +125,10 @@
     padding: 0px 8px;
 }
 
+.product-img-container:hover {
+    cursor: pointer;
+}
+
 .product-img-container img {
     object-fit: contain;
     width: 100%;
@@ -141,6 +145,12 @@
     font-size: 18px;
     color: #0F1111;
     padding-bottom: 4px;
+}
+
+.search-product-title-container p:hover {
+    cursor: pointer;
+    /* text-decoration: underline; */
+    color: #C45500;
 }
 
 .search-product-rating-container {

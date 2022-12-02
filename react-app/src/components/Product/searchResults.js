@@ -171,13 +171,13 @@ function SearchResults() {
                       return (
                         <div key={idx} className="search-product-container">
                           <div className="search-product-left-container">
-                            <div className="product-img-container">
+                            <div className="product-img-container" onClick={() => history.push(`/product/${product.id}`)}>
                               <img src={product.images[0].url} />
                             </div>
                           </div>
                           <div className="search-product-right-container">
                             <div className="search-product-title-container">
-                              <p>{product.title}</p>
+                              <p onClick={() => history.push(`/product/${product.id}`)}>{product.title}</p>
                             </div>
                             <div className="search-product-rating-container">
                               <div className="product-star-rating">
