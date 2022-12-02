@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllAddresses } from "../../store/address";
+import { loadAllAddresses, editDefault } from "../../store/address";
 import { loadAllPayments } from "../../store/payment";
 import { loadCartItems } from "../../store/cart";
 import { Modal } from "../../context/Modal";
@@ -62,7 +62,7 @@ function Checkout() {
     return null;
   }
 
-  const handleAddressSelection = (addressId) => {
+  const handleAddressSelection = async (addressId) => {
     const activeAddress = document.getElementsByClassName("address-active")[0];
     if (activeAddress) activeAddress.classList.remove("address-active");
     const addressContainer = document.getElementsByClassName(
@@ -74,6 +74,7 @@ function Checkout() {
     )[0];
     newSelectedAddress.classList.add("address-active");
     setDefaultAddress(addressObj[addressId]);
+    await dispatch(editDefault(addressObj[addressId]))
   };
 
   const handlePaymentSelection = (paymentId) => {
