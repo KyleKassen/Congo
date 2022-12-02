@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createOneAddress } from "../../../store/address";
 import "./addressForm.css";
 
-function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}) {
+function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress, setShowAddressList}) {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -61,6 +61,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
     setFinalAddress({...response});
     setChangeAddress(false);
     setShowAddressModal(false);
+    if (setShowAddressList !== undefined) setShowAddressList(false)
   };
 
   return (

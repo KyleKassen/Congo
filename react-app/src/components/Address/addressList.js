@@ -133,6 +133,7 @@ function AddressList({setShowAddressList}) {
                   setShowAddressModal={setShowAddressModal}
                   setFinalAddress={setFinalAddress}
                   setChangeAddress={setChangeAddress}
+                  setShowAddressList={setShowAddressList}
                 />
               </Modal>
             )}
