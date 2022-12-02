@@ -195,7 +195,9 @@ function Header() {
           </div>
           <div
             className="header-set-location header-hover-border"
-            onClick={() => setShowAddressList(true)}
+            onClick={() => {
+              if (!showAddressList) setShowAddressList(true)
+            }}
           >
             <img src={whitepin} />
             {!session.user ||

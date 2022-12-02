@@ -48,7 +48,7 @@ function AddressList({setShowAddressList}) {
     setDefaultAddress(addressObj[addressId]);
   };
   return (
-    <>
+    <div>
       <div className="address-list-outer-container">
         <div className="address-list-container">
           <div className="shipping-list-header-container">
@@ -148,7 +148,7 @@ function AddressList({setShowAddressList}) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
