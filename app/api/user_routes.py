@@ -137,6 +137,44 @@ def delete_address(id):
         "message": "successfully deleted"
     }
 
+@user_routes.route('/addresses/default/<int:id>', methods=['PUT'])
+@login_required
+def edit_default_address(id):
+    """
+    Change default address
+    """
+    address = ShippingAddress.query.get(id)
+
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    if (user_id != address.user_id):
+        return {
+            "statusCode": 400,
+            "message": "Not the correct user"
+        }
+
+
+    # Get all current user addresses
+    user_addresses = ShippingAddress.query.filter_by(user_id=user_id).all()
+
+    # Set old default address to false
+    for user_address in user_addresses:
+        if user_address.default_address:
+            user_address.default_address = False
+
+    # Set new default address
+    address.default_address = True
+
+    # Commit those changes
+    db.session.delete(address)
+    db.session.commit()
+
+    return {
+        "statusCode": 200,
+        "message": "successfully updated default address"
+    }
+
 
 
 """

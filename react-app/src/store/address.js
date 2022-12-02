@@ -115,22 +115,22 @@ export const deleteOneAddress = (id) => async (dispatch) => {
 // DEFAULT address
 //##########################
 
-export const editDefault = (address) => {
+export const editDefault = (id) => {
   console.log("Editing default address");
   return {
     type: DEFAULT,
-    payload: address,
+    payload: id,
   };
 };
 
 export const editDefaultAddress = (id) => async (dispatch) => {
-  console.log("Deleting One address Thunk");
-  const response = await fetch(`/api/users/addresses/${id}`, {
-    method: "DELETE",
+  console.log("Editing default One address Thunk");
+  const response = await fetch(`/api/users/addresses/default/${id}`, {
+    method: "PUT",
   });
 
   if (response.ok) {
-    dispatch(deleteOne(id));
+    dispatch(editDefault(id));
   }
   return await response.json();
 };
@@ -156,14 +156,21 @@ export const addressReducer = (state = initialState, action) => {
     case LOAD_ALL:
       newState.addresses = {};
       action.payload.addresses.forEach(
-        (address) => (newState.addresses[address.id] = address)
+        (address) => {
+          (newState.addresses[address.id] = address)
+          if (address.defaultAddress) newState.default = address
+        }
       );
       return newState;
     case DELETE:
       delete newState.addresses[action.payload];
       return newState;
     case DEFAULT:
-      newState.default = action.payload;
+      newState.addresses.forEach((address) => {
+        if (address.defaultAddress) address.defaultAddress = false;
+      });
+      newState.addresses[action.payload].defaultAddress = true;
+      newState.default = newState.addresses[action.payload];
       return newState;
     default:
       return state;
