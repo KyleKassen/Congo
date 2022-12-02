@@ -5,8 +5,9 @@ import { Modal } from "../../context/Modal";
 import CreateAddress from "../Forms/Address/createAddress";
 import Address from "./index";
 import plusicon from "../../media/images/plus.png";
+import "./addressList.css";
 
-function AddressList() {
+function AddressList({setShowAddressList}) {
     const [loaded, setLoaded] = useState(false)
     const [defaultAddress, setDefaultAddress] = useState({});
     const [changeAddress, setChangeAddress] = useState(false);
@@ -30,6 +31,7 @@ function AddressList() {
     setFinalAddress(defaultAddress);
     await dispatch(editDefaultAddress(defaultAddress.id));
     setChangeAddress(false);
+    setShowAddressList(false);
   };
 
   const handleAddressSelection = async (addressId) => {
@@ -45,11 +47,10 @@ function AddressList() {
     newSelectedAddress.classList.add("address-active");
     setDefaultAddress(addressObj[addressId]);
   };
-
   return (
     <>
       <div className="address-list-outer-container">
-        <div className="shipping-list-container">
+        <div className="address-list-container">
           <div className="shipping-list-header-container">
             <h3>All shipping addresses</h3>
             <hr />
@@ -105,6 +106,7 @@ function AddressList() {
                           address={address}
                           setFinalAddress={setFinalAddress}
                           setChangeAddress={setChangeAddress}
+                          setShowAddressList={setShowAddressList}
                         />
                       </label>
                     </div>
@@ -136,7 +138,7 @@ function AddressList() {
             )}
           </div>
         </div>
-        <div className="shipping-list-bottom-container">
+        <div className="address-list-bottom-container">
           <div
             className="shipping-use-address yellow-checkout-button"
             onClick={() => handleUseAddress()}
