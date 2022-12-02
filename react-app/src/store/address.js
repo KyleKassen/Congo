@@ -1,7 +1,8 @@
 const CREATE = "address/create"
 const UPDATE = "address/update"
 const LOAD_ALL = "address/loadAll"
-const DELETE = "review/delete";
+const DELETE = "address/delete";
+const DEFAULT = "address/default";
 
 //##########################
 // create address
@@ -110,6 +111,19 @@ export const deleteOne = (id) => {
     return await response.json();
   };
 
+
+//##########################
+// DEFAULT address
+//##########################
+
+export const editDefault = (address) => {
+  console.log("Editing default address");
+  return {
+    type: DEFAULT,
+    payload: address,
+  };
+};
+
 //##########################
 // Reducer
 //##########################
@@ -134,6 +148,9 @@ export const addressReducer = (state = initialState, action) => {
             return newState;
         case DELETE:
             delete newState.addresses[action.payload];
+            return newState;
+        case DEFAULT:
+            newState.default = action.payload
             return newState;
         default:
             return state;
