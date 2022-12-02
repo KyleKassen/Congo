@@ -167,7 +167,6 @@ def edit_default_address(id):
     address.default_address = True
 
     # Commit those changes
-    db.session.delete(address)
     db.session.commit()
 
     return {

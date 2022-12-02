@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllAddresses, editDefault } from "../../store/address";
+import { loadAllAddresses, editDefaultAddress } from "../../store/address";
 import { loadAllPayments } from "../../store/payment";
 import { loadCartItems } from "../../store/cart";
 import { Modal } from "../../context/Modal";
@@ -74,7 +74,6 @@ function Checkout() {
     )[0];
     newSelectedAddress.classList.add("address-active");
     setDefaultAddress(addressObj[addressId]);
-    await dispatch(editDefault(addressObj[addressId]))
   };
 
   const handlePaymentSelection = (paymentId) => {
@@ -91,8 +90,9 @@ function Checkout() {
     setDefaultPayment(paymentObj[paymentId]);
   };
 
-  const handleUseAddress = () => {
+  const handleUseAddress = async () => {
     setFinalAddress(defaultAddress);
+    await dispatch(editDefaultAddress(defaultAddress.id))
     setChangeAddress(false);
   };
 

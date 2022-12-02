@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import { logout } from "../../store/session";
 import { login } from "../../store/session";
 import { loadCartItems, resetCart } from "../../store/cart";
+import { loadAllAddresses } from "../../store/address";
 import congo from "../../media/images/CONGO.png";
 import congo2 from "../../media/images/CONGOblack.png";
 import locationPin from "../../media/icons/locationPin.png";
@@ -44,6 +45,7 @@ function Header() {
       );
 
       await dispatch(loadCartItems(session.user.id));
+      await dispatch(loadAllAddresses(session.user.id))
     }
   }, [session]);
 

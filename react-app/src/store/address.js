@@ -166,9 +166,7 @@ export const addressReducer = (state = initialState, action) => {
       delete newState.addresses[action.payload];
       return newState;
     case DEFAULT:
-      newState.addresses.forEach((address) => {
-        if (address.defaultAddress) address.defaultAddress = false;
-      });
+      if (newState.default.id) newState.addresses[newState.default.id].defaultAddress = false
       newState.addresses[action.payload].defaultAddress = true;
       newState.default = newState.addresses[action.payload];
       return newState;
