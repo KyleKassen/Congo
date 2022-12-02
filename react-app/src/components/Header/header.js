@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../NavBar";
 import { logout } from "../../store/session";
 import { login } from "../../store/session";
 import { loadCartItems, resetCart } from "../../store/cart";
 import { loadAllAddresses } from "../../store/address";
+import { Modal } from "../../context/Modal";
+import NavBar from "../NavBar";
+import AddressList from "../Address/addressList";
 import congo from "../../media/images/CONGO.png";
 import congo2 from "../../media/images/CONGOblack.png";
 import locationPin from "../../media/icons/locationPin.png";
@@ -25,6 +27,8 @@ function Header() {
   const [name, setName] = useState("");
   const [addressFName, setAddressFName] = useState("");
   const [address, setAddress] = useState("");
+  const [showAddressList, setShowAddressList] = useState(false);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -46,7 +50,6 @@ function Header() {
       );
       await dispatch(loadCartItems(session.user.id));
     }
-
   }, [session]);
 
   useEffect(async () => {
@@ -59,14 +62,16 @@ function Header() {
       setAddressFName(
         currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
       );
-      let currentAddress = defaultAddress.city
+      let currentAddress = defaultAddress.city;
       if (currentAddress.length > 9) {
         // if (currentAddress[7] === " ")
-        currentAddress = currentAddress[7] === " " ? currentAddress.slice(0, 7) + "..." : currentAddress.slice(0, 8) + "...";
+        currentAddress =
+          currentAddress[7] === " "
+            ? currentAddress.slice(0, 7) + "..."
+            : currentAddress.slice(0, 8) + "...";
       }
-      setAddress(`${currentAddress} ${defaultAddress.zipcode}`)
+      setAddress(`${currentAddress} ${defaultAddress.zipcode}`);
     }
-
   }, [defaultAddress]);
 
   useEffect(async () => {
@@ -188,7 +193,10 @@ function Header() {
           <div className="header-logo header-hover-border heading-working-hover">
             <img src={congo2} onClick={() => history.push("/")} />
           </div>
-          <div className="header-set-location header-hover-border">
+          <div
+            className="header-set-location header-hover-border"
+            onClick={() => setShowAddressList(true)}
+          >
             <img src={whitepin} />
             {!session.user ||
               (!defaultAddress.id && (
@@ -197,12 +205,19 @@ function Header() {
                   <p className="header-bottom-text">Select your address</p>
                 </div>
               ))}
-              {defaultAddress.id && (
-                <div>
-                  <p className="header-top-text">Deliver to {addressFName}</p>
-                  <p className="header-bottom-text">{address}</p>
-                </div>
-              )}
+            {defaultAddress.id && (
+              <div>
+                <p className="header-top-text">Deliver to {addressFName}</p>
+                <p className="header-bottom-text">{address}</p>
+              </div>
+            )}
+            {showAddressList && (
+              <Modal onClose={() => setShowAddressList(false)}>
+                <AddressList
+                  setShowAddressList={setShowAddressList}
+                />
+              </Modal>
+            )}
           </div>
         </div>
         <div className={`header-middle-container ${focusClass}`}>
