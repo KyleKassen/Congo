@@ -24,6 +24,7 @@ function Header() {
   const [focusClass, setFocusClass] = useState("");
   const [name, setName] = useState("");
   const [addressFName, setAddressFName] = useState("");
+  const [address, setAddress] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -52,12 +53,18 @@ function Header() {
     // Formating user display name in header
     if (defaultAddress.id) {
       let currentName = defaultAddress.firstName;
-      if (currentName.length > 12) {
-        currentName = currentName.slice(0, 6) + "...";
+      if (currentName.length > 8) {
+        currentName = currentName.slice(0, 7) + "...";
       }
       setAddressFName(
         currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
       );
+      let currentAddress = defaultAddress.city
+      if (currentAddress.length > 9) {
+        // if (currentAddress[7] === " ")
+        currentAddress = currentAddress[7] === " " ? currentAddress.slice(0, 7) + "..." : currentAddress.slice(0, 8) + "...";
+      }
+      setAddress(`${currentAddress} ${defaultAddress.zipcode}`)
     }
 
   }, [defaultAddress]);
@@ -193,7 +200,7 @@ function Header() {
               {defaultAddress.id && (
                 <div>
                   <p className="header-top-text">Deliver to {addressFName}</p>
-                  <p className="header-bottom-text">Select your address</p>
+                  <p className="header-bottom-text">{address}</p>
                 </div>
               )}
           </div>
