@@ -34,6 +34,7 @@ function Checkout() {
 
   const userId = useSelector((state) => state.session.user.id);
   const addressObj = useSelector((state) => state.addresses.addresses);
+  const defaultAddressObj = useSelector(state => state.addresses.default);
   const paymentObj = useSelector((state) => state.payments.payments);
   const addresses = Object.values(addressObj);
   const payments = useSelector((state) =>
@@ -267,15 +268,15 @@ function Checkout() {
                         Shipping address
                       </h3>
                       <div className="checkout-shipping-starter-address-container">
-                        {finalAddress && (
+                        {defaultAddressObj && (
                           <>
                             <p>
-                              {finalAddress.firstName} {finalAddress.lastName}
+                              {defaultAddressObj.firstName} {defaultAddressObj.lastName}
                             </p>
-                            <p>{finalAddress.address}</p>
+                            <p>{defaultAddressObj.address}</p>
                             <p>
-                              {finalAddress.city}, {finalAddress.state}{" "}
-                              {finalAddress.zipcode}
+                              {defaultAddressObj.city}, {defaultAddressObj.state}{" "}
+                              {defaultAddressObj.zipcode}
                             </p>
                           </>
                         )}
@@ -317,7 +318,7 @@ function Checkout() {
                         {addresses.map((address, idx) => {
                           return (
                             <>
-                              {finalAddress.id == address.id && (
+                              {defaultAddressObj.id == address.id && (
                                 <div
                                   key={idx}
                                   className={`address-container address-container${address.id} address-active`}
@@ -346,7 +347,7 @@ function Checkout() {
                                   </label>
                                 </div>
                               )}
-                              {finalAddress.id != address.id && (
+                              {defaultAddressObj.id != address.id && (
                                 <div
                                   key={idx}
                                   className={`address-container address-container${address.id}`}
