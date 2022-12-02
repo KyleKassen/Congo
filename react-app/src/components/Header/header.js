@@ -28,6 +28,7 @@ function Header() {
 
   const session = useSelector((state) => state.session);
   const cart = useSelector((state) => state.cart);
+  const defaultAddress = useSelector(state => state.addresses.default);
 
   useEffect(async () => {
     if (session?.user?.username) {
@@ -45,7 +46,7 @@ function Header() {
       );
 
       await dispatch(loadCartItems(session.user.id));
-      await dispatch(loadAllAddresses(session.user.id))
+      await dispatch(loadAllAddresses(session.user.id));
     }
   }, [session]);
 

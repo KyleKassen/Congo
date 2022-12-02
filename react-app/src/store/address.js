@@ -148,7 +148,9 @@ export const addressReducer = (state = initialState, action) => {
   };
   switch (action.type) {
     case CREATE:
+      if (newState.default.id) newState.addresses[newState.default.id].defaultAddress = false
       newState.addresses[action.payload.id] = action.payload;
+      newState.default = action.payload
       return newState;
     case UPDATE:
       newState.addresses[action.payload.id] = action.payload;

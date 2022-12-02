@@ -53,6 +53,13 @@ def create_address():
     user = current_user.to_dict()
     user_id = user['id']
 
+    user_addresses = ShippingAddress.query.filter_by(user_id=user_id).all()
+
+    # Set old default address to false
+    for user_address in user_addresses:
+        if user_address.default_address:
+            user_address.default_address = False
+
     form = AddressForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print("\n\n\n\nform data",form.data)
@@ -67,6 +74,8 @@ def create_address():
             first_name=form.data['first_name'],
             last_name=form.data['last_name']
         )
+
+        address.default_address = True
 
         db.session.add(address)
         db.session.commit()
