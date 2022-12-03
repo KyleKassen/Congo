@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createOneAddress } from "../../../store/address";
 import "./addressForm.css";
 
-function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}) {
+function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress, setShowAddressList}) {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -18,7 +18,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
 
   const userId = useSelector((state) => state.session.user.id);
 
-  useEffect(() => {}, [address, city, state, zipcode]);
+  // useEffect(() => {}, [address, city, state, zipcode]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +34,22 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
 
     let response;
 
+    let currentErrors = {}
+
+    if (!firstName) currentErrors['firstName'] = 'Please enter a first name.'
+    if (!lastName) currentErrors['lasttName'] = "Please enter a last name."
+    if (!zipcode) currentErrors['zipcode'] = "Please enter a ZIP or postal code."
+    if (!/^\d+$/.test(zipcode) || zipcode.length != 5) currentErrors['zipcode'] = "Please enter a valid ZIP or postal code."
+    if (!city) currentErrors['city'] = "Please enter a city name."
+    if (/\d/.test(city) ) currentErrors['city'] = "Please enter a valid city name."
+    if (!state) currentErrors['state'] = "Please enter a state name."
+    if (/\d/.test(state) ) currentErrors['state'] = "Please enter a valid state name."
+    if (!address) currentErrors['address'] = "Please enter an address."
+
+    setErrors([...Object.values(currentErrors)])
+
+    if (Object.values(currentErrors).length) return;
+
     try {
       response = await dispatch(createOneAddress(newaddress));
       console.log(response);
@@ -45,6 +61,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
     setFinalAddress({...response});
     setChangeAddress(false);
     setShowAddressModal(false);
+    if (setShowAddressList !== undefined) setShowAddressList(false)
   };
 
   return (
@@ -58,11 +75,19 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
       <div className="address-form-bottom-section">
         <h2>Add a new address</h2>
         <form onSubmit={handleSubmit}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
+        {errors.length > 0 && (
+            <div className="payment-error-outer-container">
+              <div className="payment-error-container">
+                <i></i>
+                <h4>There was a problem.</h4>
+                <ul>
+                  {errors.map((error, ind) => (
+                    <li key={ind}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
           <div className="address-name-fields">
             <div className="address-first-name">
               <p>First name</p>
@@ -72,7 +97,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                required
+
               />
             </div>
             <div>
@@ -83,7 +108,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                required
+
               />
             </div>
           </div>
@@ -96,11 +121,11 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              required
+
             />
           </div>
           <div className="address-flex-inputs">
-            <div className="address-city-container">
+            <div className="address-state-container">
               <p>City</p>
               <input
                 id="form-field-city"
@@ -109,7 +134,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                required
+
               />
             </div>
             <div className="address-state-container">
@@ -121,7 +146,7 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
                 type="text"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                required
+
               />
             </div>
             <div>
@@ -130,10 +155,11 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
                 id="form-field-zipcode"
                 className="form-field"
                 placeholder="ZipCode"
-                type="number"
+                type="test"
+                maxLength={5}
                 value={zipcode}
                 onChange={(e) => setZipcode(e.target.value)}
-                required
+
               />
             </div>
           </div>
@@ -141,7 +167,6 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress}
             id="create-address-button"
             className="button review-button-submit"
             type="submit"
-            disabled={errors.length}
           >
             Use this address
           </button>

@@ -49,6 +49,25 @@ function EditAddress({
 
     let response;
 
+    let currentErrors = {}
+    // console.log(zipCode)
+    // console.log(!/^\d+$/.test(zipCode))
+    // console.log(String(zipCode).length)
+
+    if (!firstName) currentErrors['firstName'] = 'Please enter a first name.'
+    if (!lastName) currentErrors['lasttName'] = "Please enter a last name."
+    if (!zipCode) currentErrors['zipCode'] = "Please enter a ZIP or postal code."
+    if (!/^\d+$/.test(zipCode) || String(zipCode).length != 5) currentErrors['zipCode'] = "Please enter a valid ZIP or postal code."
+    if (!city) currentErrors['city'] = "Please enter a city name."
+    if (/\d/.test(city) ) currentErrors['city'] = "Please enter a valid city name."
+    if (!state) currentErrors['state'] = "Please enter a state name."
+    if (/\d/.test(state) ) currentErrors['state'] = "Please enter a valid state name."
+    if (!address) currentErrors['address'] = "Please enter an address."
+
+    setErrors([...Object.values(currentErrors)])
+
+    if (Object.values(currentErrors).length) return;
+
     try {
       response = await dispatch(updateOneAddress(updateAddress, addressId));
       console.log(response);
@@ -72,11 +91,19 @@ function EditAddress({
       <div className="address-form-bottom-section">
         <h2>Edit your address</h2>
         <form onSubmit={handleSubmit}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
+        {errors.length > 0 && (
+            <div className="payment-error-outer-container">
+              <div className="payment-error-container">
+                <i></i>
+                <h4>There was a problem.</h4>
+                <ul>
+                  {errors.map((error, ind) => (
+                    <li key={ind}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
           <div className="address-name-fields">
             <div className="address-first-name">
               <p>First name</p>
@@ -87,7 +114,6 @@ function EditAddress({
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                required
               />
             </div>
             <div>
@@ -99,7 +125,6 @@ function EditAddress({
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                required
               />
             </div>
           </div>
@@ -112,7 +137,6 @@ function EditAddress({
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              required
             />
           </div>
           <div className="address-flex-inputs">
@@ -125,7 +149,6 @@ function EditAddress({
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                required
               />
             </div>
             <div className="address-state-container">
@@ -137,7 +160,6 @@ function EditAddress({
                 type="text"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                required
               />
             </div>
             <div>
@@ -146,10 +168,10 @@ function EditAddress({
                 id="form-field-zipcode"
                 className="form-field"
                 placeholder="ZipCode"
-                type="number"
+                type="text"
+                maxLength={5}
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
-                required
               />
             </div>
           </div>
@@ -157,7 +179,6 @@ function EditAddress({
             id="edit-address-button"
             className="button review-button-submit"
             type="submit"
-            disabled={errors.length}
           >
             Use this address
           </button>

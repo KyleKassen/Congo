@@ -76,14 +76,14 @@ function CreatePayment({
 
     console.log(currentYear + '<' + intCardYear + "<" + currentMonth + "< " + intCardMonth)
 
-    if (/^\d+$/.test(cardNumber) || cardNumber.length < 15)
+    if (!/^\d+$/.test(cardNumber) || cardNumber.length < 15)
       currentErrors.push("Card number is not correct.");
     if (
       intCardYear < currentYear ||
       (intCardYear == currentYear && currentMonth >= intCardMonth)
     )
       currentErrors.push("Expiration date is not correct.");
-    if (/^\d+$/.test(securityCode) || securityCode.length < 3)
+    if (!/^\d+$/.test(securityCode) || securityCode.length < 3)
       currentErrors.push(
         "Security code (CVV) is not correct. Look for the 3-digit code on the back of the card."
       );

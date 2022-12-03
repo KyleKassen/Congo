@@ -118,6 +118,7 @@
     height: 29px;
     padding: 1px 6px;
     margin-bottom: 16px;
+    font-weight: 700;
 }
 
 .review-button-submit:hover {

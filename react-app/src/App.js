@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
@@ -10,16 +10,20 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Homepage from "./components/Homepage";
 import Product from "./components/Product";
+import SearchResults from "./components/Product/searchResults";
 import Cart from "./components/Cart";
 import CreateReview from "./components/Forms/ReviewForms/createReview";
 import ProductForm from "./components/Forms/Product/productForm";
 import Checkout from "./components/Checkout";
 import { authenticate } from "./store/session";
 import { loadAllProducts, loadOneProduct } from "./store/product";
+import { loadAllAddresses } from "./store/address";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const session = useSelector((state) => state.session);
 
   useEffect(() => {
     (async () => {
@@ -28,6 +32,11 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  useEffect(async () => {
+    if (session?.user?.username)
+    await dispatch(loadAllAddresses(session.user.id))
+  }, [loaded])
 
   if (!loaded) {
     return null;
@@ -57,6 +66,10 @@ function App() {
         <Route path="/product/:productId/create" exact={true}>
           <Header />
           <CreateReview />
+        </Route>
+        <Route path="/products/search">
+          <Header />
+          <SearchResults />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />

@@ -64,6 +64,7 @@ class ShippingAddress(db.Model):
             'city': self.city,
             'state': self.state,
             'zipcode': self.zipcode,
+            'defaultAddress': self.default_address
         }
 
 

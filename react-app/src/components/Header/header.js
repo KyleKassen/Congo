@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../NavBar";
 import { logout } from "../../store/session";
 import { login } from "../../store/session";
 import { loadCartItems, resetCart } from "../../store/cart";
+import { loadAllAddresses } from "../../store/address";
+import { Modal } from "../../context/Modal";
+import NavBar from "../NavBar";
+import AddressList from "../Address/addressList";
 import congo from "../../media/images/CONGO.png";
 import congo2 from "../../media/images/CONGOblack.png";
 import locationPin from "../../media/icons/locationPin.png";
@@ -22,36 +25,60 @@ function Header() {
   const [submitted, isSubmitted] = useState(false);
   const [focusClass, setFocusClass] = useState("");
   const [name, setName] = useState("");
+  const [addressFName, setAddressFName] = useState("");
+  const [address, setAddress] = useState("");
+  const [showAddressList, setShowAddressList] = useState(false);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
   const session = useSelector((state) => state.session);
   const cart = useSelector((state) => state.cart);
+  const defaultAddress = useSelector((state) => state.addresses.default);
 
   useEffect(async () => {
+    // Formating user display name in header
     if (session?.user?.username) {
       let currentName = "";
-      console.log(currentName);
       currentName = session.user.username.split(" ");
-      console.log(currentName);
       currentName = currentName[0];
-      console.log(currentName);
       if (currentName.length > 12) {
         currentName = currentName.slice(0, 8) + "...";
       }
       setName(
         currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
       );
-
       await dispatch(loadCartItems(session.user.id));
     }
   }, [session]);
 
   useEffect(async () => {
+    // Formating user display name in header
+    if (defaultAddress.id) {
+      let currentName = defaultAddress.firstName;
+      if (currentName.length > 8) {
+        currentName = currentName.slice(0, 7) + "...";
+      }
+      setAddressFName(
+        currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
+      );
+      let currentAddress = defaultAddress.city;
+      if (currentAddress.length > 9) {
+        // if (currentAddress[7] === " ")
+        currentAddress =
+          currentAddress[7] === " "
+            ? currentAddress.slice(0, 7) + "..."
+            : currentAddress.slice(0, 8) + "...";
+      }
+      setAddress(`${currentAddress} ${defaultAddress.zipcode}`);
+    }
+  }, [defaultAddress]);
+
+  useEffect(async () => {
     let cartCount = document.getElementsByClassName(
       "header-cart-counter-container"
     )[0];
-    if (cart.totalQuantity > 9){
+    if (cart.totalQuantity > 9) {
       cartCount.classList.add("cart-count-double-digit");
       cartCount.classList.remove("cart-count-single-digit");
     } else {
@@ -60,7 +87,59 @@ function Header() {
     }
   }, [cart]);
 
-  const departments = ['All', 'Alex Skills', 'Amazon Devices', 'Amazon Explore', 'Amazon Pharmacy', 'Amazon Warehouse', 'Appliances', 'Apps & Games', 'Arts, Crafts & Sewing', 'Audible Books & Originals', 'Automotive Parts & Accessories', 'Baby', 'Beauty & Personal Care', 'Books', 'CDs & Vinyl', 'Cell Phones & Accessories', 'Clothing, Shoes & Jewely', 'Collectibles & Fine Art', 'Computes', 'Credit and Payment Cards', 'Digital Educational Resources', 'Digital Music', 'Electronics', 'Garden & Outdoor', 'Gift Cards', 'Grocery & Gourmet Food', 'Handmade', 'Health, Household & Babe Care', 'Home & Business Services', 'Home & Kitchen', 'Industrial & Scientific', 'Just for Prime', 'Kindle Store', 'Luggage & Travel Gear', 'Luxury Store', 'Magazine Subscriptions', 'Movies & TV', 'Musical Instruments', 'Office Products', 'Online Learning', 'Pet Supplies', 'Premium Beauty', 'Prime Video', 'Smart Home', 'Software', 'Sports & Outdoors', 'Subscription Boxes', 'Tools & Home Improvement', 'Toys & Games', 'Under $10', 'Video Games']
+  const departments = [
+    "All",
+    "Alexa Skills",
+    "Amazon Devices",
+    "Amazon Explore",
+    "Amazon Pharmacy",
+    "Amazon Warehouse",
+    "Appliances",
+    "Apps & Games",
+    "Arts, Crafts & Sewing",
+    "Audible Books & Originals",
+    "Automotive Parts & Accessories",
+    "Baby",
+    "Beauty & Personal Care",
+    "Books",
+    "CDs & Vinyl",
+    "Cell Phones & Accessories",
+    "Clothing, Shoes & Jewely",
+    "Collectibles & Fine Art",
+    "Computes",
+    "Credit and Payment Cards",
+    "Digital Educational Resources",
+    "Digital Music",
+    "Electronics",
+    "Garden & Outdoor",
+    "Gift Cards",
+    "Grocery & Gourmet Food",
+    "Handmade",
+    "Health, Household & Babe Care",
+    "Home & Business Services",
+    "Home & Kitchen",
+    "Industrial & Scientific",
+    "Just for Prime",
+    "Kindle Store",
+    "Luggage & Travel Gear",
+    "Luxury Store",
+    "Magazine Subscriptions",
+    "Movies & TV",
+    "Musical Instruments",
+    "Office Products",
+    "Online Learning",
+    "Pet Supplies",
+    "Premium Beauty",
+    "Prime Video",
+    "Smart Home",
+    "Software",
+    "Sports & Outdoors",
+    "Subscription Boxes",
+    "Tools & Home Improvement",
+    "Toys & Games",
+    "Under $10",
+    "Video Games",
+  ];
   const mainNav = [
     "Best Sellers",
     "Amazon Basics",
@@ -95,8 +174,7 @@ function Header() {
 
   async function onSubmit(e) {
     e.preventDefault();
-
-    // history.push(`businesses/search?input=${search}`);
+    history.push(`/products/search?input=${search}&category=${department}`);
   }
 
   const logoutFunc = async () => {
@@ -115,12 +193,33 @@ function Header() {
           <div className="header-logo header-hover-border heading-working-hover">
             <img src={congo2} onClick={() => history.push("/")} />
           </div>
-          <div className="header-set-location header-hover-border">
+          <div
+            className="header-set-location header-hover-border"
+            onClick={() => {
+              if (!showAddressList) setShowAddressList(true)
+            }}
+          >
             <img src={whitepin} />
-            <div>
-              <p className="header-top-text">Deliver to</p>
-              <p className="header-bottom-text">Select your address</p>
-            </div>
+            {!session.user ||
+              (!defaultAddress.id && (
+                <div>
+                  <p className="header-top-text">Deliver to</p>
+                  <p className="header-bottom-text">Select your address</p>
+                </div>
+              ))}
+            {defaultAddress.id && (
+              <div>
+                <p className="header-top-text">Deliver to {addressFName}</p>
+                <p className="header-bottom-text">{address}</p>
+              </div>
+            )}
+            {showAddressList && (
+              <Modal onClose={() => setShowAddressList(false)}>
+                <AddressList
+                  setShowAddressList={setShowAddressList}
+                />
+              </Modal>
+            )}
           </div>
         </div>
         <div className={`header-middle-container ${focusClass}`}>
@@ -265,9 +364,12 @@ function Header() {
             <p className="header-top-text">Returns</p>
             <p className="header-bottom-text">& Orders</p>
           </div>
-          <div className="header-cart header-hover-border" onClick={() => history.push('/cart')}>
+          <div
+            className="header-cart header-hover-border"
+            onClick={() => history.push("/cart")}
+          >
             <div className="header-cart-counter-container">
-              {cart.totalQuantity < 100 &&<span>{cart.totalQuantity}</span>}
+              {cart.totalQuantity < 100 && <span>{cart.totalQuantity}</span>}
               {cart && cart.totalQuantity > 99 && <span>99+</span>}
               {!cart && <span>0</span>}
             </div>
