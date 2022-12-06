@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import { login } from "../../store/session";
 import { loadCartItems, resetCart } from "../../store/cart";
-import { loadAllAddresses } from "../../store/address";
+import { loadAllAddresses, resetAddress } from "../../store/address";
+import { resetPayment } from "../../store/payment";
 import { Modal } from "../../context/Modal";
 import NavBar from "../NavBar";
 import AddressList from "../Address/addressList";
@@ -180,6 +181,8 @@ function Header() {
   const logoutFunc = async () => {
     await dispatch(resetCart());
     await dispatch(logout());
+    await dispatch(resetAddress());
+    await dispatch(resetPayment());
   };
 
   const logInDemo = async () => {
