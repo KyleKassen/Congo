@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import { login } from "../../store/session";
 import { loadCartItems, resetCart } from "../../store/cart";
-import { loadAllAddresses } from "../../store/address";
+import { loadAllAddresses, resetAddress } from "../../store/address";
+import { resetPayment } from "../../store/payment";
 import { Modal } from "../../context/Modal";
 import NavBar from "../NavBar";
 import AddressList from "../Address/addressList";
@@ -49,6 +50,7 @@ function Header() {
         currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
       );
       await dispatch(loadCartItems(session.user.id));
+      await dispatch(loadAllAddresses(session.user.id));
     }
   }, [session]);
 
@@ -180,6 +182,8 @@ function Header() {
   const logoutFunc = async () => {
     await dispatch(resetCart());
     await dispatch(logout());
+    await dispatch(resetAddress());
+    await dispatch(resetPayment());
   };
 
   const logInDemo = async () => {
@@ -196,17 +200,17 @@ function Header() {
           <div
             className="header-set-location header-hover-border"
             onClick={() => {
-              if (!showAddressList) setShowAddressList(true)
+              if (!showAddressList) setShowAddressList(true);
             }}
           >
             <img src={whitepin} />
-            {!session.user ||
-              (!defaultAddress.id && (
-                <div>
-                  <p className="header-top-text">Deliver to</p>
-                  <p className="header-bottom-text">Select your address</p>
-                </div>
-              ))}
+            {console.log(!session.user || !defaultAddress.id)}
+            {(!session.user || !defaultAddress.id) && (
+              <div>
+                <p className="header-top-text">Deliver to</p>
+                <p className="header-bottom-text">Select your address</p>
+              </div>
+            )}
             {defaultAddress.id && (
               <div>
                 <p className="header-top-text">Deliver to {addressFName}</p>
@@ -215,9 +219,7 @@ function Header() {
             )}
             {showAddressList && (
               <Modal onClose={() => setShowAddressList(false)}>
-                <AddressList
-                  setShowAddressList={setShowAddressList}
-                />
+                <AddressList setShowAddressList={setShowAddressList} />
               </Modal>
             )}
           </div>

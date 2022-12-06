@@ -1,7 +1,8 @@
 const CREATE = "payment/create"
 const UPDATE = "payment/update"
 const LOAD_ALL = "payment/loadAll"
-const DELETE = "review/delete";
+const DELETE = "payment/delete";
+const RESET = "payment/reset";
 
 //##########################
 // create payment
@@ -110,6 +111,19 @@ export const deleteOne = (id) => {
     return await response.json();
   };
 
+
+//##########################
+// RESET payment
+//##########################
+
+export const resetPayment = () => {
+  console.log("RESETing payments");
+  return {
+    type: RESET
+  };
+};
+
+
 //##########################
 // Reducer
 //##########################
@@ -135,6 +149,10 @@ export const paymentReducer = (state = initialState, action) => {
         case DELETE:
             delete newState.payments[action.payload];
             return newState;
+        case RESET:
+          newState.payments = {}
+          newState.default = {}
+          return newState
         default:
             return state;
     }

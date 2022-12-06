@@ -3,6 +3,7 @@ const UPDATE = "address/update";
 const LOAD_ALL = "address/loadAll";
 const DELETE = "address/delete";
 const DEFAULT = "address/default";
+const RESET = "address/reset";
 
 //##########################
 // create address
@@ -136,6 +137,17 @@ export const editDefaultAddress = (id) => async (dispatch) => {
 };
 
 //##########################
+// RESET address
+//##########################
+
+export const resetAddress = () => {
+  console.log("Reseting Address");
+  return {
+    type: RESET
+  };
+};
+
+//##########################
 // Reducer
 //##########################
 const initialState = { addresses: {}, default: {} };
@@ -172,6 +184,10 @@ export const addressReducer = (state = initialState, action) => {
       if (newState.default.id) newState.addresses[newState.default.id].defaultAddress = false
       newState.addresses[action.payload].defaultAddress = true;
       newState.default = newState.addresses[action.payload];
+      return newState;
+    case RESET:
+      newState.addresses = {}
+      newState.default = {}
       return newState;
     default:
       return state;
