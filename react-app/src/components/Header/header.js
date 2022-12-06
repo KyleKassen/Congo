@@ -50,6 +50,7 @@ function Header() {
         currentName.charAt(0).toUpperCase() + currentName.slice(1).toLowerCase()
       );
       await dispatch(loadCartItems(session.user.id));
+      await dispatch(loadAllAddresses(session.user.id));
     }
   }, [session]);
 
