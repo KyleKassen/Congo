@@ -15,7 +15,7 @@ function AddressList({setShowAddressList}) {
     const [showAddressModal, setShowAddressModal] = useState(false);
   const dispatch = useDispatch();
 
-  const userId = useSelector((state) => state.session.user.id);
+  const userId = useSelector((state) => state.session?.user?.id);
   const addressObj = useSelector((state) => state.addresses.addresses);
   const defaultAddressObj = useSelector(state => state.addresses.default);
   const addresses = Object.values(addressObj);

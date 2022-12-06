@@ -196,17 +196,17 @@ function Header() {
           <div
             className="header-set-location header-hover-border"
             onClick={() => {
-              if (!showAddressList) setShowAddressList(true)
+              if (!showAddressList) setShowAddressList(true);
             }}
           >
             <img src={whitepin} />
-            {!session.user ||
-              (!defaultAddress.id && (
-                <div>
-                  <p className="header-top-text">Deliver to</p>
-                  <p className="header-bottom-text">Select your address</p>
-                </div>
-              ))}
+            {console.log(!session.user || !defaultAddress.id)}
+            {(!session.user || !defaultAddress.id) && (
+              <div>
+                <p className="header-top-text">Deliver to</p>
+                <p className="header-bottom-text">Select your address</p>
+              </div>
+            )}
             {defaultAddress.id && (
               <div>
                 <p className="header-top-text">Deliver to {addressFName}</p>
@@ -215,9 +215,7 @@ function Header() {
             )}
             {showAddressList && (
               <Modal onClose={() => setShowAddressList(false)}>
-                <AddressList
-                  setShowAddressList={setShowAddressList}
-                />
+                <AddressList setShowAddressList={setShowAddressList} />
               </Modal>
             )}
           </div>
