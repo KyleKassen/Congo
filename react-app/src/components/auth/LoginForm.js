@@ -56,7 +56,7 @@ const LoginForm = () => {
 
   return (
     <div className="login-wrapper">
-      <div className="login-img-container">
+      <div className="login-img-container" onClick={() => history.push("/")}>
         <img src={congowhite} />
       </div>
       <div className="login-width-provider">
@@ -137,6 +137,14 @@ const LoginForm = () => {
                 </button>
               </div>
             )}
+            <div>
+            <button
+                  className="login-form-button yellow-gradient-button"
+                  onClick={onLogin}
+                >
+                  Demo User
+                </button>
+            </div>
           </form>
           <div className="login-form-bottom-text">
             <p>
