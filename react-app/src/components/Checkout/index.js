@@ -50,10 +50,11 @@ function Checkout() {
 
   useEffect(() => {
     (async () => {
+      console.log('productId is', productId)
       await dispatch(loadAllAddresses(userId));
       await dispatch(loadAllPayments(userId));
       await dispatch(loadCartItems(userId));
-      if (buyNowProduct) {
+      if (productId) {
         const productCopy = {...buyNowProduct, image: {...buyNowProduct.images[0]}}
         setCartItems([{id: 1, product: {...productCopy}, quantity: 1}])
       } else {
