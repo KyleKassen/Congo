@@ -130,6 +130,10 @@
     width: 100%;
 }
 
+.login-demo-button {
+    margin-top: 10px;
+}
+
 .login-form-bottom-text {
     font-size: 12px;
     line-height: 1.5;

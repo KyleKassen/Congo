@@ -50,6 +50,10 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const logInDemo = async () => {
+    await dispatch(login("demo@aa.io", "password"));
+  };
+
   if (user) {
     return <Redirect to="/" />;
   }
@@ -139,8 +143,8 @@ const LoginForm = () => {
             )}
             <div>
             <button
-                  className="login-form-button yellow-gradient-button"
-                  onClick={onLogin}
+                  className="login-form-button yellow-gradient-button login-demo-button"
+                  onClick={() => logInDemo()}
                 >
                   Demo User
                 </button>
