@@ -26,11 +26,13 @@ function Checkout() {
   const [defaultPayment, setDefaultPayment] = useState({});
   const [finalAddress, setFinalAddress] = useState({});
   const [finalPayment, setFinalPayment] = useState({});
+  const [cartItems, setCartItems] = useState([]);
   const [discount, setDiscount] = useState(0);
   const [deliverySetting, setDeliverySetting] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const {productId} = useParams();
 
   const userId = useSelector((state) => state.session.user.id);
   const addressObj = useSelector((state) => state.addresses.addresses);
@@ -41,13 +43,22 @@ function Checkout() {
     Object.values(state.payments.payments)
   );
   const cart = useSelector((state) => state.cart);
-  const cartItems = Object.values(cart.items);
+  // let cartItems;
+  let allCartItems = Object.values(cart.items);
+  let buyNowProduct;
+  buyNowProduct = useSelector(state => state.products.allProducts[productId])
 
   useEffect(() => {
     (async () => {
       await dispatch(loadAllAddresses(userId));
       await dispatch(loadAllPayments(userId));
       await dispatch(loadCartItems(userId));
+      if (buyNowProduct) {
+        const productCopy = {...buyNowProduct, image: {...buyNowProduct.images[0]}}
+        setCartItems([{id: 1, product: {...productCopy}, quantity: 1}])
+      } else {
+        setCartItems([...allCartItems])
+      }
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -599,6 +610,8 @@ function Checkout() {
                     <h3 className="items-index">3</h3>
                     <h3 className="items-heading">Review items and shipping</h3>
                   </div>
+                  {cartItems !== undefined && (
+
                   <div className="items-outer-container">
                     {cartItems.map((item, idx) => {
                       total += item.quantity * item.product.price;
@@ -723,6 +736,7 @@ function Checkout() {
                       </div>
                     </div>
                   </div>
+                  )}
                 </div>
               </div>
               <div className="checkout-bottom-divider"></div>
