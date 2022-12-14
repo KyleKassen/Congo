@@ -207,6 +207,10 @@ function Header() {
     history.push(`/products/search?input=${search}&category=${department}`);
   }
 
+  const handleNavClick = (navItem) => {
+    history.push(`/products/search?&input=&category=${navItem}`);
+  }
+
   const logoutFunc = async () => {
     await dispatch(resetCart());
     await dispatch(logout());
@@ -423,6 +427,7 @@ function Header() {
           return (
             <div
               className={`header-mainnav-item-container header-mainnav-${navItem2}`}
+              onClick={() => handleNavClick(navItem)}
             >
               <p className="header-mainnav-item header-hover-border">
                 {navItem}
