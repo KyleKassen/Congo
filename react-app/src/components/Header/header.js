@@ -414,7 +414,7 @@ function Header() {
         </div>
       </div>
       <div className="header-mainnav-container">
-        <div className="header-mainnav-all header-hover-border">
+        <div className="header-mainnav-all header-hover-border"  onClick={() => handleNavClick('All')}>
           <div className="header-mainnav-all-img-container">
             <img src={hamburger} />
           </div>

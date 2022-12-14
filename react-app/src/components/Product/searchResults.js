@@ -30,7 +30,7 @@ function SearchResults() {
   };
 
   useEffect(() => {
-    if (category == "All" && !searchInput) history.push("/");
+    if (category == "All" && !searchInput) setSearchDisplayTerm(`All Departments`);
     getProducts();
 
     if (!searchInput && category != "All")
