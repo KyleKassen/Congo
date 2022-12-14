@@ -208,7 +208,8 @@ function Header() {
   }
 
   const handleNavClick = (navItem) => {
-    history.push(`/products/search?&input=&category=${navItem}`);
+    const navArray = navItem.split('&')
+    history.push(`/products/search?&input=&category=${navArray[0]}`);
   }
 
   const logoutFunc = async () => {
