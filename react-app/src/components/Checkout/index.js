@@ -57,18 +57,21 @@ function Checkout() {
       if (productId) {
         const productCopy = {...buyNowProduct, image: {...buyNowProduct.images[0]}}
         setCartItems([{id: 1, product: {...productCopy}, quantity: 1}])
-      } else {
-        setCartItems([...allCartItems])
       }
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  console.log(`product id is ${productId}`)
 
   useEffect(() => {
     setDefaultAddress(addresses[0]);
     setFinalAddress(addresses[0]);
     setDefaultPayment(payments[0]);
     setFinalPayment(payments[0]);
+    if (!productId) {
+      setCartItems([...allCartItems])
+    }
   }, [loaded]);
 
   if (!loaded) {
@@ -242,7 +245,7 @@ function Checkout() {
   let total = 0;
   return (
     <>
-      {loaded && (
+      {loaded && cartItems.length > 0 && (
         <div className="checkout-outer-wrapper">
           <div className="checkout-header-wrapper">
             <div className="checkout-header-container">
