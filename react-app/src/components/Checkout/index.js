@@ -258,12 +258,20 @@ function Checkout() {
                 Checkout{" "}
                 <span className="checkout-heading-outer-span">
                   (
-                  <span
+                  {productId && <span
+                    className="checkout-heading-inner-span"
+                    onClick={() => history.push(`/product/${productId}`)}
+                  >
+
+                    1 item
+                  </span>}
+                  {!productId && <span
                     className="checkout-heading-inner-span"
                     onClick={() => history.push("/cart")}
                   >
+
                     {cart.totalQuantity} items
-                  </span>
+                  </span>}
                   )
                 </span>
               </h1>
