@@ -8,7 +8,7 @@ const RESET = "cart/reset";
 //##########################
 
 export const load = (cartItems) => {
-  console.log("Loading all products in cart");
+
   return {
     type: LOAD,
     payload: cartItems,
@@ -16,7 +16,7 @@ export const load = (cartItems) => {
 };
 
 export const loadCartItems = (userId) => async (dispatch) => {
-  console.log("Loading cart Thunk");
+
   const response = await fetch(`/api/carts/${userId}`);
 
   const cartItems = await response.json();
@@ -33,7 +33,7 @@ export const loadCartItems = (userId) => async (dispatch) => {
 //##########################
 
 export const add = (cartItem) => {
-  console.log("Add cart item");
+
   return {
     type: ADD,
     payload: cartItem,
@@ -41,14 +41,13 @@ export const add = (cartItem) => {
 };
 
 export const addCartItem = (productId) => async (dispatch) => {
-  console.log("Adding cart item Thunk");
+
   const response = await fetch(`/api/carts/${productId}`, {
     method: "POST",
   });
 
   const cartItem = await response.json();
 
-  console.log(cartItem);
 
   if (response.ok) {
     await dispatch(add(cartItem));
@@ -62,7 +61,7 @@ export const addCartItem = (productId) => async (dispatch) => {
 //##########################
 
 export const edit = (cartItem) => {
-  console.log("Edit cart item", cartItem);
+
   return {
     type: EDIT,
     payload: cartItem,
@@ -70,7 +69,7 @@ export const edit = (cartItem) => {
 };
 
 export const editCartItem = (productId, quantity) => async (dispatch) => {
-  console.log("Editing cart item Thunk");
+
   const response = await fetch(`/api/carts/${productId}`, {
     method: "PUT",
     headers: {
@@ -81,7 +80,7 @@ export const editCartItem = (productId, quantity) => async (dispatch) => {
 
   const cartItem = await response.json();
 
-  console.log(cartItem);
+
 
   if (response.ok) {
     await dispatch(edit(cartItem));

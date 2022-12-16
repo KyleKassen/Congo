@@ -137,7 +137,7 @@ export const editDefaultAddress = (id) => async (dispatch) => {
 //##########################
 
 export const resetAddress = () => {
-  console.log("Reseting Address");
+
   return {
     type: RESET
   };
