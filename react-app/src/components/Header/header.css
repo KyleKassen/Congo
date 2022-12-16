@@ -185,6 +185,10 @@
     /* width: 99px; */
 }
 
+.header-returns:hover, .header-language:hover {
+    cursor: not-allowed !important;
+}
+
 .header-user-auth {
     width: 125px;
     position: relative;
