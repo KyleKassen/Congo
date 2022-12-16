@@ -74,8 +74,6 @@ function CreatePayment({
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
 
-    console.log(currentYear + '<' + intCardYear + "<" + currentMonth + "< " + intCardMonth)
-
     if (!/^\d+$/.test(cardNumber) || cardNumber.length < 15)
       currentErrors.push("Card number is not correct.");
     if (
@@ -98,10 +96,9 @@ function CreatePayment({
 
     try {
       const response = await dispatch(createOnepayment(newPayment));
-      console.log(response);
+
     } catch (res) {
-      console.log(res);
-      console.log("ERROR IN payment FORM RESPONSE");
+
     }
     setShowPaymentModal(false);
     setFinalPayment({ ...response });

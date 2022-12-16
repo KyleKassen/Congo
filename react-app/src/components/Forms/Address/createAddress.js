@@ -52,12 +52,11 @@ function CreateAddress({ setShowAddressModal, setFinalAddress, setChangeAddress,
 
     try {
       response = await dispatch(createOneAddress(newaddress));
-      console.log(response);
+
     } catch (res) {
-      console.log(res);
-      console.log("ERROR IN address FORM RESPONSE");
+
     }
-    console.log(typeof response)
+
     setFinalAddress({...response});
     setChangeAddress(false);
     setShowAddressModal(false);

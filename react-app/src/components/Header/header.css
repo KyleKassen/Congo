@@ -227,7 +227,7 @@
 .header-user-auth:hover .header-account-dropdown-container{
     display:flex;
     flex-direction: column;
-    padding: 14px 14px 7px 14px;
+    padding: 14px 14px 14px 14px;
 }
 
 .header-account-dropdown-bottom {

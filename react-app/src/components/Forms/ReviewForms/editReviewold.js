@@ -15,15 +15,11 @@ function EditReview({ setShowModal, reviewId }) {
 
   const userId = useSelector((state) => state.session.user.id);
 
-  console.log(`\n\n${reviewId}\n\n`);
 
   useEffect(() => {}, [title, review, rating]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(review);
-    console.log(rating);
 
     const updateReview = {
       product_id: productId,
@@ -34,10 +30,8 @@ function EditReview({ setShowModal, reviewId }) {
 
     try {
       const response = await dispatch(updateOneReview(updateReview, reviewId));
-      console.log(response);
     } catch (res) {
-      console.log(res);
-      console.log("ERROR IN REVIEW FORM RESPONSE");
+
     }
 
     setShowModal(false);

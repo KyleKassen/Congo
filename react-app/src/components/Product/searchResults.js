@@ -18,8 +18,7 @@ function SearchResults() {
     ? searchParams.get("category")
     : "All";
   const searchInput = searchParams.get("input");
-  console.log(category);
-  console.log(searchInput);
+
 
   let getProducts = async () => {
     let response = await fetch(
@@ -183,7 +182,7 @@ function SearchResults() {
                   </div>
                   <div className="search-products-container">
                     {currentProducts.map((product, idx) => {
-                      // console.log(product);
+
                       return (
                         <div key={idx} className="search-product-container">
                           <div className="search-product-left-container">

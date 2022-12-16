@@ -237,7 +237,6 @@ function Header() {
             }}
           >
             <img src={whitepin} />
-            {console.log(!session.user || !defaultAddress.id)}
             {(!session.user || !defaultAddress.id) && (
               <div>
                 <p className="header-top-text">Deliver to</p>

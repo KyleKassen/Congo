@@ -20,7 +20,6 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
   const [errormsgs, setErrorMsgs] = useState({});
 
   const { productId } = useParams();
-  console.log(`productId is ${productId}`);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -52,9 +51,6 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(review);
-    console.log(rating);
 
     function textFold(input, lineSize) {
       const output = []
@@ -105,10 +101,10 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
 
     try {
       const response = await dispatch(updateOneReview(newReview, editReviewId));
-      console.log(response);
+
       if (response.id) {
         const newImageUrls = imageUrls.filter(url => !startingUrls.includes(url));
-        console.log("review posted correctly", response.id);
+
         const res = await fetch(`/api/reviews/${response.id}/images`, {
           method: "POST",
           headers: {
@@ -121,12 +117,11 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
           setImageLoading(false);
         } else {
           setImageLoading(false);
-          console.log("error");
+
         }
       }
     } catch (res) {
-      console.log(res);
-      console.log("ERROR IN REVIEW FORM RESPONSE");
+
     }
 
     for (let url of imagesToDelete) {
@@ -137,7 +132,7 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
         },
         body: JSON.stringify({ url: url }),
       });
-      console.log(await deleteRes.json());
+
     }
 
     await dispatch(loadAllReviews(productId))
@@ -146,7 +141,6 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
   };
 
   useEffect(async () => {
-    console.log("This is inside image useeffect", image);
 
     const formData = new FormData();
     formData.append("image", image);
@@ -158,7 +152,7 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
       });
       if (res.ok) {
         const urlObj = await res.json();
-        console.log("urlObj from adding to s3 is:", urlObj);
+
         const url = urlObj.url;
         setImageUrls([...imageUrls, url]);
       }
@@ -240,10 +234,8 @@ function EditReview({ setShowEditReviewModal, editReviewId }) {
     imagesArray.splice(imageIndex, 1);
     setImageUrls(imagesArray);
 
-    // console.log(await deleteRes.json());
   };
 
-  console.log("current image url array is ", imageUrls);
 
 
   return (

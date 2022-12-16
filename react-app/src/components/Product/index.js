@@ -39,7 +39,6 @@ function Product() {
   );
   const userId = useSelector((state) => state.session.user?.id);
 
-  console.log(`object keys producs ${product}`);
 
   useEffect(() => {
     (async () => {
@@ -69,7 +68,7 @@ function Product() {
   let two = 0;
   let one = 0;
   let reviewImgs = [];
-  console.log("refresh happened");
+
   for (let review of reviews) {
     switch (review.rating) {
       case 5:

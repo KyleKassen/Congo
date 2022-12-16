@@ -10,7 +10,6 @@ const RESET = "address/reset";
 //##########################
 
 export const createOne = (address) => {
-  console.log("creating One address");
   return {
     type: CREATE,
     payload: address,
@@ -18,7 +17,6 @@ export const createOne = (address) => {
 };
 
 export const createOneAddress = (addressData) => async (dispatch) => {
-  console.log("createing One address Thunk");
   const response = await fetch(`/api/users/addresses`, {
     method: "POST",
     headers: {
@@ -40,7 +38,6 @@ export const createOneAddress = (addressData) => async (dispatch) => {
 //##########################
 
 export const updateOne = (address) => {
-  console.log("Updating One address");
   return {
     type: UPDATE,
     payload: address,
@@ -48,7 +45,6 @@ export const updateOne = (address) => {
 };
 
 export const updateOneAddress = (address, id) => async (dispatch) => {
-  console.log("Updating One address Thunk", address, id);
   const response = await fetch(`/api/users/addresses/${id}`, {
     method: "PUT",
     headers: {
@@ -93,7 +89,7 @@ export const loadAllAddresses = (userId) => async (dispatch) => {
 //##########################
 
 export const deleteOne = (id) => {
-  console.log("Deleting One address");
+
   return {
     type: DELETE,
     payload: id,
@@ -101,7 +97,7 @@ export const deleteOne = (id) => {
 };
 
 export const deleteOneAddress = (id) => async (dispatch) => {
-  console.log("Deleting One address Thunk");
+
   const response = await fetch(`/api/users/addresses/${id}`, {
     method: "DELETE",
   });
@@ -117,7 +113,7 @@ export const deleteOneAddress = (id) => async (dispatch) => {
 //##########################
 
 export const editDefault = (id) => {
-  console.log("Editing default address");
+
   return {
     type: DEFAULT,
     payload: id,
@@ -125,7 +121,7 @@ export const editDefault = (id) => {
 };
 
 export const editDefaultAddress = (id) => async (dispatch) => {
-  console.log("Editing default One address Thunk");
+
   const response = await fetch(`/api/users/addresses/default/${id}`, {
     method: "PUT",
   });

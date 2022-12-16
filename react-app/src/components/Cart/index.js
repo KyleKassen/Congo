@@ -17,9 +17,9 @@ function Cart() {
   const userId = useSelector((state) => state.session.user.id);
 
   const updateQuantity = async (itemId, quantity) => {
-    console.log(`quantity is : ${quantity}`);
+
     const cartUlItems = document.getElementsByClassName("cart-item-ul");
-    console.log(cartUlItems);
+
     Object.values(cartUlItems).forEach((ulItem) =>
       ulItem.classList.add("disable-hover")
     );

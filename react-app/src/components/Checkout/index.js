@@ -50,7 +50,7 @@ function Checkout() {
 
   useEffect(() => {
     (async () => {
-      console.log('productId is', productId)
+
       await dispatch(loadAllAddresses(userId));
       await dispatch(loadAllPayments(userId));
       await dispatch(loadCartItems(userId));
@@ -62,7 +62,7 @@ function Checkout() {
     })();
   }, [dispatch]);
 
-  console.log(`product id is ${productId}`)
+
 
   useEffect(() => {
     setDefaultAddress(addresses[0]);
@@ -223,10 +223,7 @@ function Checkout() {
     setDiscount(
       Object.values(deliverySetting).filter((x) => x === 9).length * 4
     );
-    console.log(
-      Object.values(deliverySetting),
-      Object.values(deliverySetting).filter((x) => x === 9).length * 4
-    );
+
   };
   // Handle shipping time change ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
