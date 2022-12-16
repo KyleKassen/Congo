@@ -186,11 +186,15 @@ def implement_search():
     searchInput = request.args.get('search')
     cat = request.args.get('category')
     all_cat_products = None
+    print('/n/n/ntestestestset')
 
     if (cat == "All"):
         all_cat_products = Product.query.options(joinedload(Product.product_image)).all()
     else:
-        all_cat_products = Product.query.filter(Product.categories.any(name=cat)).all()
+        # all_cat_products = Product.query.filter(Product.categories.any(name=cat)).all()
+        # all_cat_products = Product.query.options(joinedload(Product.categories)).filter(Category.name.startswith(cat)).all()
+        # all_cat_products = Product.query.filter(Product.categories.any(name=f'{cat}%')).all()
+        all_cat_products = db.session.query(Product).join(Product.categories).filter(Category.name.startswith(cat)).all()
 
     all_final_products = []
 

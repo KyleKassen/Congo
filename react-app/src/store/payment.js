@@ -9,7 +9,7 @@ const RESET = "payment/reset";
 //##########################
 
 export const createOne = (payment) => {
-    console.log("creating One payment");
+
     return {
       type: CREATE,
       payload: payment,
@@ -17,7 +17,7 @@ export const createOne = (payment) => {
   };
 
 export const createOnepayment = (paymentData) => async (dispatch) => {
-    console.log("creating One payment Thunk");
+
     const response = await fetch(`/api/users/payments`, {
       method: "POST",
       headers: {
@@ -39,7 +39,7 @@ export const createOnepayment = (paymentData) => async (dispatch) => {
 //##########################
 
 export const updateOne = (payment) => {
-    console.log("Updating One payment");
+
     return {
       type: UPDATE,
       payload: payment,
@@ -47,7 +47,7 @@ export const updateOne = (payment) => {
   };
 
   export const updateOnePayment = (payment, id) => async (dispatch) => {
-    console.log("Updating One payment Thunk", payment, id);
+
     const response = await fetch(`/api/users/payments/${id}`, {
       method: "PUT",
       headers: {
@@ -92,7 +92,7 @@ export const loadAllPayments = (userId) => async (dispatch) => {
 //##########################
 
 export const deleteOne = (id) => {
-    console.log("Deleting One payment");
+
     return {
       type: DELETE,
       payload: id,
@@ -100,7 +100,7 @@ export const deleteOne = (id) => {
   };
 
   export const deleteOnePayment = (id) => async (dispatch) => {
-    console.log("Deleting One payment Thunk");
+
     const response = await fetch(`/api/users/payments/${id}`, {
       method: "DELETE",
     });
@@ -117,7 +117,7 @@ export const deleteOne = (id) => {
 //##########################
 
 export const resetPayment = () => {
-  console.log("RESETing payments");
+
   return {
     type: RESET
   };

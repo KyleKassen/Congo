@@ -26,11 +26,13 @@ function Checkout() {
   const [defaultPayment, setDefaultPayment] = useState({});
   const [finalAddress, setFinalAddress] = useState({});
   const [finalPayment, setFinalPayment] = useState({});
+  const [cartItems, setCartItems] = useState([]);
   const [discount, setDiscount] = useState(0);
   const [deliverySetting, setDeliverySetting] = useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const {productId} = useParams();
 
   const userId = useSelector((state) => state.session.user.id);
   const addressObj = useSelector((state) => state.addresses.addresses);
@@ -41,22 +43,35 @@ function Checkout() {
     Object.values(state.payments.payments)
   );
   const cart = useSelector((state) => state.cart);
-  const cartItems = Object.values(cart.items);
+  // let cartItems;
+  let allCartItems = Object.values(cart.items);
+  let buyNowProduct;
+  buyNowProduct = useSelector(state => state.products.allProducts[productId])
 
   useEffect(() => {
     (async () => {
+
       await dispatch(loadAllAddresses(userId));
       await dispatch(loadAllPayments(userId));
       await dispatch(loadCartItems(userId));
+      if (productId) {
+        const productCopy = {...buyNowProduct, image: {...buyNowProduct.images[0]}}
+        setCartItems([{id: 1, product: {...productCopy}, quantity: 1}])
+      }
       setLoaded(true);
     })();
   }, [dispatch]);
+
+
 
   useEffect(() => {
     setDefaultAddress(addresses[0]);
     setFinalAddress(addresses[0]);
     setDefaultPayment(payments[0]);
     setFinalPayment(payments[0]);
+    if (!productId) {
+      setCartItems([...allCartItems])
+    }
   }, [loaded]);
 
   if (!loaded) {
@@ -208,10 +223,7 @@ function Checkout() {
     setDiscount(
       Object.values(deliverySetting).filter((x) => x === 9).length * 4
     );
-    console.log(
-      Object.values(deliverySetting),
-      Object.values(deliverySetting).filter((x) => x === 9).length * 4
-    );
+
   };
   // Handle shipping time change ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
@@ -230,7 +242,7 @@ function Checkout() {
   let total = 0;
   return (
     <>
-      {loaded && (
+      {loaded && cartItems.length > 0 && (
         <div className="checkout-outer-wrapper">
           <div className="checkout-header-wrapper">
             <div className="checkout-header-container">
@@ -243,12 +255,20 @@ function Checkout() {
                 Checkout{" "}
                 <span className="checkout-heading-outer-span">
                   (
-                  <span
+                  {productId && <span
+                    className="checkout-heading-inner-span"
+                    onClick={() => history.push(`/product/${productId}`)}
+                  >
+
+                    1 item
+                  </span>}
+                  {!productId && <span
                     className="checkout-heading-inner-span"
                     onClick={() => history.push("/cart")}
                   >
+
                     {cart.totalQuantity} items
-                  </span>
+                  </span>}
                   )
                 </span>
               </h1>
@@ -424,7 +444,8 @@ function Checkout() {
                         Payment method
                       </h3>
                       <div className="checkout-shipping-starter-payment-container">
-                        {finalPayment && (
+                        {console.log("final payment is: ",finalPayment)}
+                        {Object.values(finalPayment).length > 0 && (
                           <>
                             <p>
                               <img src={card} />
@@ -482,7 +503,7 @@ function Checkout() {
                               : String(payment.cardExp);
                           return (
                             <>
-                              {finalPayment.id == payment.id && (
+                              {finalPayment?.id == payment.id && (
                                 <div
                                   key={idx}
                                   className={`payment-container payment-container${payment.id} payment-active`}
@@ -599,6 +620,8 @@ function Checkout() {
                     <h3 className="items-index">3</h3>
                     <h3 className="items-heading">Review items and shipping</h3>
                   </div>
+                  {cartItems !== undefined && (
+
                   <div className="items-outer-container">
                     {cartItems.map((item, idx) => {
                       total += item.quantity * item.product.price;
@@ -723,6 +746,7 @@ function Checkout() {
                       </div>
                     </div>
                   </div>
+                  )}
                 </div>
               </div>
               <div className="checkout-bottom-divider"></div>

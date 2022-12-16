@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  useParams,
-  useHistory,
-} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loadOneProduct,
@@ -16,12 +10,10 @@ import { loadAllReviews, deleteOneReview } from "../../store/review";
 import { loadAllAddresses } from "../../store/address";
 import { addCartItem } from "../../store/cart";
 import { Modal } from "../../context/Modal";
+import Checkout from "../Checkout";
 import EditReview from "../Forms/ReviewForms/editReview";
-import Review from "../Review/index";
-
 import locationpin from "../../media/images/buyboxlocation.png";
 import lock from "../../media/images/greyLock.png";
-// import threesquares from "../../media/images/threesquares.png";
 import threesq from "../../media/images/threesq.svg";
 
 import "./product.css";
@@ -47,7 +39,6 @@ function Product() {
   );
   const userId = useSelector((state) => state.session.user?.id);
 
-  console.log(`object keys producs ${product}`);
 
   useEffect(() => {
     (async () => {
@@ -77,7 +68,7 @@ function Product() {
   let two = 0;
   let one = 0;
   let reviewImgs = [];
-  console.log("refresh happened");
+
   for (let review of reviews) {
     switch (review.rating) {
       case 5:
@@ -198,10 +189,14 @@ function Product() {
   };
 
   const addToCart = async () => {
-    if (!userId) history.push('/login')
-    await dispatch(addCartItem(product.id))
-    history.push('/cart')
-  }
+    if (!userId) history.push("/login");
+    await dispatch(addCartItem(product.id));
+    history.push("/cart");
+  };
+
+  const handleBuyNow = () => {
+    history.push(`/checkout/${productId}`)
+  };
 
   return (
     <div className="product-page-outer-wrapper">
@@ -335,14 +330,26 @@ function Product() {
                 </span>
               )}
               {!userId && <span>Sign in to see delivery location</span>}
-              {addresses.length === 0 && userId && <span>No delivery address found</span>}
+              {addresses.length === 0 && userId && (
+                <span>No delivery address found</span>
+              )}
             </div>
             <div className="buy-box-stock">
               <p>In Stock.</p>
             </div>
             <div className="buy-box-quantity"></div>
-            <div className="buy-box-addtocart buy-box-button" onClick={() => addToCart()}>Add to Cart</div>
-            <div className="buy-box-buynow buy-box-button">Buy Now</div>
+            <div
+              className="buy-box-addtocart buy-box-button"
+              onClick={() => addToCart()}
+            >
+              Add to Cart
+            </div>
+            <div
+              className="buy-box-buynow buy-box-button"
+              onClick={() => handleBuyNow()}
+            >
+              Buy Now
+            </div>
             <div className="buy-box-secure">
               <img src={lock} />
               <span>Secure Transaction</span>

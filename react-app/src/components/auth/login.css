@@ -13,6 +13,10 @@
     margin-bottom: 18px;
 }
 
+.login-img-container:hover {
+    cursor: pointer;
+}
+
 .login-img-container img {
     height: 100%;
     width: 100%;
@@ -124,6 +128,10 @@
     font-size: 13px;
     height: 29px;
     width: 100%;
+}
+
+.login-demo-button {
+    margin-top: 10px;
 }
 
 .login-form-bottom-text {

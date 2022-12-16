@@ -31,10 +31,9 @@ function EditPayment({setShowModal, paymentId}) {
 
     try {
         const response = await dispatch(updateOnePayment(updatePayment, paymentId))
-        console.log(response)
+
     } catch (res) {
-        console.log(res)
-        console.log("ERROR IN payment FORM RESPONSE")
+
     }
     setShowModal(false)
   }

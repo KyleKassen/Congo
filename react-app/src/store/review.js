@@ -32,7 +32,7 @@ const LOAD_ALL = "review/loadAll";
 //##########################
 
 export const createOne = (review) => {
-  console.log("createing One review");
+
   return {
     type: CREATE,
     payload: review,
@@ -40,7 +40,7 @@ export const createOne = (review) => {
 };
 
 export const createOneReview = (reviewData, productId) => async (dispatch) => {
-  console.log("createing One review Thunk");
+
   const response = await fetch(`/api/products/${productId}/reviews`, {
     method: "POST",
     headers: {
@@ -62,7 +62,7 @@ export const createOneReview = (reviewData, productId) => async (dispatch) => {
 //##########################
 
 export const updateOne = (review) => {
-  console.log("Updating One review");
+
   return {
     type: UPDATE,
     payload: review,
@@ -70,7 +70,7 @@ export const updateOne = (review) => {
 };
 
 export const updateOneReview = (review, id) => async (dispatch) => {
-  console.log("Updating One review Thunk", review, id);
+
   const response = await fetch(`/api/reviews/${id}`, {
     method: "PUT",
     headers: {
@@ -92,7 +92,7 @@ export const updateOneReview = (review, id) => async (dispatch) => {
 //##########################
 
 export const deleteOne = (id) => {
-  console.log("Deleting One review");
+
   return {
     type: DELETE,
     payload: id,
@@ -100,7 +100,7 @@ export const deleteOne = (id) => {
 };
 
 export const deleteOneReview = (id) => async (dispatch) => {
-  console.log("Deleting One review Thunk");
+
   const response = await fetch(`/api/reviews/${id}`, {
     method: "DELETE",
   });
@@ -116,7 +116,7 @@ export const deleteOneReview = (id) => async (dispatch) => {
 //##########################
 
 export const loadAll = (reviews) => {
-  console.log("Loading all review");
+
   return {
     type: LOAD_ALL,
     payload: reviews,
@@ -124,7 +124,7 @@ export const loadAll = (reviews) => {
 };
 
 export const loadAllReviews = (productId) => async (dispatch) => {
-  console.log("Loading all review Thunk");
+
   const response = await fetch(`/api/products/${productId}/reviews`);
 
   const reviews = await response.json();
@@ -154,7 +154,6 @@ export const reviewReducer = (state = initialState, action) => {
       newState.productReviews[action.payload.id] = action.payload;
       return newState;
     case UPDATE:
-      console.log("\n\n\n",action.payload)
       const reviewId = action.payload.id
       newState.productReviews[reviewId] = {...action.payload, images:[...state.productReviews[reviewId].images], user: {...state.productReviews[reviewId].user}};
       return newState;

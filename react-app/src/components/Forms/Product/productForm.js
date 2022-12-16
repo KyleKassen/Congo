@@ -60,7 +60,6 @@ function ProductForm({ createProduct }) {
     if (!image.trim()) currentErrors["image"] = "Please enter an image URL"
     if (parseInt(price) > 1000000)
       currentErrors["price"] = "Price must be below $1,000,000";
-    console.log(`price is ${typeof price}`);
 
     if (Object.values(currentErrors).length > 0) {
       setErrorMsgs(currentErrors);
@@ -101,11 +100,9 @@ function ProductForm({ createProduct }) {
       let productId = 0;
       try {
         const response = await dispatch(addOneProduct(newProduct));
-        console.log("Product response from server", response);
         productId = response.id;
       } catch (res) {
-        console.log(res);
-        console.log("Error IN Product Form Response");
+
       }
       history.push(`/product/${productId}`);
     } else {
@@ -113,10 +110,9 @@ function ProductForm({ createProduct }) {
         const response = await dispatch(
           updateOneProduct(newProduct, productId)
         );
-        console.log("Product response from server", response);
+
       } catch (res) {
-        console.log(res);
-        console.log("Error IN Product Form Response");
+
       }
 
       history.push(`/product/${productId}`);

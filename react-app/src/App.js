@@ -78,6 +78,10 @@ function App() {
           <Header />
           <Cart />
         </ProtectedRoute>
+        <ProtectedRoute path="/checkout/:productId" exact={true}>
+          {/* <Header /> */}
+          <Checkout />
+        </ProtectedRoute>
         <ProtectedRoute path="/checkout" exact={true}>
           {/* <Header /> */}
           <Checkout />

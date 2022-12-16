@@ -50,9 +50,6 @@ function EditAddress({
     let response;
 
     let currentErrors = {}
-    // console.log(zipCode)
-    // console.log(!/^\d+$/.test(zipCode))
-    // console.log(String(zipCode).length)
 
     if (!firstName) currentErrors['firstName'] = 'Please enter a first name.'
     if (!lastName) currentErrors['lasttName'] = "Please enter a last name."
@@ -70,10 +67,9 @@ function EditAddress({
 
     try {
       response = await dispatch(updateOneAddress(updateAddress, addressId));
-      console.log(response);
+
     } catch (res) {
-      console.log(res);
-      console.log("ERROR IN address FORM RESPONSE");
+
     }
     setFinalAddress(response);
     setChangeAddress(false);

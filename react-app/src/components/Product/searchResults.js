@@ -4,6 +4,7 @@ import "./searchResults.css";
 
 function SearchResults() {
   const [products, setProducts] = useState([]);
+  const [currentProducts, setCurrentProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [searchDisplayTerm, setSearchDisplayTerm] = useState("");
 
@@ -17,8 +18,7 @@ function SearchResults() {
     ? searchParams.get("category")
     : "All";
   const searchInput = searchParams.get("input");
-  console.log(category);
-  console.log(searchInput);
+
 
   let getProducts = async () => {
     let response = await fetch(
@@ -26,11 +26,12 @@ function SearchResults() {
     );
     let resultingProducts = await response.json();
     setProducts([...resultingProducts.products]);
+    setCurrentProducts([...resultingProducts.products])
     setLoaded(true);
   };
 
   useEffect(() => {
-    if (category == "All" && !searchInput) history.push("/");
+    if (category == "All" && !searchInput) setSearchDisplayTerm(`All Departments`);
     getProducts();
 
     if (!searchInput && category != "All")
@@ -119,21 +120,35 @@ function SearchResults() {
   // Dealing with delivery times and such ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // -----------------------------------------------------------------
 
+  // -----------------------------------------------------------------
+  // Dealing with star clicks vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+  const handleStarClick = rating => {
+    const currentProducts = products;
+    const result = []
+    currentProducts.forEach(prod => {
+      if (prod.rating >= rating) result.push(prod)
+    })
+    setCurrentProducts([...result])
+  }
+
+  // Dealing with star clicks ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  // -----------------------------------------------------------------
+
   return (
     <>
       {loaded && (
         <div className="search-outer-container">
           <div className="search-container">
             <div className="search-header-container">
-              {products.length == 1 && (
+              {currentProducts.length == 1 && (
                 <p>
-                  {products.length} result for{" "}
+                  {currentProducts.length} result for{" "}
                   <span>"{searchDisplayTerm}"</span>
                 </p>
               )}
-              {products.length != 1 && (
+              {currentProducts.length != 1 && (
                 <p>
-                  {products.length} results for{" "}
+                  {currentProducts.length} results for{" "}
                   <span>"{searchDisplayTerm}"</span>
                 </p>
               )}
@@ -143,19 +158,19 @@ function SearchResults() {
                 <div className="search-left-container">
                   <div className="search-review-selection">
                     <p>Customer Reviews</p>
-                    <div className="star-rating-div">
+                    <div className="star-rating-div" onClick={() => handleStarClick(4)}>
                       <i className="search-4-star-icon star-icons"></i>
                       <span>& Up</span>
                     </div>
-                    <div className="star-rating-div">
+                    <div className="star-rating-div" onClick={() => handleStarClick(3)}>
                       <i className="search-3-star-icon star-icons"></i>
                       <span>& Up</span>
                     </div>
-                    <div className="star-rating-div">
+                    <div className="star-rating-div" onClick={() => handleStarClick(2)}>
                       <i className="search-2-star-icon star-icons"></i>
                       <span>& Up</span>
                     </div>
-                    <div className="star-rating-div">
+                    <div className="star-rating-div" onClick={() => handleStarClick(1)}>
                       <i className="search-1-star-icon star-icons"></i>
                       <span>& Up</span>
                     </div>
@@ -166,8 +181,8 @@ function SearchResults() {
                     <h2>RESULTS</h2>
                   </div>
                   <div className="search-products-container">
-                    {products.map((product, idx) => {
-                      console.log(product);
+                    {currentProducts.map((product, idx) => {
+
                       return (
                         <div key={idx} className="search-product-container">
                           <div className="search-product-left-container">

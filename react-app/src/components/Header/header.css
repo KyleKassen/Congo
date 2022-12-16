@@ -185,6 +185,10 @@
     /* width: 99px; */
 }
 
+.header-returns:hover, .header-language:hover {
+    cursor: not-allowed !important;
+}
+
 .header-user-auth {
     width: 125px;
     position: relative;
@@ -227,27 +231,22 @@
 .header-user-auth:hover .header-account-dropdown-container{
     display:flex;
     flex-direction: column;
-    padding: 14px 14px 7px 14px;
+    padding: 14px 14px 14px 14px;
 }
 
 .header-account-dropdown-bottom {
     display: flex;
-    border-bottom: 1px solid #eee;
+    /* border-bottom: 1px solid #eee;
     margin-bottom: 12px;
-    padding-bottom: 16px;
+    padding-bottom: 16px; */
 }
 
 .header-dropdown-about-links {
-    display: flex;
     margin-bottom: 6px;
 }
 
 .header-dropdown-about-links * {
-    font-size: 11px !important;
-}
-
-.header-dropdown-about-links-p {
-    margin-right: 115px;
+    font-size: 13px !important;
 }
 
 .header-dropdown-about-links a {
@@ -489,120 +488,102 @@
     }
 }
 
-@media screen and (max-width: 3030px) {
-    .header-mainnav-aud {
+@media screen and (max-width: 3070px) {
+    .header-mainnav-vid {
         display:none
     }
 }
 
-@media screen and (max-width: 2955px) {
-    .header-mainnav-han {
+@media screen and (max-width: 2965px) {
+    .header-mainnav-und {
         display:none
     }
 }
 
-@media screen and (max-width: 2860px) {
-    .header-mainnav-sma {
+@media screen and (max-width: 2870px) {
+    .header-mainnav-spo {
         display:none
     }
 }
 
-@media screen and (max-width: 2767px) {
+@media screen and (max-width: 2729px) {
+    .header-mainnav-sof {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2643px) {
+    .header-mainnav-pri {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2544px) {
+    .header-mainnav-pre {
+        display:none
+    }
+}
+@media screen and (max-width: 2408px) {
+    .header-mainnav-pet {
+        display:none
+    }
+}
+@media screen and (max-width: 2305px) {
+    .header-mainnav-off {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2184px) {
+    .header-mainnav-mov {
+        display:none
+    }
+}
+
+@media screen and (max-width: 2079px) {
     .header-mainnav-lux {
         display:none
     }
 }
 
-@media screen and (max-width: 2659px) {
-    .header-mainnav-hea {
-        display:none
-    }
-}
-
-@media screen and (max-width: 2503px) {
-    .header-mainnav-pet {
-        display:none
-    }
-}
-@media screen and (max-width: 2400px) {
-    .header-mainnav-vid {
-        display:none
-    }
-}
-@media screen and (max-width: 2291px) {
-    .header-mainnav-bea {
-        display:none
-    }
-}
-
-@media screen and (max-width: 2118px) {
-    .header-mainnav-hom {
-        display:none
-    }
-}
-
-@media screen and (max-width: 2066px) {
-    .header-mainnav-com {
-        display:none
-    }
-}
-
-@media screen and (max-width: 1871px) {
-    .header-mainnav-exp {
-        display:none
-    }
-}
-
-@media screen and (max-width: 1744px) {
-    .header-mainnav-aut {
-        display:none
-    }
-}
-
-@media screen and (max-width: 1565px) {
-    .header-mainnav-cou {
-        display:none
-    }
-}
-
-@media screen and (max-width: 1445px) {
-    .header-mainnav-toy {
-        display:none
-    }
-}
-
-@media screen and (max-width: 1380px) {
-    .header-mainnav-sel {
-        display:none
-    }
-}
-
-@media screen and (max-width: 1334px) {
-    .header-mainnav-gif {
-        display:none
-    }
-}
-
-@media screen and (max-width: 1251px) {
+@media screen and (max-width: 1975px) {
     .header-mainnav-kin {
         display:none
     }
 }
 
-@media screen and (max-width: 1149px) {
-    .header-mainnav-fas {
+@media screen and (max-width: 1873px) {
+    .header-mainnav-ind {
         display:none
     }
 }
 
-@media screen and (max-width: 1081px) {
-    .header-mainnav-ho2 {
+@media screen and (max-width: 1710px) {
+    .header-mainnav-hom {
         display:none
     }
 }
 
-@media screen and (max-width: 966px) {
-    .header-mainnav-reg {
+@media screen and (max-width: 1523px) {
+    .header-mainnav-hea {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1303px) {
+    .header-mainnav-han {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1214px) {
+    .header-mainnav-gar {
+        display:none
+    }
+}
+
+@media screen and (max-width: 1083px) {
+    .header-mainnav-ele {
         display:none
     }
 }

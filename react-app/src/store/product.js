@@ -9,7 +9,7 @@ const LOAD_ALL = "product/loadAll";
 //##########################
 
 export const loadOne = (product) => {
-  console.log("Loading One Product");
+
   return {
     type: LOAD,
     payload: product,
@@ -17,7 +17,7 @@ export const loadOne = (product) => {
 };
 
 export const loadOneProduct = (id) => async (dispatch) => {
-  console.log("Loading One Product Thunk");
+
   const response = await fetch(`/api/products/${id}`);
 
   const product = await response.json();
@@ -32,7 +32,7 @@ export const loadOneProduct = (id) => async (dispatch) => {
 //##########################
 
 export const addOne = (product) => {
-  console.log("Adding One Product");
+
   return {
     type: ADD,
     payload: product,
@@ -40,7 +40,7 @@ export const addOne = (product) => {
 };
 
 export const addOneProduct = (newProduct) => async (dispatch) => {
-  console.log("Adding One Product Thunk");
+
   const response = await fetch(`/api/products/`, {
     method: "POST",
     headers: {
@@ -62,7 +62,7 @@ export const addOneProduct = (newProduct) => async (dispatch) => {
 //##########################
 
 export const updateOne = (product) => {
-  console.log("Updating One Product");
+
   return {
     type: UPDATE,
     payload: product,
@@ -70,7 +70,7 @@ export const updateOne = (product) => {
 };
 
 export const updateOneProduct = (oldProduct, id) => async (dispatch) => {
-  console.log("Updating One Product Thunk");
+
   const response = await fetch(`/api/products/${id}`, {
     method: "PUT",
     headers: {
@@ -92,7 +92,7 @@ export const updateOneProduct = (oldProduct, id) => async (dispatch) => {
 //##########################
 
 export const deleteOne = (id) => {
-  console.log("Deleting One Product");
+
   return {
     type: DELETE,
     payload: id,
@@ -100,7 +100,7 @@ export const deleteOne = (id) => {
 };
 
 export const deleteOneProduct = (id) => async (dispatch) => {
-  console.log("Deleting One Product Thunk");
+
   const response = await fetch(`/api/products/${id}`, {
     method: "DELETE",
   });
@@ -116,7 +116,7 @@ export const deleteOneProduct = (id) => async (dispatch) => {
 //##########################
 
 export const loadAll = (products) => {
-  console.log("Loading all Product");
+
   return {
     type: LOAD_ALL,
     payload: products,
@@ -124,7 +124,7 @@ export const loadAll = (products) => {
 };
 
 export const loadAllProducts = () => async (dispatch) => {
-  console.log("Loading all Product Thunk");
+
   const response = await fetch(`/api/products/`);
 
   const products = await response.json();

@@ -108,7 +108,7 @@ function Header() {
     "Cell Phones & Accessories",
     "Clothing, Shoes & Jewely",
     "Collectibles & Fine Art",
-    "Computes",
+    "Computers",
     "Credit and Payment Cards",
     "Digital Educational Resources",
     "Digital Music",
@@ -142,42 +142,75 @@ function Header() {
     "Under $10",
     "Video Games",
   ];
+  // const mainNav = [
+  //   "Best Sellers",
+  //   "Amazon Basics",
+  //   "Customer Service",
+  //   "Today's Deals",
+  //   "Prime",
+  //   "New Releases",
+  //   "Music",
+  //   "Books",
+  //   "Pharmacy",
+  //   "Registry",
+  //   "Amazon Home",
+  //   "Fashion",
+  //   "Kindle Books",
+  //   "Gift Cards",
+  //   "Toys & Games",
+  //   "Sell",
+  //   "Coupons",
+  //   "Automotive",
+  //   "Amazon Explore",
+  //   "Computers",
+  //   "Home Improvement",
+  //   "Beauty & Personal Care",
+  //   "Video Games",
+  //   "Pet Supplies",
+  //   "Health & Household",
+  //   "Luxury Stores",
+  //   "Smart Home",
+  //   "Handmade",
+  //   "Audible",
+  // ];
+
   const mainNav = [
-    "Best Sellers",
-    "Amazon Basics",
-    "Customer Service",
-    "Today's Deals",
-    "Prime",
-    "New Releases",
-    "Music",
+    "Amazon Devices",
+    "Appliances",
+    "Apps & Games",
+    "Automotive Parts & Accessories",
+    "Baby",
     "Books",
-    "Pharmacy",
-    "Registry",
-    "Amazon Home",
-    "Fashion",
-    "Kindle Books",
-    "Gift Cards",
-    "Toys & Games",
-    "Sell",
-    "Coupons",
-    "Automotive",
-    "Amazon Explore",
-    "Computers",
-    "Home Improvement",
     "Beauty & Personal Care",
-    "Video Games",
-    "Pet Supplies",
-    "Health & Household",
-    "Luxury Stores",
-    "Smart Home",
+    "Computers",
+    "Electronics",
+    "Garden & Outdoor",
     "Handmade",
-    "Audible",
+    "Health, Household & Babe Care",
+    "Home & Kitchen",
+    "Industrial & Scientific",
+    "Kindle Store",
+    "Luxury Store",
+    "Movies & TV",
+    "Office Products",
+    "Pet Supplies",
+    "Premium Beauty",
+    "Prime Video",
+    "Software",
+    "Sports & Outdoors",
+    "Under $10",
+    "Video Games",
   ];
 
   async function onSubmit(e) {
     e.preventDefault();
     history.push(`/products/search?input=${search}&category=${department}`);
   }
+
+  const handleNavClick = (navItem) => {
+    const navArray = navItem.split("&");
+    history.push(`/products/search?&input=&category=${navArray[0]}`);
+  };
 
   const logoutFunc = async () => {
     await dispatch(resetCart());
@@ -204,7 +237,6 @@ function Header() {
             }}
           >
             <img src={whitepin} />
-            {console.log(!session.user || !defaultAddress.id)}
             {(!session.user || !defaultAddress.id) && (
               <div>
                 <p className="header-top-text">Deliver to</p>
@@ -318,10 +350,8 @@ function Header() {
               )}
               <div className="header-account-dropdown-bottom">
                 <div className="header-account-dropdown-seller">
-                  <p className="header-account-dropdown-title">
-                    Become a Seller
-                  </p>
-                  <a
+                  <p className="header-account-dropdown-title">Meet The Developer</p>
+                  {/* <a
                     className="header-dropdown-text"
                     onClick={() => {
                       if (session.user) {
@@ -332,7 +362,36 @@ function Header() {
                     }}
                   >
                     Add a Product
-                  </a>
+                  </a> */}
+                  <div className="header-dropdown-about-links">
+                    {/* <p className="header-dropdown-about-links-p">
+                      Developer: Kyle Kassen
+                    </p> */}
+                    <p>
+                      Github:{" "}
+                      <a href="https://github.com/KyleKassen/" target="_blank">
+                        {" "}
+                        Kyle Kassen
+                      </a>
+                    </p>
+                    <p>
+                      LinkedIn:{" "}
+                      <a
+                        href="https://www.linkedin.com/in/kyle-kassen/"
+                        target="_blank"
+                      >
+                        {" "}
+                        Kyle Kassen
+                      </a>
+                    </p>
+                    <p>
+                      Email:{" "}
+                      <a href="mailto: Kyle.Kassen@gmail.com" target="_blank">
+                        {" "}
+                        Kyle.Kassen@gmail.com
+                      </a>
+                    </p>
+                  </div>
                 </div>
                 <div className="header-account-dropdown-your-account">
                   <p className="header-account-dropdown-title">Your Account</p>
@@ -348,7 +407,7 @@ function Header() {
                 <div className="header-account-dropdown-buffer-bottom"></div>
                 <div className="header-account-dropdown-buffer-left"></div>
               </div>
-              <div className="header-dropdown-about-links">
+              {/* <div className="header-dropdown-about-links">
                 <p className="header-dropdown-about-links-p">
                   Developer: Kyle Kassen
                 </p>
@@ -359,7 +418,7 @@ function Header() {
                     Kyle Kassen
                   </a>
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="header-returns header-hover-border">
@@ -381,7 +440,10 @@ function Header() {
         </div>
       </div>
       <div className="header-mainnav-container">
-        <div className="header-mainnav-all header-hover-border">
+        <div
+          className="header-mainnav-all header-hover-border"
+          onClick={() => handleNavClick("All")}
+        >
           <div className="header-mainnav-all-img-container">
             <img src={hamburger} />
           </div>
@@ -395,6 +457,7 @@ function Header() {
           return (
             <div
               className={`header-mainnav-item-container header-mainnav-${navItem2}`}
+              onClick={() => handleNavClick(navItem)}
             >
               <p className="header-mainnav-item header-hover-border">
                 {navItem}

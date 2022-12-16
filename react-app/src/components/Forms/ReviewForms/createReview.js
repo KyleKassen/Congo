@@ -21,7 +21,6 @@ function CreateReview() {
   const [loaded, setLoaded] = useState(false);
 
   const { productId } = useParams();
-  console.log(`productId is ${productId}`);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -38,7 +37,6 @@ function CreateReview() {
   }, [dispatch]);
 
   useEffect(async () => {
-    console.log("This is inside image useeffect", image);
 
     const formData = new FormData();
     formData.append("image", image);
@@ -50,7 +48,6 @@ function CreateReview() {
       });
       if (res.ok) {
         const urlObj = await res.json();
-        console.log("urlObj from adding to s3 is:", urlObj);
         const url = urlObj.url;
         setImageUrls([...imageUrls, url]);
       }
@@ -77,9 +74,6 @@ function CreateReview() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(review);
-    console.log(rating);
 
     let currentErrors = {}
 
@@ -132,9 +126,7 @@ function CreateReview() {
 
     try {
       const response = await dispatch(createOneReview(newReview, productId));
-      console.log(response);
       if (response.id) {
-        console.log("review posted correctly", response.id);
         const res = await fetch(`/api/reviews/${response.id}/images`, {
           method: "POST",
           headers: {
@@ -150,12 +142,11 @@ function CreateReview() {
           setImageLoading(false);
           // a real app would probably use more advanced
           // error handling
-          console.log("error");
+
         }
       }
     } catch (res) {
-      console.log(res);
-      console.log("ERROR IN REVIEW FORM RESPONSE");
+
     }
 
     history.push(`/product/${productId}`);
@@ -242,11 +233,9 @@ function CreateReview() {
     imagesArray.splice(imageIndex, 1)
     setImageUrls(imagesArray);
 
-    console.log(await deleteRes.json());
 
   }
 
-  console.log("current image url array is ", imageUrls)
 
   // window.onbeforeunload = (event) => {
   //   const e = event || window.event;
