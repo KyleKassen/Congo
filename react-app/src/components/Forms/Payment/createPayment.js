@@ -95,7 +95,7 @@ function CreatePayment({
     let response;
 
     try {
-      const response = await dispatch(createOnepayment(newPayment));
+      response = await dispatch(createOnepayment(newPayment));
 
     } catch (res) {
 

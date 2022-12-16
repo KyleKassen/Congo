@@ -444,7 +444,8 @@ function Checkout() {
                         Payment method
                       </h3>
                       <div className="checkout-shipping-starter-payment-container">
-                        {finalPayment && (
+                        {console.log("final payment is: ",finalPayment)}
+                        {Object.values(finalPayment).length > 0 && (
                           <>
                             <p>
                               <img src={card} />
@@ -502,7 +503,7 @@ function Checkout() {
                               : String(payment.cardExp);
                           return (
                             <>
-                              {finalPayment.id == payment.id && (
+                              {finalPayment?.id == payment.id && (
                                 <div
                                   key={idx}
                                   className={`payment-container payment-container${payment.id} payment-active`}
