@@ -200,7 +200,7 @@ function Header() {
     "Sports & Outdoors",
     "Under $10",
     "Video Games",
-  ]
+  ];
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -208,9 +208,9 @@ function Header() {
   }
 
   const handleNavClick = (navItem) => {
-    const navArray = navItem.split('&')
+    const navArray = navItem.split("&");
     history.push(`/products/search?&input=&category=${navArray[0]}`);
-  }
+  };
 
   const logoutFunc = async () => {
     await dispatch(resetCart());
@@ -351,10 +351,8 @@ function Header() {
               )}
               <div className="header-account-dropdown-bottom">
                 <div className="header-account-dropdown-seller">
-                  <p className="header-account-dropdown-title">
-                    Become a Seller
-                  </p>
-                  <a
+                  <p className="header-account-dropdown-title">Meet The Developer</p>
+                  {/* <a
                     className="header-dropdown-text"
                     onClick={() => {
                       if (session.user) {
@@ -365,7 +363,36 @@ function Header() {
                     }}
                   >
                     Add a Product
-                  </a>
+                  </a> */}
+                  <div className="header-dropdown-about-links">
+                    {/* <p className="header-dropdown-about-links-p">
+                      Developer: Kyle Kassen
+                    </p> */}
+                    <p>
+                      Github:{" "}
+                      <a href="https://github.com/KyleKassen/" target="_blank">
+                        {" "}
+                        Kyle Kassen
+                      </a>
+                    </p>
+                    <p>
+                      LinkedIn:{" "}
+                      <a
+                        href="https://www.linkedin.com/in/kyle-kassen/"
+                        target="_blank"
+                      >
+                        {" "}
+                        Kyle Kassen
+                      </a>
+                    </p>
+                    <p>
+                      Email:{" "}
+                      <a href="mailto: Kyle.Kassen@gmail.com" target="_blank">
+                        {" "}
+                        Kyle.Kassen@gmail.com
+                      </a>
+                    </p>
+                  </div>
                 </div>
                 <div className="header-account-dropdown-your-account">
                   <p className="header-account-dropdown-title">Your Account</p>
@@ -381,7 +408,7 @@ function Header() {
                 <div className="header-account-dropdown-buffer-bottom"></div>
                 <div className="header-account-dropdown-buffer-left"></div>
               </div>
-              <div className="header-dropdown-about-links">
+              {/* <div className="header-dropdown-about-links">
                 <p className="header-dropdown-about-links-p">
                   Developer: Kyle Kassen
                 </p>
@@ -392,7 +419,7 @@ function Header() {
                     Kyle Kassen
                   </a>
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="header-returns header-hover-border">
@@ -414,7 +441,10 @@ function Header() {
         </div>
       </div>
       <div className="header-mainnav-container">
-        <div className="header-mainnav-all header-hover-border"  onClick={() => handleNavClick('All')}>
+        <div
+          className="header-mainnav-all header-hover-border"
+          onClick={() => handleNavClick("All")}
+        >
           <div className="header-mainnav-all-img-container">
             <img src={hamburger} />
           </div>

@@ -232,22 +232,17 @@
 
 .header-account-dropdown-bottom {
     display: flex;
-    border-bottom: 1px solid #eee;
+    /* border-bottom: 1px solid #eee;
     margin-bottom: 12px;
-    padding-bottom: 16px;
+    padding-bottom: 16px; */
 }
 
 .header-dropdown-about-links {
-    display: flex;
     margin-bottom: 6px;
 }
 
 .header-dropdown-about-links * {
-    font-size: 11px !important;
-}
-
-.header-dropdown-about-links-p {
-    margin-right: 115px;
+    font-size: 13px !important;
 }
 
 .header-dropdown-about-links a {
