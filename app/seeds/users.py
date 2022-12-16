@@ -36,7 +36,26 @@ def seed_users():
         zipcode = 77845,
         default_address = True
     )
-    db.session.add_all([pm1,sa1])
+    pm2 = PaymentMethod(
+        user_id = 1,
+        card_number = '0000111122223333',
+        card_holder = 'Demo User',
+        card_exp = 1223,
+        security_code = 123,
+        default_card = True
+    )
+
+    sa2 = ShippingAddress(
+        user_id = 1,
+        first_name = "Demo",
+        last_name = "User",
+        address = '123 Address Avenue',
+        city = 'Dallas',
+        state = 'TX',
+        zipcode = 77077,
+        default_address = True
+    )
+    db.session.add_all([pm1,sa1,pm2,sa2])
 
     db.session.commit()
 
