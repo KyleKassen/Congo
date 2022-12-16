@@ -8,7 +8,7 @@
 
 ### Project Wiki Links
 
-* [Backend API Documentation](https://github.com/KyleKassen/API-project/wiki/Backend-API-Documentation)
+* [Backend API Documentation](https://github.com/KyleKassen/congo/wiki/Backend-API-Documentation)
 * [Database Schema](https://github.com/KyleKassen/Congo/wiki/Database-Schema)
 * [Examples Wireframes](https://github.com/KyleKassen/Congo/wiki/Example-Wireframes)
 * [MVP Feature List](https://github.com/KyleKassen/Congo/wiki/MVP-Feature-List)
