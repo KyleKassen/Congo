@@ -445,7 +445,7 @@ function Checkout() {
                       </h3>
                       <div className="checkout-shipping-starter-payment-container">
                         {console.log("final payment is: ",finalPayment)}
-                        {Object.values(finalPayment).length > 0 && (
+                        {finalPayment && Object.values(finalPayment).length > 0 && (
                           <>
                             <p>
                               <img src={card} />
