@@ -217,6 +217,7 @@ function Header() {
     await dispatch(logout());
     await dispatch(resetAddress());
     await dispatch(resetPayment());
+    history.push('/');
   };
 
   const logInDemo = async () => {
